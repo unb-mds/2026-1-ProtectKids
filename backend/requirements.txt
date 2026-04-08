@@ -1,0 +1,9 @@
+fastapi==0.110.0
+uvicorn==0.27.1
+sqlalchemy==2.0.28
+psycopg2-binary==2.9.9
+sqlmodel==0.0.16
+requests==2.31.0
+spacy==3.7.4
+python-dotenv==1.0.1
+pydantic==2.6.3

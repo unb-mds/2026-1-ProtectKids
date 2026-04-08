@@ -1,0 +1,35 @@
+services:
+  db:
+    image: postgres:15
+    container_name: squad10_db
+    environment:
+      - POSTGRES_USER=augusto
+      - POSTGRES_PASSWORD=squad10
+      - POSTGRES_DB=legislativo_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend
+    container_name: squad10_backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgresql://augusto:squad10@db:5432/legislativo_db
+
+  frontend:
+    build: ./frontend
+    container_name: squad10_frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+
+volumes:
+  postgres_data:
