@@ -1,8 +1,8 @@
 ## Controle de Versões
 
-| Autor(a)        | Detalhamento                                            | Versão | Data       |
-| --------------- | ------------------------------------------------------- | ------ | ---------- |
-| Danielly Mendes | Criação do documento e coleta de requisitos  funcionais | 1.0    | 10/04/2026 |
+| Autor(a)                         | Detalhamento                                            | Versão | Data       |
+| ---------------------------------| ------------------------------------------------------- | ------ | ---------- |
+| Danielly Mendes e Carlos Gabriel | Criação do documento e coleta de requisitos  funcionais | 1.0    | 10/04/2026 |
 
 ## 1. Visão Geral
 
@@ -136,3 +136,111 @@ RF10: O sistema deve identificar automaticamente novos temas emergentes.
 ### Won't Have (MVP)
 
 RF11: O sistema não terá integração com a API do Senado nesta versão.
+## 7. Critérios de Aceitação (Gherkin)
+
+### Cenário: Classificação pelo inteiro teor
+
+**Dado que** uma proposição não cita o tema na ementa
+**Quando** o sistema analisa o texto completo
+**Então** ela deve ser classificada corretamente
+
+---
+
+### Cenário: Visualização de ranking
+
+**Dado que** estou no dashboard
+**Quando** seleciono o subtema "Cyberbullying"
+**Então** o sistema deve mostrar deputados ordenados por número de proposições
+
+---
+
+### Cenário: Análise temporal
+
+**Dado que** estou no dashboard
+**Quando** seleciono um subtema
+**Então** devo visualizar a evolução das proposições ao longo do tempo
+
+---
+
+## 8. Arquitetura (Visão Geral)
+
+### Pipeline de Dados
+
+* Extração de dados via API (Câmara/Senado)
+* Download do inteiro teor das proposições
+* Processamento com técnicas de NLP
+* Classificação por temas e subtemas
+* Armazenamento estruturado (banco de dados)
+
+---
+
+### Camada de Visualização
+
+* Dashboard interativo
+* Gráficos de volume por subtema
+* Rankings de parlamentares
+* Filtros por período, tema e deputado
+
+---
+
+### Princípio Arquitetural
+
+* Separação entre **processamento de dados** e **visualização**
+* Melhora de desempenho e escalabilidade
+* Facilita manutenção e evolução do sistema
+
+---
+
+## 9. Definição de MVP
+
+O MVP será considerado completo quando atender aos seguintes pontos:
+
+### 📡 Integração com API
+
+* [ ] Extração de dados da API
+* [ ] Download do inteiro teor
+* [ ] Processamento com NLP
+* [ ] Armazenamento dos dados
+
+---
+
+### Dashboard
+
+* [ ] Dados coletados e disponíveis
+* [ ] Proposições classificadas por subtema
+* [ ] Visualização do volume por subtema
+* [ ] Ranking de parlamentares disponível
+
+---
+
+### Critério Geral
+
+* O sistema deve permitir análise básica de proposições legislativas com base em temas e subtemas, apresentando os dados de forma clara no dashboard.
+  
+## 10. Estrutura de Documentação
+
+A documentação do projeto será organizada na pasta `/docs`, contendo os seguintes arquivos:
+
+```
+/docs
+├── requisitos.md
+├── arquitetura.md
+├── user-stories.md
+├── guia-instalacao.md
+```
+
+### Descrição dos arquivos
+
+* **requisitos.md** → Levantamento de requisitos funcionais e não funcionais
+* **arquitetura.md** → Definição da arquitetura do sistema e decisões técnicas
+* **user-stories.md** → Histórias de usuário e critérios de aceitação
+* **guia-instalacao.md** → Passo a passo para configurar e executar o projeto
+
+---
+
+## 11. Glossário
+
+* **NLP (Processamento de Linguagem Natural)**: Área da computação que permite ao sistema entender e analisar textos humanos
+* **API (Interface de Programação de Aplicações)**: Meio de comunicação entre diferentes sistemas
+* **MVP (Produto Mínimo Viável)**: Versão inicial do sistema com funcionalidades essenciais
+* **Dashboard**: Painel visual que apresenta dados de forma gráfica e interativa
