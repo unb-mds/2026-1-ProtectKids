@@ -162,7 +162,7 @@ RF11: O sistema não terá integração com a API do Senado nesta versão.
 
 ---
 
-## 8. Arquitetura (Visão Geral)
+## 5. Arquitetura (Visão Geral)
 
 ### Pipeline de Dados
 
@@ -191,7 +191,7 @@ RF11: O sistema não terá integração com a API do Senado nesta versão.
 
 ---
 
-## 9. Definição de MVP
+## 6. Definição de MVP
 
 O MVP será considerado completo quando atender aos seguintes pontos:
 
@@ -217,7 +217,7 @@ O MVP será considerado completo quando atender aos seguintes pontos:
 
 * O sistema deve permitir análise básica de proposições legislativas com base em temas e subtemas, apresentando os dados de forma clara no dashboard.
   
-## 10. Estrutura de Documentação
+## 7. Estrutura de Documentação
 
 A documentação do projeto será organizada na pasta `/docs`, contendo os seguintes arquivos:
 
@@ -238,7 +238,7 @@ A documentação do projeto será organizada na pasta `/docs`, contendo os segui
 
 ---
 
-## 11. Glossário
+## 8. Glossário
 
 * **NLP (Processamento de Linguagem Natural)**: Área da computação que permite ao sistema entender e analisar textos humanos
 * **API (Interface de Programação de Aplicações)**: Meio de comunicação entre diferentes sistemas
