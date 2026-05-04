@@ -1,0 +1,27 @@
+site_name: ProtectKids
+
+nav:
+  - Início: index.md
+  - Visão Geral: visao-geral.md
+  - Requisitos: requisitos.md
+  - Arquitetura: arquitetura.md
+  - Uso: uso.md
+  - Contribuição: contribuicao.md
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: blue grey
+      accent: blue
+
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+  features:
+    - navigation.tabs
+    - navigation.top
+  markdown_extensions:
+  - toc:
+      permalink: true
