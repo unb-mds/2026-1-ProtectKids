@@ -27,9 +27,6 @@
     
       <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
       
-        
-        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
-      
       
 
 
@@ -47,6 +44,8 @@
       
     
     
+      <link rel="stylesheet" href="stylesheets/extra.css">
+    
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -56,14 +55,7 @@
   </head>
   
   
-    
-    
-      
-    
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue">
+    <body dir="ltr">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -84,7 +76,9 @@
     
       
 
-<header class="md-header" data-md-component="header">
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="." title="ProtectKids" class="md-header__button md-logo" aria-label="ProtectKids" data-md-component="logo">
       
@@ -112,18 +106,6 @@
         </div>
       </div>
     </div>
-    
-      
-        <form class="md-header__option" data-md-component="palette">
-  
-    
-    
-    
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
-    
-  
-</form>
-      
     
     
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
@@ -180,131 +162,6 @@
       
         
           
-            
-<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
-  <div class="md-grid">
-    <ul class="md-tabs__list">
-      
-        
-  
-  
-  
-    
-  
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="." class="md-tabs__link">
-        
-  
-  
-    
-  
-  Início
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="visao-geral/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Visão Geral
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="requisitos/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Requisitos
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="arquitetura/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Arquitetura
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="uso/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Uso
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="contribuicao/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Contribuição
-
-      </a>
-    </li>
-  
-
-      
-    </ul>
-  </div>
-</nav>
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -318,10 +175,8 @@
                     
 
 
-  
 
-
-<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="." title="ProtectKids" class="md-nav__button md-logo" aria-label="ProtectKids" data-md-component="logo">
       
@@ -401,10 +256,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#sobre-o-projeto" class="md-nav__link">
+  <a href="#plataforma-de-monitoramento-legislativo-para-protecao-infantojuvenil-no-ambiente-digital" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📌 Sobre o projeto
+        Plataforma de Monitoramento Legislativo para Proteção Infantojuvenil no Ambiente Digital
       
     </span>
   </a>
@@ -412,10 +267,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#objetivo" class="md-nav__link">
+  <a href="#objetivos" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Objetivo
+        Objetivos
       
     </span>
   </a>
@@ -423,21 +278,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tecnologias" class="md-nav__link">
+  <a href="#funcionalidades" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🚀 Tecnologias
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#equipe" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        👥 Equipe
+        Funcionalidades
       
     </span>
   </a>
@@ -614,10 +458,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#sobre-o-projeto" class="md-nav__link">
+  <a href="#plataforma-de-monitoramento-legislativo-para-protecao-infantojuvenil-no-ambiente-digital" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📌 Sobre o projeto
+        Plataforma de Monitoramento Legislativo para Proteção Infantojuvenil no Ambiente Digital
       
     </span>
   </a>
@@ -625,10 +469,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#objetivo" class="md-nav__link">
+  <a href="#objetivos" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Objetivo
+        Objetivos
       
     </span>
   </a>
@@ -636,21 +480,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tecnologias" class="md-nav__link">
+  <a href="#funcionalidades" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🚀 Tecnologias
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#equipe" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        👥 Equipe
+        Funcionalidades
       
     </span>
   </a>
@@ -675,23 +508,25 @@
 
 
 <h1 id="protectkids">ProtectKids</h1>
-<h2 id="sobre-o-projeto">📌 Sobre o projeto</h2>
+<h2 id="plataforma-de-monitoramento-legislativo-para-protecao-infantojuvenil-no-ambiente-digital">Plataforma de Monitoramento Legislativo para Proteção Infantojuvenil no Ambiente Digital</h2>
 <p>O ProtectKids é uma plataforma desenvolvida na disciplina de Métodos de Desenvolvimento de Software (MDS) da Universidade de Brasília (UnB).</p>
-<p>A proposta do sistema é monitorar dados legislativos relacionados à proteção de crianças e adolescentes no ambiente digital, organizando essas informações de forma estruturada para facilitar análises e apoiar a tomada de decisão em políticas públicas.</p>
-<h2 id="objetivo">🎯 Objetivo</h2>
+<p>O sistema tem como objetivo monitorar, classificar e analisar proposições legislativas relacionadas à proteção de crianças e adolescentes no ambiente digital.</p>
+<hr />
+<h2 id="objetivos">Objetivos</h2>
 <ul>
-<li>Centralizar informações legislativas relevantes</li>
-<li>Facilitar o acompanhamento de propostas e mudanças na legislação</li>
-<li>Apoiar análises sobre proteção infanto-juvenil no ambiente digital</li>
-<li>Auxiliar na tomada de decisão por meio de dados estruturados</li>
+<li>Centralizar informações legislativas</li>
+<li>Facilitar análise de proposições</li>
+<li>Identificar tendências legislativas</li>
+<li>Apoiar organizações e pesquisadores</li>
 </ul>
-<h2 id="tecnologias">🚀 Tecnologias</h2>
+<hr />
+<h2 id="funcionalidades">Funcionalidades</h2>
 <ul>
-<li>(preenche depois)</li>
-</ul>
-<h2 id="equipe">👥 Equipe</h2>
-<ul>
-<li>(preenche depois)</li>
+<li>Coleta automatizada de dados legislativos</li>
+<li>Processamento de inteiro teor</li>
+<li>Classificação por subtemas</li>
+<li>Dashboard analítico</li>
+<li>Rankings de parlamentares</li>
 </ul>
 
 
@@ -712,12 +547,6 @@
           
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
-        
-          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
-  Back to top
-</button>
         
       </main>
       
@@ -748,7 +577,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.tabs", "navigation.top"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": [], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
