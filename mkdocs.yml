@@ -25,3 +25,8 @@ theme:
   markdown_extensions:
   - toc:
       permalink: true
+theme:
+  name: material
+
+extra_css:
+  - stylesheets/extra.css
