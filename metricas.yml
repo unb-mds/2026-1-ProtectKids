@@ -1,6 +1,6 @@
 name: Atualizar Metricas de Produtividade
 
-on:
+"on":
   push:
     branches:
       - main
@@ -21,7 +21,7 @@ jobs:
       - name: Configurar Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: "3.12"
 
       - name: Instalar dependências
         run: |
@@ -33,13 +33,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python scripts/coletor_metricas.py
 
-      - name: Salvar e Enviar (Commit & Push)
+      - name: Salvar e Enviar
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
           git add dashboard/data.json
 
-          git commit -m "chore(metricas): atualiza data.json com novos dados [skip ci]" || echo "Nenhuma mudança nos dados"
+          git commit -m "chore(metricas): atualiza data.json [skip ci]" || echo "Nenhuma mudança"
 
           git push
