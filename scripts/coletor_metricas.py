@@ -12,7 +12,7 @@ REPO_OWNER = "augustogmedeiros"
 REPO_NAME = "ProtectKids"
 
 # Caminho onde o arquivo JSON será salvo
-OUTPUT_FILE = os.path.join(os.path.dirname(__file__), '..', 'dashboard', 'data.json')
+OUTPUT_FILE = os.path.join(os.path.dirname(__file__), '..', 'docs', 'dashboard', 'data.json')
 
 # ==========================================
 # 1. COLETOR DE COMMITS (Git Log Local)

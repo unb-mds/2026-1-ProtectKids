@@ -39,7 +39,7 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
           # Adiciona o arquivo gerado pelo script Python
-          git add dashboard/data.json
+          git add docs/dashboard/data.json
           
           # Commita apenas se houver mudanças, evitando erro no workflow
           git commit -m "chore(metricas): atualiza data.json [skip ci]" || echo "Nenhuma mudança para commitar"
