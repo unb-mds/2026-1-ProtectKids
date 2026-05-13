@@ -1,6 +1,30 @@
 {
-    "last_updated": "2026-05-13T03:05:54.728877Z",
+    "last_updated": "2026-05-13T03:49:47.580503Z",
     "commits": [
+        {
+            "hash": "e9c8994849428020de009d6d57f4f507a0368b0c",
+            "date": "2026-05-13T00:49:28-03:00",
+            "message": "Merge pull request #42 from unb-mds/feat/dashboard-correcoes",
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "7f9af7ea0d9a6a664db531cef43b82925ce4fb97",
+            "date": "2026-05-13T00:48:05-03:00",
+            "message": "fix: organiza estrutura de pastas e remove action duplicada",
+            "insertions": 2,
+            "deletions": 50,
+            "total_diff": 52
+        },
+        {
+            "hash": "08336496c6f2958544733a1d2fc8144978a59a53",
+            "date": "2026-05-13T03:05:54Z",
+            "message": "chore(metricas): atualiza data.json [skip ci]",
+            "insertions": 57,
+            "deletions": 1,
+            "total_diff": 58
+        },
         {
             "hash": "d1aef71e200d3c58360d348fc5b464754cc08957",
             "date": "2026-05-13T00:05:33-03:00",
