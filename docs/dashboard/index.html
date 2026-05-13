@@ -10,7 +10,7 @@
         .container { max-width: 1000px; margin: 0 auto; }
         h1 { text-align: center; color: #2c3e50; }
         .cards { display: flex; justify-content: space-between; margin-bottom: 30px; }
-        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 30%; text-align: center; }
+        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 22%; text-align: center; }
         .card h3 { margin: 0; font-size: 1.2em; color: #7f8c8d; }
         .card p { margin: 10px 0 0; font-size: 2em; font-weight: bold; color: #3498db; }
         .chart-container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 30px; }
@@ -42,6 +42,11 @@
             <h3>Issues Fechadas</h3>
             <p id="total-issues">0</p>
         </div>
+        <div class="card">
+            <h3>Saúde do Histórico</h3>
+            <p id="qualidade-commits" style="color: #27ae60;">0%</p>
+            <span style="font-size: 12px; color: #7f8c8d;">Padrão Conventional Commits</span>
+        </div>
     </div>
 
     <div class="chart-container">
@@ -53,6 +58,11 @@
     <h2 style="color: #2c3e50; text-align: center;">Contribuição por Membro</h2>
     <div id="author-list"></div> 
 </div>
+
+        <div class="chart-container">
+        <h2 style="color: #2c3e50; text-align: center;">Horário de Trabalho (Commits por Hora)</h2>
+        <div id="chart-horas" style="text-align: center;"></div>
+    </div>
 <script>
     // Carrega o arquivo JSON gerado pelo nosso script Python
     d3.json("data.json").then(function(data) {
@@ -62,11 +72,16 @@
         const totalCommits = data.commits.length;
         const totalDiff = d3.sum(data.commits, d => d.total_diff);
         const issuesFechadas = data.issues.filter(i => i.state === 'closed').length;
+        const commitsConvencionais = data.commits.filter(c => c.is_conventional).length;
+        const porcentagemQualidade = ((commitsConvencionais / totalCommits) * 100).toFixed(1);
 
         d3.select("#total-commits").text(totalCommits);
         d3.select("#total-diff").text(totalDiff);
         d3.select("#total-issues").text(issuesFechadas);
-
+        d3.select("#qualidade-commits").text(`${porcentagemQualidade}%`);
+        if (porcentagemQualidade < 70) {
+             d3.select("#qualidade-commits").style("color", "#e74c3c"); // Fica vermelho se a qualidade cair
+        }
         // --- 2. PREPARAR DADOS PRO GRÁFICO ---
         // Agrupar commits por data (ignorando a hora)
         const commitsPorDia = d3.rollup(data.commits, 
@@ -146,6 +161,41 @@
             .attr("class", "author-stats")
             .html(`<strong>${d.commits}</strong> commits | <strong>${d.total_linhas.toLocaleString()}</strong> linhas`);
     });
+
+    // --- 5. GRÁFICO DE COMMITS POR HORA ---
+        // Agrupa os commits extraindo apenas a "Hora" da data
+        const commitsPorHora = d3.rollup(data.commits,
+            v => v.length,
+            d => new Date(d.date).getHours() // O JS pega a hora local certinha
+        );
+
+        // Prepara um array com todas as 24h (mesmo as que tem 0 commits)
+        const horasData = Array.from({length: 24}, (_, i) => {
+            return { hora: i, count: commitsPorHora.get(i) || 0 };
+        });
+
+        const marginH = {top: 20, right: 30, bottom: 40, left: 40};
+        const widthH = 900, heightH = 300;
+
+        const svgHoras = d3.select("#chart-horas").append("svg")
+            .attr("width", widthH).attr("height", heightH);
+
+        const xH = d3.scaleBand().domain(horasData.map(d => `${d.hora}h`)).range([marginH.left, widthH - marginH.right]).padding(0.1);
+        const yH = d3.scaleLinear().domain([0, d3.max(horasData, d => d.count)]).nice().range([heightH - marginH.bottom, marginH.top]);
+
+        svgHoras.append("g").attr("transform", `translate(0,${heightH - marginH.bottom})`)
+            .call(d3.axisBottom(xH)).attr("class", "axis-label");
+
+        svgHoras.append("g").attr("transform", `translate(${marginH.left},0)`)
+            .call(d3.axisLeft(yH).ticks(5)).attr("class", "axis-label");
+
+        svgHoras.selectAll(".bar-hora")
+            .data(horasData).join("rect").attr("class", "bar")
+            .attr("fill", "#9b59b6") // Uma cor diferente para não confundir com o outro gráfico
+            .attr("x", d => xH(`${d.hora}h`))
+            .attr("y", d => yH(d.count))
+            .attr("height", d => yH(0) - yH(d.count))
+            .attr("width", xH.bandwidth());
 }
     }).catch(function(error) {
         console.log("Erro ao carregar os dados:", error);

@@ -2,6 +2,7 @@ import subprocess
 import json
 import os
 import requests
+import re
 from datetime import datetime
 
 REPO_OWNER = "unb-mds" 
@@ -23,10 +24,10 @@ def coletar_metricas_por_autor():
         "Carlos Gabriel": "cgbriel28",
         "Mariana Soares de Paiva Morais": "marispmorais",
         "Danieilly Mendes": "danimendes",
-        "Carla Rocha": "carla-rocha"
+
     }
 
-    NOMES_PARA_IGNORAR = ["github-actions[bot]", "web-flow", "RochaCarla", "carla-rocha"]
+    NOMES_PARA_IGNORAR = ["github-actions[bot]", "web-flow", "RochaCarla", "RochaCarla", "Carla Rocha"]
 
     comando = ['git', 'log', '--format=AUTHOR:%aN', '--numstat']
     resultado = subprocess.run(comando, capture_output=True, text=True, encoding='utf-8')
@@ -88,13 +89,19 @@ def get_git_metrics():
         if not line.strip():
             continue
             
-        # Se a linha tem os separadores, é o cabeçalho de um commit novo
+# Se a linha tem os separadores, é o cabeçalho de um commit novo
         if '|' in line and len(line.split('|', 2)) == 3:
             parts = line.split('|', 2)
+            mensagem = parts[2]
+
+            padrao_convencional = r"^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\(.*\))?:|^Merge"
+            is_conv = bool(re.match(padrao_convencional, mensagem))
+            
             current_commit = {
                 "hash": parts[0],
                 "date": parts[1],
-                "message": parts[2],
+                "message": mensagem,
+                "is_conventional": is_conv,
                 "insertions": 0,
                 "deletions": 0,
                 "total_diff": 0
