@@ -1,6 +1,30 @@
 {
-    "last_updated": "2026-05-13T03:58:10.528542Z",
+    "last_updated": "2026-05-13T04:02:50.882651Z",
     "commits": [
+        {
+            "hash": "8b22c2416f88b474893553266a957ca61369bb06",
+            "date": "2026-05-13T01:01:35-03:00",
+            "message": "Merge branch 'main' of https://github.com/unb-mds/2026-1-Squad10",
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "5655b014718c6e0e3ce38972f1d695cfa1aed7df",
+            "date": "2026-05-13T01:00:57-03:00",
+            "message": "ci: adiciona pipeline unificada para deploy do mkdocs e dashboard",
+            "insertions": 41,
+            "deletions": 0,
+            "total_diff": 41
+        },
+        {
+            "hash": "e9c981119db5414e525cc61acd5bda3d0c69b1b2",
+            "date": "2026-05-13T03:58:10Z",
+            "message": "chore(metricas): atualiza data.json [skip ci]",
+            "insertions": 25,
+            "deletions": 1,
+            "total_diff": 26
+        },
         {
             "hash": "27d00cf7c0ef85095e7946116b9e5b0902e8aaf8",
             "date": "2026-05-13T00:57:19-03:00",
