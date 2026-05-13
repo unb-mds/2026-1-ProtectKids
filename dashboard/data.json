@@ -1,0 +1,582 @@
+{
+    "last_updated": "2026-05-13T04:38:50.740847Z",
+    "commits": [
+        {
+            "hash": "4387c8b7bc74430ec8483c50c17600d802faa435",
+            "date": "2026-05-13T01:38:25-03:00",
+            "message": "Merge pull request #43 from unb-mds/fix/actions-correcoes",
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "f04924eb5a0b9700a71ba5eb94513308228f4138",
+            "date": "2026-05-13T01:34:45-03:00",
+            "message": "Merge branch 'main' of https://github.com/unb-mds/2026-1-Squad10 into fix/actions-correcoes",
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "5f69288516821fe258604207ec7c75f7d81dbe1d",
+            "date": "2026-05-13T01:34:26-03:00",
+            "message": "fix: adiciona tema mkdocs-material e remove action duplicada",
+            "insertions": 1,
+            "deletions": 50,
+            "total_diff": 51
+        },
+        {
+            "hash": "825388284234135d02d4816ba7856ef0ac3f0c39",
+            "date": "2026-05-13T04:02:50Z",
+            "message": "chore(metricas): atualiza data.json [skip ci]",
+            "insertions": 25,
+            "deletions": 1,
+            "total_diff": 26
+        },
+        {
+            "hash": "8b22c2416f88b474893553266a957ca61369bb06",
+            "date": "2026-05-13T01:01:35-03:00",
+            "message": "Merge branch 'main' of https://github.com/unb-mds/2026-1-Squad10",
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "5655b014718c6e0e3ce38972f1d695cfa1aed7df",
+            "date": "2026-05-13T01:00:57-03:00",
+            "message": "ci: adiciona pipeline unificada para deploy do mkdocs e dashboard",
+            "insertions": 41,
+            "deletions": 0,
+            "total_diff": 41
+        },
+        {
+            "hash": "e9c981119db5414e525cc61acd5bda3d0c69b1b2",
+            "date": "2026-05-13T03:58:10Z",
+            "message": "chore(metricas): atualiza data.json [skip ci]",
+            "insertions": 25,
+            "deletions": 1,
+            "total_diff": 26
+        },
+        {
+            "hash": "27d00cf7c0ef85095e7946116b9e5b0902e8aaf8",
+            "date": "2026-05-13T00:57:19-03:00",
+            "message": "Merge branch 'main' of https://github.com/unb-mds/2026-1-Squad10",
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "d38f5fc2642c2324c119526fd9d4bcdf3bdaecf6",
+            "date": "2026-05-13T00:51:08-03:00",
+            "message": "chore: remove pasta site gerada pelo mkdocs do versionamento",
+            "insertions": 4,
+            "deletions": 12307,
+            "total_diff": 12311
+        },
+        {
+            "hash": "8df652a5623808700b6ac0e0ef5508ee94f64ee0",
+            "date": "2026-05-13T03:49:47Z",
+            "message": "chore(metricas): atualiza data.json [skip ci]",
+            "insertions": 25,
+            "deletions": 1,
+            "total_diff": 26
+        },
+        {
+            "hash": "e9c8994849428020de009d6d57f4f507a0368b0c",
+            "date": "2026-05-13T00:49:28-03:00",
+            "message": "Merge pull request #42 from unb-mds/feat/dashboard-correcoes",
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "7f9af7ea0d9a6a664db531cef43b82925ce4fb97",
+            "date": "2026-05-13T00:48:05-03:00",
+            "message": "fix: organiza estrutura de pastas e remove action duplicada",
+            "insertions": 2,
+            "deletions": 50,
+            "total_diff": 52
+        },
+        {
+            "hash": "08336496c6f2958544733a1d2fc8144978a59a53",
+            "date": "2026-05-13T03:05:54Z",
+            "message": "chore(metricas): atualiza data.json [skip ci]",
+            "insertions": 57,
+            "deletions": 1,
+            "total_diff": 58
+        },
+        {
+            "hash": "d1aef71e200d3c58360d348fc5b464754cc08957",
+            "date": "2026-05-13T00:05:33-03:00",
+            "message": "feat: adiciona workflow de métricas de produtividade",
+            "insertions": 55,
+            "deletions": 4,
+            "total_diff": 59
+        },
+        {
+            "hash": "a375eba79d15c7ad39cbde8373cb42b3dc0fea47",
+            "date": "2026-05-12T23:56:28-03:00",
+            "message": "fix: atualiza workflow metricas",
+            "insertions": 4,
+            "deletions": 4,
+            "total_diff": 8
+        },
+        {
+            "hash": "e460d6bba6af6be0076ba076ff0b14a689277748",
+            "date": "2026-05-12T23:44:25-03:00",
+            "message": "fix: corrige workflow github actions",
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "a93d882ec608f6d7200fd61325f053590221d52c",
+            "date": "2026-05-12T23:31:38-03:00",
+            "message": "feat: adiciona automacao de metricas",
+            "insertions": 45,
+            "deletions": 0,
+            "total_diff": 45
+        },
+        {
+            "hash": "58fa32dcea91ce5cf8bff5a1779b2aeefd994c08",
+            "date": "2026-05-12T21:43:18-03:00",
+            "message": "Merge pull request #39 from unb-mds/feat/dashboard-metricas",
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "5886b4dbb3b657cc8b9b2c9a85818f6f9606c684",
+            "date": "2026-05-12T19:01:44-03:00",
+            "message": "feat(observabilidade): adiciona script coletor e dashboard base em d3.js",
+            "insertions": 0,
+            "deletions": 34,
+            "total_diff": 34
+        },
+        {
+            "hash": "c8139eaa0c9dd387a3be68954aaced3f514da06e",
+            "date": "2026-05-12T19:00:22-03:00",
+            "message": "feat(observabilidade): adiciona script coletor e dashboard base em d3.js",
+            "insertions": 893,
+            "deletions": 0,
+            "total_diff": 893
+        },
+        {
+            "hash": "fa28fe915b9eafc6ce119b582cdf0418b63398fb",
+            "date": "2026-05-10T18:54:21-03:00",
+            "message": "docs: atualiza documentação do projeto",
+            "insertions": 66,
+            "deletions": 755,
+            "total_diff": 821
+        },
+        {
+            "hash": "556f5d1f0a2c3f5d4d69df227ddface3682dc6d0",
+            "date": "2026-05-04T12:28:50-03:00",
+            "message": "Merge branch 'main' of https://github.com/unb-mds/2026-1-ProtectKids",
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "096a6da24d97cb7339ffce01eb7b63abbb84105f",
+            "date": "2026-05-03T21:03:32-03:00",
+            "message": "fix: adiciona css layout",
+            "insertions": 12571,
+            "deletions": 0,
+            "total_diff": 12571
+        },
+        {
+            "hash": "9b957d3fd84feaf63ffd23cf2c5808c66a751e84",
+            "date": "2026-05-03T19:03:04-03:00",
+            "message": "Merge origin/main",
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "33fef195384433ab71fb0c4f818c6d44402d9a81",
+            "date": "2026-05-03T18:44:55-03:00",
+            "message": "docker: integração do docker",
+            "insertions": 24,
+            "deletions": 3,
+            "total_diff": 27
+        },
+        {
+            "hash": "87156166d1f9ea324a152a6e60c39db4438a8f3e",
+            "date": "2026-05-02T17:25:07-03:00",
+            "message": "Merge pull request #34 from unb-mds/feat/integracao-banco-fastapi",
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "de6b92c4ceaa9f3f12e5f0b9c0c03b38a2db7aac",
+            "date": "2026-05-02T15:57:50-03:00",
+            "message": "feat: integra FastAPI ao Postgres via SQL model e configuração báscia do CORS",
+            "insertions": 61,
+            "deletions": 3,
+            "total_diff": 64
+        },
+        {
+            "hash": "bc09daed8be51e46b5f56cbc7cf31fa016154101",
+            "date": "2026-05-02T14:11:55-03:00",
+            "message": "Merge pull request #31 from unb-mds/docs/atualiza-diagramas-c4",
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "7327affe06b05be6638af2679c75724c71ad060f",
+            "date": "2026-05-02T14:06:07-03:00",
+            "message": "docs: correções  no diagrama C4",
+            "insertions": 0,
+            "deletions": 447,
+            "total_diff": 447
+        },
+        {
+            "hash": "e80cc3372969770abe210f4c7d3773f09c0481f4",
+            "date": "2026-05-02T13:19:29-03:00",
+            "message": "Merge pull request #28 from unb-mds/fix/gitignore-python-cache",
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "729f8e444d0e18c13c88f924f7d20a4dc47644e8",
+            "date": "2026-05-02T13:16:57-03:00",
+            "message": "fix: move gitignore para a raiz e adiciona regras de python",
+            "insertions": 11,
+            "deletions": 4,
+            "total_diff": 15
+        },
+        {
+            "hash": "888cb294119bef8d0c44de728eb5ec5e7f7be4c0",
+            "date": "2026-05-02T13:02:37-03:00",
+            "message": "Merge branch 'main' of https://github.com/unb-mds/2026-1-Squad10",
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "1a1dcb93d68192c68d8afa1881d120fe0944f790",
+            "date": "2026-04-19T16:37:14-03:00",
+            "message": "Enhance README with project details and setup guide",
+            "insertions": 47,
+            "deletions": 0,
+            "total_diff": 47
+        },
+        {
+            "hash": "e3bafebf66b2c275ea2749ff117995a79b4f9c8a",
+            "date": "2026-04-19T13:19:17-03:00",
+            "message": "Merge branch 'main' of https://github.com/unb-mds/2026-1-Squad10",
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "bafedfe974294740ce3da8a497271b47a267ed4f",
+            "date": "2026-04-19T13:18:25-03:00",
+            "message": "frontend: inicialia o projeto em react e exclui arquivos desnecessários.",
+            "insertions": 2913,
+            "deletions": 0,
+            "total_diff": 2913
+        },
+        {
+            "hash": "e8428b47ce8720de00e6b1286322697bc20dcc4e",
+            "date": "2026-04-17T11:06:13-03:00",
+            "message": "feat: setup do banco de dados usando postgres com dados ficticios para teste",
+            "insertions": 121,
+            "deletions": 86,
+            "total_diff": 207
+        },
+        {
+            "hash": "6eb847d295d9760dd090878a1cfe06365a2cf461",
+            "date": "2026-04-14T00:29:22-03:00",
+            "message": "Merge branch 'main' of https://github.com/unb-mds/2026-1-Squad10",
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "6a43b6deb0976759c62764f961dae91d42309741",
+            "date": "2026-04-14T00:29:11-03:00",
+            "message": "docs: adiciona arquitetura C4 nivel 1 e 2",
+            "insertions": 447,
+            "deletions": 0,
+            "total_diff": 447
+        },
+        {
+            "hash": "fee898d74694dda8d40256bf45f8cff0d24b58a2",
+            "date": "2026-04-13T21:19:13-03:00",
+            "message": "Delete docs/estudos/gitgithub",
+            "insertions": 0,
+            "deletions": 1,
+            "total_diff": 1
+        },
+        {
+            "hash": "21bf5866f2de5bee2a7e9007ccdc594f950195d1",
+            "date": "2026-04-13T21:18:30-03:00",
+            "message": "Create docker-estudos.md with Docker concepts",
+            "insertions": 133,
+            "deletions": 0,
+            "total_diff": 133
+        },
+        {
+            "hash": "f56f5ec68619db47f97108ffb677d7a442ce51eb",
+            "date": "2026-04-13T20:59:42-03:00",
+            "message": "Create gitgithub",
+            "insertions": 1,
+            "deletions": 0,
+            "total_diff": 1
+        },
+        {
+            "hash": "b211556cb35191a8574c4cbd753058263465abbd",
+            "date": "2026-04-13T20:58:06-03:00",
+            "message": "Create Git and GitHub usage documentation",
+            "insertions": 188,
+            "deletions": 0,
+            "total_diff": 188
+        },
+        {
+            "hash": "447aed8eab60d8f69c3f4278c00d4beca9920854",
+            "date": "2026-04-13T17:13:06-03:00",
+            "message": "Delete ateste",
+            "insertions": 0,
+            "deletions": 1,
+            "total_diff": 1
+        },
+        {
+            "hash": "c15c183157ae9764b5997a0564026e1471b86c71",
+            "date": "2026-04-13T17:04:37-03:00",
+            "message": "Update README.md",
+            "insertions": 1,
+            "deletions": 1,
+            "total_diff": 2
+        },
+        {
+            "hash": "fb7012dc50da3f2fda988146a84b76c8ca7a4443",
+            "date": "2026-04-13T14:32:12-03:00",
+            "message": "Add new file 'ateste' with content 'teste'",
+            "insertions": 1,
+            "deletions": 0,
+            "total_diff": 1
+        },
+        {
+            "hash": "ad425a1673f7a86a6c73bf1208beba8ca65bd65d",
+            "date": "2026-04-13T14:31:16-03:00",
+            "message": "Update README with new contentteste",
+            "insertions": 1,
+            "deletions": 1,
+            "total_diff": 2
+        },
+        {
+            "hash": "e3548242586dd58390fd1e1ebf7177c0a8db0f82",
+            "date": "2026-04-13T09:24:25-03:00",
+            "message": "Merge branch 'main' of https://github.com/unb-mds/2026-1-Squad10 git push# the commit.",
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "7fdb98f622290692cebb16a69518a1d3608ee9a5",
+            "date": "2026-04-13T09:20:38-03:00",
+            "message": "docs: adiciona resumo de typescript",
+            "insertions": 54,
+            "deletions": 0,
+            "total_diff": 54
+        },
+        {
+            "hash": "5b97084afffbef0f6b47b12bb7f6c5aefcadda20",
+            "date": "2026-04-13T00:49:28-03:00",
+            "message": "docs: adiciona estudo de Fast API",
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "0c5d69b875f126884f3a1fe16be2411f0d99a691",
+            "date": "2026-04-13T00:46:08-03:00",
+            "message": "docs: adiciona estudo de Fast API",
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "5f4f9e1db3f3db5be302145eb650487c165ae8ef",
+            "date": "2026-04-12T19:05:47-03:00",
+            "message": "Renumber sections in Requisitos.md for clarity",
+            "insertions": 4,
+            "deletions": 4,
+            "total_diff": 8
+        },
+        {
+            "hash": "f3ba33ab03e42b21c29769285b3838d2c49ff0e2",
+            "date": "2026-04-12T19:04:31-03:00",
+            "message": "Revise requirements document and add new sections",
+            "insertions": 111,
+            "deletions": 3,
+            "total_diff": 114
+        },
+        {
+            "hash": "f0b77a6e748cdd6df1e215af5517195e383e2faf",
+            "date": "2026-04-12T17:56:35-03:00",
+            "message": "Update metodologiasageis.md",
+            "insertions": 45,
+            "deletions": 45,
+            "total_diff": 90
+        },
+        {
+            "hash": "410fb52284c58c637d7ccc6b81279ee58317cd4e",
+            "date": "2026-04-12T17:52:27-03:00",
+            "message": "Update metodologiasageis.md",
+            "insertions": 44,
+            "deletions": 44,
+            "total_diff": 88
+        },
+        {
+            "hash": "16c47a50941482ecb8ed84f1d97d8f47d3c19fea",
+            "date": "2026-04-12T17:49:17-03:00",
+            "message": "Update metodologiasageis.md",
+            "insertions": 85,
+            "deletions": 0,
+            "total_diff": 85
+        },
+        {
+            "hash": "801df54fd9be31769f07fb25ec3064ab90d236e8",
+            "date": "2026-04-12T17:34:05-03:00",
+            "message": "docs: adiciona estudo de metodologias ágeis",
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "be6aa75336a36f06c8b16483a1ec1dc7ddab00de",
+            "date": "2026-04-12T15:40:37-03:00",
+            "message": "docs: adiciona o documento com a base do frontend.",
+            "insertions": 14,
+            "deletions": 0,
+            "total_diff": 14
+        },
+        {
+            "hash": "1f3651a02ebaf276d13e7f370b9c9ae46b36a1ee",
+            "date": "2026-04-11T00:03:01-03:00",
+            "message": "docs: adiciona versão 1.0 do levantamento de requisitos",
+            "insertions": 138,
+            "deletions": 0,
+            "total_diff": 138
+        },
+        {
+            "hash": "eeadd7196c9f53657d534b6ab49bd1f1a48262fa",
+            "date": "2026-04-10T09:39:56-03:00",
+            "message": "docs: adiciona estudo de postgresql",
+            "insertions": 57,
+            "deletions": 0,
+            "total_diff": 57
+        },
+        {
+            "hash": "88af732e6321859fb3125ad0d2c0890b482175b8",
+            "date": "2026-04-10T01:20:06-03:00",
+            "message": "Delete docs/estudos/Metodologia Ágil",
+            "insertions": 0,
+            "deletions": 1,
+            "total_diff": 1
+        },
+        {
+            "hash": "ea16d5c90c4db5553b7615b70ea04359f7fe1f25",
+            "date": "2026-04-10T01:18:41-03:00",
+            "message": "Create Metodologia Ágil",
+            "insertions": 1,
+            "deletions": 0,
+            "total_diff": 1
+        },
+        {
+            "hash": "51ec87a02c6fe1fc62251bfd359b0bcbc2ce7a61",
+            "date": "2026-04-08T19:41:24-03:00",
+            "message": "Merge branch 'main' of https://github.com/unb-mds/2026-1-Squad10",
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "f9d1ff03a8f423721db5336173052ac796a83385",
+            "date": "2026-04-08T19:38:57-03:00",
+            "message": "Merge pull request #18 from unb-mds/feat/docker-yara",
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "cef074d227804cccfadf3578e4388c8f2d4a08f8",
+            "date": "2026-04-08T17:14:02-03:00",
+            "message": "feat: adiciona configuração inicial do ambiente Docker",
+            "insertions": 71,
+            "deletions": 0,
+            "total_diff": 71
+        },
+        {
+            "hash": "cbab9afbfddc3957f14c9f9962cefdcb7e9a67e8",
+            "date": "2026-04-06T21:01:11-03:00",
+            "message": "docs: adiciona estudo de tailwind para projeto MDS",
+            "insertions": 3,
+            "deletions": 0,
+            "total_diff": 3
+        },
+        {
+            "hash": "87d88d13e3eb3f0834e48031f55889ddad8b758b",
+            "date": "2026-04-05T21:54:39-03:00",
+            "message": "docs: adiciona estudo de tailwind para projeto MDS",
+            "insertions": 79,
+            "deletions": 0,
+            "total_diff": 79
+        },
+        {
+            "hash": "fcd157d6151a1472859774cf8e9a8d11af725775",
+            "date": "2026-04-05T17:19:03-03:00",
+            "message": "docs: adiciona estudo sobre backend refs #13",
+            "insertions": 106,
+            "deletions": 0,
+            "total_diff": 106
+        },
+        {
+            "hash": "d4fb000568c13ce8d965926432188d9e88ab227c",
+            "date": "2026-04-05T11:52:26-03:00",
+            "message": "docs: adiciona estudo de arquitetura",
+            "insertions": 66,
+            "deletions": 0,
+            "total_diff": 66
+        },
+        {
+            "hash": "46dbe59f49b0a38f716eff047f0f0fcd54b61201",
+            "date": "2026-04-03T23:48:20-03:00",
+            "message": "docs: complementa resumo de requisitos refs #6",
+            "insertions": 46,
+            "deletions": 8,
+            "total_diff": 54
+        },
+        {
+            "hash": "21318dcdc3e99a69b509f211def767837871cebe",
+            "date": "2026-04-03T19:45:14-03:00",
+            "message": "Expand requirements documentation with examples and techniques",
+            "insertions": 276,
+            "deletions": 68,
+            "total_diff": 344
+        },
+        {
+            "hash": "5bf2e08c97b4057294754c9ad9ddd5018f2bbeeb",
+            "date": "2026-04-02T21:54:33-03:00",
+            "message": "docs:adiciona resumo de requisitos refs #6",
+            "insertions": 168,
+            "deletions": 0,
+            "total_diff": 168
+        },
+        {
+            "hash": "6ff2577a61a27ba66de6170a80e63bef447cfe91",
+            "date": "2026-03-30T10:37:42-03:00",
+            "message": "Initial commit",
+            "insertions": 22,
+            "deletions": 0,
+            "total_diff": 22
+        }
+    ],
+    "issues": []
+}
