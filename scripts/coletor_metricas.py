@@ -4,12 +4,8 @@ import os
 import requests
 from datetime import datetime
 
-# ==========================================
-# CONFIGURAÇÕES
-# ==========================================
-# Substitua com os dados do repositório de vocês no GitHub
-REPO_OWNER = "augustogmedeiros" 
-REPO_NAME = "ProtectKids"
+REPO_OWNER = "unb-mds" 
+REPO_NAME = "2026-1-ProtectKids"
 
 # Caminho onde o arquivo JSON será salvo
 OUTPUT_FILE = os.path.join(os.path.dirname(__file__), '..', 'docs', 'dashboard', 'data.json')
@@ -17,6 +13,62 @@ OUTPUT_FILE = os.path.join(os.path.dirname(__file__), '..', 'docs', 'dashboard',
 # ==========================================
 # 1. COLETOR DE COMMITS (Git Log Local)
 # ==========================================
+
+def coletar_metricas_por_autor():
+    # 1. Configurações de limpeza
+    MAPA_NOMES = {
+        "Augusto Garcia Medeiros": "augustogmedeiros",
+        "Augusto": "augustogmedeiros",
+        "Yara Xavier": "yaxavier",
+        "Carlos Gabriel": "cgbriel28",
+        "Mariana Soares de Paiva Morais": "marispmorais",
+        "Danieilly Mendes": "danimendes",
+        "Carla Rocha": "carla-rocha"
+    }
+
+    NOMES_PARA_IGNORAR = ["github-actions[bot]", "web-flow", "RochaCarla", "carla-rocha"]
+
+    comando = ['git', 'log', '--format=AUTHOR:%aN', '--numstat']
+    resultado = subprocess.run(comando, capture_output=True, text=True, encoding='utf-8')
+    
+    autores = {}
+    autor_atual = None
+
+    for linha in resultado.stdout.split('\n'):
+        linha = linha.strip()
+        if not linha:
+            continue
+            
+        if linha.startswith('AUTHOR:'):
+            nome_bruto = linha.replace('AUTHOR:', '').strip()
+            
+            # Pula se for um bot ou nome ignorado
+            if nome_bruto in NOMES_PARA_IGNORAR:
+                autor_atual = None
+                continue
+            
+            # Normaliza o nome (se estiver no mapa, usa o nome oficial)
+            autor_atual = MAPA_NOMES.get(nome_bruto, nome_bruto)
+            
+            if autor_atual not in autores:
+                autores[autor_atual] = {'commits': 0, 'insercoes': 0, 'delecoes': 0, 'total_linhas': 0}
+            
+            autores[autor_atual]['commits'] += 1
+            
+        elif autor_atual and (linha[0].isdigit() or linha.startswith('-')):
+            partes = linha.split()
+            if len(partes) >= 2:
+                try:
+                    insercoes = int(partes[0]) if partes[0] != '-' else 0
+                    delecoes = int(partes[1]) if partes[1] != '-' else 0
+                    
+                    autores[autor_atual]['insercoes'] += insercoes
+                    autores[autor_atual]['delecoes'] += delecoes
+                    autores[autor_atual]['total_linhas'] += (insercoes + delecoes)
+                except ValueError:
+                    continue
+                    
+    return autores
 def get_git_metrics():
     print("Extraindo métricas de commits do git local...")
     # Formato: Hash | Data | Mensagem \n e na linha seguinte as estatísticas (numstat)
@@ -69,7 +121,7 @@ def get_git_metrics():
 # ==========================================
 def get_issue_metrics(owner, repo):
     print(f"Buscando issues na API do GitHub ({owner}/{repo})...")
-    url = f"https://api.github.com/repos/{owner}/{repo}/issues?state=all"
+    url = f"https://api.github.com/repos/{owner}/{repo}/issues?state=all&per_page=100"
     headers = {"Accept": "application/vnd.github.v3+json"}
     
     # Se rodar via GitHub Actions, ele usa o token para não tomar block de limite de requisição
@@ -125,17 +177,20 @@ if __name__ == "__main__":
     os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
     
     # 2. Coleta os dados
-    commit_data = get_git_metrics()
-    issue_data = get_issue_metrics(REPO_OWNER, REPO_NAME)
+    commit_data = get_git_metrics()             # Lista de todos os commits (para o gráfico de barras)
+    issue_data = get_issue_metrics(REPO_OWNER, REPO_NAME) # Dados das issues
+    author_data = coletar_metricas_por_autor()
     
     # 3. Empacota e salva o JSON
     final_data = {
         "last_updated": datetime.utcnow().isoformat() + "Z",
         "commits": commit_data,
-        "issues": issue_data
+        "issues": issue_data,
+        "autores": author_data  # <--- ADICIONAMOS OS DADOS POR MEMBRO AQUI
     }
     
     with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
+        # ensure_ascii=False para garantir que nomes com acento fiquem corretos
         json.dump(final_data, f, indent=4, ensure_ascii=False)
         
-    print(f"✅ Sucesso! Dados de métricas salvos em: {OUTPUT_FILE}")
+    print(f"✅ Sucesso! Dados de métricas (incluindo membros) salvos em: {OUTPUT_FILE}")
