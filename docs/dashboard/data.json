@@ -1,6 +1,30 @@
 {
-    "last_updated": "2026-05-13T03:49:47.580503Z",
+    "last_updated": "2026-05-13T03:58:10.528542Z",
     "commits": [
+        {
+            "hash": "27d00cf7c0ef85095e7946116b9e5b0902e8aaf8",
+            "date": "2026-05-13T00:57:19-03:00",
+            "message": "Merge branch 'main' of https://github.com/unb-mds/2026-1-Squad10",
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "d38f5fc2642c2324c119526fd9d4bcdf3bdaecf6",
+            "date": "2026-05-13T00:51:08-03:00",
+            "message": "chore: remove pasta site gerada pelo mkdocs do versionamento",
+            "insertions": 4,
+            "deletions": 12307,
+            "total_diff": 12311
+        },
+        {
+            "hash": "8df652a5623808700b6ac0e0ef5508ee94f64ee0",
+            "date": "2026-05-13T03:49:47Z",
+            "message": "chore(metricas): atualiza data.json [skip ci]",
+            "insertions": 25,
+            "deletions": 1,
+            "total_diff": 26
+        },
         {
             "hash": "e9c8994849428020de009d6d57f4f507a0368b0c",
             "date": "2026-05-13T00:49:28-03:00",
