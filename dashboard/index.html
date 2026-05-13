@@ -17,12 +17,17 @@
         .bar { fill: #3498db; transition: fill 0.3s; }
         .bar:hover { fill: #2980b9; }
         .axis-label { font-size: 12px; fill: #7f8c8d; }
+        .author-row { display: flex; align-items: center; margin-bottom: 10px; }
+        .author-label { width: 150px; font-size: 14px; font-weight: bold; }
+        .author-bar-container { flex-grow: 1; background: #eee; border-radius: 4px; height: 20px; position: relative; }
+        .author-bar { height: 100%; border-radius: 4px; background: #3498db; transition: width 0.5s; }
+        .author-stats { margin-left: 10px; font-size: 12px; color: #7f8c8d; min-width: 120px; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Dashboard de Produtividade - Squad 10</h1>
+    <h1>Dashboard de Produtividade - ProtectKids</h1>
     
     <div class="cards">
         <div class="card">
@@ -44,11 +49,15 @@
         <div id="chart"></div>
     </div>
 </div>
-
+<div class="chart-container">
+    <h2 style="color: #2c3e50; text-align: center;">Contribuição por Membro</h2>
+    <div id="author-list"></div> 
+</div>
 <script>
     // Carrega o arquivo JSON gerado pelo nosso script Python
     d3.json("data.json").then(function(data) {
         
+    
         // --- 1. PREENCHER OS CARDS ---
         const totalCommits = data.commits.length;
         const totalDiff = d3.sum(data.commits, d => d.total_diff);
@@ -110,11 +119,39 @@
             .attr("y", d => y(d.count))
             .attr("height", d => y(0) - y(d.count))
             .attr("width", x.bandwidth());
+        if (data.autores) {
+    const authorsArray = Object.entries(data.autores)
+        .map(([name, stats]) => ({ name, ...stats }))
+        .sort((a, b) => b.commits - a.commits); // Ordena por quem comitou mais
 
+    const authorList = d3.select("#author-list");
+    const maxCommits = d3.max(authorsArray, d => d.commits);
+
+    authorsArray.forEach(d => {
+        const row = authorList.append("div").attr("class", "author-row");
+
+        // Nome do autor
+        row.append("div").attr("class", "author-label").text(d.name);
+
+        // Barra de Commits
+        const barContainer = row.append("div").attr("class", "author-bar-container");
+        barContainer.append("div")
+            .attr("class", "author-bar")
+            .style("width", "0%") // Começa em 0 para animar
+            .transition().duration(1000)
+            .style("width", (d.commits / maxCommits * 100) + "%");
+
+        // Texto com commits e linhas
+        row.append("div")
+            .attr("class", "author-stats")
+            .html(`<strong>${d.commits}</strong> commits | <strong>${d.total_linhas.toLocaleString()}</strong> linhas`);
+    });
+}
     }).catch(function(error) {
         console.log("Erro ao carregar os dados:", error);
         d3.select("#chart").html("<p style='color:red;'>Erro ao carregar data.json. Você está rodando via servidor local?</p>");
     });
+
 </script>
 
 </body>

@@ -1,6 +1,22 @@
 {
-    "last_updated": "2026-05-13T04:38:50.740847Z",
+    "last_updated": "2026-05-13T05:18:24.381178Z",
     "commits": [
+        {
+            "hash": "bd05b627e31bfc9fe6e5fd5671ee81dbf4b475f6",
+            "date": "2026-05-13T02:18:03-03:00",
+            "message": "Merge pull request #44 from unb-mds/feat/metricas-por-membro",
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "5f660be3912cd99ce1a90fe2c30ba2a0802e4455",
+            "date": "2026-05-13T02:17:28-03:00",
+            "message": "feat: padroniza usernames dos autores e adiciona gráfico de contribuição individual",
+            "insertions": 105,
+            "deletions": 13,
+            "total_diff": 118
+        },
         {
             "hash": "4387c8b7bc74430ec8483c50c17600d802faa435",
             "date": "2026-05-13T01:38:25-03:00",
@@ -578,5 +594,380 @@
             "total_diff": 22
         }
     ],
-    "issues": []
+    "issues": [
+        {
+            "number": 41,
+            "title": "colocar o arquivo site no gitignore e arrumar o doc/docs",
+            "state": "closed",
+            "created_at": "2026-05-12T22:33:12Z",
+            "closed_at": "2026-05-13T05:15:27Z",
+            "resolution_time_hours": 6.7,
+            "char_count": 0
+        },
+        {
+            "number": 40,
+            "title": "Automação do Coletor de Métricas (GitHub Actions) e Deploy no Pages",
+            "state": "closed",
+            "created_at": "2026-05-12T22:13:45Z",
+            "closed_at": "2026-05-13T05:15:17Z",
+            "resolution_time_hours": 7.03,
+            "char_count": 1359
+        },
+        {
+            "number": 38,
+            "title": "Desenvolvimento do Coletor de Métricas e Dashboard (D3.js)",
+            "state": "closed",
+            "created_at": "2026-05-12T22:05:59Z",
+            "closed_at": "2026-05-13T05:15:22Z",
+            "resolution_time_hours": 7.16,
+            "char_count": 1310
+        },
+        {
+            "number": 37,
+            "title": "Crawler de Extração de Dados: API da Câmara dos Deputados",
+            "state": "open",
+            "created_at": "2026-05-02T19:24:31Z",
+            "closed_at": null,
+            "resolution_time_hours": null,
+            "char_count": 1498
+        },
+        {
+            "number": 36,
+            "title": "[QA] Configuração Base do Ambiente de Testes Automatizados (Backend e Frontend)",
+            "state": "open",
+            "created_at": "2026-05-02T19:23:12Z",
+            "closed_at": null,
+            "resolution_time_hours": null,
+            "char_count": 1245
+        },
+        {
+            "number": 35,
+            "title": "Configuração da Pipeline de Integração Contínua (CI) com GitHub Actions",
+            "state": "open",
+            "created_at": "2026-05-02T19:19:54Z",
+            "closed_at": null,
+            "resolution_time_hours": null,
+            "char_count": 1402
+        },
+        {
+            "number": 33,
+            "title": "Integração do FastAPI com PostgreSQL via SQLModel",
+            "state": "closed",
+            "created_at": "2026-05-02T18:54:54Z",
+            "closed_at": "2026-05-02T19:11:28Z",
+            "resolution_time_hours": 0.28,
+            "char_count": 1316
+        },
+        {
+            "number": 32,
+            "title": "Correções de Configuração do Vite, Docker e Renderização Inicial",
+            "state": "closed",
+            "created_at": "2026-05-02T17:39:10Z",
+            "closed_at": "2026-05-06T15:11:01Z",
+            "resolution_time_hours": 93.53,
+            "char_count": 1699
+        },
+        {
+            "number": 30,
+            "title": "Realocação e atualização do gitignore",
+            "state": "closed",
+            "created_at": "2026-05-02T17:10:47Z",
+            "closed_at": "2026-05-02T17:10:57Z",
+            "resolution_time_hours": 0.0,
+            "char_count": 833
+        },
+        {
+            "number": 29,
+            "title": "Correção Diagrama C4",
+            "state": "closed",
+            "created_at": "2026-05-02T17:08:49Z",
+            "closed_at": "2026-05-02T17:11:02Z",
+            "resolution_time_hours": 0.04,
+            "char_count": 1185
+        },
+        {
+            "number": 27,
+            "title": "Setup do FastAPI e Criação da Rota Mockada",
+            "state": "closed",
+            "created_at": "2026-04-17T12:33:55Z",
+            "closed_at": "2026-04-17T14:08:53Z",
+            "resolution_time_hours": 1.58,
+            "char_count": 1595
+        },
+        {
+            "number": 26,
+            "title": "Criação do README Oficial do Repositório",
+            "state": "closed",
+            "created_at": "2026-04-17T12:27:42Z",
+            "closed_at": "2026-04-22T15:12:31Z",
+            "resolution_time_hours": 122.75,
+            "char_count": 1280
+        },
+        {
+            "number": 25,
+            "title": "Modelagem e Implementação do Schema de Banco de Dados",
+            "state": "closed",
+            "created_at": "2026-04-17T12:23:07Z",
+            "closed_at": "2026-04-22T15:13:26Z",
+            "resolution_time_hours": 122.84,
+            "char_count": 1393
+        },
+        {
+            "number": 24,
+            "title": "Inicialização do Projeto e Setup Base",
+            "state": "closed",
+            "created_at": "2026-04-17T12:17:15Z",
+            "closed_at": "2026-05-02T18:50:19Z",
+            "resolution_time_hours": 366.55,
+            "char_count": 1495
+        },
+        {
+            "number": 23,
+            "title": "Configuração do MkDocs e Deploy via GitHub Pages",
+            "state": "closed",
+            "created_at": "2026-04-17T12:13:29Z",
+            "closed_at": "2026-05-12T21:12:26Z",
+            "resolution_time_hours": 608.98,
+            "char_count": 1346
+        },
+        {
+            "number": 22,
+            "title": "Revisão de User Stories",
+            "state": "closed",
+            "created_at": "2026-04-17T11:59:58Z",
+            "closed_at": "2026-04-25T20:41:14Z",
+            "resolution_time_hours": 200.69,
+            "char_count": 1335
+        },
+        {
+            "number": 21,
+            "title": "Prototipo da arquitetura do projeto",
+            "state": "closed",
+            "created_at": "2026-04-12T20:57:59Z",
+            "closed_at": "2026-04-17T11:48:06Z",
+            "resolution_time_hours": 110.84,
+            "char_count": 1596
+        },
+        {
+            "number": 20,
+            "title": "Implementação do Docker",
+            "state": "closed",
+            "created_at": "2026-04-11T20:50:37Z",
+            "closed_at": "2026-04-22T15:14:32Z",
+            "resolution_time_hours": 258.4,
+            "char_count": 2016
+        },
+        {
+            "number": 19,
+            "title": "Implementação do Docker",
+            "state": "closed",
+            "created_at": "2026-04-10T21:02:44Z",
+            "closed_at": "2026-04-10T21:03:17Z",
+            "resolution_time_hours": 0.01,
+            "char_count": 1930
+        },
+        {
+            "number": 17,
+            "title": "Estudo sobre Git — Parte 2: Branches e Fluxo de Trabalho",
+            "state": "closed",
+            "created_at": "2026-04-08T02:16:22Z",
+            "closed_at": "2026-04-22T15:14:43Z",
+            "resolution_time_hours": 348.97,
+            "char_count": 1802
+        },
+        {
+            "number": 16,
+            "title": "Configurar o TailwindCSS e definir a paleta de cores e tipografia no tailwind.config.js",
+            "state": "closed",
+            "created_at": "2026-04-06T00:02:08Z",
+            "closed_at": "2026-04-06T00:52:17Z",
+            "resolution_time_hours": 0.84,
+            "char_count": 0
+        },
+        {
+            "number": 15,
+            "title": "Estudar a Componentização focada em reutilização (Botões, Cards, Badges de status)",
+            "state": "closed",
+            "created_at": "2026-04-05T23:46:16Z",
+            "closed_at": "2026-04-06T00:48:09Z",
+            "resolution_time_hours": 1.03,
+            "char_count": 0
+        },
+        {
+            "number": 14,
+            "title": "Estudo sobre Frontend",
+            "state": "closed",
+            "created_at": "2026-04-03T22:26:48Z",
+            "closed_at": "2026-04-14T03:24:34Z",
+            "resolution_time_hours": 244.96,
+            "char_count": 1140
+        },
+        {
+            "number": 13,
+            "title": "Estudo sobre Backend",
+            "state": "closed",
+            "created_at": "2026-04-03T22:26:20Z",
+            "closed_at": "2026-04-06T00:36:57Z",
+            "resolution_time_hours": 50.18,
+            "char_count": 0
+        },
+        {
+            "number": 12,
+            "title": "Estudo sobre React + Typescript + Axios",
+            "state": "closed",
+            "created_at": "2026-04-01T16:08:52Z",
+            "closed_at": "2026-05-02T18:50:12Z",
+            "resolution_time_hours": 746.69,
+            "char_count": 1054
+        },
+        {
+            "number": 11,
+            "title": "Estudo sobre React + TailwindCss (UI)",
+            "state": "closed",
+            "created_at": "2026-04-01T16:01:18Z",
+            "closed_at": "2026-04-06T00:52:29Z",
+            "resolution_time_hours": 104.85,
+            "char_count": 879
+        },
+        {
+            "number": 10,
+            "title": "Estudo sobre NLP e Classificação de Textos",
+            "state": "closed",
+            "created_at": "2026-04-01T15:40:15Z",
+            "closed_at": "2026-05-02T18:50:11Z",
+            "resolution_time_hours": 747.17,
+            "char_count": 1426
+        },
+        {
+            "number": 9,
+            "title": "Estudo sobre PostgreSQL e Infraestrutura com Docker",
+            "state": "closed",
+            "created_at": "2026-04-01T15:31:22Z",
+            "closed_at": "2026-04-10T12:30:08Z",
+            "resolution_time_hours": 212.98,
+            "char_count": 1027
+        },
+        {
+            "number": 8,
+            "title": "Estudo sobre FastAPI e Integração com API da Câmara",
+            "state": "closed",
+            "created_at": "2026-04-01T15:29:58Z",
+            "closed_at": "2026-05-02T18:50:11Z",
+            "resolution_time_hours": 747.34,
+            "char_count": 1059
+        },
+        {
+            "number": 7,
+            "title": "Estudo sobre Scrum Master",
+            "state": "closed",
+            "created_at": "2026-04-01T14:30:15Z",
+            "closed_at": "2026-04-05T14:26:42Z",
+            "resolution_time_hours": 95.94,
+            "char_count": 1468
+        },
+        {
+            "number": 6,
+            "title": "Estudo sobre Requisitos de Software",
+            "state": "closed",
+            "created_at": "2026-04-01T13:50:22Z",
+            "closed_at": "2026-04-04T02:55:24Z",
+            "resolution_time_hours": 61.08,
+            "char_count": 1542
+        },
+        {
+            "number": 5,
+            "title": "Estudo sobre Metodologias Ageis",
+            "state": "closed",
+            "created_at": "2026-04-01T13:49:28Z",
+            "closed_at": "2026-04-10T12:30:00Z",
+            "resolution_time_hours": 214.68,
+            "char_count": 1365
+        },
+        {
+            "number": 4,
+            "title": "Estudo sobre Git/Github",
+            "state": "closed",
+            "created_at": "2026-04-01T13:43:43Z",
+            "closed_at": "2026-04-14T03:22:37Z",
+            "resolution_time_hours": 301.65,
+            "char_count": 899
+        },
+        {
+            "number": 3,
+            "title": "Estudo sobre Product Owner",
+            "state": "closed",
+            "created_at": "2026-04-01T13:39:26Z",
+            "closed_at": "2026-04-05T14:26:42Z",
+            "resolution_time_hours": 96.79,
+            "char_count": 1291
+        },
+        {
+            "number": 2,
+            "title": "Estudo geral sobre Arquitetura de Software",
+            "state": "closed",
+            "created_at": "2026-03-30T18:32:17Z",
+            "closed_at": "2026-03-31T13:19:25Z",
+            "resolution_time_hours": 18.79,
+            "char_count": 1906
+        },
+        {
+            "number": 1,
+            "title": "twrs",
+            "state": "closed",
+            "created_at": "2026-03-30T16:15:24Z",
+            "closed_at": "2026-04-05T22:24:55Z",
+            "resolution_time_hours": 150.16,
+            "char_count": 34
+        }
+    ],
+    "autores": {
+        "augustogmedeiros": {
+            "commits": 31,
+            "insercoes": 1813,
+            "delecoes": 12996,
+            "total_linhas": 14809
+        },
+        "yaxavier": {
+            "commits": 12,
+            "insercoes": 546,
+            "delecoes": 10,
+            "total_linhas": 556
+        },
+        "cgbriel28": {
+            "commits": 6,
+            "insercoes": 13028,
+            "delecoes": 830,
+            "total_linhas": 13858
+        },
+        "wandinhawright": {
+            "commits": 6,
+            "insercoes": 3030,
+            "delecoes": 3,
+            "total_linhas": 3033
+        },
+        "Golira12": {
+            "commits": 2,
+            "insercoes": 54,
+            "delecoes": 0,
+            "total_linhas": 54
+        },
+        "marispmorais": {
+            "commits": 8,
+            "insercoes": 175,
+            "delecoes": 90,
+            "total_linhas": 265
+        },
+        "Danielly Mendes": {
+            "commits": 4,
+            "insercoes": 458,
+            "delecoes": 8,
+            "total_linhas": 466
+        },
+        "carla-rocha": {
+            "commits": 1,
+            "insercoes": 22,
+            "delecoes": 0,
+            "total_linhas": 22
+        }
+    }
 }
