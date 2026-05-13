@@ -1,0 +1,48 @@
+name: Atualizar Metricas de Produtividade
+
+"on":
+  push:
+    branches:
+      - main
+
+jobs:
+  atualizar-dashboard:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar dependências
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Coletar Métricas
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/coletor_metricas.py
+
+      - name: Salvar e Enviar
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Adiciona o arquivo gerado pelo script Python
+          git add dashboard/data.json
+          
+          # Commita apenas se houver mudanças, evitando erro no workflow
+          git commit -m "chore(metricas): atualiza data.json [skip ci]" || echo "Nenhuma mudança para commitar"
+          
+          # Push das alterações de volta para o repositório
+          git push
