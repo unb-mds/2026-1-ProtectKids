@@ -32,3 +32,6 @@ __pycache__/
 #docker 
 
 .data/
+
+# Pastas de build do MkDocs
+site/
