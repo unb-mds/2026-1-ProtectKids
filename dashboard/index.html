@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Métricas de Produtividade - ProtectKids</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; color: #333; margin: 0; padding: 20px; }
+        .container { max-width: 1000px; margin: 0 auto; }
+        h1 { text-align: center; color: #2c3e50; }
+        .cards { display: flex; justify-content: space-between; margin-bottom: 30px; }
+        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 30%; text-align: center; }
+        .card h3 { margin: 0; font-size: 1.2em; color: #7f8c8d; }
+        .card p { margin: 10px 0 0; font-size: 2em; font-weight: bold; color: #3498db; }
+        .chart-container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 30px; }
+        .bar { fill: #3498db; transition: fill 0.3s; }
+        .bar:hover { fill: #2980b9; }
+        .axis-label { font-size: 12px; fill: #7f8c8d; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Dashboard de Produtividade - Squad 10</h1>
+    
+    <div class="cards">
+        <div class="card">
+            <h3>Total de Commits</h3>
+            <p id="total-commits">0</p>
+        </div>
+        <div class="card">
+            <h3>Total de Linhas Alteradas</h3>
+            <p id="total-diff">0</p>
+        </div>
+        <div class="card">
+            <h3>Issues Fechadas</h3>
+            <p id="total-issues">0</p>
+        </div>
+    </div>
+
+    <div class="chart-container">
+        <h2 style="color: #2c3e50; text-align: center;">Commits por Dia</h2>
+        <div id="chart"></div>
+    </div>
+</div>
+
+<script>
+    // Carrega o arquivo JSON gerado pelo nosso script Python
+    d3.json("data.json").then(function(data) {
+        
+        // --- 1. PREENCHER OS CARDS ---
+        const totalCommits = data.commits.length;
+        const totalDiff = d3.sum(data.commits, d => d.total_diff);
+        const issuesFechadas = data.issues.filter(i => i.state === 'closed').length;
+
+        d3.select("#total-commits").text(totalCommits);
+        d3.select("#total-diff").text(totalDiff);
+        d3.select("#total-issues").text(issuesFechadas);
+
+        // --- 2. PREPARAR DADOS PRO GRÁFICO ---
+        // Agrupar commits por data (ignorando a hora)
+        const commitsPorDia = d3.rollup(data.commits, 
+            v => v.length, 
+            d => d.date.split("T")[0] // Pega só a parte YYYY-MM-DD
+        );
+
+        // Converter para um array de objetos para o D3 ler fácil
+        const chartData = Array.from(commitsPorDia, ([date, count]) => ({ date: new Date(date), count })).sort((a, b) => d3.ascending(a.date, b.date));
+
+        // --- 3. DESENHAR O GRÁFICO (D3.js) ---
+        const width = 900;
+        const height = 400;
+        const margin = {top: 20, right: 30, bottom: 40, left: 40};
+
+        const svg = d3.select("#chart")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+        // Escala X (Datas)
+        const x = d3.scaleBand()
+            .domain(chartData.map(d => d.date))
+            .range([margin.left, width - margin.right])
+            .padding(0.1);
+
+        // Escala Y (Quantidade de commits)
+        const y = d3.scaleLinear()
+            .domain([0, d3.max(chartData, d => d.count)]).nice()
+            .range([height - margin.bottom, margin.top]);
+
+        // Eixo X
+        svg.append("g")
+            .attr("transform", `translate(0,${height - margin.bottom})`)
+            .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%d/%m")))
+            .attr("class", "axis-label");
+
+        // Eixo Y
+        svg.append("g")
+            .attr("transform", `translate(${margin.left},0)`)
+            .call(d3.axisLeft(y).ticks(5))
+            .attr("class", "axis-label");
+
+        // Desenhar as Barras
+        svg.selectAll(".bar")
+            .data(chartData)
+            .join("rect")
+            .attr("class", "bar")
+            .attr("x", d => x(d.date))
+            .attr("y", d => y(d.count))
+            .attr("height", d => y(0) - y(d.count))
+            .attr("width", x.bandwidth());
+
+    }).catch(function(error) {
+        console.log("Erro ao carregar os dados:", error);
+        d3.select("#chart").html("<p style='color:red;'>Erro ao carregar data.json. Você está rodando via servidor local?</p>");
+    });
+</script>
+
+</body>
+</html>
