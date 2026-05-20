@@ -1,6 +1,33 @@
 {
-    "last_updated": "2026-05-20T16:07:13.594178Z",
+    "last_updated": "2026-05-20T21:59:58.590366Z",
     "commits": [
+        {
+            "hash": "df945fe48503c442557771079e838c0d57d87e84",
+            "date": "2026-05-20T18:59:32-03:00",
+            "message": "Merge pull request #53 from unb-mds/feat/camara-api",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "f453c4f5a5d8f8f808ee2924d14d4410688f4c9a",
+            "date": "2026-05-20T18:53:19-03:00",
+            "message": "fix: alteração no nome da pasta de estudos e inclusao do venv no gitignore",
+            "is_conventional": true,
+            "insertions": 5,
+            "deletions": 2931137,
+            "total_diff": 2931142
+        },
+        {
+            "hash": "1bc9e914e32729d683077f5cfbe31d8ddf1960df",
+            "date": "2026-05-20T18:46:23-03:00",
+            "message": "fix: alteração no nome da pasta de estudos pra não gerar ambiguidade",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
         {
             "hash": "1826bba9eceac1b39abbbaccee2a51fa3b135ef7",
             "date": "2026-05-20T13:06:47-03:00",
@@ -787,6 +814,24 @@
     ],
     "issues": [
         {
+            "number": 52,
+            "title": "criar endpoints analiticos",
+            "state": "open",
+            "created_at": "2026-05-20T19:46:55Z",
+            "closed_at": null,
+            "resolution_time_hours": null,
+            "char_count": 111
+        },
+        {
+            "number": 51,
+            "title": "adicionar /venv no gitignore",
+            "state": "open",
+            "created_at": "2026-05-20T19:44:50Z",
+            "closed_at": null,
+            "resolution_time_hours": null,
+            "char_count": 0
+        },
+        {
             "number": 49,
             "title": "Figma de Alta Fidelidade",
             "state": "open",
@@ -1140,10 +1185,10 @@
     ],
     "autores": {
         "augustogmedeiros": {
-            "commits": 37,
-            "insercoes": 2492,
-            "delecoes": 13148,
-            "total_linhas": 15640
+            "commits": 40,
+            "insercoes": 2497,
+            "delecoes": 2944285,
+            "total_linhas": 2946782
         },
         "Danielly Mendes": {
             "commits": 9,
