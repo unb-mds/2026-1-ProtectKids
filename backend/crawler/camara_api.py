@@ -136,18 +136,38 @@ def fetch_todas_proposicoes() -> list[dict]:
 # CAMADA DE TRANSFORM — mapeia dados da API para o modelo do sistema
 # ---------------------------------------------------------------------------
 def fetch_autor_da_proposicao(id_proposicao_api: int) -> dict:
-    url = f"{BASE_URL}/proposicoes/{id_proposicao_api}/autores"
+    url_autores = f"{BASE_URL}/proposicoes/{id_proposicao_api}/autores"
     try:
-        response = requests.get(url, timeout=30, headers={"Accept": "application/json"})
-        response.raise_for_status()
-        dados = response.json().get("dados", [])
-        if dados:
-            return dados[0] # Pega o primeiro autor da lista
+        # 1. Descobre quem é o autor da lei
+        resp_autores = requests.get(url_autores, timeout=30, headers={"Accept": "application/json"})
+        resp_autores.raise_for_status()
+        dados_autores = resp_autores.json().get("dados", [])
+        
+        if not dados_autores:
+            return {}
+            
+        autor = dados_autores[0]
+        uri_autor = autor.get("uri", "")
+        
+        # 2. Faz uma requisição extra no perfil do deputado para descobrir o partido
+        if "deputados" in uri_autor:
+            resp_perfil = requests.get(uri_autor, timeout=30, headers={"Accept": "application/json"})
+            resp_perfil.raise_for_status()
+            perfil = resp_perfil.json().get("dados", {})
+            status = perfil.get("ultimoStatus", {})
+            
+            # Injeta o partido e a UF no dicionário para a função de transformação usar
+            autor["siglaPartido"] = status.get("siglaPartido", "ND")
+            autor["siglaUf"] = status.get("siglaUf", "ND")
+            
+        return autor
+        
     except Exception as exc:
         logger.warning(f"Erro ao buscar autor da proposicao {id_proposicao_api}: {exc}")
-    return {}
+        return {}
 
 # --- Atualize a Camada de Transform ---
+
 def transform_proposicao(dado_bruto: dict, autor_bruto: dict) -> Optional[tuple]:
     sigla = dado_bruto.get("siglaTipo", "PL")
     numero = dado_bruto.get("numero")
@@ -168,11 +188,13 @@ def transform_proposicao(dado_bruto: dict, autor_bruto: dict) -> Optional[tuple]
             # A API da Camara esconde o ID do deputado no final da URI
             id_autor = int(uri.split("/")[-1])
         except:
-            id_autor = 999999 # ID generico caso seja um orgao sem ID claro
+            id_autor = 999999
             
         parlamentar = Parlamentar(
             id_parlamentar=id_autor,
-            nome=autor_bruto.get("nome", "Desconhecido")
+            nome=autor_bruto.get("nome", "Desconhecido"),
+            partido=autor_bruto.get("siglaPartido", "ND"),
+            uf=autor_bruto.get("siglaUf", "ND")
         )
         
     # 2. Formata a Data
