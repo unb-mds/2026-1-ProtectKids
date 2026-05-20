@@ -1,6 +1,33 @@
 {
-    "last_updated": "2026-05-20T21:59:58.590366Z",
+    "last_updated": "2026-05-20T23:10:35.076606Z",
     "commits": [
+        {
+            "hash": "90265dea7b2d76dc79847f7ac7783c38e0d27dea",
+            "date": "2026-05-20T20:10:03-03:00",
+            "message": "Merge pull request #54 from unb-mds/feat/crawler_camara",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "9da1aeb0d2dacde18cc11bccb6b5faabf46e1041",
+            "date": "2026-05-20T20:09:41-03:00",
+            "message": "fix(crawler): implementa extracao das siglas de partidos e uf",
+            "is_conventional": true,
+            "insertions": 33,
+            "deletions": 11,
+            "total_diff": 44
+        },
+        {
+            "hash": "ad24b24533d7d22df05bc8ccb5d6ec1cc9a9bf3d",
+            "date": "2026-05-20T19:31:00-03:00",
+            "message": "feat(analytics): cria rotas de ranking dos parlamentares",
+            "is_conventional": true,
+            "insertions": 52,
+            "deletions": 4,
+            "total_diff": 56
+        },
         {
             "hash": "df945fe48503c442557771079e838c0d57d87e84",
             "date": "2026-05-20T18:59:32-03:00",
@@ -1185,10 +1212,10 @@
     ],
     "autores": {
         "augustogmedeiros": {
-            "commits": 40,
-            "insercoes": 2497,
-            "delecoes": 2944285,
-            "total_linhas": 2946782
+            "commits": 43,
+            "insercoes": 2582,
+            "delecoes": 2944300,
+            "total_linhas": 2946882
         },
         "Danielly Mendes": {
             "commits": 9,
