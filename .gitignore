@@ -35,3 +35,7 @@ __pycache__/
 
 # Pastas de build do MkDocs
 site/
+
+# Ambiente virtual
+backend/venv/
+venv/
