@@ -24,22 +24,11 @@ def on_startup():
 def read_root():
     return {"status": "ProtectKids Online", "message": "API e Banco de Dados conectados com sucesso!"}
 
-# Rota POST para Inserir um dado no Banco de Dados
-@app.post("/teste-db/")
-def criar_proposicao_teste(session: Session = Depends(get_session)):
-    nova_proposicao = Proposicao(
-        titulo="PL 123/2026", 
-        descricao="Teste de integração do FastAPI com PostgreSQL"
-    )
-    session.add(nova_proposicao)
-    session.commit()
-    session.refresh(nova_proposicao) # Atualiza o objeto com o ID gerado pelo banco
-    
-    return nova_proposicao
-
-# Rota GET para Ler os dados do Banco de Dados
-@app.get("/teste-db/")
-def ler_proposicoes(session: Session = Depends(get_session)):
+@app.get("/proposicoes")
+def get_todas_proposicoes(session: Session = Depends(get_session)):
+    """
+    Retorna a lista completa de leis sobre proteção infantil cadastradas.
+    """
     proposicoes = session.exec(select(Proposicao)).all()
     return proposicoes
 
