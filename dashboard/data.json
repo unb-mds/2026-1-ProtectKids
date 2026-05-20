@@ -1,6 +1,24 @@
 {
-    "last_updated": "2026-05-18T16:49:43.955978Z",
+    "last_updated": "2026-05-20T16:07:13.594178Z",
     "commits": [
+        {
+            "hash": "1826bba9eceac1b39abbbaccee2a51fa3b135ef7",
+            "date": "2026-05-20T13:06:47-03:00",
+            "message": "Merge pull request #50 from unb-mds/fix/docs-requisitos",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "4fada7d5f9bdd27c14200a3df563a23fe2eebf36",
+            "date": "2026-05-18T17:54:31-03:00",
+            "message": "docs: revisão e reinserção de requisitos não funcionais",
+            "is_conventional": true,
+            "insertions": 147,
+            "deletions": 94,
+            "total_diff": 241
+        },
         {
             "hash": "00b579f7348326aa9ddede5392c56f9528cdfcae",
             "date": "2026-05-18T13:49:13-03:00",
@@ -769,6 +787,24 @@
     ],
     "issues": [
         {
+            "number": 49,
+            "title": "Figma de Alta Fidelidade",
+            "state": "open",
+            "created_at": "2026-05-18T18:48:16Z",
+            "closed_at": null,
+            "resolution_time_hours": null,
+            "char_count": 1513
+        },
+        {
+            "number": 48,
+            "title": "Revisão e Correção do Crawler",
+            "state": "closed",
+            "created_at": "2026-05-18T18:34:39Z",
+            "closed_at": "2026-05-18T18:35:12Z",
+            "resolution_time_hours": 0.01,
+            "char_count": 1364
+        },
+        {
             "number": 45,
             "title": "feat: Adicionar gráfico de commits por hora e métrica de qualidade no Dashboard",
             "state": "closed",
@@ -807,10 +843,10 @@
         {
             "number": 37,
             "title": "Crawler de Extração de Dados: API da Câmara dos Deputados",
-            "state": "open",
+            "state": "closed",
             "created_at": "2026-05-02T19:24:31Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
+            "closed_at": "2026-05-18T18:25:52Z",
+            "resolution_time_hours": 383.02,
             "char_count": 1498
         },
         {
@@ -1104,10 +1140,16 @@
     ],
     "autores": {
         "augustogmedeiros": {
-            "commits": 36,
+            "commits": 37,
             "insercoes": 2492,
             "delecoes": 13148,
             "total_linhas": 15640
+        },
+        "Danielly Mendes": {
+            "commits": 9,
+            "insercoes": 878,
+            "delecoes": 107,
+            "total_linhas": 985
         },
         "marispmorais": {
             "commits": 10,
@@ -1120,12 +1162,6 @@
             "insercoes": 546,
             "delecoes": 10,
             "total_linhas": 556
-        },
-        "Danielly Mendes": {
-            "commits": 8,
-            "insercoes": 731,
-            "delecoes": 13,
-            "total_linhas": 744
         },
         "cgbriel28": {
             "commits": 6,

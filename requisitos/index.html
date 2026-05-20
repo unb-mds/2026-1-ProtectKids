@@ -516,153 +516,208 @@
 <h2 id="escopo">Escopo</h2>
 <p>O sistema irá:</p>
 <ul>
-<li>Coletar dados da API de Dados Abertos da Câmara dos Deputados  </li>
-<li>Extrair o inteiro teor das proposições  </li>
-<li>Classificar por subtema  </li>
-<li>Apresentar visualizações analíticas em um dashboard interativo  </li>
+<li>Coletar dados da API de Dados Abertos da Câmara dos Deputados</li>
+<li>Extrair o inteiro teor das proposições</li>
+<li>Classificar por subtema</li>
+<li>Apresentar visualizações analíticas em um dashboard interativo</li>
 </ul>
 <hr />
 <h2 id="temas-principais">Temas Principais</h2>
 <ul>
-<li>Cyberbullying  </li>
-<li>Proteção de dados de menores  </li>
-<li>Exploração sexual online  </li>
-<li>Controle parental  </li>
-<li>Regulação de plataformas digitais  </li>
-<li>Exposição a conteúdo nocivo  </li>
+<li>Cyberbullying</li>
+<li>Proteção de dados de menores</li>
+<li>Exploração sexual online</li>
+<li>Controle parental</li>
+<li>Regulação de plataformas digitais</li>
+<li>Exposição a conteúdo nocivo</li>
 </ul>
 <hr />
 <h1 id="personas">👤 Personas</h1>
 <h2 id="persona-principal-articuladora-de-ong">Persona Principal: Articuladora de ONG</h2>
 <ul>
-<li>Atua na defesa dos direitos de crianças e adolescentes  </li>
-<li>Precisa monitorar projetos de lei  </li>
-<li>Busca identificar ameaças ou oportunidades legislativas  </li>
-<li>Necessita identificar parlamentares aliados  </li>
+<li>Atua na defesa dos direitos de crianças e adolescentes</li>
+<li>Precisa monitorar projetos de lei</li>
+<li>Busca identificar ameaças ou oportunidades legislativas</li>
+<li>Necessita identificar parlamentares aliados</li>
 </ul>
 <hr />
 <h1 id="user-stories">User Stories</h1>
 <h2 id="us01-descoberta-pelo-inteiro-teor">US01 – Descoberta pelo Inteiro Teor</h2>
-<p><strong>Como</strong> articuladora de ONG<br />
-<strong>Quero</strong> que o sistema classifique as leis lendo o texto completo<br />
-<strong>Para que</strong> eu consiga identificar ameaças mesmo quando não estão explícitas na ementa  </p>
+<p><strong>Como</strong> articuladora de ONG
+<strong>Quero</strong> que o sistema classifique as leis lendo o texto completo
+<strong>Para que</strong> eu consiga identificar ameaças mesmo quando não estão explícitas na ementa</p>
 <h3 id="criterios-de-aceitacao">✔ Critérios de Aceitação</h3>
 <ul>
-<li>O sistema deve analisar o inteiro teor  </li>
-<li>Deve classificar mesmo sem menção na ementa  </li>
-<li>Deve exibir o resultado no dashboard  </li>
+<li>O sistema deve analisar o inteiro teor</li>
+<li>Deve classificar mesmo sem menção na ementa</li>
+<li>Deve exibir o resultado no dashboard</li>
 </ul>
 <hr />
 <h2 id="us02-mapeamento-de-aliados">US02 – Mapeamento de Aliados</h2>
-<p><strong>Como</strong> articuladora de ONG<br />
-<strong>Quero</strong> visualizar ranking de deputados e partidos<br />
-<strong>Para</strong> saber com quem agendar reuniões  </p>
+<p><strong>Como</strong> articuladora de ONG
+<strong>Quero</strong> visualizar ranking de deputados e partidos
+<strong>Para</strong> saber com quem agendar reuniões</p>
 <h3 id="criterios-de-aceitacao_1">✔ Critérios de Aceitação</h3>
 <ul>
-<li>Permitir seleção por subtema  </li>
-<li>Ordenar parlamentares por número de proposições  </li>
-<li>Mostrar partidos mais ativos  </li>
+<li>Permitir seleção por subtema</li>
+<li>Ordenar parlamentares por número de proposições</li>
+<li>Mostrar partidos mais ativos</li>
 </ul>
 <hr />
 <h2 id="us03-analise-temporal">US03 – Análise Temporal</h2>
-<p><strong>Como</strong> articuladora de ONG<br />
-<strong>Quero</strong> visualizar evolução temporal das proposições<br />
-<strong>Para</strong> identificar tendências  </p>
+<p><strong>Como</strong> articuladora de ONG
+<strong>Quero</strong> visualizar evolução temporal das proposições
+<strong>Para</strong> identificar tendências</p>
 <h3 id="criterios-de-aceitacao_2">✔ Critérios de Aceitação</h3>
 <ul>
-<li>Apresentar gráfico por ano  </li>
-<li>Permitir filtro por subtema  </li>
-<li>Mostrar crescimento ou queda  </li>
+<li>Apresentar gráfico por ano</li>
+<li>Permitir filtro por subtema</li>
+<li>Mostrar crescimento ou queda</li>
 </ul>
 <hr />
 <h1 id="requisitos-funcionais">Requisitos Funcionais</h1>
 <h2 id="must-have">Must Have</h2>
 <ul>
-<li><strong>RF01</strong>: Extrair metadados da API  </li>
-<li><strong>RF02</strong>: Obter link do inteiro teor  </li>
-<li><strong>RF03</strong>: Extrair texto completo (PDF/TXT)  </li>
-<li><strong>RF04</strong>: Classificar por subtema usando NLP  </li>
-<li><strong>RF05</strong>: Exibir dashboard com volume por subtema  </li>
-<li><strong>RF06</strong>: Ranking de parlamentares  </li>
-<li><strong>RF07</strong>: Ranking de partidos  </li>
+<li><strong>RF01</strong>: Extrair metadados da API</li>
+<li><strong>RF02</strong>: Obter link do inteiro teor</li>
+<li><strong>RF03</strong>: Extrair texto completo (PDF/TXT)</li>
+<li><strong>RF04</strong>: Classificar por subtema usando NLP</li>
+<li><strong>RF05</strong>: Exibir dashboard com volume por subtema</li>
+<li><strong>RF06</strong>: Ranking de parlamentares</li>
+<li><strong>RF07</strong>: Ranking de partidos</li>
 </ul>
 <hr />
 <h2 id="should-have">Should Have</h2>
 <ul>
-<li><strong>RF08</strong>: Gráfico de evolução temporal  </li>
-<li><strong>RF09</strong>: Filtro por subtema  </li>
+<li><strong>RF08</strong>: Gráfico de evolução temporal</li>
+<li><strong>RF09</strong>: Filtro por subtema</li>
 </ul>
 <hr />
 <h2 id="could-have">Could Have</h2>
 <ul>
-<li><strong>RF10</strong>: Identificação automática de novos temas  </li>
+<li><strong>RF10</strong>: Identificação automática de novos temas</li>
 </ul>
 <hr />
 <h2 id="wont-have-mvp">Won't Have (MVP)</h2>
 <ul>
-<li><strong>RF11</strong>: Integração com API do Senado  </li>
+<li><strong>RF11</strong>: Integração com API do Senado</li>
+</ul>
+<hr />
+<h1 id="requisitos-nao-funcionais">Requisitos Não Funcionais</h1>
+<h2 id="desempenho-e-performance">Desempenho e Performance</h2>
+<ul>
+<li>
+<p><strong>RNF01</strong>: A API do backend (FastAPI) deve responder às consultas de listagem e filtragem do Dashboard em menos de 1.5 segundos, garantindo uma navegação fluida.</p>
+</li>
+<li>
+<p><strong>RNF02</strong>: O script de extração (Crawler) deve processar e salvar cada lote de dados em segundo plano, sem bloquear ou degradar a performance das requisições simultâneas feitas pelos usuários no Frontend.</p>
+</li>
+</ul>
+<h2 id="portabilidade-e-infraestrutura">Portabilidade e Infraestrutura</h2>
+<ul>
+<li><strong>RNF03</strong>: O sistema deve ser totalmente conteinerizado utilizando Docker e Docker Compose, garantindo que o ambiente de execução seja idêntico em qualquer máquina (Desenvolvimento, Teste ou Produção) executando com um único comando (docker-compose up).</li>
+</ul>
+<h2 id="resiliencia-e-tolerancia-a-falhas">Resiliência e Tolerância a Falhas</h2>
+<ul>
+<li><strong>RNF04</strong>: O motor de extração de dados deve possuir tratamento de erros para cenários onde a API de Dados Abertos da Câmara estiver fora do ar ou aplicar limite de requisições (Rate Limiting), registrando a falha nos logs sem derrubar o backend.</li>
+</ul>
+<h2 id="qualidade-e-manutenibilidade">Qualidade e Manutenibilidade</h2>
+<ul>
+<li><strong>RNF05</strong>: O código fonte deve obrigatoriamente passar por verificações automatizadas de formatação (Linters como Ruff/ESLint) e execução de testes unitários através de uma pipeline de Integração Contínua (GitHub Actions) a cada Pull Request.</li>
+</ul>
+<h2 id="usabilidade">Usabilidade</h2>
+<ul>
+<li><strong>RNF06</strong>: A interface do usuário (React) deve ser responsiva, garantindo a legibilidade dos textos legislativos e a correta exibição dos gráficos em resoluções desktop (telas grandes) e dispositivos móveis.</li>
 </ul>
 <hr />
 <h1 id="criterios-de-aceitacao-gherkin">Critérios de Aceitação (Gherkin)</h1>
 <h2 id="cenario-classificacao-pelo-inteiro-teor">Cenário: Classificação pelo inteiro teor</h2>
-<p><strong>Dado que</strong> uma proposição não cita o tema na ementa<br />
-<strong>Quando</strong> o sistema analisa o texto completo<br />
-<strong>Então</strong> ela deve ser classificada corretamente  </p>
+<p><strong>Dado que</strong> uma proposição não cita o tema na ementa
+<strong>Quando</strong> o sistema analisa o texto completo
+<strong>Então</strong> ela deve ser classificada corretamente</p>
 <hr />
 <h2 id="cenario-visualizacao-de-ranking">Cenário: Visualização de ranking</h2>
-<p><strong>Dado que</strong> estou no dashboard<br />
-<strong>Quando</strong> seleciono o subtema "Cyberbullying"<br />
-<strong>Então</strong> o sistema deve mostrar deputados ordenados  </p>
+<p><strong>Dado que</strong> estou no dashboard
+<strong>Quando</strong> seleciono o subtema "Cyberbullying"
+<strong>Então</strong> o sistema deve mostrar deputados ordenados</p>
 <hr />
 <h2 id="cenario-analise-temporal">Cenário: Análise temporal</h2>
-<p><strong>Dado que</strong> estou no dashboard<br />
-<strong>Quando</strong> seleciono um subtema<br />
-<strong>Então</strong> devo visualizar a evolução ao longo do tempo  </p>
+<p><strong>Dado que</strong> estou no dashboard
+<strong>Quando</strong> seleciono um subtema
+<strong>Então</strong> devo visualizar a evolução ao longo do tempo</p>
 <hr />
 <h1 id="arquitetura">Arquitetura</h1>
 <h2 id="pipeline-de-dados">Pipeline de Dados</h2>
 <ol>
-<li>Extração via API (Câmara/Senado)  </li>
-<li>Download do inteiro teor  </li>
-<li>Processamento com NLP  </li>
-<li>Classificação por temas e subtemas  </li>
-<li>Armazenamento estruturado  </li>
+<li>Extração via API (Câmara/Senado)</li>
+<li>Download do inteiro teor</li>
+<li>Processamento com NLP</li>
+<li>Classificação por temas e subtemas</li>
+<li>Armazenamento estruturado</li>
 </ol>
 <hr />
 <h2 id="camada-de-visualizacao">Camada de Visualização</h2>
 <ul>
-<li>Dashboard interativo  </li>
-<li>Gráficos por subtema  </li>
-<li>Rankings de parlamentares  </li>
-<li>Filtros por período, tema e deputado  </li>
+<li>Dashboard interativo</li>
+<li>Gráficos por subtema</li>
+<li>Rankings de parlamentares</li>
+<li>Filtros por período, tema e deputado</li>
 </ul>
 <hr />
 <h2 id="principios-arquiteturais">Princípios Arquiteturais</h2>
 <ul>
-<li>Separação entre processamento e visualização  </li>
-<li>Melhor desempenho e escalabilidade  </li>
-<li>Facilidade de manutenção  </li>
+<li>Separação entre processamento e visualização</li>
+<li>Melhor desempenho e escalabilidade</li>
+<li>Facilidade de manutenção</li>
 </ul>
 <hr />
 <h1 id="mvp-produto-minimo-viavel">MVP (Produto Mínimo Viável)</h1>
 <h2 id="integracao-com-api">Integração com API</h2>
 <ul>
-<li>Extração de dados  </li>
-<li>Download do inteiro teor  </li>
-<li>Processamento com NLP  </li>
-<li>Armazenamento  </li>
+<li>Extração de dados</li>
+<li>Download do inteiro teor</li>
+<li>Processamento com NLP</li>
+<li>Armazenamento</li>
 </ul>
 <hr />
 <h2 id="dashboard">Dashboard</h2>
 <ul>
-<li>Dados disponíveis  </li>
-<li>Classificação por subtema  </li>
-<li>Visualização por volume  </li>
-<li>Ranking de parlamentares  </li>
+<li>Dados disponíveis</li>
+<li>Classificação por subtema</li>
+<li>Visualização por volume</li>
+<li>Ranking de parlamentares</li>
 </ul>
 <hr />
 <h2 id="criterio-geral">Critério Geral</h2>
 <p>O sistema deve permitir análise básica de proposições legislativas com base em temas e subtemas, apresentando os dados de forma clara no dashboard.</p>
+<hr />
+<h1 id="versionamento">📌 Versionamento</h1>
+<table>
+<thead>
+<tr>
+<th>Versão</th>
+<th>Data</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0</td>
+<td>11/04/2026</td>
+<td>Versão inicial do documento</td>
+</tr>
+<tr>
+<td>1.1</td>
+<td>03/05/2026</td>
+<td>Ajustes estruturais e refinamento dos requisitos</td>
+</tr>
+<tr>
+<td>1.2</td>
+<td>18/05/2026</td>
+<td>Reinserção da seção de Requisitos Não Funcionais</td>
+</tr>
+</tbody>
+</table>
 
 
 
