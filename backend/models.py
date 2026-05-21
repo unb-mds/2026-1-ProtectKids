@@ -12,6 +12,7 @@ class Parlamentar(SQLModel, table=True):
 
     proposicoes: List["Proposicao"] = Relationship(back_populates="autor")
 
+
 class Proposicao(SQLModel, table=True):
     __tablename__ = "proposicoes"
     id_proposicao: Optional[int] = Field(default=None, primary_key=True)
@@ -26,5 +27,9 @@ class Proposicao(SQLModel, table=True):
     ementa: str
     tema: str = "Protecao Infantil Digital"
     data_apresentacao: Optional[date] = None
+    url_inteiro_teor: Optional[str] = Field(default=None)   # Link para baixar o PDF da lei
+    subtema: Optional[str] = Field(default=None)            # Palavra-chave do crawler
+    texto_integral: Optional[str] = Field(default=None)     # O texto cru extraído de dentro do PDF
+    classificacao_nlp: Optional[str] = Field(default=None)  # O resultado gerado pelo modelo de IA
 
     autor: Optional[Parlamentar] = Relationship(back_populates="proposicoes")
