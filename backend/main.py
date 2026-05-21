@@ -4,7 +4,6 @@ from database import engine, get_session
 from models import Proposicao, Parlamentar
 from fastapi.middleware.cors import CORSMiddleware
 
-
 app = FastAPI(title="ProtectKids API")
 
 # CORS = TRAVA DE SEGURANÇA 
@@ -15,6 +14,7 @@ app.add_middleware(
     allow_methods=["*"], # Permite GET, POST, PUT, DELETE
     allow_headers=["*"],
 )
+
 # evento que roda junto com o docker, ele cria tabelas utilizando o postgres
 @app.on_event("startup")
 def on_startup():
@@ -36,24 +36,25 @@ def get_todas_proposicoes(session: Session = Depends(get_session)):
 def get_ranking_parlamentares(session: Session = Depends(get_session)):
     statement = (
         select(
-            Parlamentar.nome,
-            Parlamentar.partido,
-            Parlamentar.uf,
-            func.count(Proposicao.id_proposicao).label("total_projetos")
+            Parlamentar.nome,       # Posição 0
+            Parlamentar.partido,    # Posição 1
+            Parlamentar.uf,         # Posição 2
+            func.count(Proposicao.id_proposicao).label("total_projetos") # Posição 3
         )
         .join(Proposicao, Proposicao.id_autor == Parlamentar.id_parlamentar)
-        .group_by(Parlamentar.nome, Parlamentar.partido, Parlamentar.uf)
+        .group_by(Parlamentar.id_parlamentar, Parlamentar.nome, Parlamentar.partido, Parlamentar.uf)
         .order_by(func.count(Proposicao.id_proposicao).desc())
     )
     
     resultados = session.exec(statement).all()
     
+    # Extração via índice (à prova de falhas do SQLModel)
     return [
         {
-            "nome": row.nome, 
-            "partido": row.partido, 
-            "uf": row.uf, 
-            "total_projetos": row.total_projetos
+            "nome": row[0], 
+            "partido": row[1], 
+            "uf": row[2], 
+            "total_projetos": row[3]
         }
         for row in resultados
     ]
@@ -62,8 +63,8 @@ def get_ranking_parlamentares(session: Session = Depends(get_session)):
 def get_ranking_partidos(session: Session = Depends(get_session)):
     statement = (
         select(
-            Parlamentar.partido,
-            func.count(Proposicao.id_proposicao).label("total_projetos")
+            Parlamentar.partido,    # Posição 0
+            func.count(Proposicao.id_proposicao).label("total_projetos") # Posição 1
         )
         .join(Proposicao, Proposicao.id_autor == Parlamentar.id_parlamentar)
         .group_by(Parlamentar.partido)
@@ -72,10 +73,11 @@ def get_ranking_partidos(session: Session = Depends(get_session)):
     
     resultados = session.exec(statement).all()
     
+    # Extração via índice
     return [
         {
-            "partido": row.partido, 
-            "total_projetos": row.total_projetos
+            "partido": row[0], 
+            "total_projetos": row[1]
         }
         for row in resultados
     ]
