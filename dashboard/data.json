@@ -1,6 +1,24 @@
 {
-    "last_updated": "2026-05-21T15:50:45.667701Z",
+    "last_updated": "2026-05-21T16:10:29.870272Z",
     "commits": [
+        {
+            "hash": "4e5f3b7cf3619ae953b2fff128c6c7c7d141ffed",
+            "date": "2026-05-21T13:10:02-03:00",
+            "message": "Merge pull request #60 from unb-mds/feat/database",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "9b9dc6d0fc7ab038fd7a1157b76df6b258d5d08f",
+            "date": "2026-05-21T13:03:28-03:00",
+            "message": "fix: corrige colunas no banco de dados",
+            "is_conventional": true,
+            "insertions": 5,
+            "deletions": 0,
+            "total_diff": 5
+        },
         {
             "hash": "ea40d0c42c3e5e9a75179b36f1d0f0b6a7281efc",
             "date": "2026-05-21T12:50:18-03:00",
@@ -904,6 +922,15 @@
     ],
     "issues": [
         {
+            "number": 59,
+            "title": "fix: adicionar colunas relacionadas a extração de dados para o NLP no banco de dados",
+            "state": "open",
+            "created_at": "2026-05-21T16:02:16Z",
+            "closed_at": null,
+            "resolution_time_hours": null,
+            "char_count": 38
+        },
+        {
             "number": 56,
             "title": "fix: corrigir banco de dados",
             "state": "open",
@@ -1284,10 +1311,10 @@
     ],
     "autores": {
         "augustogmedeiros": {
-            "commits": 50,
-            "insercoes": 2646,
+            "commits": 52,
+            "insercoes": 2651,
             "delecoes": 2944333,
-            "total_linhas": 2946979
+            "total_linhas": 2946984
         },
         "Danielly Mendes": {
             "commits": 9,
