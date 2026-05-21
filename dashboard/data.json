@@ -1,6 +1,33 @@
 {
-    "last_updated": "2026-05-20T23:10:35.076606Z",
+    "last_updated": "2026-05-21T00:27:40.236425Z",
     "commits": [
+        {
+            "hash": "f595cba6724da7faf4b9adca9dab779a26288f2f",
+            "date": "2026-05-20T21:27:17-03:00",
+            "message": "Merge pull request #55 from unb-mds/feat/database",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "ff8f984300e3f9fac33e805d3b7fbbe3a67dae34",
+            "date": "2026-05-20T20:15:28-03:00",
+            "message": "Merge branch 'main' of https://github.com/unb-mds/2026-1-Squad10 into feat/database",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "f71e334015aaf3181b8be66035dc3886dfd25201",
+            "date": "2026-05-20T20:15:21-03:00",
+            "message": "fix: remoção da rota teste no banco de dados",
+            "is_conventional": true,
+            "insertions": 5,
+            "deletions": 16,
+            "total_diff": 21
+        },
         {
             "hash": "90265dea7b2d76dc79847f7ac7783c38e0d27dea",
             "date": "2026-05-20T20:10:03-03:00",
@@ -1212,10 +1239,10 @@
     ],
     "autores": {
         "augustogmedeiros": {
-            "commits": 43,
-            "insercoes": 2582,
-            "delecoes": 2944300,
-            "total_linhas": 2946882
+            "commits": 46,
+            "insercoes": 2587,
+            "delecoes": 2944316,
+            "total_linhas": 2946903
         },
         "Danielly Mendes": {
             "commits": 9,
