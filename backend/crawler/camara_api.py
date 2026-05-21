@@ -42,7 +42,15 @@ BASE_URL = "https://dadosabertos.camara.leg.br/api/v2"
 ENDPOINT_PROPOSICOES = f"{BASE_URL}/proposicoes"
 
 # Palavras-chave relacionadas à proteção infantil
-KEYWORDS = ["criança", "infância", "ECA", "menor", "proteção infantil"]
+KEYWORDS = [
+    "criança", 
+    "infância", 
+    "ECA", 
+    "menor", 
+    "proteção infantil",
+    "cyberbullying",
+    "adoção",
+    "trabalho infantil"]
 
 # Parâmetros fixos da busca
 PARAMS_BASE = {
