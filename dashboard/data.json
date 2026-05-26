@@ -1,6 +1,15 @@
 {
-    "last_updated": "2026-05-26T15:33:32.098557Z",
+    "last_updated": "2026-05-26T22:21:54.150120Z",
     "commits": [
+        {
+            "hash": "16a320dce81b3104464ddf77137ad1e1f2b1478c",
+            "date": "2026-05-26T19:21:30-03:00",
+            "message": "Segunda atualização do readme",
+            "is_conventional": false,
+            "insertions": 208,
+            "deletions": 25,
+            "total_diff": 233
+        },
         {
             "hash": "1c6523771fc11c55463b4138a662fd06b7eb7b4e",
             "date": "2026-05-26T12:33:04-03:00",
@@ -976,6 +985,15 @@
     ],
     "issues": [
         {
+            "number": 66,
+            "title": "Implementação Frontend",
+            "state": "open",
+            "created_at": "2026-05-26T21:31:39Z",
+            "closed_at": null,
+            "resolution_time_hours": null,
+            "char_count": 0
+        },
+        {
             "number": 64,
             "title": "feat: adicionar filto do dashboard no backend",
             "state": "closed",
@@ -1041,10 +1059,10 @@
         {
             "number": 49,
             "title": "Figma de Alta Fidelidade",
-            "state": "open",
+            "state": "closed",
             "created_at": "2026-05-18T18:48:16Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
+            "closed_at": "2026-05-26T21:31:47Z",
+            "resolution_time_hours": 194.73,
             "char_count": 1513
         },
         {
@@ -1113,10 +1131,10 @@
         {
             "number": 35,
             "title": "Configuração da Pipeline de Integração Contínua (CI) com GitHub Actions",
-            "state": "open",
+            "state": "closed",
             "created_at": "2026-05-02T19:19:54Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
+            "closed_at": "2026-05-26T21:24:39Z",
+            "resolution_time_hours": 578.08,
             "char_count": 1402
         },
         {
@@ -1391,6 +1409,12 @@
         }
     ],
     "autores": {
+        "yaxavier": {
+            "commits": 13,
+            "insercoes": 754,
+            "delecoes": 35,
+            "total_linhas": 789
+        },
         "augustogmedeiros": {
             "commits": 58,
             "insercoes": 2876,
@@ -1408,12 +1432,6 @@
             "insercoes": 2932603,
             "delecoes": 125,
             "total_linhas": 2932728
-        },
-        "yaxavier": {
-            "commits": 12,
-            "insercoes": 546,
-            "delecoes": 10,
-            "total_linhas": 556
         },
         "cgbriel28": {
             "commits": 6,
