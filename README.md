@@ -26,7 +26,6 @@ O sistema coleta, processa e disponibiliza informações relevantes, permitindo 
 **Infraestrutura**
 - Docker
 - Docker Compose
-- 
 ## 🚀 Como rodar o projeto
 
 ### Pré-requisitos
