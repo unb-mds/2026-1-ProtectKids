@@ -1,6 +1,24 @@
 {
-    "last_updated": "2026-05-21T20:13:24.198314Z",
+    "last_updated": "2026-05-26T15:33:32.098557Z",
     "commits": [
+        {
+            "hash": "1c6523771fc11c55463b4138a662fd06b7eb7b4e",
+            "date": "2026-05-26T12:33:04-03:00",
+            "message": "Update README.md",
+            "is_conventional": false,
+            "insertions": 0,
+            "deletions": 1,
+            "total_diff": 1
+        },
+        {
+            "hash": "8337e76724954b859988e468069df9a0c22a77c7",
+            "date": "2026-05-26T12:32:48-03:00",
+            "message": "Remove test instructions from README",
+            "is_conventional": false,
+            "insertions": 1,
+            "deletions": 43,
+            "total_diff": 44
+        },
         {
             "hash": "8b61b5f85669a9ad951a2a532dd6271bfd0115cf",
             "date": "2026-05-21T17:12:59-03:00",
@@ -960,64 +978,64 @@
         {
             "number": 64,
             "title": "feat: adicionar filto do dashboard no backend",
-            "state": "open",
+            "state": "closed",
             "created_at": "2026-05-21T18:28:28Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
+            "closed_at": "2026-05-21T20:19:39Z",
+            "resolution_time_hours": 1.85,
             "char_count": 0
         },
         {
             "number": 62,
             "title": "feat: adicionar a NLP no crawler",
-            "state": "open",
+            "state": "closed",
             "created_at": "2026-05-21T16:26:55Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
+            "closed_at": "2026-05-21T20:19:37Z",
+            "resolution_time_hours": 3.88,
             "char_count": 0
         },
         {
             "number": 61,
             "title": "feat: adicionar frameworks no requirements.txt",
-            "state": "open",
+            "state": "closed",
             "created_at": "2026-05-21T16:19:26Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
+            "closed_at": "2026-05-21T20:19:34Z",
+            "resolution_time_hours": 4.0,
             "char_count": 33
         },
         {
             "number": 59,
             "title": "fix: adicionar colunas relacionadas a extração de dados para o NLP no banco de dados",
-            "state": "open",
+            "state": "closed",
             "created_at": "2026-05-21T16:02:16Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
+            "closed_at": "2026-05-21T20:19:36Z",
+            "resolution_time_hours": 4.29,
             "char_count": 38
         },
         {
             "number": 56,
             "title": "fix: corrigir banco de dados",
-            "state": "open",
+            "state": "closed",
             "created_at": "2026-05-21T00:29:51Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
+            "closed_at": "2026-05-21T20:19:32Z",
+            "resolution_time_hours": 19.83,
             "char_count": 66
         },
         {
             "number": 52,
             "title": "criar endpoints analiticos",
-            "state": "open",
+            "state": "closed",
             "created_at": "2026-05-20T19:46:55Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
+            "closed_at": "2026-05-21T20:19:34Z",
+            "resolution_time_hours": 24.54,
             "char_count": 111
         },
         {
             "number": 51,
             "title": "adicionar /venv no gitignore",
-            "state": "open",
+            "state": "closed",
             "created_at": "2026-05-20T19:44:50Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
+            "closed_at": "2026-05-21T20:19:32Z",
+            "resolution_time_hours": 24.58,
             "char_count": 0
         },
         {
@@ -1374,10 +1392,10 @@
     ],
     "autores": {
         "augustogmedeiros": {
-            "commits": 56,
-            "insercoes": 2875,
-            "delecoes": 2944407,
-            "total_linhas": 2947282
+            "commits": 58,
+            "insercoes": 2876,
+            "delecoes": 2944451,
+            "total_linhas": 2947327
         },
         "Danielly Mendes": {
             "commits": 9,
