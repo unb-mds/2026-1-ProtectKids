@@ -26,49 +26,7 @@ O sistema coleta, processa e disponibiliza informações relevantes, permitindo 
 **Infraestrutura**
 - Docker
 - Docker Compose
-
----
-
-## 🧪 Ambiente de Testes
-
-Este projeto possui testes automatizados básicos configurados tanto para o Backend quanto para o Frontend.
-
-### Como rodar os testes do Backend (FastAPI)
-1. Navegue até a pasta do backend:
-   ```bash
-   cd backend
-
-2. Certifique-se de que o seu ambiente virtual (venv) está ativo.
-
-   2.1 para liberar a trava de segurança do Windows, use o comando:
-
-         Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
-    
-   2.2 para ativar o venv, use o comando:
-
-        venv\Scripts\activate
-
-   2.3 para sair do venv, use o comando:
-
-         deactivate
-
-3. Execute o comando:
-   ```bash
-    pytest
-
-**Como rodar os testes do Frontend (React)**
-
-1. Navegue até a pasta do frontend:
-   ```bash
-    cd frontend
-
-3. Execute o comando:
-   ```bash
-    npm test
-
----
-
-
+- 
 ## 🚀 Como rodar o projeto
 
 ### Pré-requisitos
