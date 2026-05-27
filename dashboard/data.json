@@ -1,6 +1,24 @@
 {
-    "last_updated": "2026-05-27T06:13:09.630713Z",
+    "last_updated": "2026-05-27T06:27:35.810515Z",
     "commits": [
+        {
+            "hash": "9ebabb1d8ea5c09000492d0fa7ae1fd07981e945",
+            "date": "2026-05-27T03:27:11-03:00",
+            "message": "Merge pull request #73 from unb-mds/feat/mkdocs",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "3bbd9af0d251fbdae4a3bed02e1e0b9e3c9f6842",
+            "date": "2026-05-27T03:25:02-03:00",
+            "message": "docs: adiciona diagrama do modelo c4 a arquitetura",
+            "is_conventional": true,
+            "insertions": 8,
+            "deletions": 10,
+            "total_diff": 18
+        },
         {
             "hash": "f2b7b99eb466bd450427812892882c31dd6d82b4",
             "date": "2026-05-27T03:12:48-03:00",
@@ -1563,10 +1581,10 @@
     ],
     "autores": {
         "augustogmedeiros": {
-            "commits": 71,
-            "insercoes": 5187,
-            "delecoes": 2946247,
-            "total_linhas": 2951434
+            "commits": 73,
+            "insercoes": 5195,
+            "delecoes": 2946257,
+            "total_linhas": 2951452
         },
         "Ryan Lira": {
             "commits": 2,
