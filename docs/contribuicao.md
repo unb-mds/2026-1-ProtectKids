@@ -41,3 +41,4 @@ Os commits devem ser descritivos e objetivos.
 feat: adiciona classificação por subtema
 fix: corrige extração de PDF
 docs: atualiza documentação do projeto
+```
