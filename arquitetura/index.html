@@ -29,6 +29,9 @@
     
       <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
       
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
       
 
 
@@ -57,7 +60,14 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -66,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#arquitetura" class="md-skip">
+        <a href="#modelo-arquitetural" class="md-skip">
           Skip to content
         </a>
       
@@ -78,9 +88,7 @@
     
       
 
-  
-
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="ProtectKids" class="md-header__button md-logo" aria-label="ProtectKids" data-md-component="logo">
       
@@ -108,6 +116,18 @@
         </div>
       </div>
     </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
     
     
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
@@ -164,6 +184,131 @@
       
         
           
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Início
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../visao-geral/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Visão Geral
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../requisitos/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Requisitos
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Arquitetura
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../uso/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Uso
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../contribuicao/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Contribuição
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -177,8 +322,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="ProtectKids" class="md-nav__button md-logo" aria-label="ProtectKids" data-md-component="logo">
       
@@ -285,8 +432,6 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
-        
-      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -329,8 +474,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -339,24 +482,91 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#componentes" class="md-nav__link">
+  <a href="#modelo-arquitetural" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Componentes
+        Modelo Arquitetural
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Modelo Arquitetural">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nivel-1-diagrama-de-contexto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nível 1 — Diagrama de Contexto
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#descricao" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#nivel-2-diagrama-de-conteineres" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Descrição
+        Nível 2 — Diagrama de Contêineres
       
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#beneficios-da-utilizacao-do-modelo-c4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Benefícios da Utilização do Modelo C4
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Benefícios da Utilização do Modelo C4">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comunicacao-clara" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comunicação Clara
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alinhamento-da-equipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alinhamento da Equipe
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#facilidade-de-manutencao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Facilidade de Manutenção
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -439,8 +649,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -449,24 +657,91 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#componentes" class="md-nav__link">
+  <a href="#modelo-arquitetural" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Componentes
+        Modelo Arquitetural
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Modelo Arquitetural">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nivel-1-diagrama-de-contexto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nível 1 — Diagrama de Contexto
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#descricao" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#nivel-2-diagrama-de-conteineres" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Descrição
+        Nível 2 — Diagrama de Contêineres
       
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#beneficios-da-utilizacao-do-modelo-c4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Benefícios da Utilização do Modelo C4
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Benefícios da Utilização do Modelo C4">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comunicacao-clara" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comunicação Clara
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alinhamento-da-equipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alinhamento da Equipe
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#facilidade-de-manutencao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Facilidade de Manutenção
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -487,16 +762,36 @@
 
 
 
-<h1 id="arquitetura">Arquitetura</h1>
-<h2 id="componentes">Componentes</h2>
+  <h1>Arquitetura</h1>
+
+<h2 id="modelo-arquitetural">Modelo Arquitetural<a class="headerlink" href="#modelo-arquitetural" title="Permanent link">&para;</a></h2>
+<p>A arquitetura do <strong>ProtectKids</strong> foi documentada utilizando o <strong>Modelo C4</strong>, escolhido por sua abordagem hierárquica e pelo foco na clareza da comunicação. Esse modelo permite que tanto desenvolvedores quanto usuários compreendam o funcionamento do sistema sem a necessidade de conhecer padrões complexos de notação.</p>
+<p>O Modelo C4 pode ser entendido como um sistema de <em>zoom arquitetural</em>, no qual cada nível apresenta uma visão diferente da plataforma.</p>
+<h3 id="nivel-1-diagrama-de-contexto">Nível 1 — Diagrama de Contexto<a class="headerlink" href="#nivel-1-diagrama-de-contexto" title="Permanent link">&para;</a></h3>
+<p>No primeiro nível, o sistema é tratado como uma caixa preta, abstraindo detalhes de implementação e código. O objetivo principal é responder às seguintes perguntas:</p>
 <ul>
-<li>Coleta de dados</li>
-<li>Processamento</li>
-<li>Armazenamento</li>
-<li>Interface</li>
+<li>Quem utiliza o sistema?</li>
+<li>Com quais sistemas externos ele se integra?</li>
 </ul>
-<h2 id="descricao">Descrição</h2>
-<p>O sistema coleta dados, processa e disponibiliza para análise.</p>
+<p>Essa visão permitiu mapear de forma clara o fluxo de interação entre os usuários do ProtectKids e serviços externos essenciais para o projeto, como a API de Dados Abertos da Câmara dos Deputados.</p>
+<h3 id="nivel-2-diagrama-de-conteineres">Nível 2 — Diagrama de Contêineres<a class="headerlink" href="#nivel-2-diagrama-de-conteineres" title="Permanent link">&para;</a></h3>
+<p>No segundo nível, é apresentada a macroarquitetura da aplicação, detalhando os principais componentes de software e suas responsabilidades.</p>
+<p>Essa etapa é especialmente importante para o projeto, pois representa diretamente a infraestrutura conteinerizada baseada em Docker. Nela, são evidenciadas as interações entre:</p>
+<ul>
+<li>Frontend</li>
+<li>Backend</li>
+<li>Crawler de dados</li>
+<li>Modelo de NLP</li>
+<li>Banco de Dados</li>
+</ul>
+<p>Além disso, o diagrama demonstra como esses componentes se comunicam entre si para realizar o processamento e a disponibilização das informações.</p>
+<h2 id="beneficios-da-utilizacao-do-modelo-c4">Benefícios da Utilização do Modelo C4<a class="headerlink" href="#beneficios-da-utilizacao-do-modelo-c4" title="Permanent link">&para;</a></h2>
+<h3 id="comunicacao-clara">Comunicação Clara<a class="headerlink" href="#comunicacao-clara" title="Permanent link">&para;</a></h3>
+<p>A utilização de caixas e relacionamentos simplificados torna a arquitetura compreensível tanto para pessoas técnicas quanto não técnicas.</p>
+<h3 id="alinhamento-da-equipe">Alinhamento da Equipe<a class="headerlink" href="#alinhamento-da-equipe" title="Permanent link">&para;</a></h3>
+<p>Os diagramas funcionam como um mapa visual do projeto, permitindo que cada integrante compreenda onde sua contribuição se encaixa dentro da solução completa.</p>
+<h3 id="facilidade-de-manutencao">Facilidade de Manutenção<a class="headerlink" href="#facilidade-de-manutencao" title="Permanent link">&para;</a></h3>
+<p>Como a documentação descreve componentes de alto nível, pequenas alterações no código não exigem constantes reformulações dos diagramas arquiteturais.</p>
 
 
 
@@ -516,6 +811,12 @@
           
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
         
       </main>
       
@@ -546,7 +847,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.top"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>

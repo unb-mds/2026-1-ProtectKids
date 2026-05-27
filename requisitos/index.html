@@ -29,6 +29,9 @@
     
       <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
       
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
       
 
 
@@ -57,7 +60,14 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -78,9 +88,7 @@
     
       
 
-  
-
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="ProtectKids" class="md-header__button md-logo" aria-label="ProtectKids" data-md-component="logo">
       
@@ -108,6 +116,18 @@
         </div>
       </div>
     </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
     
     
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
@@ -164,6 +184,131 @@
       
         
           
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Início
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../visao-geral/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Visão Geral
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Requisitos
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../arquitetura/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Arquitetura
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../uso/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Uso
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../contribuicao/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Contribuição
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -177,8 +322,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="ProtectKids" class="md-nav__button md-logo" aria-label="ProtectKids" data-md-component="logo">
       
@@ -509,11 +656,11 @@
 
 
 
-<h1 id="visao-geral">📊 Visão Geral</h1>
-<h2 id="objetivo">Objetivo</h2>
+<h1 id="visao-geral">📊 Visão Geral<a class="headerlink" href="#visao-geral" title="Permanent link">&para;</a></h1>
+<h2 id="objetivo">Objetivo<a class="headerlink" href="#objetivo" title="Permanent link">&para;</a></h2>
 <p>Desenvolver uma plataforma para monitorar, classificar e analisar proposições legislativas relacionadas à proteção de crianças e adolescentes no ambiente digital.</p>
 <hr />
-<h2 id="escopo">Escopo</h2>
+<h2 id="escopo">Escopo<a class="headerlink" href="#escopo" title="Permanent link">&para;</a></h2>
 <p>O sistema irá:</p>
 <ul>
 <li>Coletar dados da API de Dados Abertos da Câmara dos Deputados</li>
@@ -522,7 +669,7 @@
 <li>Apresentar visualizações analíticas em um dashboard interativo</li>
 </ul>
 <hr />
-<h2 id="temas-principais">Temas Principais</h2>
+<h2 id="temas-principais">Temas Principais<a class="headerlink" href="#temas-principais" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Cyberbullying</li>
 <li>Proteção de dados de menores</li>
@@ -532,8 +679,8 @@
 <li>Exposição a conteúdo nocivo</li>
 </ul>
 <hr />
-<h1 id="personas">👤 Personas</h1>
-<h2 id="persona-principal-articuladora-de-ong">Persona Principal: Articuladora de ONG</h2>
+<h1 id="personas">👤 Personas<a class="headerlink" href="#personas" title="Permanent link">&para;</a></h1>
+<h2 id="persona-principal-articuladora-de-ong">Persona Principal: Articuladora de ONG<a class="headerlink" href="#persona-principal-articuladora-de-ong" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Atua na defesa dos direitos de crianças e adolescentes</li>
 <li>Precisa monitorar projetos de lei</li>
@@ -541,42 +688,42 @@
 <li>Necessita identificar parlamentares aliados</li>
 </ul>
 <hr />
-<h1 id="user-stories">User Stories</h1>
-<h2 id="us01-descoberta-pelo-inteiro-teor">US01 – Descoberta pelo Inteiro Teor</h2>
+<h1 id="user-stories">User Stories<a class="headerlink" href="#user-stories" title="Permanent link">&para;</a></h1>
+<h2 id="us01-descoberta-pelo-inteiro-teor">US01 – Descoberta pelo Inteiro Teor<a class="headerlink" href="#us01-descoberta-pelo-inteiro-teor" title="Permanent link">&para;</a></h2>
 <p><strong>Como</strong> articuladora de ONG
 <strong>Quero</strong> que o sistema classifique as leis lendo o texto completo
 <strong>Para que</strong> eu consiga identificar ameaças mesmo quando não estão explícitas na ementa</p>
-<h3 id="criterios-de-aceitacao">✔ Critérios de Aceitação</h3>
+<h3 id="criterios-de-aceitacao">✔ Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao" title="Permanent link">&para;</a></h3>
 <ul>
 <li>O sistema deve analisar o inteiro teor</li>
 <li>Deve classificar mesmo sem menção na ementa</li>
 <li>Deve exibir o resultado no dashboard</li>
 </ul>
 <hr />
-<h2 id="us02-mapeamento-de-aliados">US02 – Mapeamento de Aliados</h2>
+<h2 id="us02-mapeamento-de-aliados">US02 – Mapeamento de Aliados<a class="headerlink" href="#us02-mapeamento-de-aliados" title="Permanent link">&para;</a></h2>
 <p><strong>Como</strong> articuladora de ONG
 <strong>Quero</strong> visualizar ranking de deputados e partidos
 <strong>Para</strong> saber com quem agendar reuniões</p>
-<h3 id="criterios-de-aceitacao_1">✔ Critérios de Aceitação</h3>
+<h3 id="criterios-de-aceitacao_1">✔ Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_1" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Permitir seleção por subtema</li>
 <li>Ordenar parlamentares por número de proposições</li>
 <li>Mostrar partidos mais ativos</li>
 </ul>
 <hr />
-<h2 id="us03-analise-temporal">US03 – Análise Temporal</h2>
+<h2 id="us03-analise-temporal">US03 – Análise Temporal<a class="headerlink" href="#us03-analise-temporal" title="Permanent link">&para;</a></h2>
 <p><strong>Como</strong> articuladora de ONG
 <strong>Quero</strong> visualizar evolução temporal das proposições
 <strong>Para</strong> identificar tendências</p>
-<h3 id="criterios-de-aceitacao_2">✔ Critérios de Aceitação</h3>
+<h3 id="criterios-de-aceitacao_2">✔ Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_2" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Apresentar gráfico por ano</li>
 <li>Permitir filtro por subtema</li>
 <li>Mostrar crescimento ou queda</li>
 </ul>
 <hr />
-<h1 id="requisitos-funcionais">Requisitos Funcionais</h1>
-<h2 id="must-have">Must Have</h2>
+<h1 id="requisitos-funcionais">Requisitos Funcionais<a class="headerlink" href="#requisitos-funcionais" title="Permanent link">&para;</a></h1>
+<h2 id="must-have">Must Have<a class="headerlink" href="#must-have" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>RF01</strong>: Extrair metadados da API</li>
 <li><strong>RF02</strong>: Obter link do inteiro teor</li>
@@ -587,24 +734,24 @@
 <li><strong>RF07</strong>: Ranking de partidos</li>
 </ul>
 <hr />
-<h2 id="should-have">Should Have</h2>
+<h2 id="should-have">Should Have<a class="headerlink" href="#should-have" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>RF08</strong>: Gráfico de evolução temporal</li>
 <li><strong>RF09</strong>: Filtro por subtema</li>
 </ul>
 <hr />
-<h2 id="could-have">Could Have</h2>
+<h2 id="could-have">Could Have<a class="headerlink" href="#could-have" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>RF10</strong>: Identificação automática de novos temas</li>
 </ul>
 <hr />
-<h2 id="wont-have-mvp">Won't Have (MVP)</h2>
+<h2 id="wont-have-mvp">Won't Have (MVP)<a class="headerlink" href="#wont-have-mvp" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>RF11</strong>: Integração com API do Senado</li>
 </ul>
 <hr />
-<h1 id="requisitos-nao-funcionais">Requisitos Não Funcionais</h1>
-<h2 id="desempenho-e-performance">Desempenho e Performance</h2>
+<h1 id="requisitos-nao-funcionais">Requisitos Não Funcionais<a class="headerlink" href="#requisitos-nao-funcionais" title="Permanent link">&para;</a></h1>
+<h2 id="desempenho-e-performance">Desempenho e Performance<a class="headerlink" href="#desempenho-e-performance" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
 <p><strong>RNF01</strong>: A API do backend (FastAPI) deve responder às consultas de listagem e filtragem do Dashboard em menos de 1.5 segundos, garantindo uma navegação fluida.</p>
@@ -613,41 +760,41 @@
 <p><strong>RNF02</strong>: O script de extração (Crawler) deve processar e salvar cada lote de dados em segundo plano, sem bloquear ou degradar a performance das requisições simultâneas feitas pelos usuários no Frontend.</p>
 </li>
 </ul>
-<h2 id="portabilidade-e-infraestrutura">Portabilidade e Infraestrutura</h2>
+<h2 id="portabilidade-e-infraestrutura">Portabilidade e Infraestrutura<a class="headerlink" href="#portabilidade-e-infraestrutura" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>RNF03</strong>: O sistema deve ser totalmente conteinerizado utilizando Docker e Docker Compose, garantindo que o ambiente de execução seja idêntico em qualquer máquina (Desenvolvimento, Teste ou Produção) executando com um único comando (docker-compose up).</li>
 </ul>
-<h2 id="resiliencia-e-tolerancia-a-falhas">Resiliência e Tolerância a Falhas</h2>
+<h2 id="resiliencia-e-tolerancia-a-falhas">Resiliência e Tolerância a Falhas<a class="headerlink" href="#resiliencia-e-tolerancia-a-falhas" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>RNF04</strong>: O motor de extração de dados deve possuir tratamento de erros para cenários onde a API de Dados Abertos da Câmara estiver fora do ar ou aplicar limite de requisições (Rate Limiting), registrando a falha nos logs sem derrubar o backend.</li>
 </ul>
-<h2 id="qualidade-e-manutenibilidade">Qualidade e Manutenibilidade</h2>
+<h2 id="qualidade-e-manutenibilidade">Qualidade e Manutenibilidade<a class="headerlink" href="#qualidade-e-manutenibilidade" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>RNF05</strong>: O código fonte deve obrigatoriamente passar por verificações automatizadas de formatação (Linters como Ruff/ESLint) e execução de testes unitários através de uma pipeline de Integração Contínua (GitHub Actions) a cada Pull Request.</li>
 </ul>
-<h2 id="usabilidade">Usabilidade</h2>
+<h2 id="usabilidade">Usabilidade<a class="headerlink" href="#usabilidade" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>RNF06</strong>: A interface do usuário (React) deve ser responsiva, garantindo a legibilidade dos textos legislativos e a correta exibição dos gráficos em resoluções desktop (telas grandes) e dispositivos móveis.</li>
 </ul>
 <hr />
-<h1 id="criterios-de-aceitacao-gherkin">Critérios de Aceitação (Gherkin)</h1>
-<h2 id="cenario-classificacao-pelo-inteiro-teor">Cenário: Classificação pelo inteiro teor</h2>
+<h1 id="criterios-de-aceitacao-gherkin">Critérios de Aceitação (Gherkin)<a class="headerlink" href="#criterios-de-aceitacao-gherkin" title="Permanent link">&para;</a></h1>
+<h2 id="cenario-classificacao-pelo-inteiro-teor">Cenário: Classificação pelo inteiro teor<a class="headerlink" href="#cenario-classificacao-pelo-inteiro-teor" title="Permanent link">&para;</a></h2>
 <p><strong>Dado que</strong> uma proposição não cita o tema na ementa
 <strong>Quando</strong> o sistema analisa o texto completo
 <strong>Então</strong> ela deve ser classificada corretamente</p>
 <hr />
-<h2 id="cenario-visualizacao-de-ranking">Cenário: Visualização de ranking</h2>
+<h2 id="cenario-visualizacao-de-ranking">Cenário: Visualização de ranking<a class="headerlink" href="#cenario-visualizacao-de-ranking" title="Permanent link">&para;</a></h2>
 <p><strong>Dado que</strong> estou no dashboard
 <strong>Quando</strong> seleciono o subtema "Cyberbullying"
 <strong>Então</strong> o sistema deve mostrar deputados ordenados</p>
 <hr />
-<h2 id="cenario-analise-temporal">Cenário: Análise temporal</h2>
+<h2 id="cenario-analise-temporal">Cenário: Análise temporal<a class="headerlink" href="#cenario-analise-temporal" title="Permanent link">&para;</a></h2>
 <p><strong>Dado que</strong> estou no dashboard
 <strong>Quando</strong> seleciono um subtema
 <strong>Então</strong> devo visualizar a evolução ao longo do tempo</p>
 <hr />
-<h1 id="arquitetura">Arquitetura</h1>
-<h2 id="pipeline-de-dados">Pipeline de Dados</h2>
+<h1 id="arquitetura">Arquitetura<a class="headerlink" href="#arquitetura" title="Permanent link">&para;</a></h1>
+<h2 id="pipeline-de-dados">Pipeline de Dados<a class="headerlink" href="#pipeline-de-dados" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Extração via API (Câmara/Senado)</li>
 <li>Download do inteiro teor</li>
@@ -656,7 +803,7 @@
 <li>Armazenamento estruturado</li>
 </ol>
 <hr />
-<h2 id="camada-de-visualizacao">Camada de Visualização</h2>
+<h2 id="camada-de-visualizacao">Camada de Visualização<a class="headerlink" href="#camada-de-visualizacao" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Dashboard interativo</li>
 <li>Gráficos por subtema</li>
@@ -664,15 +811,15 @@
 <li>Filtros por período, tema e deputado</li>
 </ul>
 <hr />
-<h2 id="principios-arquiteturais">Princípios Arquiteturais</h2>
+<h2 id="principios-arquiteturais">Princípios Arquiteturais<a class="headerlink" href="#principios-arquiteturais" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Separação entre processamento e visualização</li>
 <li>Melhor desempenho e escalabilidade</li>
 <li>Facilidade de manutenção</li>
 </ul>
 <hr />
-<h1 id="mvp-produto-minimo-viavel">MVP (Produto Mínimo Viável)</h1>
-<h2 id="integracao-com-api">Integração com API</h2>
+<h1 id="mvp-produto-minimo-viavel">MVP (Produto Mínimo Viável)<a class="headerlink" href="#mvp-produto-minimo-viavel" title="Permanent link">&para;</a></h1>
+<h2 id="integracao-com-api">Integração com API<a class="headerlink" href="#integracao-com-api" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Extração de dados</li>
 <li>Download do inteiro teor</li>
@@ -680,7 +827,7 @@
 <li>Armazenamento</li>
 </ul>
 <hr />
-<h2 id="dashboard">Dashboard</h2>
+<h2 id="dashboard">Dashboard<a class="headerlink" href="#dashboard" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Dados disponíveis</li>
 <li>Classificação por subtema</li>
@@ -688,10 +835,10 @@
 <li>Ranking de parlamentares</li>
 </ul>
 <hr />
-<h2 id="criterio-geral">Critério Geral</h2>
+<h2 id="criterio-geral">Critério Geral<a class="headerlink" href="#criterio-geral" title="Permanent link">&para;</a></h2>
 <p>O sistema deve permitir análise básica de proposições legislativas com base em temas e subtemas, apresentando os dados de forma clara no dashboard.</p>
 <hr />
-<h1 id="versionamento">📌 Versionamento</h1>
+<h1 id="versionamento">📌 Versionamento<a class="headerlink" href="#versionamento" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -738,6 +885,12 @@
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
       </main>
       
         <footer class="md-footer">
@@ -767,7 +920,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.top"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>

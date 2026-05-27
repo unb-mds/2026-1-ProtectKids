@@ -29,6 +29,9 @@
     
       <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
       
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
       
 
 
@@ -57,18 +60,20 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
-      
-        
-        <a href="#visao-geral" class="md-skip">
-          Skip to content
-        </a>
       
     </div>
     <div data-md-component="announce">
@@ -78,9 +83,7 @@
     
       
 
-  
-
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="ProtectKids" class="md-header__button md-logo" aria-label="ProtectKids" data-md-component="logo">
       
@@ -108,6 +111,18 @@
         </div>
       </div>
     </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="blue"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
     
     
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
@@ -164,6 +179,131 @@
       
         
           
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Início
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Visão Geral
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../requisitos/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Requisitos
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../arquitetura/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Arquitetura
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../uso/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Uso
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../contribuicao/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Contribuição
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -177,8 +317,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="ProtectKids" class="md-nav__button md-logo" aria-label="ProtectKids" data-md-component="logo">
       
@@ -231,26 +373,6 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Visão Geral
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -268,58 +390,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#problema" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Problema
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#solucao" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Solução
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#publico-alvo" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Público-alvo
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -450,49 +520,6 @@
   
   
   
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#problema" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Problema
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#solucao" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Solução
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#publico-alvo" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Público-alvo
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
   
 </nav>
                   </div>
@@ -509,18 +536,33 @@
 
 
 
-<h1 id="visao-geral">Visão Geral</h1>
-<h2 id="problema">Problema</h2>
-<p>O ambiente digital apresenta diversos riscos à proteção de crianças e adolescentes.</p>
-<p>As informações legislativas estão dispersas, dificultando análise e acompanhamento.</p>
-<h2 id="solucao">Solução</h2>
-<p>O ProtectKids coleta e organiza dados legislativos, permitindo análise estruturada e apoio à tomada de decisão.</p>
-<h2 id="publico-alvo">Público-alvo</h2>
-<ul>
-<li>Pesquisadores</li>
-<li>Gestores públicos</li>
-<li>Organizações  </li>
-</ul>
+  <h1>Visão Geral</h1>
+
+<p>## Visão Geral do Projeto</p>
+<p>O <strong>ProtectKids</strong> é uma plataforma desenvolvida com o objetivo de auxiliar no monitoramento, análise e organização de informações relacionadas à proteção infantil no contexto legislativo brasileiro. O sistema realiza a coleta automatizada de dados públicos, processa essas informações utilizando técnicas de análise textual e disponibiliza os resultados de forma acessível para consulta e acompanhamento.</p>
+<p>A proposta do projeto surgiu da necessidade de centralizar informações que, apesar de públicas, encontram-se dispersas em diferentes fontes e formatos, dificultando o acompanhamento por cidadãos, pesquisadores e organizações interessadas no tema.</p>
+<p>A arquitetura da solução foi projetada para garantir modularidade, escalabilidade e facilidade de manutenção. Para isso, o sistema utiliza uma infraestrutura baseada em contêineres Docker, permitindo a separação clara entre os componentes responsáveis pela interface do usuário, processamento de dados, análise textual e persistência das informações.</p>
+<p>O funcionamento da plataforma ocorre em etapas principais:</p>
+<ol>
+<li>
+<p><strong>Coleta de Dados</strong>
+   O sistema consome informações provenientes de fontes públicas, como a API de Dados Abertos da Câmara dos Deputados.</p>
+</li>
+<li>
+<p><strong>Processamento e Análise</strong>
+   Os dados coletados passam por etapas de tratamento e análise textual utilizando técnicas de NLP (<em>Natural Language Processing</em>), permitindo identificar conteúdos relevantes para o contexto do projeto.</p>
+</li>
+<li>
+<p><strong>Armazenamento</strong>
+   Após o processamento, as informações são armazenadas em banco de dados para garantir persistência e rapidez no acesso.</p>
+</li>
+<li>
+<p><strong>Disponibilização ao Usuário</strong>
+   Os dados processados são exibidos em uma interface web intuitiva, permitindo consultas e acompanhamento das informações de maneira organizada.</p>
+</li>
+</ol>
+<p>Além do desenvolvimento técnico, o projeto também prioriza aspectos de documentação e organização arquitetural, utilizando o Modelo C4 para representar visualmente a estrutura do sistema e facilitar a comunicação entre os membros da equipe.</p>
+<p>Dessa forma, o ProtectKids busca unir tecnologia, automação e análise de dados para contribuir com a transparência e o acompanhamento de informações relevantes à proteção infantil.</p>
 
 
 
@@ -540,6 +582,12 @@
           
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
         
       </main>
       
@@ -570,7 +618,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.top"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>

@@ -1,285 +1,6 @@
 {
-    "last_updated": "2026-05-26T22:21:54.150120Z",
+    "last_updated": "2026-05-13T14:00:16.452131Z",
     "commits": [
-        {
-            "hash": "16a320dce81b3104464ddf77137ad1e1f2b1478c",
-            "date": "2026-05-26T19:21:30-03:00",
-            "message": "Segunda atualização do readme",
-            "is_conventional": false,
-            "insertions": 208,
-            "deletions": 25,
-            "total_diff": 233
-        },
-        {
-            "hash": "1c6523771fc11c55463b4138a662fd06b7eb7b4e",
-            "date": "2026-05-26T12:33:04-03:00",
-            "message": "Update README.md",
-            "is_conventional": false,
-            "insertions": 0,
-            "deletions": 1,
-            "total_diff": 1
-        },
-        {
-            "hash": "8337e76724954b859988e468069df9a0c22a77c7",
-            "date": "2026-05-26T12:32:48-03:00",
-            "message": "Remove test instructions from README",
-            "is_conventional": false,
-            "insertions": 1,
-            "deletions": 43,
-            "total_diff": 44
-        },
-        {
-            "hash": "8b61b5f85669a9ad951a2a532dd6271bfd0115cf",
-            "date": "2026-05-21T17:12:59-03:00",
-            "message": "Merge pull request #65 from unb-mds/feat/nlp",
-            "is_conventional": true,
-            "insertions": 0,
-            "deletions": 0,
-            "total_diff": 0
-        },
-        {
-            "hash": "bd22eb1a15ac0becb27eae245365a8b2b15c9aed",
-            "date": "2026-05-21T16:06:29-03:00",
-            "message": "feat:finalizando o nlp para requisições na api",
-            "is_conventional": true,
-            "insertions": 77,
-            "deletions": 33,
-            "total_diff": 110
-        },
-        {
-            "hash": "ef8178475afc015df7f9a0da9579e942d72a83e9",
-            "date": "2026-05-21T14:46:15-03:00",
-            "message": "Merge pull request #63 from unb-mds/feat/nlp",
-            "is_conventional": true,
-            "insertions": 0,
-            "deletions": 0,
-            "total_diff": 0
-        },
-        {
-            "hash": "339c997a1497dd885edd1106151bd1bc6850c10f",
-            "date": "2026-05-21T14:34:38-03:00",
-            "message": "feat: integra extracao de pdfs e classificacao nlp no crawler",
-            "is_conventional": true,
-            "insertions": 147,
-            "deletions": 41,
-            "total_diff": 188
-        },
-        {
-            "hash": "4e5f3b7cf3619ae953b2fff128c6c7c7d141ffed",
-            "date": "2026-05-21T13:10:02-03:00",
-            "message": "Merge pull request #60 from unb-mds/feat/database",
-            "is_conventional": true,
-            "insertions": 0,
-            "deletions": 0,
-            "total_diff": 0
-        },
-        {
-            "hash": "9b9dc6d0fc7ab038fd7a1157b76df6b258d5d08f",
-            "date": "2026-05-21T13:03:28-03:00",
-            "message": "fix: corrige colunas no banco de dados",
-            "is_conventional": true,
-            "insertions": 5,
-            "deletions": 0,
-            "total_diff": 5
-        },
-        {
-            "hash": "ea40d0c42c3e5e9a75179b36f1d0f0b6a7281efc",
-            "date": "2026-05-21T12:50:18-03:00",
-            "message": "Merge pull request #58 from unb-mds/feat/database",
-            "is_conventional": true,
-            "insertions": 0,
-            "deletions": 0,
-            "total_diff": 0
-        },
-        {
-            "hash": "994d93b3c3a3ccd80e70858f399661013e0b347f",
-            "date": "2026-05-21T12:08:52-03:00",
-            "message": "ci: configura github actions para testes automatizados",
-            "is_conventional": true,
-            "insertions": 32,
-            "deletions": 0,
-            "total_diff": 32
-        },
-        {
-            "hash": "f7304b4ca601ae94068ec06e00f9b3c1f0826e49",
-            "date": "2026-05-21T12:03:38-03:00",
-            "message": "Merge pull request #57 from unb-mds/feat/database",
-            "is_conventional": true,
-            "insertions": 0,
-            "deletions": 0,
-            "total_diff": 0
-        },
-        {
-            "hash": "5495cd2444905d3958f3a25a0fea2faa11f458cf",
-            "date": "2026-05-20T23:48:12-03:00",
-            "message": "fix: corrige variavel id_proposicao e logica de agrupamento",
-            "is_conventional": true,
-            "insertions": 27,
-            "deletions": 17,
-            "total_diff": 44
-        },
-        {
-            "hash": "f595cba6724da7faf4b9adca9dab779a26288f2f",
-            "date": "2026-05-20T21:27:17-03:00",
-            "message": "Merge pull request #55 from unb-mds/feat/database",
-            "is_conventional": true,
-            "insertions": 0,
-            "deletions": 0,
-            "total_diff": 0
-        },
-        {
-            "hash": "ff8f984300e3f9fac33e805d3b7fbbe3a67dae34",
-            "date": "2026-05-20T20:15:28-03:00",
-            "message": "Merge branch 'main' of https://github.com/unb-mds/2026-1-Squad10 into feat/database",
-            "is_conventional": true,
-            "insertions": 0,
-            "deletions": 0,
-            "total_diff": 0
-        },
-        {
-            "hash": "f71e334015aaf3181b8be66035dc3886dfd25201",
-            "date": "2026-05-20T20:15:21-03:00",
-            "message": "fix: remoção da rota teste no banco de dados",
-            "is_conventional": true,
-            "insertions": 5,
-            "deletions": 16,
-            "total_diff": 21
-        },
-        {
-            "hash": "90265dea7b2d76dc79847f7ac7783c38e0d27dea",
-            "date": "2026-05-20T20:10:03-03:00",
-            "message": "Merge pull request #54 from unb-mds/feat/crawler_camara",
-            "is_conventional": true,
-            "insertions": 0,
-            "deletions": 0,
-            "total_diff": 0
-        },
-        {
-            "hash": "9da1aeb0d2dacde18cc11bccb6b5faabf46e1041",
-            "date": "2026-05-20T20:09:41-03:00",
-            "message": "fix(crawler): implementa extracao das siglas de partidos e uf",
-            "is_conventional": true,
-            "insertions": 33,
-            "deletions": 11,
-            "total_diff": 44
-        },
-        {
-            "hash": "ad24b24533d7d22df05bc8ccb5d6ec1cc9a9bf3d",
-            "date": "2026-05-20T19:31:00-03:00",
-            "message": "feat(analytics): cria rotas de ranking dos parlamentares",
-            "is_conventional": true,
-            "insertions": 52,
-            "deletions": 4,
-            "total_diff": 56
-        },
-        {
-            "hash": "df945fe48503c442557771079e838c0d57d87e84",
-            "date": "2026-05-20T18:59:32-03:00",
-            "message": "Merge pull request #53 from unb-mds/feat/camara-api",
-            "is_conventional": true,
-            "insertions": 0,
-            "deletions": 0,
-            "total_diff": 0
-        },
-        {
-            "hash": "f453c4f5a5d8f8f808ee2924d14d4410688f4c9a",
-            "date": "2026-05-20T18:53:19-03:00",
-            "message": "fix: alteração no nome da pasta de estudos e inclusao do venv no gitignore",
-            "is_conventional": true,
-            "insertions": 5,
-            "deletions": 2931137,
-            "total_diff": 2931142
-        },
-        {
-            "hash": "1bc9e914e32729d683077f5cfbe31d8ddf1960df",
-            "date": "2026-05-20T18:46:23-03:00",
-            "message": "fix: alteração no nome da pasta de estudos pra não gerar ambiguidade",
-            "is_conventional": true,
-            "insertions": 0,
-            "deletions": 0,
-            "total_diff": 0
-        },
-        {
-            "hash": "1826bba9eceac1b39abbbaccee2a51fa3b135ef7",
-            "date": "2026-05-20T13:06:47-03:00",
-            "message": "Merge pull request #50 from unb-mds/fix/docs-requisitos",
-            "is_conventional": true,
-            "insertions": 0,
-            "deletions": 0,
-            "total_diff": 0
-        },
-        {
-            "hash": "4fada7d5f9bdd27c14200a3df563a23fe2eebf36",
-            "date": "2026-05-18T17:54:31-03:00",
-            "message": "docs: revisão e reinserção de requisitos não funcionais",
-            "is_conventional": true,
-            "insertions": 147,
-            "deletions": 94,
-            "total_diff": 241
-        },
-        {
-            "hash": "00b579f7348326aa9ddede5392c56f9528cdfcae",
-            "date": "2026-05-18T13:49:13-03:00",
-            "message": "Merge pull request #47 from unb-mds/feat/camara-api",
-            "is_conventional": true,
-            "insertions": 0,
-            "deletions": 0,
-            "total_diff": 0
-        },
-        {
-            "hash": "068f78db96d1506486c68dfa7cfa0cc5aead9fa4",
-            "date": "2026-05-18T13:37:20-03:00",
-            "message": "feat(crawler): corrige esquema do banco, adiciona criacao automatica de tabelas e resolve rede do docker",
-            "is_conventional": true,
-            "insertions": 123,
-            "deletions": 144,
-            "total_diff": 267
-        },
-        {
-            "hash": "696b7fd7ad097f441a3aaadff9748c66f4d32c86",
-            "date": "2026-05-18T12:45:03-03:00",
-            "message": "Merge branch 'main' into feat/camara-api",
-            "is_conventional": true,
-            "insertions": 0,
-            "deletions": 0,
-            "total_diff": 0
-        },
-        {
-            "hash": "5851f6b0639f45d55ce8764a08da488b5f6850da",
-            "date": "2026-05-18T02:40:17-03:00",
-            "message": "Update README.md",
-            "is_conventional": false,
-            "insertions": 39,
-            "deletions": 25,
-            "total_diff": 64
-        },
-        {
-            "hash": "36e37c0e45824973375d7f3ed6eb70418ef88876",
-            "date": "2026-05-18T02:27:40-03:00",
-            "message": "feat: configura ambiente de testes automatizados no backend e frontend",
-            "is_conventional": true,
-            "insertions": 2932389,
-            "deletions": 10,
-            "total_diff": 2932399
-        },
-        {
-            "hash": "8a8bacf9ebd725d70b642b0a886433de75a9abab",
-            "date": "2026-05-13T11:14:11-03:00",
-            "message": "Merge pull request #46 from unb-mds/feat/metricas-qualidade-horario",
-            "is_conventional": true,
-            "insertions": 0,
-            "deletions": 0,
-            "total_diff": 0
-        },
-        {
-            "hash": "6a9aeecb71d9d967f297246c4172412745c56465",
-            "date": "2026-05-13T11:10:29-03:00",
-            "message": "chore: atualiza grafico de commits por horario",
-            "is_conventional": true,
-            "insertions": 556,
-            "deletions": 8,
-            "total_diff": 564
-        },
         {
             "hash": "bd05b627e31bfc9fe6e5fd5671ee81dbf4b475f6",
             "date": "2026-05-13T02:18:03-03:00",
@@ -477,42 +198,6 @@
             "insertions": 893,
             "deletions": 0,
             "total_diff": 893
-        },
-        {
-            "hash": "3daa025de1069af8560a55a7498aaaaa2b1902b9",
-            "date": "2026-05-11T13:28:30-03:00",
-            "message": "adiciona crawler da api da câmara refs #37",
-            "is_conventional": false,
-            "insertions": 265,
-            "deletions": 0,
-            "total_diff": 265
-        },
-        {
-            "hash": "41c5313310112f59290e07ffae2bccb554e9b4a3",
-            "date": "2026-05-11T13:26:35-03:00",
-            "message": "fix: corrige tabelas proposicoes e parlamentares",
-            "is_conventional": true,
-            "insertions": 6,
-            "deletions": 3,
-            "total_diff": 9
-        },
-        {
-            "hash": "07eba3c46d8a1521e5260dd4557290a4b4498ab1",
-            "date": "2026-05-11T13:22:09-03:00",
-            "message": "fix: retira 'container_name' refs #37",
-            "is_conventional": true,
-            "insertions": 0,
-            "deletions": 2,
-            "total_diff": 2
-        },
-        {
-            "hash": "6cef852a4aa22e0afe7044c296336f1c0272cb2d",
-            "date": "2026-05-11T13:18:49-03:00",
-            "message": "feat: adiciona tablename e id_externo refs #37",
-            "is_conventional": true,
-            "insertions": 2,
-            "deletions": 0,
-            "total_diff": 2
         },
         {
             "hash": "fa28fe915b9eafc6ce119b582cdf0418b63398fb",
@@ -985,105 +670,6 @@
     ],
     "issues": [
         {
-            "number": 66,
-            "title": "Implementação Frontend",
-            "state": "open",
-            "created_at": "2026-05-26T21:31:39Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
-            "char_count": 0
-        },
-        {
-            "number": 64,
-            "title": "feat: adicionar filto do dashboard no backend",
-            "state": "closed",
-            "created_at": "2026-05-21T18:28:28Z",
-            "closed_at": "2026-05-21T20:19:39Z",
-            "resolution_time_hours": 1.85,
-            "char_count": 0
-        },
-        {
-            "number": 62,
-            "title": "feat: adicionar a NLP no crawler",
-            "state": "closed",
-            "created_at": "2026-05-21T16:26:55Z",
-            "closed_at": "2026-05-21T20:19:37Z",
-            "resolution_time_hours": 3.88,
-            "char_count": 0
-        },
-        {
-            "number": 61,
-            "title": "feat: adicionar frameworks no requirements.txt",
-            "state": "closed",
-            "created_at": "2026-05-21T16:19:26Z",
-            "closed_at": "2026-05-21T20:19:34Z",
-            "resolution_time_hours": 4.0,
-            "char_count": 33
-        },
-        {
-            "number": 59,
-            "title": "fix: adicionar colunas relacionadas a extração de dados para o NLP no banco de dados",
-            "state": "closed",
-            "created_at": "2026-05-21T16:02:16Z",
-            "closed_at": "2026-05-21T20:19:36Z",
-            "resolution_time_hours": 4.29,
-            "char_count": 38
-        },
-        {
-            "number": 56,
-            "title": "fix: corrigir banco de dados",
-            "state": "closed",
-            "created_at": "2026-05-21T00:29:51Z",
-            "closed_at": "2026-05-21T20:19:32Z",
-            "resolution_time_hours": 19.83,
-            "char_count": 66
-        },
-        {
-            "number": 52,
-            "title": "criar endpoints analiticos",
-            "state": "closed",
-            "created_at": "2026-05-20T19:46:55Z",
-            "closed_at": "2026-05-21T20:19:34Z",
-            "resolution_time_hours": 24.54,
-            "char_count": 111
-        },
-        {
-            "number": 51,
-            "title": "adicionar /venv no gitignore",
-            "state": "closed",
-            "created_at": "2026-05-20T19:44:50Z",
-            "closed_at": "2026-05-21T20:19:32Z",
-            "resolution_time_hours": 24.58,
-            "char_count": 0
-        },
-        {
-            "number": 49,
-            "title": "Figma de Alta Fidelidade",
-            "state": "closed",
-            "created_at": "2026-05-18T18:48:16Z",
-            "closed_at": "2026-05-26T21:31:47Z",
-            "resolution_time_hours": 194.73,
-            "char_count": 1513
-        },
-        {
-            "number": 48,
-            "title": "Revisão e Correção do Crawler",
-            "state": "closed",
-            "created_at": "2026-05-18T18:34:39Z",
-            "closed_at": "2026-05-18T18:35:12Z",
-            "resolution_time_hours": 0.01,
-            "char_count": 1364
-        },
-        {
-            "number": 45,
-            "title": "feat: Adicionar gráfico de commits por hora e métrica de qualidade no Dashboard",
-            "state": "closed",
-            "created_at": "2026-05-13T14:13:06Z",
-            "closed_at": "2026-05-13T14:14:47Z",
-            "resolution_time_hours": 0.03,
-            "char_count": 1292
-        },
-        {
             "number": 41,
             "title": "colocar o arquivo site no gitignore e arrumar o doc/docs",
             "state": "closed",
@@ -1113,28 +699,28 @@
         {
             "number": 37,
             "title": "Crawler de Extração de Dados: API da Câmara dos Deputados",
-            "state": "closed",
+            "state": "open",
             "created_at": "2026-05-02T19:24:31Z",
-            "closed_at": "2026-05-18T18:25:52Z",
-            "resolution_time_hours": 383.02,
+            "closed_at": null,
+            "resolution_time_hours": null,
             "char_count": 1498
         },
         {
             "number": 36,
             "title": "[QA] Configuração Base do Ambiente de Testes Automatizados (Backend e Frontend)",
-            "state": "closed",
+            "state": "open",
             "created_at": "2026-05-02T19:23:12Z",
-            "closed_at": "2026-05-18T05:29:17Z",
-            "resolution_time_hours": 370.1,
+            "closed_at": null,
+            "resolution_time_hours": null,
             "char_count": 1245
         },
         {
             "number": 35,
             "title": "Configuração da Pipeline de Integração Contínua (CI) com GitHub Actions",
-            "state": "closed",
+            "state": "open",
             "created_at": "2026-05-02T19:19:54Z",
-            "closed_at": "2026-05-26T21:24:39Z",
-            "resolution_time_hours": 578.08,
+            "closed_at": null,
+            "resolution_time_hours": null,
             "char_count": 1402
         },
         {
@@ -1409,29 +995,17 @@
         }
     ],
     "autores": {
-        "yaxavier": {
-            "commits": 13,
-            "insercoes": 754,
-            "delecoes": 35,
-            "total_linhas": 789
-        },
         "augustogmedeiros": {
-            "commits": 58,
-            "insercoes": 2876,
-            "delecoes": 2944451,
-            "total_linhas": 2947327
+            "commits": 31,
+            "insercoes": 1813,
+            "delecoes": 12996,
+            "total_linhas": 14809
         },
-        "Danielly Mendes": {
-            "commits": 9,
-            "insercoes": 878,
-            "delecoes": 107,
-            "total_linhas": 985
-        },
-        "marispmorais": {
-            "commits": 10,
-            "insercoes": 2932603,
-            "delecoes": 125,
-            "total_linhas": 2932728
+        "yaxavier": {
+            "commits": 12,
+            "insercoes": 546,
+            "delecoes": 10,
+            "total_linhas": 556
         },
         "cgbriel28": {
             "commits": 6,
@@ -1450,6 +1024,18 @@
             "insercoes": 54,
             "delecoes": 0,
             "total_linhas": 54
+        },
+        "marispmorais": {
+            "commits": 8,
+            "insercoes": 175,
+            "delecoes": 90,
+            "total_linhas": 265
+        },
+        "Danielly Mendes": {
+            "commits": 4,
+            "insercoes": 458,
+            "delecoes": 8,
+            "total_linhas": 466
         }
     }
 }
