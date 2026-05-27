@@ -1,231 +1,76 @@
 # 🛡️ ProtectKids
-<p align="center">
-  <img src="docs/logo.png" width="180"/>
-</p>
 
-<h1 align="center">ProtectKids</h1>
+Plataforma de transparência e monitoramento legislativo baseada em Inteligência Artificial.
+## 🔎 Visão Geral
 
-<p align="center">
-  Plataforma inteligente de monitoramento e análise com IA
-</p>
+O *ProtectKids* é uma plataforma desenvolvida para centralizar, monitorar e analisar proposições legislativas (Projetos de Lei) em tramitação na Câmara dos Deputados. O foco do sistema está em monitorar pautas voltadas para a proteção infantil, segurança digital de menores e o combate ao cyberbullying.
 
-## Análise inteligente de conteúdos suspeitos com IA
-
-O ProtectKids é uma plataforma de monitoramento e análise baseada em Inteligência Artificial voltada para identificação de conteúdos suspeitos relacionados à exploração infantil em ambientes digitais.  
-O sistema utiliza Processamento de Linguagem Natural (NLP), análise semântica e automação de coleta de dados para auxiliar monitoramento, prevenção e análise investigativa.
+Utilizando técnicas de Processamento de Linguagem Natural (NLP), o sistema classifica automaticamente os temas das ementas extraídas, gerando indicadores inteligentes em um painel analítico para facilitar o acompanhamento dessas legislações.
 
 ---
 
 # 🎨 Protótipo no Figma
 
-Link do design e prototipação da interface:  
-https://www.figma.com/board/KBZc1R8RPPHBiZ1eoiRzFM/ProtectKids-mds?node-id=0-1&t=rHYhSFDUosKKo5mr-0
+Acesse o design e a prototipação da interface do projeto:
+
+[Link do Projeto no Figma](https://www.figma.com/board/KBZc1R8RPPHBiZ1eoiRzFM/ProtectKids-mds?node-id=0-1&t=rHYhSFDUosKKo5mr-0)
+
+[Link do protótipo do frontend](https://www.figma.com/design/OYd8YVckfiX0JiuJWmijDg/Prototipo-Site-MDS-squad-10?node-id=0-1&p=f&t=uiEuDatc96qDLOEM-0)
 
 ---
 
-# Dashboard de métricas
-
-Link do Dashboard de monitoramento e analytics:  
-https://SEU-LINK-AQUI.com
-
----
-
-# Visão Geral
-
-Com o crescimento das plataformas digitais, conteúdos ilegais e comportamentos suspeitos podem circular rapidamente e de forma difícil de rastrear.  
-O ProtectKids busca solucionar esse problema utilizando IA para detectar padrões suspeitos, analisar linguagem textual e gerar indicadores inteligentes para apoio à análise de conteúdo digital.
-
-O sistema analisa:
-
-- Publicações textuais
-- Comentários e mensagens suspeitas
-- Padrões linguísticos via NLP
-- Dados coletados por APIs
-- Tendências e recorrência de termos
-
-E responde:
-
-> O conteúdo apresenta indícios de comportamento suspeito ou exploração infantil?
-
----
-
-# Funcionalidades
-
-- 🔎 Extração automática de dados via API
-- 🧠 Análise semântica utilizando NLP
-- 📊 Dashboard interativo com métricas
-- 🚨 Sistema de alertas automáticos
-- 🧾 Classificação de conteúdo suspeito
-- 📈 Monitoramento de tendências
-- 🐳 Deploy containerizado com Docker
-- 🔐 API segura para integração externa
-- 🗂️ Filtros por categoria e período
-- ⚡ Processamento automatizado em tempo real
-
----
-
-# Tecnologias Utilizadas
-
-## Backend
-- FastAPI
-- Python
-- spaCy
-- PostgreSQL
-
-## Frontend
-- React
-- TypeScript
-
-## Infraestrutura
-- Docker
-- Docker Compose
-- GitHub Actions
-
----
-
-# Arquitetura do Projeto
-
-```bash
-protectkids/
-│
-├── backend/
-│   ├── app/
-│   ├── api/
-│   ├── services/
-│   └── requirements.txt
-│
-├── frontend/
-│   ├── src/
-│   ├── components/
-│   └── package.json
-│
-├── database/
-│
-├── docker-compose.yml
-├── README.md
-└── docs/
-```
-
----
-
-# Como Rodar (Quickstart)
-
-## 1. Clonar o repositório
-
-```bash
-git clone https://github.com/seu-usuario/protectkids.git
-```
-
----
-
-## 2. Entrar na pasta do projeto
-
-```bash
-cd protectkids
-```
-
----
-
-## 3. Subir os containers
-
-```bash
-docker-compose up -d
-```
-
----
-
-## 4. Verificar os containers
-
-```bash
-docker ps
-```
-
----
-
-## 5. Acessar aplicação
-
-### Frontend
-```bash
-http://localhost:3000
-```
+# 🛠️ Tecnologias Utilizadas
 
 ### Backend
+- *Python* (FastAPI)
+- *SQLModel* / *SQLAlchemy*
+- *PostgreSQL*
+- *spaCy* (NLP)
+
+### Frontend
+- *React* (Vite + JavaScript)
+- *Tailwind CSS*
+
+### Infraestrutura & DevOps
+- *Docker* & *Docker Compose*
+- *GitHub Actions* (CI/CD)
+
+---
+
+# 🚀 Como Rodar o Projeto (Quickstart)
+
+Certifique-se de ter o *Git* e o *Docker Desktop* instalados e ativos em sua máquina antes de prosseguir.
+
+### 1. Clonar o repositório
 ```bash
-http://localhost:8000
+git clone "https://github.com/unb-mds/2026-1-ProtectKids"
+cd 2026-1-ProtectKids
 ```
 
-### Documentação da API
+### 2. Subir os contêineres
 ```bash
-http://localhost:8000/docs
+docker-compose up -d --build
 ```
 
----
+### 3. Popular o banco de dados
+```bash
+docker-compose exec backend python crawler/camara_api.py
+```
 
-# Exemplo de Fluxo da Aplicação
+### 4. Acessar a aplicação
+```bash
+Interface Web (Frontend): http://localhost:5173
+API Rest (Backend): http://localhost:8000
+Documentação Swagger: http://localhost:8000/docs 
+```
 
-1. Coleta de dados via APIs
-2. Processamento textual
-3. Análise NLP
-4. Classificação semântica
-5. Geração de métricas
-6. Exibição no dashboard
-7. Emissão de alertas automáticos
+## 📖 Documentação Completa (MkDocs)
 
----
+Para detalhes profundos sobre a arquitetura de microsserviços, diagramas UML, modelagem do banco de dados PostgreSQL e guias de contribuição, consulte a nossa documentação oficial integrada.
+https://unb-mds.github.io/2026-1-ProtectKids/
 
-# Objetivos do Projeto
+## 👥 Equipe
 
-O ProtectKids foi desenvolvido com foco em:
+## 📄 Licença
 
-- prevenção digital;
-- monitoramento inteligente;
-- apoio investigativo;
-- automação de análise textual;
-- proteção de crianças e adolescentes;
-- identificação de padrões suspeitos.
-
----
-
-# Diferenciais
-
-- Uso de Inteligência Artificial aplicada à segurança digital
-- Pipeline automatizado de análise textual
-- Dashboard analítico em tempo real
-- Estrutura escalável com microsserviços
-- API preparada para integração externa
-
----
-
-# Segurança
-
-O sistema foi projetado com foco em:
-
-- autenticação segura;
-- isolamento via containers;
-- proteção de endpoints;
-- controle de acesso;
-- processamento seguro de dados.
-
----
-
-# Roadmap
-
-- [ ] Sistema de autenticação JWT
-- [ ] Monitoramento em tempo real
-- [ ] Painel administrativo
-- [ ] Treinamento de modelos personalizados
-- [ ] Integração com novas APIs
-- [ ] Sistema avançado de alertas
-- [ ] Deploy em cloud
-
----
-
-# Equipe
-
-Projeto desenvolvido por estudantes da Universidade de Brasília (UnB).
-
----
-
-# Licença
-
-Este projeto é destinado para fins acadêmicos e de pesquisa.
+Este projeto é destinado estritamente para fins acadêmicos e de pesquisa.
