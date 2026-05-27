@@ -1,10 +1,14 @@
 import os
 from sqlmodel import create_engine, Session
 
-# Pega a URL de conexão do Docker
-DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://augusto:squad10@db:5432/legislativo_db")
+# Pega a URL de conexão do ambiente. 
+# Se não encontrar, usa uma string genérica sem expor a senha real.
+DATABASE_URL = os.getenv(
+    "DATABASE_URL", 
+    "postgresql://usuario:senha@db:5432/legislativo_db" 
+)
 
-# Cria a engine do banco de dados. echo=True faz o SQL aparecer no terminal (bom para debug)
+# Cria a engine do banco de dados. echo=True faz o SQL aparecer no terminal
 engine = create_engine(DATABASE_URL, echo=True)
 
 # Função geradora de sessões para ser injetada nas rotas do FastAPI

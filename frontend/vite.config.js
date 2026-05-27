@@ -4,10 +4,13 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server: {
-    host: true, // Força o Vite a aceitar acesso externo (do Docker)
-    port: 5173, // Força a rodar na porta correta
+    host: true, 
+    port: 5173, 
     watch: {
-      usePolling: true, // Garante que o Docker no Windows atualize a tela ao salvar
+      usePolling: true, 
     }
+  },
+  optimizeDeps: {
+    include: ['recharts', 'lodash']
   }
 })
