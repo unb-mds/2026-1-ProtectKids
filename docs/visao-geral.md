@@ -1,4 +1,4 @@
- ## Visão Geral do Projeto
+## Visão Geral do Projeto
 
 O **ProtectKids** é uma plataforma desenvolvida com o objetivo de auxiliar no monitoramento, análise e organização de informações relacionadas à proteção infantil no contexto legislativo brasileiro. O sistema realiza a coleta automatizada de dados públicos, processa essas informações utilizando técnicas de análise textual e disponibiliza os resultados de forma acessível para consulta e acompanhamento.
 

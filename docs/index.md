@@ -1,6 +1,6 @@
 # ProtectKids
 
-## Plataforma de Monitoramento Legislativo para Proteção Infantojuvenil no Ambiente Digital
+Plataforma de Monitoramento Legislativo para Proteção Infantojuvenil no Ambiente Digital
 
 O ProtectKids é uma plataforma desenvolvida na disciplina de Métodos de Desenvolvimento de Software (MDS) da Universidade de Brasília (UnB).
 
