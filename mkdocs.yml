@@ -13,8 +13,8 @@ theme:
 
   palette:
     - scheme: default
-      primary: blue-grey
-      accent: blue
+      primary: custom
+      accent: custom
 
   font:
     text: Roboto
@@ -23,6 +23,7 @@ theme:
   features:
     - navigation.tabs
     - navigation.top
+    - toc.integrate
 
 markdown_extensions:
   - toc:

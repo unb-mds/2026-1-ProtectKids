@@ -1,3 +1,14 @@
-.md-grid {
-  max-width: 100% !important;
+[data-md-color-scheme="default"] {
+  /* Cabeçalho: Vermelho Escuro */
+  --md-primary-fg-color: #8A0B0B; 
+
+  /* Destaques (links e botões): Verde Vibrante */
+  --md-accent-fg-color: #21C03A; 
+
+  /* Fundo da página: Cinza Claro */
+  --md-default-bg-color: #EFEFEF; 
+
+  /* Textos gerais: Azul Escuro / Chumbo */
+  --md-default-fg-color: #262D35; 
+  --md-typeset-color: #262D35;
 }
