@@ -10,6 +10,7 @@ nav:
 
 theme:
   name: material
+
   palette:
     - scheme: default
       primary: blue grey
@@ -22,11 +23,10 @@ theme:
   features:
     - navigation.tabs
     - navigation.top
-  markdown_extensions:
+
+markdown_extensions:
   - toc:
       permalink: true
-theme:
-  name: material
 
 extra_css:
   - stylesheets/extra.css
