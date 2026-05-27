@@ -1,6 +1,24 @@
 {
-    "last_updated": "2026-05-27T05:49:59.235031Z",
+    "last_updated": "2026-05-27T06:02:19.195823Z",
     "commits": [
+        {
+            "hash": "7e2eea286ece6b1ea9d2c8c9dabc6d559002f612",
+            "date": "2026-05-27T03:01:52-03:00",
+            "message": "Merge pull request #71 from unb-mds/feat/mkdocs",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "bbc4bb0d42ab60e17f9ff7c166a7ee9f44754805",
+            "date": "2026-05-27T03:00:24-03:00",
+            "message": "Fix: Removido background branco global do CSS",
+            "is_conventional": false,
+            "insertions": 1,
+            "deletions": 2,
+            "total_diff": 3
+        },
         {
             "hash": "8fb22cd1fb4efe02cd666635bfa201d6bf000b08",
             "date": "2026-05-27T02:49:34-03:00",
@@ -1527,10 +1545,10 @@
     ],
     "autores": {
         "augustogmedeiros": {
-            "commits": 67,
-            "insercoes": 5170,
-            "delecoes": 2946241,
-            "total_linhas": 2951411
+            "commits": 69,
+            "insercoes": 5171,
+            "delecoes": 2946243,
+            "total_linhas": 2951414
         },
         "Ryan Lira": {
             "commits": 2,
