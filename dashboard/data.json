@@ -1,6 +1,24 @@
 {
-    "last_updated": "2026-05-27T06:02:19.195823Z",
+    "last_updated": "2026-05-27T06:13:09.630713Z",
     "commits": [
+        {
+            "hash": "f2b7b99eb466bd450427812892882c31dd6d82b4",
+            "date": "2026-05-27T03:12:48-03:00",
+            "message": "Merge pull request #72 from unb-mds/feat/mkdocs",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "cde48a95996bad6d2cd6f99dc313a2d1c59ec881",
+            "date": "2026-05-27T03:11:55-03:00",
+            "message": "UI: Aplicada paleta de cores baseada no prototipo do Figma",
+            "is_conventional": false,
+            "insertions": 16,
+            "deletions": 4,
+            "total_diff": 20
+        },
         {
             "hash": "7e2eea286ece6b1ea9d2c8c9dabc6d559002f612",
             "date": "2026-05-27T03:01:52-03:00",
@@ -1545,10 +1563,10 @@
     ],
     "autores": {
         "augustogmedeiros": {
-            "commits": 69,
-            "insercoes": 5171,
-            "delecoes": 2946243,
-            "total_linhas": 2951414
+            "commits": 71,
+            "insercoes": 5187,
+            "delecoes": 2946247,
+            "total_linhas": 2951434
         },
         "Ryan Lira": {
             "commits": 2,
