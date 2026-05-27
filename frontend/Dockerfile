@@ -1,8 +1,9 @@
-FROM node:18-slim
+FROM node:22-alpine
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install
 COPY . .
-# Expõe a porta e roda o servidor do Vite
-EXPOSE 3000
-CMD ["npm", "run", "dev"]
+# Expõe a porta correta do Vite
+EXPOSE 5173
+# Adiciona o --host para liberar a rede do contêiner
+CMD ["npm", "run", "dev", "--", "--host"]

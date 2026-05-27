@@ -27,9 +27,11 @@ services:
     build: ./frontend
     container_name: ProtectKids_frontend
     ports:
-      - "3000:3000"
+      - "5173:5173"
     volumes:
       - ./frontend:/app
+      - /app/node_modules 
+    command: npm run dev -- --host
 
 volumes:
   postgres_data:
