@@ -23,9 +23,8 @@ def on_startup():
 @app.get("/")
 def read_root():
     return {"status": "ProtectKids Online", "message": "API e Banco de Dados conectados com sucesso!"}
-
 # ==========================================
-# 1. ROTA DE PROPOSIÇÕES (COM FILTROS)
+# 1. ROTA DE PROPOSIÇÕES E DETALHES (COM FILTROS E AUTOR)
 # ==========================================
 @app.get("/proposicoes")
 def get_todas_proposicoes(
@@ -37,15 +36,12 @@ def get_todas_proposicoes(
 ):
     """
     Retorna a lista de leis. O frontend pode usar os parâmetros na URL para filtrar.
-    Exemplo: /proposicoes?uf=SP&ano=2023&tema_nlp=Cyberbullying e Crimes Virtuais
     """
     query = select(Proposicao)
     
-    # Se o frontend pedir filtro de UF ou Partido, precisamos "juntar" a tabela do Parlamentar na busca
     if uf or partido:
         query = query.join(Parlamentar, Proposicao.id_autor == Parlamentar.id_parlamentar)
         
-    # Aplica os filtros apenas se o frontend tiver enviado o parâmetro
     if uf:
         query = query.where(Parlamentar.uf == uf.upper())
     if partido:
@@ -55,9 +51,33 @@ def get_todas_proposicoes(
     if tema_nlp:
         query = query.where(Proposicao.classificacao_nlp == tema_nlp)
         
-    proposicoes = session.exec(query).all()
-    return proposicoes
-
+    proposicoes_db = session.exec(query).all()
+    
+    # Injetando o nome do autor na resposta
+    resultados = []
+    for prop in proposicoes_db:
+        prop_dict = prop.dict() # Converte o objeto SQLModel em um dicionário
+        prop_dict["nome_autor"] = prop.autor.nome if prop.autor else "Autor Desconhecido"
+        resultados.append(prop_dict)
+        
+    return resultados
+@app.get("/proposicoes/{id_busca}")
+def get_proposicao_por_id(id_busca: int, session: Session = Depends(get_session)):
+    """
+    Busca tanto pela chave primária quanto pelo id_externo da câmara.
+    """
+    query = select(Proposicao).where(
+        (Proposicao.id_proposicao == id_busca) | (Proposicao.id_externo == id_busca)
+    )
+    prop = session.exec(query).first()
+    
+    if not prop:
+        return None
+        
+    prop_dict = prop.dict()
+    prop_dict["nome_autor"] = prop.autor.nome if prop.autor else "Autor Desconhecido"
+    
+    return prop_dict
 # ==========================================
 # 2. ROTA DE RANKING DE PARLAMENTARES (COM FILTROS)
 # ==========================================

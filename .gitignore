@@ -27,6 +27,8 @@ dist-ssr
 
 __pycache__/
 *.pyc
+*.py[cod]
+*$py.class
 .env
 
 #docker 
@@ -39,3 +41,5 @@ site/
 # Ambiente virtual
 backend/venv/
 venv/
+*.sqlite3
+*.db

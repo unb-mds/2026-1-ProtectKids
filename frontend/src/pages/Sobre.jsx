@@ -45,7 +45,7 @@ export default function Sobre() {
             </p>
             <ul className="list-disc list-inside text-gray-600 space-y-1 font-medium">
               <li><strong>Frontend:</strong> React + Vite + Tailwind CSS v4</li>
-              <li><strong>Backend:</strong> FastAPI integrado via Axios</li>
+              <li><strong>Backend:</strong> FastAPI + Axios + Python + spaCy + PostgreSQL</li>
               <li><strong>Infraestrutura:</strong> Contêinerização completa com Docker</li>
               <li><strong>Inteligência:</strong> Classificação via NLP (Processamento de Linguagem Natural)</li>
             </ul>

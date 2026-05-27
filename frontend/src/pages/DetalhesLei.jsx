@@ -66,7 +66,7 @@ export default function DetalhesLei() {
           </div>
           <div className="flex items-center gap-2">
             <User size={18} className="text-gray-400" />
-            <span>ID Autor: {lei.id_autor}</span>
+            <span>Autor: {lei.nome_autor || `ID: ${lei.id_autor}`}</span>
           </div>
           <div className="flex items-center gap-2">
             <Milestone size={18} className="text-gray-400" />
