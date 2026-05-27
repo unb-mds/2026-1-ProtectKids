@@ -3,6 +3,7 @@ import TodasAsLeis from './pages/TodasAsLeis';
 import Inicio from './pages/Inicio';
 import DetalhesLei from './pages/DetalhesLei';
 import Sobre from './pages/Sobre';
+import Estatisticas from './pages/Estatisticas';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <div className="space-x-6 text-sm font-semibold">
             <Link to="/" className="hover:text-gray-300 transition">INÍCIO</Link>
             <Link to="/leis" className="hover:text-gray-300 transition">TODAS AS LEIS</Link>
+            <Link to="/estatisticas">ESTATÍSTICAS</Link>
             <Link to="/sobre" className="hover:text-gray-300 transition">SOBRE O PROJETO</Link>
           </div>
         </nav>
@@ -32,6 +34,7 @@ function App() {
             <Route path="/leis" element={<TodasAsLeis />} />
             <Route path="/leis/:id" element={<DetalhesLei />} />
             <Route path="/sobre" element={<Sobre />} />
+            <Route path="/estatisticas" element={<Estatisticas />} />
           </Routes>
         </main>
 
