@@ -1,6 +1,15 @@
 {
-    "last_updated": "2026-05-27T03:38:30.987621Z",
+    "last_updated": "2026-05-27T03:43:24.192990Z",
     "commits": [
+        {
+            "hash": "1468ccf6b3b3799b87e48a617ded1733f4d4b8e3",
+            "date": "2026-05-27T00:43:00-03:00",
+            "message": "Add team members to the README",
+            "is_conventional": false,
+            "insertions": 9,
+            "deletions": 1,
+            "total_diff": 10
+        },
         {
             "hash": "586f3773789191faacf35e5a0c8b8df35afb3afa",
             "date": "2026-05-27T00:38:05-03:00",
@@ -1491,10 +1500,10 @@
     ],
     "autores": {
         "Ryan Lira": {
-            "commits": 1,
-            "insercoes": 38,
-            "delecoes": 193,
-            "total_linhas": 231
+            "commits": 2,
+            "insercoes": 47,
+            "delecoes": 194,
+            "total_linhas": 241
         },
         "augustogmedeiros": {
             "commits": 64,
