@@ -1,6 +1,24 @@
 {
-    "last_updated": "2026-05-27T06:27:35.810515Z",
+    "last_updated": "2026-05-27T06:34:37.522004Z",
     "commits": [
+        {
+            "hash": "72683f8349cab23e7546d50a84b800299ecc419d",
+            "date": "2026-05-27T03:34:12-03:00",
+            "message": "Merge pull request #74 from unb-mds/feat/mkdocs",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "d6a4828d319ba7c688a497f5afea5f6517c07aa5",
+            "date": "2026-05-27T03:32:27-03:00",
+            "message": "fix:correção do envio da imagem do diagrama c4",
+            "is_conventional": true,
+            "insertions": 2,
+            "deletions": 2,
+            "total_diff": 4
+        },
         {
             "hash": "9ebabb1d8ea5c09000492d0fa7ae1fd07981e945",
             "date": "2026-05-27T03:27:11-03:00",
@@ -1581,10 +1599,10 @@
     ],
     "autores": {
         "augustogmedeiros": {
-            "commits": 73,
-            "insercoes": 5195,
-            "delecoes": 2946257,
-            "total_linhas": 2951452
+            "commits": 75,
+            "insercoes": 5197,
+            "delecoes": 2946259,
+            "total_linhas": 2951456
         },
         "Ryan Lira": {
             "commits": 2,
