@@ -70,7 +70,15 @@ Para detalhes profundos sobre a arquitetura de microsserviços, diagramas UML, m
 https://unb-mds.github.io/2026-1-ProtectKids/
 
 ## 👥 Equipe
-
+| Nome | GitHub |
+|---|---|
+| Augusto Garcia | [@augustogmedeiros](https://github.com/augustogmedeiros) |
+| Carlos Gabriel | [@cgbriel28](https://github.com/cgbriel28) |
+| Danielly Mendes | [@DaniellyMendes](https://github.com/DaniellyMendes) |
+| Mariana Soares | [@marispmorais](https://github.com/marispmorais) |
+| Ryan Lira | [@Golira12](https://github.com/Golira12) |
+| Wanda Maria | [@Wandinhawright](https://github.com/Wandinhawright) |
+| Yara Xavier | [@VegasVegas](https://github.com/VegasVegas) |
 ## 📄 Licença
 
 Este projeto é destinado estritamente para fins acadêmicos e de pesquisa.
