@@ -1,6 +1,24 @@
 {
-    "last_updated": "2026-05-27T01:20:42.254712Z",
+    "last_updated": "2026-05-27T02:57:46.748801Z",
     "commits": [
+        {
+            "hash": "223c75ed2d7fd0661127a50dafd524b82d1903d3",
+            "date": "2026-05-26T23:57:21-03:00",
+            "message": "Merge pull request #69 from unb-mds/feat/frontend-site",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "5e270143cdcaa6dc511cad246664202cc14f1de4",
+            "date": "2026-05-26T23:55:22-03:00",
+            "message": "fix: corrige paleta de cores do site",
+            "is_conventional": true,
+            "insertions": 796,
+            "deletions": 1539,
+            "total_diff": 2335
+        },
         {
             "hash": "6dc6be7433df8c962b1a005940b87c8c9bf436ac",
             "date": "2026-05-26T22:20:20-03:00",
@@ -1464,10 +1482,10 @@
     ],
     "autores": {
         "augustogmedeiros": {
-            "commits": 62,
-            "insercoes": 4355,
-            "delecoes": 2944683,
-            "total_linhas": 2949038
+            "commits": 64,
+            "insercoes": 5151,
+            "delecoes": 2946222,
+            "total_linhas": 2951373
         },
         "cgbriel28": {
             "commits": 8,
