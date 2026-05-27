@@ -1,5 +1,5 @@
 site_name: ProtectKids
-
+site_url: https://unb-mds.github.io/2026-1-ProtectKids/
 nav:
   - Início: index.md
   - Visão Geral: visao-geral.md
