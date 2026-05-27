@@ -14,3 +14,13 @@ export const buscarLeiPorId = async (id) => {
   // Filtra a lei correspondente pelo id_proposicao
   return data.find(lei => lei.id_proposicao === parseInt(id));
 };
+
+export const buscarRankingParlamentares = async () => {
+  const { data } = await api.get('/analytics/parlamentares/ranking');
+  return data;
+};
+
+export const buscarRankingPartidos = async () => {
+  const { data } = await api.get('/analytics/partidos/ranking');
+  return data;
+};
