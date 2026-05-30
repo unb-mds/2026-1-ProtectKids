@@ -63,47 +63,65 @@ Os temas monitorados pela plataforma compreendem as principais dimensões da pro
 
 ---
 
-# User Stories
+# 📋 User Stories
 
 ## US01 – Descoberta pelo Inteiro Teor
 
-**Como** articuladora de ONG
-**Quero** que o sistema classifique as leis lendo o texto completo
-**Para que** eu consiga identificar ameaças mesmo quando não estão explícitas na ementa
+**Como** coordenadora de políticas públicas em uma ONG,  
+**Quero** que o sistema classifique as proposições legislativas com base na leitura do texto completo — e não apenas da ementa —  
+**Para que** eu consiga identificar ameaças e oportunidades mesmo quando o tema não está explicitamente mencionado no resumo oficial.
 
-### ✔ Critérios de Aceitação
+### Critérios de Aceitação
 
-* O sistema deve analisar o inteiro teor
-* Deve classificar mesmo sem menção na ementa
-* Deve exibir o resultado no dashboard
+O sistema deve realizar o download e a análise do inteiro teor de cada proposição disponível na API da Câmara. A classificação por subtema deve ocorrer independentemente de o tema aparecer ou não na ementa. O resultado da classificação deve ser exibido de forma clara no dashboard, com indicação de qual parte do texto fundamentou a categorização.
 
 ---
 
-## US02 – Mapeamento de Aliados
+## US02 – Mapeamento de Aliados Parlamentares
 
-**Como** articuladora de ONG
-**Quero** visualizar ranking de deputados e partidos
-**Para** saber com quem agendar reuniões
+**Como** coordenadora de políticas públicas em uma ONG,  
+**Quero** visualizar um ranking de deputados e partidos ordenado por volume de proposições em cada subtema,  
+**Para** saber com quem devo agendar reuniões e priorizar esforços de incidência política.
 
-### ✔ Critérios de Aceitação
+### Critérios de Aceitação
 
-* Permitir seleção por subtema
-* Ordenar parlamentares por número de proposições
-* Mostrar partidos mais ativos
+O dashboard deve permitir a seleção de um subtema específico para filtrar o ranking. Os parlamentares devem ser ordenados pelo número de proposições apresentadas naquele subtema, exibindo nome, partido e quantidade de proposições. Os partidos também devem ser ranqueados de forma agregada, facilitando a identificação de bancadas estratégicas.
 
 ---
 
-## US03 – Análise Temporal
+## US03 – Análise Temporal de Proposições
 
-**Como** articuladora de ONG
-**Quero** visualizar evolução temporal das proposições
-**Para** identificar tendências
+**Como** repórter de tecnologia e sociedade,  
+**Quero** visualizar a evolução temporal do volume de proposições por subtema ao longo dos anos,  
+**Para** identificar tendências legislativas emergentes e construir narrativas jornalísticas baseadas em dados.
 
-### ✔ Critérios de Aceitação
+### Critérios de Aceitação
 
-* Apresentar gráfico por ano
-* Permitir filtro por subtema
-* Mostrar crescimento ou queda
+O dashboard deve apresentar um gráfico de linha ou barras com o volume de proposições por ano, filtrável por subtema. O gráfico deve deixar visível o crescimento ou a queda na atividade legislativa sobre cada tema ao longo do tempo. Deve ser possível comparar a evolução de dois ou mais subtemas simultaneamente.
+
+---
+
+## US04 – Auditoria de Proposições por Subtema
+
+**Como** assessora legislativa,  
+**Quero** filtrar rapidamente todas as proposições apresentadas no Congresso sobre um subtema específico,  
+**Para** garantir que qualquer projeto elaborado pelo meu parlamentar seja original, relevante e bem fundamentado, evitando redundâncias com proposições anteriores.
+
+### Critérios de Aceitação
+
+O sistema deve permitir a busca e filtragem de proposições por subtema, com exibição de título, ementa, autor, data de apresentação e situação atual de cada proposição. O resultado deve ser exportável em formato estruturado (CSV ou similar) para uso em análises externas. A listagem deve ordenar as proposições por data, permitindo também ordenação por parlamentar ou partido.
+
+---
+
+## US05 – Identificação de Novos Temas Emergentes
+
+**Como** repórter de tecnologia e sociedade,  
+**Quero** ser notificado ou visualizar no dashboard quando novos temas relacionados à proteção de menores começam a ganhar volume legislativo,  
+**Para** detectar tendências antes que elas se tornem pauta dominante e produzir reportagens investigativas com antecedência.
+
+### Critérios de Aceitação
+
+O sistema deve identificar automaticamente padrões de linguagem recorrentes em proposições que não se encaixam nos subtemas já cadastrados. Os novos clusters temáticos emergentes devem ser sinalizados no dashboard com indicação do volume de proposições e do período em que surgiram. O usuário deve poder revisar e confirmar ou rejeitar a sugestão de novo subtema.
 
 ---
 
@@ -254,3 +272,6 @@ O sistema deve permitir análise básica de proposições legislativas com base 
 |    1.0    |   11/04/2026   |      Versão inicial do documento     |
 |    1.1    |   03/05/2026   |      Ajustes estruturais e refinamento dos requisitos     |
 |    1.2    |   18/05/2026   |     Reinserção da seção de Requisitos Não Funcionais      |
+|    1.3.0    |   29/05/2026   |     Aprimoramento de requisitos e adiciona personas       |
+|    1.3.1    |   30/05/2026   |     Adiciona e melhora User stories       |
+
