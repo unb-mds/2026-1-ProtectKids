@@ -1,6 +1,15 @@
 {
-    "last_updated": "2026-05-27T06:34:37.522004Z",
+    "last_updated": "2026-06-08T17:56:21.254500Z",
     "commits": [
+        {
+            "hash": "ad63bd85331ab2ad8956106c15cbb24a69ff80ce",
+            "date": "2026-06-08T14:55:57-03:00",
+            "message": "Upgrade Dockerfile to use Python 3.13",
+            "is_conventional": false,
+            "insertions": 6,
+            "deletions": 5,
+            "total_diff": 11
+        },
         {
             "hash": "72683f8349cab23e7546d50a84b800299ecc419d",
             "date": "2026-05-27T03:34:12-03:00",
@@ -1174,6 +1183,60 @@
     ],
     "issues": [
         {
+            "number": 80,
+            "title": "Otimização do Dockerfile e Implementação da Esteira de CI/CD (GHCR)",
+            "state": "open",
+            "created_at": "2026-06-08T17:41:26Z",
+            "closed_at": null,
+            "resolution_time_hours": null,
+            "char_count": 2271
+        },
+        {
+            "number": 79,
+            "title": "Integração de Dados do Senado Federal (Pipeline e Normalização)",
+            "state": "open",
+            "created_at": "2026-06-08T15:52:42Z",
+            "closed_at": null,
+            "resolution_time_hours": null,
+            "char_count": 1981
+        },
+        {
+            "number": 78,
+            "title": "Estudar testes de software",
+            "state": "open",
+            "created_at": "2026-06-08T01:38:00Z",
+            "closed_at": null,
+            "resolution_time_hours": null,
+            "char_count": 1672
+        },
+        {
+            "number": 77,
+            "title": "Novo Index",
+            "state": "open",
+            "created_at": "2026-06-07T23:46:07Z",
+            "closed_at": null,
+            "resolution_time_hours": null,
+            "char_count": 1055
+        },
+        {
+            "number": 76,
+            "title": "Ajustar a paleta de cores",
+            "state": "open",
+            "created_at": "2026-06-07T23:36:14Z",
+            "closed_at": null,
+            "resolution_time_hours": null,
+            "char_count": 847
+        },
+        {
+            "number": 75,
+            "title": "Atualização de Requisitos",
+            "state": "open",
+            "created_at": "2026-05-29T19:36:21Z",
+            "closed_at": null,
+            "resolution_time_hours": null,
+            "char_count": 1946
+        },
+        {
             "number": 66,
             "title": "Implementação Frontend",
             "state": "closed",
@@ -1598,6 +1661,12 @@
         }
     ],
     "autores": {
+        "yaxavier": {
+            "commits": 14,
+            "insercoes": 760,
+            "delecoes": 40,
+            "total_linhas": 800
+        },
         "augustogmedeiros": {
             "commits": 75,
             "insercoes": 5197,
@@ -1615,12 +1684,6 @@
             "insercoes": 13093,
             "delecoes": 852,
             "total_linhas": 13945
-        },
-        "yaxavier": {
-            "commits": 13,
-            "insercoes": 754,
-            "delecoes": 35,
-            "total_linhas": 789
         },
         "Danielly Mendes": {
             "commits": 9,
