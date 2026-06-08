@@ -125,36 +125,43 @@ O sistema deve identificar automaticamente padrões de linguagem recorrentes em 
 
 ---
 
-# Requisitos Funcionais
+# ⚙️ Requisitos Funcionais
 
 ## Must Have
 
-* **RF01**: Extrair metadados da API
-* **RF02**: Obter link do inteiro teor
-* **RF03**: Extrair texto completo (PDF/TXT)
-* **RF04**: Classificar por subtema usando NLP
-* **RF05**: Exibir dashboard com volume por subtema
-* **RF06**: Ranking de parlamentares
-* **RF07**: Ranking de partidos
+**RF01 — Extração de metadados via API:** O sistema deve consumir a API de Dados Abertos da Câmara dos Deputados para obter os metadados de cada proposição, incluindo título, ementa, autor, partido, data de apresentação e situação atual.
+
+**RF02 — Obtenção do link do inteiro teor:** Para cada proposição recuperada, o sistema deve identificar e armazenar o link para o documento completo (PDF ou TXT) disponível nos servidores da Câmara.
+
+**RF03 — Extração do texto completo:** O sistema deve realizar o download e a extração do conteúdo textual de documentos em formato PDF e TXT, tornando-os disponíveis para processamento.
+
+**RF04 — Classificação por subtema via NLP:** O sistema deve aplicar um modelo de processamento de linguagem natural para classificar cada proposição em um ou mais subtemas predefinidos, com base no conteúdo do texto completo.
+
+**RF05 — Dashboard com volume por subtema:** O sistema deve exibir um painel interativo que mostre a distribuição de proposições por subtema, com suporte a filtros por período.
+
+**RF06 — Ranking de parlamentares:** O sistema deve exibir um ranking de deputados ordenado pelo número de proposições apresentadas, filtrável por subtema.
+
+**RF07 — Ranking de partidos:** O sistema deve exibir um ranking de partidos políticos ordenado pelo volume agregado de proposições relacionadas aos temas monitorados, filtrável por subtema.
 
 ---
 
 ## Should Have
 
-* **RF08**: Gráfico de evolução temporal
-* **RF09**: Filtro por subtema
+**RF08 — Gráfico de evolução temporal:** O sistema deve apresentar uma visualização da evolução do volume de proposições ao longo dos anos, segmentada por subtema e comparável entre subtemas distintos.
+
+**RF09 — Filtro por subtema:** Todos os painéis do dashboard devem suportar filtragem dinâmica por subtema, refletindo os resultados em tempo real nas visualizações exibidas.
 
 ---
 
 ## Could Have
 
-* **RF10**: Identificação automática de novos temas
+**RF10 — Identificação automática de novos temas:** O sistema deve ser capaz de identificar clusters temáticos emergentes que não se encaixem nos subtemas cadastrados, sugerindo novos temas ao administrador da plataforma para revisão e eventual inclusão.
 
 ---
 
 ## Won't Have (MVP)
 
-* **RF11**: Integração com API do Senado
+**RF11 — Integração com API do Senado:** A integração com a API de Dados Abertos do Senado Federal está fora do escopo do MVP e poderá ser incorporada em versões futuras da plataforma.
 
 ---
 
@@ -181,32 +188,35 @@ O sistema deve identificar automaticamente padrões de linguagem recorrentes em 
 ## Usabilidade
 
 * **RNF06**: A interface do usuário (React) deve ser responsiva, garantindo a legibilidade dos textos legislativos e a correta exibição dos gráficos em resoluções desktop (telas grandes) e dispositivos móveis.
-
 ---
 
-# Critérios de Aceitação (Gherkin)
+# ✅ Critérios de Aceitação (Gherkin)
 
 ## Cenário: Classificação pelo inteiro teor
 
-**Dado que** uma proposição não cita o tema na ementa
-**Quando** o sistema analisa o texto completo
-**Então** ela deve ser classificada corretamente
+**Dado que** uma proposição legislativa não menciona nenhum dos temas monitorados em sua ementa  
+**Quando** o sistema realiza o processamento do texto completo da proposição  
+**Então** ela deve ser classificada corretamente no subtema correspondente e exibida no dashboard com as demais proposições daquele subtema
 
 ---
 
-## Cenário: Visualização de ranking
+## Cenário: Visualização do ranking de parlamentares
 
-**Dado que** estou no dashboard
-**Quando** seleciono o subtema "Cyberbullying"
-**Então** o sistema deve mostrar deputados ordenados
+**Dado que** estou visualizando o dashboard da plataforma  
+**Quando** seleciono o subtema "Cyberbullying" no painel de parlamentares  
+**Então** o sistema deve exibir uma lista de deputados ordenada pelo número de proposições apresentadas sobre aquele subtema, com nome, partido e quantidade visíveis
 
----
+## Cenário: Análise temporal por subtema
 
-## Cenário: Análise temporal
+**Dado que** estou visualizando o dashboard da plataforma  
+**Quando** seleciono um subtema no painel de evolução temporal  
+**Então** devo visualizar um gráfico com a distribuição anual de proposições classificadas naquele subtema, evidenciando tendências de crescimento ou queda ao longo do tempo
 
-**Dado que** estou no dashboard
-**Quando** seleciono um subtema
-**Então** devo visualizar a evolução ao longo do tempo
+## Cenário: Auditoria de proposições antes de redigir projeto
+
+**Dado que** sou uma assessora legislativa e preciso verificar o que já foi proposto sobre "controle parental"  
+**Quando** aplico o filtro por subtema "Controle Parental" no painel de proposições  
+**Então** o sistema deve exibir uma listagem completa das proposições classificadas naquele subtema, ordenada por data, com título, autor e situação atual de cada uma
 
 ---
 
