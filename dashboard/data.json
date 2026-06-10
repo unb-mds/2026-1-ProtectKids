@@ -1,6 +1,24 @@
 {
-    "last_updated": "2026-06-10T22:54:12.194358Z",
+    "last_updated": "2026-06-10T23:33:32.056825Z",
     "commits": [
+        {
+            "hash": "0eb07b4ca76c2f429330aeaa0ad0b3be0e20ad38",
+            "date": "2026-06-10T20:33:09-03:00",
+            "message": "Merge pull request #83 from unb-mds/feat/implementa-senado",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "85b2cbf84b4cb99f7fa4234381cefc011d70feeb",
+            "date": "2026-06-10T20:29:27-03:00",
+            "message": "fix: corrige inicializacao incorreta no camara_api",
+            "is_conventional": true,
+            "insertions": 1,
+            "deletions": 1,
+            "total_diff": 2
+        },
         {
             "hash": "f38952755bca01e927ca5428eb5cbec65ce4ccb7",
             "date": "2026-06-10T19:53:19-03:00",
@@ -1689,10 +1707,10 @@
     ],
     "autores": {
         "augustogmedeiros": {
-            "commits": 78,
-            "insercoes": 5407,
-            "delecoes": 2946271,
-            "total_linhas": 2951678
+            "commits": 80,
+            "insercoes": 5408,
+            "delecoes": 2946272,
+            "total_linhas": 2951680
         },
         "yaxavier": {
             "commits": 14,
