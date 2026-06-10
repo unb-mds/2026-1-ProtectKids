@@ -16,11 +16,14 @@ class Parlamentar(SQLModel, table=True):
 class Proposicao(SQLModel, table=True):
     __tablename__ = "proposicoes"
     id_proposicao: Optional[int] = Field(default=None, primary_key=True)
-    id_externo: int = Field(index=True, unique=True)
     
-    # Chave estrangeira ligando ao Parlamentar
+    # ALTERADO: Agora é string para evitar colisão entre Câmara e Senado
+    id_externo: str = Field(index=True, unique=True) 
+    
     id_autor: Optional[int] = Field(default=None, foreign_key="parlamentares.id_parlamentar")
     
+    # NOVO CAMPO: Para o frontend saber de qual casa legislativa veio
+    origem: str = Field(default="Câmara")
     tipo: str
     numero: int
     ano: int

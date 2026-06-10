@@ -270,7 +270,8 @@ def transform_proposicao(dado_bruto: dict, autor_bruto: dict) -> Optional[tuple]
         return None
         
     id_externo = dado_bruto.get("id")
-    
+    id_externo_formatado = f"camara-{id_bruto}"
+
     # 1. Monta o Parlamentar
     parlamentar = None
     id_autor = None
@@ -307,8 +308,9 @@ def transform_proposicao(dado_bruto: dict, autor_bruto: dict) -> Optional[tuple]
 
     # 3. Monta a Proposicao com os novos campos populados
     proposicao = Proposicao(
-        id_externo=id_externo,
+        id_externo=id_externo_formatado,
         id_autor=id_autor,
+        origem="Câmara", # Definindo a origem
         tipo=sigla,
         numero=int(numero),
         ano=int(ano),

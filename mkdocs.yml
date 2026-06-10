@@ -5,7 +5,6 @@ nav:
   - Visão Geral: visao-geral.md
   - Requisitos: requisitos.md
   - Arquitetura: arquitetura.md
-  - Uso: uso.md
   - Contribuição: contribuicao.md
 
 theme:

@@ -11,9 +11,10 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+
   backend:
     container_name: ProtectKids_backend
-    build: ./backend
+    image: ghcr.io/unb-mds/2026-1-protectkids-backend:latest
     ports:
       - "8000:8000"
     volumes:
@@ -23,6 +24,7 @@ services:
     environment:
       - DATABASE_URL=postgresql://augusto:squad10@db:5432/legislativo_db
 
+
   frontend:
     build: ./frontend
     container_name: ProtectKids_frontend
@@ -30,8 +32,9 @@ services:
       - "5173:5173"
     volumes:
       - ./frontend:/app
-      - /app/node_modules 
+      - /app/node_modules
     command: npm run dev -- --host
+
 
 volumes:
   postgres_data:
