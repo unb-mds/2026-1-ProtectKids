@@ -1,6 +1,33 @@
 {
-    "last_updated": "2026-06-08T17:56:21.254500Z",
+    "last_updated": "2026-06-10T22:54:12.194358Z",
     "commits": [
+        {
+            "hash": "f38952755bca01e927ca5428eb5cbec65ce4ccb7",
+            "date": "2026-06-10T19:53:19-03:00",
+            "message": "Merge pull request #82 from unb-mds/feat/implementa-senado",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "776a5ba5fd51673248283bc2d96aa48f1f12ff57",
+            "date": "2026-06-10T19:51:19-03:00",
+            "message": "feat/implementação da API do senado",
+            "is_conventional": false,
+            "insertions": 3,
+            "deletions": 3,
+            "total_diff": 6
+        },
+        {
+            "hash": "09aae02db97dc3c2e6c7e006de992c9bd9bd723e",
+            "date": "2026-06-10T19:29:56-03:00",
+            "message": "feat: config de docker e esteira ci/cd no GHCR",
+            "is_conventional": true,
+            "insertions": 207,
+            "deletions": 9,
+            "total_diff": 216
+        },
         {
             "hash": "ad63bd85331ab2ad8956106c15cbb24a69ff80ce",
             "date": "2026-06-08T14:55:57-03:00",
@@ -1661,17 +1688,17 @@
         }
     ],
     "autores": {
+        "augustogmedeiros": {
+            "commits": 78,
+            "insercoes": 5407,
+            "delecoes": 2946271,
+            "total_linhas": 2951678
+        },
         "yaxavier": {
             "commits": 14,
             "insercoes": 760,
             "delecoes": 40,
             "total_linhas": 800
-        },
-        "augustogmedeiros": {
-            "commits": 75,
-            "insercoes": 5197,
-            "delecoes": 2946259,
-            "total_linhas": 2951456
         },
         "Ryan Lira": {
             "commits": 2,
