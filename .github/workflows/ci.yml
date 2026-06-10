@@ -17,7 +17,7 @@ jobs:
     - name: Configurar Python 3.11
       uses: actions/setup-python@v5
       with:
-        python-version: "3.13"
+        python-version: "3.11"
 
     - name: Instalar dependências
       run: |
