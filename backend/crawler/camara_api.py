@@ -269,7 +269,7 @@ def transform_proposicao(dado_bruto: dict, autor_bruto: dict) -> Optional[tuple]
     if not numero or not ano or not ementa:
         return None
         
-    id_externo = dado_bruto.get("id")
+    id_bruto = dado_bruto.get("id")
     id_externo_formatado = f"camara-{id_bruto}"
 
     # 1. Monta o Parlamentar
