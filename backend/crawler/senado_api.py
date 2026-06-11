@@ -64,27 +64,39 @@ def fetch_proposicoes_senado(keyword: str) -> list[dict]:
         return []
 
 def transform_materia_senado(materia_bruta: dict) -> Optional[tuple]:
-    """O Adaptador resiliente. Extrai dados independentemente do formato do JSON."""
-    codigo_materia = find_value(materia_bruta, "CodigoMateria")
+    """O Adaptador resiliente atualizado com as chaves reais do Senado."""
+    codigo_materia = find_value(materia_bruta, "Codigo")
     if not codigo_materia:
         return None
         
     id_externo_formatado = f"senado-{codigo_materia}"
     
-    sigla = find_value(materia_bruta, "SiglaSubtipoMateria") or "PL"
-    numero = find_value(materia_bruta, "NumeroMateria") or 0
-    ano = find_value(materia_bruta, "AnoMateria") or 2026
+    sigla = find_value(materia_bruta, "Sigla") or "PL"
+    numero = find_value(materia_bruta, "Numero") or 0
+    ano = find_value(materia_bruta, "Ano") or 2026
     
-    ementa = find_value(materia_bruta, "EmentaMateria") or "Sem ementa disponível"
+    ementa = find_value(materia_bruta, "Ementa") or "Sem ementa disponível"
     ementa = str(ementa).strip()
     
-    # 1. Monta o Parlamentar (Autor)
-    id_autor_str = find_value(materia_bruta, "CodigoParlamentar")
-    id_autor = int(id_autor_str) if id_autor_str else 888888
+    # 1. Monta o Parlamentar (Tratando a string única do Senado)
+    autor_string = find_value(materia_bruta, "Autor") or "Desconhecido"
+    nome_autor = autor_string
+    partido = "ND"
+    uf = "ND"
     
-    nome_autor = find_value(materia_bruta, "NomeParlamentar") or find_value(materia_bruta, "NomeAutor") or "Desconhecido"
-    partido = find_value(materia_bruta, "SiglaPartidoParlamentar") or "ND"
-    uf = find_value(materia_bruta, "UfParlamentar") or "ND"
+    # Se a string vier no formato "Nome (PARTIDO/UF)", nós a dividimos:
+    if "(" in autor_string and ")" in autor_string:
+        partes = autor_string.split("(")
+        nome_autor = partes[0].strip() # Pega o que vem antes do parêntese
+        
+        # Pega o que está dentro do parêntese e divide pela barra
+        partido_uf = partes[1].replace(")", "").split("/")
+        if len(partido_uf) == 2:
+            partido = partido_uf[0].strip()
+            uf = partido_uf[1].strip()
+            
+    # Como o Senado não enviou o ID numérico do autor, criamos um numérico baseado no nome
+    id_autor = abs(hash(nome_autor)) % 1000000 
     
     parlamentar = Parlamentar(
         id_parlamentar=id_autor,
@@ -95,7 +107,7 @@ def transform_materia_senado(materia_bruta: dict) -> Optional[tuple]:
         
     # 2. Formata a Data
     data_apres = None
-    data_str = find_value(materia_bruta, "DataApresentacao")
+    data_str = find_value(materia_bruta, "Data")
     if data_str:
         try:
             data_apres = datetime.fromisoformat(str(data_str)[:10]).date()
@@ -124,7 +136,6 @@ def transform_materia_senado(materia_bruta: dict) -> Optional[tuple]:
     )
     
     return (proposicao, parlamentar)
-
 def run_pipeline_senado():
     logger.info("=== Iniciando pipeline ETL do Senado ===")
     SQLModel.metadata.create_all(engine)
@@ -135,7 +146,8 @@ def run_pipeline_senado():
     for keyword in KEYWORDS:
         materias = fetch_proposicoes_senado(keyword)
         for mat in materias:
-            codigo = find_value(mat, "CodigoMateria")
+            # Lembre-se de atualizar aqui também para buscar por "Codigo"
+            codigo = find_value(mat, "Codigo") 
             if codigo and codigo not in ids_processados:
                 ids_processados.add(codigo)
                 resultado = transform_materia_senado(mat)
@@ -144,6 +156,6 @@ def run_pipeline_senado():
                     
     total_salvo = save_proposicoes(tuplas)
     logger.info(f"=== Pipeline do Senado concluído. {total_salvo} registros normalizados salvos. ===")
-
+    
 if __name__ == "__main__":
     run_pipeline_senado()
