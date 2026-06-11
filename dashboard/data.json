@@ -1,6 +1,24 @@
 {
-    "last_updated": "2026-06-10T23:33:32.056825Z",
+    "last_updated": "2026-06-11T00:51:55.235980Z",
     "commits": [
+        {
+            "hash": "e835c2502c09fc343f9b76d2b4cae66dc7dc1d74",
+            "date": "2026-06-10T21:51:32-03:00",
+            "message": "Merge pull request #84 from unb-mds/fix/corrige-senado",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "5f1d7a4f8c56465818a89f57257af96eece8951e",
+            "date": "2026-06-10T21:46:41-03:00",
+            "message": "fix: atualiza script do senado com extrator json recursivo",
+            "is_conventional": true,
+            "insertions": 44,
+            "deletions": 38,
+            "total_diff": 82
+        },
         {
             "hash": "0eb07b4ca76c2f429330aeaa0ad0b3be0e20ad38",
             "date": "2026-06-10T20:33:09-03:00",
@@ -1707,10 +1725,10 @@
     ],
     "autores": {
         "augustogmedeiros": {
-            "commits": 80,
-            "insercoes": 5408,
-            "delecoes": 2946272,
-            "total_linhas": 2951680
+            "commits": 82,
+            "insercoes": 5452,
+            "delecoes": 2946310,
+            "total_linhas": 2951762
         },
         "yaxavier": {
             "commits": 14,
