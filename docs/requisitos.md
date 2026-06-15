@@ -1,4 +1,4 @@
-# 📊 Visão Geral
+# Visão Geral
 
 ## Objetivo
 
@@ -25,7 +25,7 @@ Os temas monitorados pela plataforma compreendem as principais dimensões da pro
 
 ---
 
-# 👤 Personas
+# Personas
 
 ## Persona 1 — Joana, Coordenadora de Políticas Públicas em ONG
 
@@ -63,7 +63,7 @@ Os temas monitorados pela plataforma compreendem as principais dimensões da pro
 
 ---
 
-# 📋 User Stories
+# User Stories
 
 ## US01 – Descoberta pelo Inteiro Teor
 
@@ -125,7 +125,7 @@ O sistema deve identificar automaticamente padrões de linguagem recorrentes em 
 
 ---
 
-# ⚙️ Requisitos Funcionais
+# Requisitos Funcionais
 
 ## Must Have
 
@@ -190,7 +190,7 @@ O sistema deve identificar automaticamente padrões de linguagem recorrentes em 
 * **RNF06**: A interface do usuário (React) deve ser responsiva, garantindo a legibilidade dos textos legislativos e a correta exibição dos gráficos em resoluções desktop (telas grandes) e dispositivos móveis.
 ---
 
-# ✅ Critérios de Aceitação (Gherkin)
+# Critérios de Aceitação (Gherkin)
 
 ## Cenário: Classificação pelo inteiro teor
 
@@ -224,55 +224,48 @@ O sistema deve identificar automaticamente padrões de linguagem recorrentes em 
 
 ## Pipeline de Dados
 
-1. Extração via API (Câmara/Senado)
-2. Download do inteiro teor
-3. Processamento com NLP
-4. Classificação por temas e subtemas
-5. Armazenamento estruturado
+O fluxo de processamento da plataforma é composto por cinco etapas sequenciais e bem delimitadas:
+
+1. **Extração via API:** consumo periódico da API da Câmara dos Deputados para recuperação de metadados e links das proposições.
+2. **Download do inteiro teor:** obtenção dos documentos PDF ou TXT referenciados nos metadados de cada proposição.
+3. **Processamento com NLP:** extração do conteúdo textual e aplicação do modelo de classificação por subtema.
+4. **Classificação e enriquecimento:** associação de cada proposição aos subtemas identificados, enriquecendo o registro com os resultados da análise.
+5. **Armazenamento estruturado:** persistência dos dados em base de dados relacional ou documental, otimizada para as consultas do dashboard.
 
 ---
 
 ## Camada de Visualização
 
-* Dashboard interativo
-* Gráficos por subtema
-* Rankings de parlamentares
-* Filtros por período, tema e deputado
+O dashboard interativo será o ponto de acesso central da plataforma para todos os perfis de usuário. Ele deverá oferecer:
+
+- Gráficos de volume de proposições por subtema
+- Rankings de parlamentares e partidos, filtráveis por subtema
+- Gráficos de evolução temporal com suporte a comparação entre subtemas
+- Filtros combinados por período, tema, deputado e partido
 
 ---
 
 ## Princípios Arquiteturais
 
-* Separação entre processamento e visualização
-* Melhor desempenho e escalabilidade
-* Facilidade de manutenção
+A arquitetura da plataforma segue três princípios fundamentais. O primeiro é a separação clara entre o pipeline de processamento de dados e a camada de visualização, garantindo que cada componente possa evoluir independentemente. O segundo é o foco em desempenho e escalabilidade, de forma que o crescimento no volume de proposições processadas não comprometa a experiência do usuário no dashboard. O terceiro é a facilidade de manutenção, com código modular e interfaces bem definidas entre os componentes do sistema.
 
 ---
 
 # MVP (Produto Mínimo Viável)
 
-## Integração com API
+O MVP da plataforma entregará as funcionalidades essenciais para que os perfis de usuário prioritários possam começar a utilizá-la de forma produtiva.
 
-* Extração de dados
-* Download do inteiro teor
-* Processamento com NLP
-* Armazenamento
+## Integração com API e Processamento
 
----
+O MVP incluirá a extração de dados e metadados da API da Câmara, o download e a leitura do inteiro teor das proposições, o processamento com NLP para classificação por subtema e o armazenamento estruturado dos resultados.
 
 ## Dashboard
 
-* Dados disponíveis
-* Classificação por subtema
-* Visualização por volume
-* Ranking de parlamentares
+O dashboard do MVP apresentará as proposições classificadas por subtema, com visualização do volume por categoria, gráficos básicos de distribuição e o ranking de parlamentares e partidos mais ativos.
 
----
+## Critério Geral de Aceitação do MVP
 
-## Critério Geral
-
-O sistema deve permitir análise básica de proposições legislativas com base em temas e subtemas, apresentando os dados de forma clara no dashboard.
-
+O sistema deve permitir a análise básica de proposições legislativas relacionadas à proteção de crianças e adolescentes no ambiente digital, classificando-as por tema e subtema com base no inteiro teor e apresentando os dados de forma clara, filtrável e acessível no dashboard.
 ---
 
 # 📌 Versionamento
@@ -284,4 +277,6 @@ O sistema deve permitir análise básica de proposições legislativas com base 
 |    1.2    |   18/05/2026   |     Reinserção da seção de Requisitos Não Funcionais      |
 |    1.3.0    |   29/05/2026   |     Aprimoramento de requisitos e adiciona personas       |
 |    1.3.1    |   30/05/2026   |     Adiciona e melhora User stories       |
+|    1.3.2    |   08/06/2026   |     Complementa descrição de RFs e complmenta critérios de aceite |
+|    1.4    |   15/06/2026      |    Ajusta descrição do MVP e arquitetura                          |
 
