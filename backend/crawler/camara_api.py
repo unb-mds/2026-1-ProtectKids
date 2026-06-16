@@ -24,6 +24,7 @@ from datetime import datetime
 import requests
 import pdfplumber
 import spacy
+import concurrent.futures
 
 # Garante que o módulo backend/ seja encontrado quando executado diretamente
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -373,14 +374,36 @@ def save_proposicoes(tuplas_prop_autor: list[tuple]) -> int:
         session.commit()
     return inseridos
 
+def processar_materia_individual(dado: dict, ids_existentes: set) -> Optional[tuple]:
+    """
+    Função isolada para ser executada em paralelo (Thread).
+    Faz o download do PDF e passa pela IA de forma independente.
+    """
+    id_bruto = dado.get("id")
+    id_externo_formatado = f"camara-{id_bruto}"
+
+    try:
+        # Puxa os dados adicionais da API
+        autor_bruto = fetch_autor_da_proposicao(id_bruto)
+        detalhes_brutos = fetch_detalhes_proposicao(id_bruto)
+        
+        # Injeta o link do PDF
+        dado["urlInteiroTeor"] = detalhes_brutos.get("urlInteiroTeor")
+        
+        # processamento pesado (PDF + NLP)
+        resultado = transform_proposicao(dado, autor_bruto)
+        if resultado:
+            logger.info(f"Nova matéria processada: {id_externo_formatado}")
+        return resultado
+    except Exception as exc:
+        logger.error(f"Erro na thread ao processar {id_externo_formatado}: {exc}")
+        return None
 def run_pipeline() -> None:
     logger.info("=== Iniciando pipeline ETL Inteligente (PDF + NLP) ===")
-    logger.info("Verificando/Criando tabelas no banco de dados...")
     SQLModel.metadata.create_all(engine)
 
-    # NOVO: Carrega os IDs que já estão no banco para a memória
     ids_existentes = obter_ids_existentes(origem_alvo="Câmara")
-    logger.info(f"Cache local: {len(ids_existentes)} proposições da Câmara já existem no banco.")
+    logger.info(f"Cache local: {len(ids_existentes)} proposições da Câmara já existem.")
 
     # 1. EXTRACT
     dados_brutos = fetch_todas_proposicoes()
@@ -388,39 +411,44 @@ def run_pipeline() -> None:
         logger.warning("Nenhuma proposição capturada na extração externa.")
         return
 
-    # 2. TRANSFORM OTIMIZADO
+    # 2. TRANSFORM OTIMIZADO (MULTITHREADING)
     tuplas: list[tuple] = []
     ids_processados_nesta_run = set()
+    dados_ineditos = []
 
+    # Filtra rapidamente tudo o que é novo e precisa ser processado
     for dado in dados_brutos:
         id_bruto = dado.get("id")
         id_externo_formatado = f"camara-{id_bruto}"
+        
+        if id_externo_formatado not in ids_existentes and id_externo_formatado not in ids_processados_nesta_run:
+            dados_ineditos.append(dado)
+            ids_processados_nesta_run.add(id_externo_formatado)
 
-        # A GRANDE MÁGICA: Evita duplicidade dentro do próprio JSON e pula o que já está no DB
-        if id_externo_formatado in ids_existentes or id_externo_formatado in ids_processados_nesta_run:
-            # logger.debug(f"Pulo: {id_externo_formatado} já processado.")
-            continue
+    if not dados_ineditos:
+        logger.info("=== Pipeline concluído. Nenhuma matéria inédita para processar hoje. ===")
+        return
 
-        ids_processados_nesta_run.add(id_externo_formatado)
+    logger.info(f"Iniciando download paralelo de {len(dados_ineditos)} PDFs. Isso será rápido...")
+
+    # A MÁGICA: Abre 10 linhas de execução simultâneas
+    with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+        # Envia todas as matérias inéditas para as threads trabalharem
+        futuros = {
+            executor.submit(processar_materia_individual, d, ids_existentes): d 
+            for d in dados_ineditos
+        }
         
-        # Faz as chamadas extras necessárias apenas para matérias inéditas
-        autor_bruto = fetch_autor_da_proposicao(id_bruto)
-        detalhes_brutos = fetch_detalhes_proposicao(id_bruto)
-        
-        # Injeta o link do PDF no dado antes de transformar
-        dado["urlInteiroTeor"] = detalhes_brutos.get("urlInteiroTeor")
-        
-        resultado = transform_proposicao(dado, autor_bruto)
-        if resultado:
-            tuplas.append(resultado)
-            logger.info(f"Nova matéria extraída com sucesso: {id_externo_formatado}")
-            
+        # Conforme as threads vão terminando o download e o NLP, vamos guardando o resultado
+        for futuro in concurrent.futures.as_completed(futuros):
+            resultado = futuro.result()
+            if resultado:
+                tuplas.append(resultado)
+
     # 3. LOAD
     if tuplas:
         total_salvo = save_proposicoes(tuplas)
         logger.info(f"=== Pipeline concluído. {total_salvo} novos registros inseridos com NLP. ===")
-    else:
-        logger.info("=== Pipeline concluído. Nenhuma matéria inédita para processar hoje. ===")
-
+        
 if __name__ == "__main__":
     run_pipeline()
