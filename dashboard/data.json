@@ -1,6 +1,15 @@
 {
-    "last_updated": "2026-06-16T04:52:47.287362Z",
+    "last_updated": "2026-06-16T05:10:06.559012Z",
     "commits": [
+        {
+            "hash": "48ed47ae5755f329cfd8c9f8dc5c39365e5e1518",
+            "date": "2026-06-16T02:09:41-03:00",
+            "message": "Merge pull request #86 from unb-mds/feat/healthcheck-postgres",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
         {
             "hash": "11d3df21f4f99a416d9e970bb25f39462e94b03e",
             "date": "2026-06-16T01:52:19-03:00",
@@ -11,6 +20,15 @@
             "total_diff": 158
         },
         {
+            "hash": "589ec33679a8dbfcf1599be938a684f9aa052bbc",
+            "date": "2026-06-15T11:03:27-03:00",
+            "message": "feat(infra): add postgres healthcheck and env variables",
+            "is_conventional": true,
+            "insertions": 4,
+            "deletions": 4,
+            "total_diff": 8
+        },
+        {
             "hash": "1826190d87bc296292b3f0a159ccadf4b048ae49",
             "date": "2026-06-15T09:45:19-03:00",
             "message": "docs(infra): adiciona arquivo .env.example",
@@ -18,6 +36,24 @@
             "insertions": 4,
             "deletions": 0,
             "total_diff": 4
+        },
+        {
+            "hash": "0e429db477db11de3eee4063ee8b62383ca65ae2",
+            "date": "2026-06-15T08:22:22-03:00",
+            "message": "feat(infra): aguarda PostgreSQL saudável antes de iniciar o backend",
+            "is_conventional": true,
+            "insertions": 2,
+            "deletions": 1,
+            "total_diff": 3
+        },
+        {
+            "hash": "d532ae41931a86404a2307244c58486958adb626",
+            "date": "2026-06-15T08:14:48-03:00",
+            "message": "feat(infra): melhora a inicialização do PostgreSQL com healthcheck",
+            "is_conventional": true,
+            "insertions": 6,
+            "deletions": 3,
+            "total_diff": 9
         },
         {
             "hash": "d746643846a9b2d648dfdeeed5ba9a328448350f",
@@ -1788,16 +1824,16 @@
     ],
     "autores": {
         "augustogmedeiros": {
-            "commits": 85,
+            "commits": 86,
             "insercoes": 5601,
             "delecoes": 2946363,
             "total_linhas": 2951964
         },
         "yaxavier": {
-            "commits": 15,
-            "insercoes": 764,
-            "delecoes": 40,
-            "total_linhas": 804
+            "commits": 18,
+            "insercoes": 776,
+            "delecoes": 48,
+            "total_linhas": 824
         },
         "Ryan Lira": {
             "commits": 2,
