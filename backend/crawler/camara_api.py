@@ -62,6 +62,32 @@ KEYWORDS = [
     "adoção",
     "trabalho infantil"
 ]
+# ---------------------------------------------------------------------------
+# DICIONÁRIO DE FILTRAGEM (NLP FAST-PATH)
+# ---------------------------------------------------------------------------
+
+TERMOS_SIMBOLICOS = [
+    "voto de aplauso",
+    "voto de louvor",
+    "voto de congratulação",
+    "voto de congratulações",
+    "voto de pesar",
+    "título de cidadão",
+    "homenagem",
+    "sessão solene",
+    "data comemorativa",
+    "dia nacional"
+]
+
+TERMOS_ESTRATEGICOS = [
+    "audiência pública",
+    "regime de urgência",
+    "convocação",
+    "pedido de informação",
+    "comissão parlamentar",
+    "ministério",
+    "recursos financeiros"
+]
 
 # Parâmetros fixos da busca
 PARAMS_BASE = {
@@ -219,42 +245,60 @@ def extrair_texto_pdf(url_pdf: Optional[str]) -> Optional[str]:
 # ---------------------------------------------------------------------------
 # CAMADA DE NLP — Processamento de Linguagem Natural
 # ---------------------------------------------------------------------------
-
 def classificar_com_ia(texto: Optional[str], ementa: str) -> str:
     """
-    Utiliza o spaCy para mapear semanticamente o contexto léxico da lei.
-    Caso o PDF falhe, analisa o texto estruturado da ementa.
+    Classifica a proposição combinando heurística rápida (Fast-Path) 
+    para detecção de ruído e processamento NLP (spaCy) para matérias densas.
     """
+    ementa_limpa = str(ementa).lower()
+    
+    # 1. FAST-PATH: Filtro Heurístico
+    is_simbolico = any(termo in ementa_limpa for termo in TERMOS_SIMBOLICOS)
+    is_estrategico = any(termo in ementa_limpa for termo in TERMOS_ESTRATEGICOS)
+    
+    # Se for uma homenagem e NÃO contiver nenhum termo estratégico misturado
+    if is_simbolico and not is_estrategico:
+        return "Simbólico/Ruído"
+        
+    # Se for um requerimento estratégico óbvio (Audiência Pública, Urgência)
+    if is_estrategico:
+        return "Articulação Estratégica"
+    
+    # 2. PROCESSAMENTO NLP PROFUNDO (spaCy)
     texto_analise = texto if texto else ementa
     if not texto_analise:
         return "Proteção Geral"
         
-    doc = nlp(texto_analise.lower())
-    
-    # Mapeamento taxonômico semântico do ProtectKids
-    categorias = {
-        "Cyberbullying e Crimes Virtuais": ["internet", "cyberbullying", "ofensa", "rede", "digital", "computador", "virtual", "crimes"],
-        "Adoção e Orfanatos": ["adoção", "adotar", "órfão", "abrigo", "família", "destituição"],
-        "Violência e Abuso": ["violência", "abuso", "exploração", "maus-tratos", "agressão", "sexual", "física"],
-        "Educação e Cultura": ["escola", "ensino", "professor", "merenda", "didático", "creche", "colégio"]
-    }
-    
-    contagem_pesos = {cat: 0 for cat in categorias}
-    
-    # Varre os lemas (raízes linguísticas) identificados pela IA
-    for token in doc:
-        lema = token.lemma_
-        for categoria, termos in categorias.items():
-            if lema in termos:
-                contagem_pesos[categoria] += 1
-                
-    # Retorna a categoria com maior relevância textual identificada
-    categoria_vencedora = max(contagem_pesos, key=contagem_pesos.get)
-    if contagem_pesos[categoria_vencedora] > 0:
-        return categoria_vencedora
+    try:
+        doc = nlp(texto_analise.lower())
         
-    return "Proteção Geral"
-
+        # Mapeamento taxonômico semântico do ProtectKids
+        categorias = {
+            "Cyberbullying e Crimes Virtuais": ["internet", "cyberbullying", "ofensa", "rede", "digital", "computador", "virtual", "crimes"],
+            "Adoção e Orfanatos": ["adoção", "adotar", "órfão", "abrigo", "família", "destituição"],
+            "Violência e Abuso": ["violência", "abuso", "exploração", "maus-tratos", "agressão", "sexual", "física"],
+            "Educação e Cultura": ["escola", "ensino", "professor", "merenda", "didático", "creche", "colégio"]
+        }
+        
+        contagem_pesos = {cat: 0 for cat in categorias}
+        
+        # Varre os lemas (raízes linguísticas) identificados pela IA
+        for token in doc:
+            lema = token.lemma_
+            for categoria, termos in categorias.items():
+                if lema in termos:
+                    contagem_pesos[categoria] += 1
+                    
+        # Retorna a categoria com maior relevância textual identificada
+        categoria_vencedora = max(contagem_pesos, key=contagem_pesos.get)
+        if contagem_pesos[categoria_vencedora] > 0:
+            return categoria_vencedora
+            
+        return "Proteção Geral"
+        
+    except Exception as e:
+        logger.error(f"Erro no processamento NLP: {e}")
+        return "Proteção Geral"
 
 # ---------------------------------------------------------------------------
 # CAMADA DE TRANSFORM — mapeia dados da API para o modelo do sistema

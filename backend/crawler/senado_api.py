@@ -10,13 +10,13 @@ import requests
 from typing import Optional
 from datetime import datetime
 from sqlmodel import Session, select, SQLModel
-
+import concurrent.futures
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from database import engine
 from models import Proposicao, Parlamentar
 
 # Reaproveita a inteligência do pipeline da Câmara
-from crawler.camara_api import KEYWORDS, classificar_com_ia, save_proposicoes
+from crawler.camara_api import KEYWORDS, classificar_com_ia, save_proposicoes, extrair_texto_pdf
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger(__name__)
@@ -113,11 +113,20 @@ def transform_materia_senado(materia_bruta: dict) -> Optional[tuple]:
             data_apres = datetime.fromisoformat(str(data_str)[:10]).date()
         except:
             pass
-
-    # 3. NLP & PDF
+        # 3. NLP & PDF (ATUALIZADO COM FALLBACK PARA IMAGENS)
     subtema_origem = materia_bruta.get("_keyword_origem", "Geral")
-    classificacao_ia = classificar_com_ia(texto=None, ementa=ementa)
-    url_pdf_mock = f"https://legis.senado.leg.br/sdleg-getter/documento/download/materia/{codigo_materia}"
+    url_pdf_real = f"https://legis.senado.leg.br/sdleg-getter/documento/download/materia/{codigo_materia}"
+    
+    # extrai o texto limpo
+    texto_pdf = extrair_texto_pdf(url_pdf_real)
+    
+    # O PLANO B: Se vier vazio (documento escaneado ou erro de leitura)
+    if not texto_pdf:
+        texto_pdf = (
+            "O texto integral desta matéria está indisponível para extração digital.\n\n"
+            f"Ementa Original: {ementa}"
+        )
+    classificacao_ia = classificar_com_ia(texto=texto_pdf, ementa=ementa)
 
     # 4. Monta a Proposicao
     proposicao = Proposicao(
@@ -129,9 +138,9 @@ def transform_materia_senado(materia_bruta: dict) -> Optional[tuple]:
         ano=int(ano),
         ementa=ementa,
         data_apresentacao=data_apres,
-        url_inteiro_teor=url_pdf_mock,
+        url_inteiro_teor=url_pdf_real,
         subtema=subtema_origem,
-        texto_integral=None,
+        texto_integral=texto_pdf,
         classificacao_nlp=classificacao_ia
     )
     
@@ -148,16 +157,17 @@ def obter_ids_existentes(origem_alvo: str) -> set:
         return set(resultados)
 
 def run_pipeline_senado():
-    logger.info("=== Iniciando pipeline ETL do Senado ===")
+    logger.info("=== Iniciando pipeline ETL do Senado Inteligente ===")
     SQLModel.metadata.create_all(engine)
     
-    # NOVO: Carrega os IDs que já estão no banco para a memória
     ids_existentes = obter_ids_existentes(origem_alvo="Senado")
     logger.info(f"Cache local: {len(ids_existentes)} proposições do Senado já existem no banco.")
     
     tuplas = []
     ids_processados_nesta_run = set()
+    materias_ineditas = []
     
+    # Coleta todas as matérias inéditas primeiro
     for keyword in KEYWORDS:
         materias = fetch_proposicoes_senado(keyword)
         for mat in materias:
@@ -167,22 +177,35 @@ def run_pipeline_senado():
                 
             id_externo_formatado = f"senado-{codigo}"
             
-            # A TRAVA: Evita duplicidade e pula o que já está no banco de dados
             if id_externo_formatado in ids_existentes or id_externo_formatado in ids_processados_nesta_run:
                 continue
                 
             ids_processados_nesta_run.add(id_externo_formatado)
-            resultado = transform_materia_senado(mat)
+            materias_ineditas.append(mat)
+                
+    if not materias_ineditas:
+        logger.info("=== Pipeline do Senado concluído. Nenhuma matéria inédita para processar hoje. ===")
+        return
+
+    logger.info(f"Iniciando download paralelo de {len(materias_ineditas)} PDFs do Senado...")
+
+    # Dispara 10 downloads simultâneos
+    with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+        futuros = {
+            executor.submit(transform_materia_senado, mat): mat 
+            for mat in materias_ineditas
+        }
+        for futuro in concurrent.futures.as_completed(futuros):
+            resultado = futuro.result()
             if resultado:
                 tuplas.append(resultado)
-                
-    # LOAD atualizado para informar se não houver dados novos
+                    
     if tuplas:
         total_salvo = save_proposicoes(tuplas)
         logger.info(f"=== Pipeline do Senado concluído. {total_salvo} registros normalizados salvos. ===")
     else:
-        logger.info("=== Pipeline do Senado concluído. Nenhuma matéria inédita para processar hoje. ===")
+        logger.info("=== Pipeline do Senado concluído. Nenhuma matéria nova processada. ===")
 
-        
+
 if __name__ == "__main__":
     run_pipeline_senado()
