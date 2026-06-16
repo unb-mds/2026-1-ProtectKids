@@ -1,8 +1,9 @@
 import os
 from sqlmodel import create_engine, Session
+from dotenv import load_dotenv
 
 # Pega a URL de conexão do ambiente. 
-# Se não encontrar, usa uma string genérica sem expor a senha real.
+load_dotenv()
 DATABASE_URL = os.getenv(
     "DATABASE_URL", 
     "postgresql://usuario:senha@db:5432/legislativo_db" 

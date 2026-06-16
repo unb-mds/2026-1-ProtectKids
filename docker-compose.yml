@@ -2,15 +2,13 @@ services:
   db:
     container_name: ProtectKids_db
     image: postgres:15
-    environment:
-      - POSTGRES_USER=augusto
-      - POSTGRES_PASSWORD=squad10
-      - POSTGRES_DB=legislativo_db
+    # APAGAMOS O 'environment' E COLOCAMOS O 'env_file'
+    env_file:
+      - .env
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-
 
   backend:
     container_name: ProtectKids_backend
@@ -21,9 +19,9 @@ services:
       - ./backend:/app
     depends_on:
       - db
-    environment:
-      - DATABASE_URL=postgresql://augusto:squad10@db:5432/legislativo_db
-
+    # O BACKEND TAMBÉM VAI LER AS SENHAS DO ARQUIVO .ENV
+    env_file:
+      - .env
 
   frontend:
     build: ./frontend
@@ -34,7 +32,6 @@ services:
       - ./frontend:/app
       - /app/node_modules
     command: npm run dev -- --host
-
 
 volumes:
   postgres_data:
