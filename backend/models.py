@@ -1,6 +1,6 @@
 from sqlmodel import Field, SQLModel, Relationship
 from typing import Optional, List
-from datetime import date
+from datetime import date, datetime
 
 class Parlamentar(SQLModel, table=True):
     __tablename__ = "parlamentares"
