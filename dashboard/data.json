@@ -1,6 +1,15 @@
 {
-    "last_updated": "2026-06-16T05:48:35.006064Z",
+    "last_updated": "2026-06-16T14:41:31.651687Z",
     "commits": [
+        {
+            "hash": "784bd83be2d1e83cf880550b4f05a46429f4491c",
+            "date": "2026-06-16T11:40:53-03:00",
+            "message": "feat: adiciona extrator de tramitacoes e workflow quinzenal (#94)",
+            "is_conventional": true,
+            "insertions": 157,
+            "deletions": 2,
+            "total_diff": 159
+        },
         {
             "hash": "e0f1b7f3f0d1f3ac30d1520888309eb6e638fab5",
             "date": "2026-06-16T02:48:09-03:00",
@@ -1426,6 +1435,15 @@
     ],
     "issues": [
         {
+            "number": 93,
+            "title": "ETL e Modelagem do Histórico de Tramitações",
+            "state": "closed",
+            "created_at": "2026-06-16T14:28:46Z",
+            "closed_at": "2026-06-16T14:40:55Z",
+            "resolution_time_hours": 0.2,
+            "char_count": 1639
+        },
+        {
             "number": 90,
             "title": "Filtro de Ruídos para a NLP do Senado",
             "state": "closed",
@@ -1932,10 +1950,10 @@
     ],
     "autores": {
         "augustogmedeiros": {
-            "commits": 94,
-            "insercoes": 5852,
-            "delecoes": 2946463,
-            "total_linhas": 2952315
+            "commits": 95,
+            "insercoes": 6009,
+            "delecoes": 2946465,
+            "total_linhas": 2952474
         },
         "Danielly Mendes": {
             "commits": 13,
