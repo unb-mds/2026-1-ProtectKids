@@ -1,6 +1,15 @@
 {
-    "last_updated": "2026-06-15T12:45:43.884615Z",
+    "last_updated": "2026-06-16T04:52:47.287362Z",
     "commits": [
+        {
+            "hash": "11d3df21f4f99a416d9e970bb25f39462e94b03e",
+            "date": "2026-06-16T01:52:19-03:00",
+            "message": "Feat/otimizacao database (#91)",
+            "is_conventional": false,
+            "insertions": 121,
+            "deletions": 37,
+            "total_diff": 158
+        },
         {
             "hash": "1826190d87bc296292b3f0a159ccadf4b048ae49",
             "date": "2026-06-15T09:45:19-03:00",
@@ -1273,12 +1282,39 @@
     ],
     "issues": [
         {
-            "number": 80,
-            "title": "Otimização do Dockerfile e Implementação da Esteira de CI/CD (GHCR)",
+            "number": 90,
+            "title": "Filtro de Ruídos para a NLP do Senado",
             "state": "open",
-            "created_at": "2026-06-08T17:41:26Z",
+            "created_at": "2026-06-16T04:48:21Z",
             "closed_at": null,
             "resolution_time_hours": null,
+            "char_count": 1726
+        },
+        {
+            "number": 89,
+            "title": "Otimização de Performance e Troca de Motor PDF",
+            "state": "open",
+            "created_at": "2026-06-16T04:46:32Z",
+            "closed_at": null,
+            "resolution_time_hours": null,
+            "char_count": 1772
+        },
+        {
+            "number": 88,
+            "title": "Refatorar e complementar Story Map",
+            "state": "open",
+            "created_at": "2026-06-16T00:24:01Z",
+            "closed_at": null,
+            "resolution_time_hours": null,
+            "char_count": 1790
+        },
+        {
+            "number": 80,
+            "title": "Otimização do Dockerfile e Implementação da Esteira de CI/CD (GHCR)",
+            "state": "closed",
+            "created_at": "2026-06-08T17:41:26Z",
+            "closed_at": "2026-06-15T15:26:48Z",
+            "resolution_time_hours": 165.76,
             "char_count": 2271
         },
         {
@@ -1320,10 +1356,10 @@
         {
             "number": 75,
             "title": "Atualização de Requisitos",
-            "state": "open",
+            "state": "closed",
             "created_at": "2026-05-29T19:36:21Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
+            "closed_at": "2026-06-16T00:03:49Z",
+            "resolution_time_hours": 412.46,
             "char_count": 1946
         },
         {
@@ -1751,17 +1787,17 @@
         }
     ],
     "autores": {
+        "augustogmedeiros": {
+            "commits": 85,
+            "insercoes": 5601,
+            "delecoes": 2946363,
+            "total_linhas": 2951964
+        },
         "yaxavier": {
             "commits": 15,
             "insercoes": 764,
             "delecoes": 40,
             "total_linhas": 804
-        },
-        "augustogmedeiros": {
-            "commits": 84,
-            "insercoes": 5480,
-            "delecoes": 2946326,
-            "total_linhas": 2951806
         },
         "Ryan Lira": {
             "commits": 2,
