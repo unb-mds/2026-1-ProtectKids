@@ -324,6 +324,20 @@ def transform_proposicao(dado_bruto: dict, autor_bruto: dict) -> Optional[tuple]
     
     return (proposicao, parlamentar)
 
+# ---------------------------------------------------------------------------
+# CAMADA DE OTIMIZAÇÃO (NOVO)
+# ---------------------------------------------------------------------------
+
+def obter_ids_existentes(origem_alvo: str) -> set:
+    """
+    Busca no banco todos os IDs externos já cadastrados para evitar 
+    o download repetido de PDFs e reprocessamento de NLP.
+    """
+    with Session(engine) as session:
+        # Selecionamos apenas a coluna id_externo para não sobrecarregar a memória
+        statement = select(Proposicao.id_externo).where(Proposicao.origem == origem_alvo)
+        resultados = session.exec(statement).all()
+        return set(resultados)
 
 # ---------------------------------------------------------------------------
 # CAMADA DE SAVE & RUN PIPELINE
@@ -359,11 +373,14 @@ def save_proposicoes(tuplas_prop_autor: list[tuple]) -> int:
         session.commit()
     return inseridos
 
-
 def run_pipeline() -> None:
     logger.info("=== Iniciando pipeline ETL Inteligente (PDF + NLP) ===")
     logger.info("Verificando/Criando tabelas no banco de dados...")
     SQLModel.metadata.create_all(engine)
+
+    # NOVO: Carrega os IDs que já estão no banco para a memória
+    ids_existentes = obter_ids_existentes(origem_alvo="Câmara")
+    logger.info(f"Cache local: {len(ids_existentes)} proposições da Câmara já existem no banco.")
 
     # 1. EXTRACT
     dados_brutos = fetch_todas_proposicoes()
@@ -371,14 +388,24 @@ def run_pipeline() -> None:
         logger.warning("Nenhuma proposição capturada na extração externa.")
         return
 
-# 2. TRANSFORM
+    # 2. TRANSFORM OTIMIZADO
     tuplas: list[tuple] = []
+    ids_processados_nesta_run = set()
+
     for dado in dados_brutos:
-        id_prop = dado.get("id")
+        id_bruto = dado.get("id")
+        id_externo_formatado = f"camara-{id_bruto}"
+
+        # A GRANDE MÁGICA: Evita duplicidade dentro do próprio JSON e pula o que já está no DB
+        if id_externo_formatado in ids_existentes or id_externo_formatado in ids_processados_nesta_run:
+            # logger.debug(f"Pulo: {id_externo_formatado} já processado.")
+            continue
+
+        ids_processados_nesta_run.add(id_externo_formatado)
         
-        # Faz as chamadas extras necessárias
-        autor_bruto = fetch_autor_da_proposicao(id_prop)
-        detalhes_brutos = fetch_detalhes_proposicao(id_prop)
+        # Faz as chamadas extras necessárias apenas para matérias inéditas
+        autor_bruto = fetch_autor_da_proposicao(id_bruto)
+        detalhes_brutos = fetch_detalhes_proposicao(id_bruto)
         
         # Injeta o link do PDF no dado antes de transformar
         dado["urlInteiroTeor"] = detalhes_brutos.get("urlInteiroTeor")
@@ -386,11 +413,14 @@ def run_pipeline() -> None:
         resultado = transform_proposicao(dado, autor_bruto)
         if resultado:
             tuplas.append(resultado)
+            logger.info(f"Nova matéria extraída com sucesso: {id_externo_formatado}")
             
     # 3. LOAD
-    total_salvo = save_proposicoes(tuplas)
-    logger.info(f"=== Pipeline concluído. {total_salvo} novos registros inseridos com NLP. ===")
-
+    if tuplas:
+        total_salvo = save_proposicoes(tuplas)
+        logger.info(f"=== Pipeline concluído. {total_salvo} novos registros inseridos com NLP. ===")
+    else:
+        logger.info("=== Pipeline concluído. Nenhuma matéria inédita para processar hoje. ===")
 
 if __name__ == "__main__":
     run_pipeline()
