@@ -3,14 +3,19 @@ services:
     container_name: ProtectKids_db
     image: postgres:15
     environment:
-      - POSTGRES_USER=augusto
-      - POSTGRES_PASSWORD=squad10
-      - POSTGRES_DB=legislativo_db
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
 
   backend:
     container_name: ProtectKids_backend
@@ -20,10 +25,10 @@ services:
     volumes:
       - ./backend:/app
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     environment:
-      - DATABASE_URL=postgresql://augusto:squad10@db:5432/legislativo_db
-
+      - DATABASE_URL=${DATABASE_URL}
 
   frontend:
     build: ./frontend
@@ -34,7 +39,6 @@ services:
       - ./frontend:/app
       - /app/node_modules
     command: npm run dev -- --host
-
 
 volumes:
   postgres_data:
