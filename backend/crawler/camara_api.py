@@ -22,7 +22,7 @@ from typing import Optional
 from sqlmodel import select, Session, SQLModel
 from datetime import datetime
 import requests
-import pdfplumber
+import fitz
 import spacy
 import concurrent.futures
 
@@ -187,14 +187,14 @@ def fetch_detalhes_proposicao(id_proposicao_api: int) -> dict:
     
 def extrair_texto_pdf(url_pdf: Optional[str]) -> Optional[str]:
     """
-    Faz o download do PDF do inteiro teor de forma temporária,
-    extrai todo o conteúdo de texto e deleta o arquivo local de cache.
+    Faz o descarregamento do PDF de forma temporária e extrai 
+    todo o texto utilizando o PyMuPDF (fitz) para máxima velocidade.
     """
     if not url_pdf:
         return None
     
     try:
-        logger.info(f"Baixando PDF para extração: {url_pdf}")
+        logger.info(f"Descarregando PDF para extração rápida: {url_pdf}")
         resposta = requests.get(url_pdf, timeout=30)
         resposta.raise_for_status()
         
@@ -203,9 +203,10 @@ def extrair_texto_pdf(url_pdf: Optional[str]) -> Optional[str]:
             temp_pdf_path = temp_pdf.name
             
         texto_extraido = ""
-        with pdfplumber.open(temp_pdf_path) as pdf:
-            for pagina in pdf.pages:
-                texto = pagina.extract_text()
+        # A nova lógica de leitura ultrarrápida com PyMuPDF
+        with fitz.open(temp_pdf_path) as pdf:
+            for pagina in pdf:
+                texto = pagina.get_text()
                 if texto:
                     texto_extraido += texto + "\n"
                     
@@ -215,8 +216,6 @@ def extrair_texto_pdf(url_pdf: Optional[str]) -> Optional[str]:
     except Exception as e:
         logger.warning(f"Não foi possível processar o PDF da URL {url_pdf}: {e}")
         return None
-
-
 # ---------------------------------------------------------------------------
 # CAMADA DE NLP — Processamento de Linguagem Natural
 # ---------------------------------------------------------------------------
@@ -449,6 +448,6 @@ def run_pipeline() -> None:
     if tuplas:
         total_salvo = save_proposicoes(tuplas)
         logger.info(f"=== Pipeline concluído. {total_salvo} novos registros inseridos com NLP. ===")
-        
+
 if __name__ == "__main__":
     run_pipeline()
