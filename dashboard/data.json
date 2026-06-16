@@ -1,6 +1,141 @@
 {
-    "last_updated": "2026-06-16T05:44:42.196836Z",
+    "last_updated": "2026-06-16T05:48:35.006064Z",
     "commits": [
+        {
+            "hash": "e0f1b7f3f0d1f3ac30d1520888309eb6e638fab5",
+            "date": "2026-06-16T02:48:09-03:00",
+            "message": "Merge pull request #92 from unb-mds/feat/otimizacao_database",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "e2be59d83a367f5d0472f3ebfe321ac65546935c",
+            "date": "2026-06-16T02:38:32-03:00",
+            "message": "fix:correção final dos ruidos da nlp",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "50fd72a70033464d0c959f841e7aac1f36487a9f",
+            "date": "2026-06-16T02:32:12-03:00",
+            "message": "Merge pull request #87 from unb-mds/fix/docs-requisitos",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "49130d8c21a7b3d0d90ecdfb80f7de1cc98da388",
+            "date": "2026-06-16T02:12:38-03:00",
+            "message": "Update PostgreSQL healthcheck to use environment variables",
+            "is_conventional": false,
+            "insertions": 1,
+            "deletions": 1,
+            "total_diff": 2
+        },
+        {
+            "hash": "48ed47ae5755f329cfd8c9f8dc5c39365e5e1518",
+            "date": "2026-06-16T02:09:41-03:00",
+            "message": "Merge pull request #86 from unb-mds/feat/healthcheck-postgres",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "0b325db6d4f74367bc5b3d95e3c377f89f54aa85",
+            "date": "2026-06-16T02:07:51-03:00",
+            "message": "feat:implementa filtros da nlp para remover ruidos da API do senado",
+            "is_conventional": true,
+            "insertions": 111,
+            "deletions": 44,
+            "total_diff": 155
+        },
+        {
+            "hash": "11d3df21f4f99a416d9e970bb25f39462e94b03e",
+            "date": "2026-06-16T01:52:19-03:00",
+            "message": "Feat/otimizacao database (#91)",
+            "is_conventional": false,
+            "insertions": 121,
+            "deletions": 37,
+            "total_diff": 158
+        },
+        {
+            "hash": "69dd145f38b370e57975e42f5c5fd0a5c1e9fa61",
+            "date": "2026-06-16T01:23:35-03:00",
+            "message": "fix: troca do pdfplumber pelo pymudf que é mais leve",
+            "is_conventional": true,
+            "insertions": 48,
+            "deletions": 22,
+            "total_diff": 70
+        },
+        {
+            "hash": "95139d7c9b04bb4bdaa335feeeecdccccd794232",
+            "date": "2026-06-16T01:10:37-03:00",
+            "message": "adiciona feature para baixar diversos pdfs ao mesmo tempo, otimizando o servico",
+            "is_conventional": false,
+            "insertions": 52,
+            "deletions": 24,
+            "total_diff": 76
+        },
+        {
+            "hash": "906f4fed5d04d2fa91ac7e51cd10da6c83c37f94",
+            "date": "2026-06-16T00:58:44-03:00",
+            "message": "funcao adicionada para otimizar a extracao dos pdfs",
+            "is_conventional": false,
+            "insertions": 39,
+            "deletions": 9,
+            "total_diff": 48
+        },
+        {
+            "hash": "51157de8db3733501dbb98eaee98965d2462b832",
+            "date": "2026-06-15T20:58:57-03:00",
+            "message": "Docs: Ajusta descrição do MVP e arquitetura closes #75",
+            "is_conventional": false,
+            "insertions": 27,
+            "deletions": 32,
+            "total_diff": 59
+        },
+        {
+            "hash": "b32d9d744f5cabf71e546c0149875897dc1e94ca",
+            "date": "2026-06-08T17:44:55-03:00",
+            "message": "fix: Complementa descrição de RFs e critérios de aceitação refs #75",
+            "is_conventional": true,
+            "insertions": 36,
+            "deletions": 26,
+            "total_diff": 62
+        },
+        {
+            "hash": "a778bd4f974b81d4b29582f9fce0896468de0495",
+            "date": "2026-05-30T14:28:02-03:00",
+            "message": "Docs: Adiciona e melhora user stories refs #75",
+            "is_conventional": false,
+            "insertions": 45,
+            "deletions": 24,
+            "total_diff": 69
+        },
+        {
+            "hash": "318ed52fbef61e81b47c42059500c00e2a31aedd",
+            "date": "2026-05-29T17:39:07-03:00",
+            "message": "docs: expande requisitos e adiciona personas do projeto refs #75",
+            "is_conventional": true,
+            "insertions": 42,
+            "deletions": 18,
+            "total_diff": 60
+        },
+        {
+            "hash": "589ec33679a8dbfcf1599be938a684f9aa052bbc",
+            "date": "2026-06-15T11:03:27-03:00",
+            "message": "feat(infra): add postgres healthcheck and env variables",
+            "is_conventional": true,
+            "insertions": 4,
+            "deletions": 4,
+            "total_diff": 8
+        },
         {
             "hash": "1826190d87bc296292b3f0a159ccadf4b048ae49",
             "date": "2026-06-15T09:45:19-03:00",
@@ -9,6 +144,24 @@
             "insertions": 4,
             "deletions": 0,
             "total_diff": 4
+        },
+        {
+            "hash": "0e429db477db11de3eee4063ee8b62383ca65ae2",
+            "date": "2026-06-15T08:22:22-03:00",
+            "message": "feat(infra): aguarda PostgreSQL saudável antes de iniciar o backend",
+            "is_conventional": true,
+            "insertions": 2,
+            "deletions": 1,
+            "total_diff": 3
+        },
+        {
+            "hash": "d532ae41931a86404a2307244c58486958adb626",
+            "date": "2026-06-15T08:14:48-03:00",
+            "message": "feat(infra): melhora a inicialização do PostgreSQL com healthcheck",
+            "is_conventional": true,
+            "insertions": 6,
+            "deletions": 3,
+            "total_diff": 9
         },
         {
             "hash": "d746643846a9b2d648dfdeeed5ba9a328448350f",
@@ -1275,19 +1428,19 @@
         {
             "number": 90,
             "title": "Filtro de Ruídos para a NLP do Senado",
-            "state": "open",
+            "state": "closed",
             "created_at": "2026-06-16T04:48:21Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
+            "closed_at": "2026-06-16T05:48:11Z",
+            "resolution_time_hours": 1.0,
             "char_count": 1726
         },
         {
             "number": 89,
             "title": "Otimização de Performance e Troca de Motor PDF",
-            "state": "open",
+            "state": "closed",
             "created_at": "2026-06-16T04:46:32Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
+            "closed_at": "2026-06-16T05:48:10Z",
+            "resolution_time_hours": 1.03,
             "char_count": 1772
         },
         {
@@ -1311,10 +1464,10 @@
         {
             "number": 79,
             "title": "Integração de Dados do Senado Federal (Pipeline e Normalização)",
-            "state": "open",
+            "state": "closed",
             "created_at": "2026-06-08T15:52:42Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
+            "closed_at": "2026-06-16T05:48:10Z",
+            "resolution_time_hours": 181.92,
             "char_count": 1981
         },
         {
@@ -1778,17 +1931,23 @@
         }
     ],
     "autores": {
-        "yaxavier": {
-            "commits": 15,
-            "insercoes": 764,
-            "delecoes": 40,
-            "total_linhas": 804
-        },
         "augustogmedeiros": {
-            "commits": 84,
-            "insercoes": 5480,
-            "delecoes": 2946326,
-            "total_linhas": 2951806
+            "commits": 94,
+            "insercoes": 5852,
+            "delecoes": 2946463,
+            "total_linhas": 2952315
+        },
+        "Danielly Mendes": {
+            "commits": 13,
+            "insercoes": 1028,
+            "delecoes": 207,
+            "total_linhas": 1235
+        },
+        "yaxavier": {
+            "commits": 18,
+            "insercoes": 776,
+            "delecoes": 48,
+            "total_linhas": 824
         },
         "Ryan Lira": {
             "commits": 2,
@@ -1801,12 +1960,6 @@
             "insercoes": 13093,
             "delecoes": 852,
             "total_linhas": 13945
-        },
-        "Danielly Mendes": {
-            "commits": 9,
-            "insercoes": 878,
-            "delecoes": 107,
-            "total_linhas": 985
         },
         "marispmorais": {
             "commits": 10,
