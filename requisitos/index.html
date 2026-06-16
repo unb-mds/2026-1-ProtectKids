@@ -555,98 +555,99 @@
 
 
 
-<h1 id="visao-geral">Visão Geral<a class="headerlink" href="#visao-geral" title="Permanent link">&para;</a></h1>
+<h1 id="visao-geral">📊 Visão Geral<a class="headerlink" href="#visao-geral" title="Permanent link">&para;</a></h1>
 <h2 id="objetivo">Objetivo<a class="headerlink" href="#objetivo" title="Permanent link">&para;</a></h2>
-<p>Desenvolver uma plataforma para monitorar, classificar e analisar proposições legislativas relacionadas à proteção de crianças e adolescentes no ambiente digital. A plataforma permitirá que diferentes perfis de usuários — desde ativistas de ONG até jornalistas de dados e assessores parlamentares — acompanhem o avanço do debate legislativo com profundidade e agilidade, reduzindo o tempo gasto em pesquisa manual e ampliando a capacidade analítica de cada perfil.</p>
+<p>Desenvolver uma plataforma para monitorar, classificar e analisar proposições legislativas relacionadas à proteção de crianças e adolescentes no ambiente digital.</p>
 <hr />
 <h2 id="escopo">Escopo<a class="headerlink" href="#escopo" title="Permanent link">&para;</a></h2>
-<p>O sistema coletará dados da API de Dados Abertos da Câmara dos Deputados, extrairá o inteiro teor das proposições e as classificará por subtema utilizando processamento de linguagem natural (NLP). Os resultados serão apresentados em um dashboard interativo que combina visualizações analíticas, rankings de parlamentares e partidos, e filtros por período e tema.</p>
-<hr />
-<h2 id="temas-principais">Temas Principais<a class="headerlink" href="#temas-principais" title="Permanent link">&para;</a></h2>
-<p>Os temas monitorados pela plataforma compreendem as principais dimensões da proteção de crianças e adolescentes no ambiente digital:</p>
+<p>O sistema irá:</p>
 <ul>
-<li><strong>Cyberbullying:</strong> proposições que tratam de assédio, perseguição ou humilhação de menores em ambientes virtuais.</li>
-<li><strong>Proteção de dados de menores:</strong> regulações sobre coleta, armazenamento e uso de dados pessoais de crianças e adolescentes por plataformas digitais.</li>
-<li><strong>Exploração sexual online:</strong> projetos que buscam combater a distribuição de conteúdo abusivo, aliciamento e outras formas de violência sexual mediadas por tecnologia.</li>
-<li><strong>Controle parental:</strong> mecanismos legais ou técnicos que habilitam pais e responsáveis a monitorar ou restringir o acesso de menores a conteúdos digitais.</li>
-<li><strong>Regulação de plataformas digitais:</strong> obrigações impostas a redes sociais, aplicativos e outros serviços quanto à proteção de usuários menores de idade.</li>
-<li><strong>Exposição a conteúdo nocivo:</strong> iniciativas legislativas que visam limitar ou sinalizar conteúdos violentos, de ódio ou inadequados para o público infanto-juvenil.</li>
+<li>Coletar dados da API de Dados Abertos da Câmara dos Deputados</li>
+<li>Extrair o inteiro teor das proposições</li>
+<li>Classificar por subtema</li>
+<li>Apresentar visualizações analíticas em um dashboard interativo</li>
 </ul>
 <hr />
-<h1 id="personas">Personas<a class="headerlink" href="#personas" title="Permanent link">&para;</a></h1>
-<h2 id="persona-1-joana-coordenadora-de-politicas-publicas-em-ong">Persona 1 — Joana, Coordenadora de Políticas Públicas em ONG<a class="headerlink" href="#persona-1-joana-coordenadora-de-politicas-publicas-em-ong" title="Permanent link">&para;</a></h2>
-<p><strong>Perfil:</strong> Joana tem 38 anos e atua como coordenadora de políticas públicas em uma organização não governamental dedicada à proteção dos direitos da criança e do adolescente, como o Instituto Alana ou a SaferNet. Com formação em direito ou ciências sociais, ela transita entre o universo do ativismo e o da incidência política, participando de audiências públicas, redigindo notas técnicas e construindo alianças com parlamentares sensíveis à sua pauta.</p>
-<p><strong>Objetivos:</strong> Joana precisa mapear continuamente quais deputados e senadores são aliados ou adversários nas pautas de regulação de plataformas digitais e proteção de menores contra exploração online. Seu principal interesse é saber com quem a ONG deve agendar reuniões, quais projetos representam ameaças aos direitos já conquistados e quais abrem oportunidades de avanço legislativo.</p>
-<p><strong>Dores atuais:</strong> Ela perde horas toda semana pesquisando manualmente nos portais da Câmara e do Senado. Um problema frequente é que a ementa — o resumo oficial do projeto de lei — muitas vezes não menciona diretamente o tema de interesse, embora o texto completo contenha alterações relevantes à proteção de menores. Sem um sistema que analise o inteiro teor, essas proposições passam despercebidas até que seja tarde para agir.</p>
-<p><strong>Como a plataforma a ajuda:</strong> O painel de parlamentares e partidos mais ativos permite que Joana crie listas de contatos segmentadas por subtema para ações de <em>lobby</em> positivo. A classificação por NLP sobre o texto completo poupa o tempo de leitura e garante que nenhuma proposição relevante passe despercebida, mesmo quando a ementa é vaga ou genérica.</p>
+<h2 id="temas-principais">Temas Principais<a class="headerlink" href="#temas-principais" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Cyberbullying</li>
+<li>Proteção de dados de menores</li>
+<li>Exploração sexual online</li>
+<li>Controle parental</li>
+<li>Regulação de plataformas digitais</li>
+<li>Exposição a conteúdo nocivo</li>
+</ul>
 <hr />
-<h2 id="persona-2-roberto-reporter-de-tecnologia-e-sociedade">Persona 2 — Roberto, Repórter de Tecnologia e Sociedade<a class="headerlink" href="#persona-2-roberto-reporter-de-tecnologia-e-sociedade" title="Permanent link">&para;</a></h2>
-<p><strong>Perfil:</strong> Roberto tem 28 anos e trabalha como repórter de tecnologia e sociedade em um grande portal de notícias. Sua especialidade são reportagens investigativas baseadas em dados, e ele está sempre em busca de histórias que revelem padrões invisíveis ao olhar cotidiano. Ele tem familiaridade com ferramentas de análise de dados, mas não é programador — prefere interfaces que traduzam dados complexos em visualizações acessíveis.</p>
-<p><strong>Objetivos:</strong> Roberto quer escrever reportagens que mostrem, com evidências concretas, como o Brasil está — ou não está — acompanhando os novos riscos digitais para crianças. Ele precisa identificar tendências emergentes, como o surgimento repentino de projetos sobre inteligência artificial e menores, e construir narrativas com profundidade histórica e comparativa.</p>
-<p><strong>Dores atuais:</strong> É muito difícil enxergar a "figura maior" ou a linha do tempo do debate legislativo a partir das ferramentas oficiais do Congresso. Quando um tema explode nas notícias, Roberto não consegue saber rapidamente se os parlamentares já estavam discutindo o assunto ou se estão completamente atrasados. A ausência de séries temporais dificulta a construção de narrativas baseadas em evidências.</p>
-<p><strong>Como a plataforma o ajuda:</strong> O indicador de evolução temporal por subtema dá a Roberto a manchete pronta: <em>"Projetos de lei sobre IA e menores crescem 300% em um ano"</em>. O recurso de identificação de novos temas emergentes complementa essa capacidade analítica, permitindo que ele detecte movimentos legislativos incipientes antes de virarem pauta dominante.</p>
-<hr />
-<h2 id="persona-3-camila-assessora-legislativa">Persona 3 — Camila, Assessora Legislativa<a class="headerlink" href="#persona-3-camila-assessora-legislativa" title="Permanent link">&para;</a></h2>
-<p><strong>Perfil:</strong> Camila tem 40 anos e atua como consultora ou assessora legislativa no gabinete de um mandato focado em educação ou tecnologia. Com experiência em redação de projetos de lei, análise de jurisprudência e elaboração de discursos, ela é a ponte entre o deputado ou senador e o universo técnico-jurídico das proposições em tramitação.</p>
-<p><strong>Objetivos:</strong> Camila precisa municiar seu parlamentar com informações precisas, atualizadas e bem contextualizadas para que ele proponha leis inovadoras, evite redundâncias e faça discursos embasados na tribuna. Ela também precisa monitorar o histórico legislativo sobre cada tema para antecipar eventuais objeções durante a votação.</p>
-<p><strong>Dores atuais:</strong> O excesso de informação desorganizada é seu principal inimigo. Quando o deputado pede que ela redija um projeto sobre cyberbullying, ela teme escrever algo que já foi proposto e rejeitado anos atrás — o que expõe o mandato a críticas e retrabalho. A ausência de um repositório estruturado e pesquisável sobre proposições por subtema torna esse risco constante.</p>
-<p><strong>Como a plataforma a ajuda:</strong> O filtro ágil por subtema permite que Camila faça uma auditoria rápida de tudo que já foi apresentado no Congresso sobre controle parental, segurança digital ou proteção de dados de menores. Com isso, ela identifica lacunas legislativas reais e apresenta ao seu parlamentar uma proposta verdadeiramente original e bem fundamentada.</p>
+<h1 id="personas">👤 Personas<a class="headerlink" href="#personas" title="Permanent link">&para;</a></h1>
+<h2 id="persona-principal-articuladora-de-ong">Persona Principal: Articuladora de ONG<a class="headerlink" href="#persona-principal-articuladora-de-ong" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Atua na defesa dos direitos de crianças e adolescentes</li>
+<li>Precisa monitorar projetos de lei</li>
+<li>Busca identificar ameaças ou oportunidades legislativas</li>
+<li>Necessita identificar parlamentares aliados</li>
+</ul>
 <hr />
 <h1 id="user-stories">User Stories<a class="headerlink" href="#user-stories" title="Permanent link">&para;</a></h1>
 <h2 id="us01-descoberta-pelo-inteiro-teor">US01 – Descoberta pelo Inteiro Teor<a class="headerlink" href="#us01-descoberta-pelo-inteiro-teor" title="Permanent link">&para;</a></h2>
-<p><strong>Como</strong> coordenadora de políticas públicas em uma ONG,<br />
-<strong>Quero</strong> que o sistema classifique as proposições legislativas com base na leitura do texto completo — e não apenas da ementa —<br />
-<strong>Para que</strong> eu consiga identificar ameaças e oportunidades mesmo quando o tema não está explicitamente mencionado no resumo oficial.</p>
-<h3 id="criterios-de-aceitacao">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao" title="Permanent link">&para;</a></h3>
-<p>O sistema deve realizar o download e a análise do inteiro teor de cada proposição disponível na API da Câmara. A classificação por subtema deve ocorrer independentemente de o tema aparecer ou não na ementa. O resultado da classificação deve ser exibido de forma clara no dashboard, com indicação de qual parte do texto fundamentou a categorização.</p>
+<p><strong>Como</strong> articuladora de ONG
+<strong>Quero</strong> que o sistema classifique as leis lendo o texto completo
+<strong>Para que</strong> eu consiga identificar ameaças mesmo quando não estão explícitas na ementa</p>
+<h3 id="criterios-de-aceitacao">✔ Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao" title="Permanent link">&para;</a></h3>
+<ul>
+<li>O sistema deve analisar o inteiro teor</li>
+<li>Deve classificar mesmo sem menção na ementa</li>
+<li>Deve exibir o resultado no dashboard</li>
+</ul>
 <hr />
-<h2 id="us02-mapeamento-de-aliados-parlamentares">US02 – Mapeamento de Aliados Parlamentares<a class="headerlink" href="#us02-mapeamento-de-aliados-parlamentares" title="Permanent link">&para;</a></h2>
-<p><strong>Como</strong> coordenadora de políticas públicas em uma ONG,<br />
-<strong>Quero</strong> visualizar um ranking de deputados e partidos ordenado por volume de proposições em cada subtema,<br />
-<strong>Para</strong> saber com quem devo agendar reuniões e priorizar esforços de incidência política.</p>
-<h3 id="criterios-de-aceitacao_1">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_1" title="Permanent link">&para;</a></h3>
-<p>O dashboard deve permitir a seleção de um subtema específico para filtrar o ranking. Os parlamentares devem ser ordenados pelo número de proposições apresentadas naquele subtema, exibindo nome, partido e quantidade de proposições. Os partidos também devem ser ranqueados de forma agregada, facilitando a identificação de bancadas estratégicas.</p>
+<h2 id="us02-mapeamento-de-aliados">US02 – Mapeamento de Aliados<a class="headerlink" href="#us02-mapeamento-de-aliados" title="Permanent link">&para;</a></h2>
+<p><strong>Como</strong> articuladora de ONG
+<strong>Quero</strong> visualizar ranking de deputados e partidos
+<strong>Para</strong> saber com quem agendar reuniões</p>
+<h3 id="criterios-de-aceitacao_1">✔ Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Permitir seleção por subtema</li>
+<li>Ordenar parlamentares por número de proposições</li>
+<li>Mostrar partidos mais ativos</li>
+</ul>
 <hr />
-<h2 id="us03-analise-temporal-de-proposicoes">US03 – Análise Temporal de Proposições<a class="headerlink" href="#us03-analise-temporal-de-proposicoes" title="Permanent link">&para;</a></h2>
-<p><strong>Como</strong> repórter de tecnologia e sociedade,<br />
-<strong>Quero</strong> visualizar a evolução temporal do volume de proposições por subtema ao longo dos anos,<br />
-<strong>Para</strong> identificar tendências legislativas emergentes e construir narrativas jornalísticas baseadas em dados.</p>
-<h3 id="criterios-de-aceitacao_2">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_2" title="Permanent link">&para;</a></h3>
-<p>O dashboard deve apresentar um gráfico de linha ou barras com o volume de proposições por ano, filtrável por subtema. O gráfico deve deixar visível o crescimento ou a queda na atividade legislativa sobre cada tema ao longo do tempo. Deve ser possível comparar a evolução de dois ou mais subtemas simultaneamente.</p>
-<hr />
-<h2 id="us04-auditoria-de-proposicoes-por-subtema">US04 – Auditoria de Proposições por Subtema<a class="headerlink" href="#us04-auditoria-de-proposicoes-por-subtema" title="Permanent link">&para;</a></h2>
-<p><strong>Como</strong> assessora legislativa,<br />
-<strong>Quero</strong> filtrar rapidamente todas as proposições apresentadas no Congresso sobre um subtema específico,<br />
-<strong>Para</strong> garantir que qualquer projeto elaborado pelo meu parlamentar seja original, relevante e bem fundamentado, evitando redundâncias com proposições anteriores.</p>
-<h3 id="criterios-de-aceitacao_3">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_3" title="Permanent link">&para;</a></h3>
-<p>O sistema deve permitir a busca e filtragem de proposições por subtema, com exibição de título, ementa, autor, data de apresentação e situação atual de cada proposição. O resultado deve ser exportável em formato estruturado (CSV ou similar) para uso em análises externas. A listagem deve ordenar as proposições por data, permitindo também ordenação por parlamentar ou partido.</p>
-<hr />
-<h2 id="us05-identificacao-de-novos-temas-emergentes">US05 – Identificação de Novos Temas Emergentes<a class="headerlink" href="#us05-identificacao-de-novos-temas-emergentes" title="Permanent link">&para;</a></h2>
-<p><strong>Como</strong> repórter de tecnologia e sociedade,<br />
-<strong>Quero</strong> ser notificado ou visualizar no dashboard quando novos temas relacionados à proteção de menores começam a ganhar volume legislativo,<br />
-<strong>Para</strong> detectar tendências antes que elas se tornem pauta dominante e produzir reportagens investigativas com antecedência.</p>
-<h3 id="criterios-de-aceitacao_4">Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_4" title="Permanent link">&para;</a></h3>
-<p>O sistema deve identificar automaticamente padrões de linguagem recorrentes em proposições que não se encaixam nos subtemas já cadastrados. Os novos clusters temáticos emergentes devem ser sinalizados no dashboard com indicação do volume de proposições e do período em que surgiram. O usuário deve poder revisar e confirmar ou rejeitar a sugestão de novo subtema.</p>
+<h2 id="us03-analise-temporal">US03 – Análise Temporal<a class="headerlink" href="#us03-analise-temporal" title="Permanent link">&para;</a></h2>
+<p><strong>Como</strong> articuladora de ONG
+<strong>Quero</strong> visualizar evolução temporal das proposições
+<strong>Para</strong> identificar tendências</p>
+<h3 id="criterios-de-aceitacao_2">✔ Critérios de Aceitação<a class="headerlink" href="#criterios-de-aceitacao_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Apresentar gráfico por ano</li>
+<li>Permitir filtro por subtema</li>
+<li>Mostrar crescimento ou queda</li>
+</ul>
 <hr />
 <h1 id="requisitos-funcionais">Requisitos Funcionais<a class="headerlink" href="#requisitos-funcionais" title="Permanent link">&para;</a></h1>
 <h2 id="must-have">Must Have<a class="headerlink" href="#must-have" title="Permanent link">&para;</a></h2>
-<p><strong>RF01 — Extração de metadados via API:</strong> O sistema deve consumir a API de Dados Abertos da Câmara dos Deputados para obter os metadados de cada proposição, incluindo título, ementa, autor, partido, data de apresentação e situação atual.</p>
-<p><strong>RF02 — Obtenção do link do inteiro teor:</strong> Para cada proposição recuperada, o sistema deve identificar e armazenar o link para o documento completo (PDF ou TXT) disponível nos servidores da Câmara.</p>
-<p><strong>RF03 — Extração do texto completo:</strong> O sistema deve realizar o download e a extração do conteúdo textual de documentos em formato PDF e TXT, tornando-os disponíveis para processamento.</p>
-<p><strong>RF04 — Classificação por subtema via NLP:</strong> O sistema deve aplicar um modelo de processamento de linguagem natural para classificar cada proposição em um ou mais subtemas predefinidos, com base no conteúdo do texto completo.</p>
-<p><strong>RF05 — Dashboard com volume por subtema:</strong> O sistema deve exibir um painel interativo que mostre a distribuição de proposições por subtema, com suporte a filtros por período.</p>
-<p><strong>RF06 — Ranking de parlamentares:</strong> O sistema deve exibir um ranking de deputados ordenado pelo número de proposições apresentadas, filtrável por subtema.</p>
-<p><strong>RF07 — Ranking de partidos:</strong> O sistema deve exibir um ranking de partidos políticos ordenado pelo volume agregado de proposições relacionadas aos temas monitorados, filtrável por subtema.</p>
+<ul>
+<li><strong>RF01</strong>: Extrair metadados da API</li>
+<li><strong>RF02</strong>: Obter link do inteiro teor</li>
+<li><strong>RF03</strong>: Extrair texto completo (PDF/TXT)</li>
+<li><strong>RF04</strong>: Classificar por subtema usando NLP</li>
+<li><strong>RF05</strong>: Exibir dashboard com volume por subtema</li>
+<li><strong>RF06</strong>: Ranking de parlamentares</li>
+<li><strong>RF07</strong>: Ranking de partidos</li>
+</ul>
 <hr />
 <h2 id="should-have">Should Have<a class="headerlink" href="#should-have" title="Permanent link">&para;</a></h2>
-<p><strong>RF08 — Gráfico de evolução temporal:</strong> O sistema deve apresentar uma visualização da evolução do volume de proposições ao longo dos anos, segmentada por subtema e comparável entre subtemas distintos.</p>
-<p><strong>RF09 — Filtro por subtema:</strong> Todos os painéis do dashboard devem suportar filtragem dinâmica por subtema, refletindo os resultados em tempo real nas visualizações exibidas.</p>
+<ul>
+<li><strong>RF08</strong>: Gráfico de evolução temporal</li>
+<li><strong>RF09</strong>: Filtro por subtema</li>
+</ul>
 <hr />
 <h2 id="could-have">Could Have<a class="headerlink" href="#could-have" title="Permanent link">&para;</a></h2>
-<p><strong>RF10 — Identificação automática de novos temas:</strong> O sistema deve ser capaz de identificar clusters temáticos emergentes que não se encaixem nos subtemas cadastrados, sugerindo novos temas ao administrador da plataforma para revisão e eventual inclusão.</p>
+<ul>
+<li><strong>RF10</strong>: Identificação automática de novos temas</li>
+</ul>
 <hr />
 <h2 id="wont-have-mvp">Won't Have (MVP)<a class="headerlink" href="#wont-have-mvp" title="Permanent link">&para;</a></h2>
-<p><strong>RF11 — Integração com API do Senado:</strong> A integração com a API de Dados Abertos do Senado Federal está fora do escopo do MVP e poderá ser incorporada em versões futuras da plataforma.</p>
+<ul>
+<li><strong>RF11</strong>: Integração com API do Senado</li>
+</ul>
 <hr />
 <h1 id="requisitos-nao-funcionais">Requisitos Não Funcionais<a class="headerlink" href="#requisitos-nao-funcionais" title="Permanent link">&para;</a></h1>
 <h2 id="desempenho-e-performance">Desempenho e Performance<a class="headerlink" href="#desempenho-e-performance" title="Permanent link">&para;</a></h2>
@@ -671,57 +672,71 @@
 <li><strong>RNF05</strong>: O código fonte deve obrigatoriamente passar por verificações automatizadas de formatação (Linters como Ruff/ESLint) e execução de testes unitários através de uma pipeline de Integração Contínua (GitHub Actions) a cada Pull Request.</li>
 </ul>
 <h2 id="usabilidade">Usabilidade<a class="headerlink" href="#usabilidade" title="Permanent link">&para;</a></h2>
-<h2 id="rnf06-a-interface-do-usuario-react-deve-ser-responsiva-garantindo-a-legibilidade-dos-textos-legislativos-e-a-correta-exibicao-dos-graficos-em-resolucoes-desktop-telas-grandes-e-dispositivos-moveis">* <strong>RNF06</strong>: A interface do usuário (React) deve ser responsiva, garantindo a legibilidade dos textos legislativos e a correta exibição dos gráficos em resoluções desktop (telas grandes) e dispositivos móveis.<a class="headerlink" href="#rnf06-a-interface-do-usuario-react-deve-ser-responsiva-garantindo-a-legibilidade-dos-textos-legislativos-e-a-correta-exibicao-dos-graficos-em-resolucoes-desktop-telas-grandes-e-dispositivos-moveis" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>RNF06</strong>: A interface do usuário (React) deve ser responsiva, garantindo a legibilidade dos textos legislativos e a correta exibição dos gráficos em resoluções desktop (telas grandes) e dispositivos móveis.</li>
+</ul>
+<hr />
 <h1 id="criterios-de-aceitacao-gherkin">Critérios de Aceitação (Gherkin)<a class="headerlink" href="#criterios-de-aceitacao-gherkin" title="Permanent link">&para;</a></h1>
 <h2 id="cenario-classificacao-pelo-inteiro-teor">Cenário: Classificação pelo inteiro teor<a class="headerlink" href="#cenario-classificacao-pelo-inteiro-teor" title="Permanent link">&para;</a></h2>
-<p><strong>Dado que</strong> uma proposição legislativa não menciona nenhum dos temas monitorados em sua ementa<br />
-<strong>Quando</strong> o sistema realiza o processamento do texto completo da proposição<br />
-<strong>Então</strong> ela deve ser classificada corretamente no subtema correspondente e exibida no dashboard com as demais proposições daquele subtema</p>
+<p><strong>Dado que</strong> uma proposição não cita o tema na ementa
+<strong>Quando</strong> o sistema analisa o texto completo
+<strong>Então</strong> ela deve ser classificada corretamente</p>
 <hr />
-<h2 id="cenario-visualizacao-do-ranking-de-parlamentares">Cenário: Visualização do ranking de parlamentares<a class="headerlink" href="#cenario-visualizacao-do-ranking-de-parlamentares" title="Permanent link">&para;</a></h2>
-<p><strong>Dado que</strong> estou visualizando o dashboard da plataforma<br />
-<strong>Quando</strong> seleciono o subtema "Cyberbullying" no painel de parlamentares<br />
-<strong>Então</strong> o sistema deve exibir uma lista de deputados ordenada pelo número de proposições apresentadas sobre aquele subtema, com nome, partido e quantidade visíveis</p>
-<h2 id="cenario-analise-temporal-por-subtema">Cenário: Análise temporal por subtema<a class="headerlink" href="#cenario-analise-temporal-por-subtema" title="Permanent link">&para;</a></h2>
-<p><strong>Dado que</strong> estou visualizando o dashboard da plataforma<br />
-<strong>Quando</strong> seleciono um subtema no painel de evolução temporal<br />
-<strong>Então</strong> devo visualizar um gráfico com a distribuição anual de proposições classificadas naquele subtema, evidenciando tendências de crescimento ou queda ao longo do tempo</p>
-<h2 id="cenario-auditoria-de-proposicoes-antes-de-redigir-projeto">Cenário: Auditoria de proposições antes de redigir projeto<a class="headerlink" href="#cenario-auditoria-de-proposicoes-antes-de-redigir-projeto" title="Permanent link">&para;</a></h2>
-<p><strong>Dado que</strong> sou uma assessora legislativa e preciso verificar o que já foi proposto sobre "controle parental"<br />
-<strong>Quando</strong> aplico o filtro por subtema "Controle Parental" no painel de proposições<br />
-<strong>Então</strong> o sistema deve exibir uma listagem completa das proposições classificadas naquele subtema, ordenada por data, com título, autor e situação atual de cada uma</p>
+<h2 id="cenario-visualizacao-de-ranking">Cenário: Visualização de ranking<a class="headerlink" href="#cenario-visualizacao-de-ranking" title="Permanent link">&para;</a></h2>
+<p><strong>Dado que</strong> estou no dashboard
+<strong>Quando</strong> seleciono o subtema "Cyberbullying"
+<strong>Então</strong> o sistema deve mostrar deputados ordenados</p>
+<hr />
+<h2 id="cenario-analise-temporal">Cenário: Análise temporal<a class="headerlink" href="#cenario-analise-temporal" title="Permanent link">&para;</a></h2>
+<p><strong>Dado que</strong> estou no dashboard
+<strong>Quando</strong> seleciono um subtema
+<strong>Então</strong> devo visualizar a evolução ao longo do tempo</p>
 <hr />
 <h1 id="arquitetura">Arquitetura<a class="headerlink" href="#arquitetura" title="Permanent link">&para;</a></h1>
 <h2 id="pipeline-de-dados">Pipeline de Dados<a class="headerlink" href="#pipeline-de-dados" title="Permanent link">&para;</a></h2>
-<p>O fluxo de processamento da plataforma é composto por cinco etapas sequenciais e bem delimitadas:</p>
 <ol>
-<li><strong>Extração via API:</strong> consumo periódico da API da Câmara dos Deputados para recuperação de metadados e links das proposições.</li>
-<li><strong>Download do inteiro teor:</strong> obtenção dos documentos PDF ou TXT referenciados nos metadados de cada proposição.</li>
-<li><strong>Processamento com NLP:</strong> extração do conteúdo textual e aplicação do modelo de classificação por subtema.</li>
-<li><strong>Classificação e enriquecimento:</strong> associação de cada proposição aos subtemas identificados, enriquecendo o registro com os resultados da análise.</li>
-<li><strong>Armazenamento estruturado:</strong> persistência dos dados em base de dados relacional ou documental, otimizada para as consultas do dashboard.</li>
+<li>Extração via API (Câmara/Senado)</li>
+<li>Download do inteiro teor</li>
+<li>Processamento com NLP</li>
+<li>Classificação por temas e subtemas</li>
+<li>Armazenamento estruturado</li>
 </ol>
 <hr />
 <h2 id="camada-de-visualizacao">Camada de Visualização<a class="headerlink" href="#camada-de-visualizacao" title="Permanent link">&para;</a></h2>
-<p>O dashboard interativo será o ponto de acesso central da plataforma para todos os perfis de usuário. Ele deverá oferecer:</p>
 <ul>
-<li>Gráficos de volume de proposições por subtema</li>
-<li>Rankings de parlamentares e partidos, filtráveis por subtema</li>
-<li>Gráficos de evolução temporal com suporte a comparação entre subtemas</li>
-<li>Filtros combinados por período, tema, deputado e partido</li>
+<li>Dashboard interativo</li>
+<li>Gráficos por subtema</li>
+<li>Rankings de parlamentares</li>
+<li>Filtros por período, tema e deputado</li>
 </ul>
 <hr />
 <h2 id="principios-arquiteturais">Princípios Arquiteturais<a class="headerlink" href="#principios-arquiteturais" title="Permanent link">&para;</a></h2>
-<p>A arquitetura da plataforma segue três princípios fundamentais. O primeiro é a separação clara entre o pipeline de processamento de dados e a camada de visualização, garantindo que cada componente possa evoluir independentemente. O segundo é o foco em desempenho e escalabilidade, de forma que o crescimento no volume de proposições processadas não comprometa a experiência do usuário no dashboard. O terceiro é a facilidade de manutenção, com código modular e interfaces bem definidas entre os componentes do sistema.</p>
+<ul>
+<li>Separação entre processamento e visualização</li>
+<li>Melhor desempenho e escalabilidade</li>
+<li>Facilidade de manutenção</li>
+</ul>
 <hr />
 <h1 id="mvp-produto-minimo-viavel">MVP (Produto Mínimo Viável)<a class="headerlink" href="#mvp-produto-minimo-viavel" title="Permanent link">&para;</a></h1>
-<p>O MVP da plataforma entregará as funcionalidades essenciais para que os perfis de usuário prioritários possam começar a utilizá-la de forma produtiva.</p>
-<h2 id="integracao-com-api-e-processamento">Integração com API e Processamento<a class="headerlink" href="#integracao-com-api-e-processamento" title="Permanent link">&para;</a></h2>
-<p>O MVP incluirá a extração de dados e metadados da API da Câmara, o download e a leitura do inteiro teor das proposições, o processamento com NLP para classificação por subtema e o armazenamento estruturado dos resultados.</p>
+<h2 id="integracao-com-api">Integração com API<a class="headerlink" href="#integracao-com-api" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Extração de dados</li>
+<li>Download do inteiro teor</li>
+<li>Processamento com NLP</li>
+<li>Armazenamento</li>
+</ul>
+<hr />
 <h2 id="dashboard">Dashboard<a class="headerlink" href="#dashboard" title="Permanent link">&para;</a></h2>
-<p>O dashboard do MVP apresentará as proposições classificadas por subtema, com visualização do volume por categoria, gráficos básicos de distribuição e o ranking de parlamentares e partidos mais ativos.</p>
-<h2 id="criterio-geral-de-aceitacao-do-mvp">Critério Geral de Aceitação do MVP<a class="headerlink" href="#criterio-geral-de-aceitacao-do-mvp" title="Permanent link">&para;</a></h2>
-<h2 id="o-sistema-deve-permitir-a-analise-basica-de-proposicoes-legislativas-relacionadas-a-protecao-de-criancas-e-adolescentes-no-ambiente-digital-classificando-as-por-tema-e-subtema-com-base-no-inteiro-teor-e-apresentando-os-dados-de-forma-clara-filtravel-e-acessivel-no-dashboard">O sistema deve permitir a análise básica de proposições legislativas relacionadas à proteção de crianças e adolescentes no ambiente digital, classificando-as por tema e subtema com base no inteiro teor e apresentando os dados de forma clara, filtrável e acessível no dashboard.<a class="headerlink" href="#o-sistema-deve-permitir-a-analise-basica-de-proposicoes-legislativas-relacionadas-a-protecao-de-criancas-e-adolescentes-no-ambiente-digital-classificando-as-por-tema-e-subtema-com-base-no-inteiro-teor-e-apresentando-os-dados-de-forma-clara-filtravel-e-acessivel-no-dashboard" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Dados disponíveis</li>
+<li>Classificação por subtema</li>
+<li>Visualização por volume</li>
+<li>Ranking de parlamentares</li>
+</ul>
+<hr />
+<h2 id="criterio-geral">Critério Geral<a class="headerlink" href="#criterio-geral" title="Permanent link">&para;</a></h2>
+<p>O sistema deve permitir análise básica de proposições legislativas com base em temas e subtemas, apresentando os dados de forma clara no dashboard.</p>
+<hr />
 <h1 id="versionamento">📌 Versionamento<a class="headerlink" href="#versionamento" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
@@ -746,26 +761,6 @@
 <td>1.2</td>
 <td>18/05/2026</td>
 <td>Reinserção da seção de Requisitos Não Funcionais</td>
-</tr>
-<tr>
-<td>1.3.0</td>
-<td>29/05/2026</td>
-<td>Aprimoramento de requisitos e adiciona personas</td>
-</tr>
-<tr>
-<td>1.3.1</td>
-<td>30/05/2026</td>
-<td>Adiciona e melhora User stories</td>
-</tr>
-<tr>
-<td>1.3.2</td>
-<td>08/06/2026</td>
-<td>Complementa descrição de RFs e complmenta critérios de aceite</td>
-</tr>
-<tr>
-<td>1.4</td>
-<td>15/06/2026</td>
-<td>Ajusta descrição do MVP e arquitetura</td>
 </tr>
 </tbody>
 </table>
