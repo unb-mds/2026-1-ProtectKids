@@ -34,7 +34,7 @@ class Proposicao(SQLModel, table=True):
     subtema: Optional[str] = Field(default=None)            # Palavra-chave do crawler
     texto_integral: Optional[str] = Field(default=None)     # O texto cru extraído de dentro do PDF
     classificacao_nlp: Optional[str] = Field(default=None)  # O resultado gerado pelo modelo de IA
-    tramitacoes: List[Tramitacao] = Relationship(back_populates="proposicao")
+    tramitacoes: List["Tramitacao"] = Relationship(back_populates="proposicao")
     autor: Optional[Parlamentar] = Relationship(back_populates="proposicoes")
 
     class Tramitacao(SQLModel, table=True):
