@@ -136,26 +136,53 @@ def transform_materia_senado(materia_bruta: dict) -> Optional[tuple]:
     )
     
     return (proposicao, parlamentar)
+
+def obter_ids_existentes(origem_alvo: str) -> set:
+    """
+    Busca no banco todos os IDs externos já cadastrados para evitar 
+    o reprocessamento de NLP.
+    """
+    with Session(engine) as session:
+        statement = select(Proposicao.id_externo).where(Proposicao.origem == origem_alvo)
+        resultados = session.exec(statement).all()
+        return set(resultados)
+
 def run_pipeline_senado():
     logger.info("=== Iniciando pipeline ETL do Senado ===")
     SQLModel.metadata.create_all(engine)
     
+    # NOVO: Carrega os IDs que já estão no banco para a memória
+    ids_existentes = obter_ids_existentes(origem_alvo="Senado")
+    logger.info(f"Cache local: {len(ids_existentes)} proposições do Senado já existem no banco.")
+    
     tuplas = []
-    ids_processados = set()
+    ids_processados_nesta_run = set()
     
     for keyword in KEYWORDS:
         materias = fetch_proposicoes_senado(keyword)
         for mat in materias:
-            # Lembre-se de atualizar aqui também para buscar por "Codigo"
             codigo = find_value(mat, "Codigo") 
-            if codigo and codigo not in ids_processados:
-                ids_processados.add(codigo)
-                resultado = transform_materia_senado(mat)
-                if resultado:
-                    tuplas.append(resultado)
-                    
-    total_salvo = save_proposicoes(tuplas)
-    logger.info(f"=== Pipeline do Senado concluído. {total_salvo} registros normalizados salvos. ===")
-    
+            if not codigo:
+                continue
+                
+            id_externo_formatado = f"senado-{codigo}"
+            
+            # A TRAVA: Evita duplicidade e pula o que já está no banco de dados
+            if id_externo_formatado in ids_existentes or id_externo_formatado in ids_processados_nesta_run:
+                continue
+                
+            ids_processados_nesta_run.add(id_externo_formatado)
+            resultado = transform_materia_senado(mat)
+            if resultado:
+                tuplas.append(resultado)
+                
+    # LOAD atualizado para informar se não houver dados novos
+    if tuplas:
+        total_salvo = save_proposicoes(tuplas)
+        logger.info(f"=== Pipeline do Senado concluído. {total_salvo} registros normalizados salvos. ===")
+    else:
+        logger.info("=== Pipeline do Senado concluído. Nenhuma matéria inédita para processar hoje. ===")
+
+        
 if __name__ == "__main__":
     run_pipeline_senado()

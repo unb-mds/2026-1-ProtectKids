@@ -22,8 +22,9 @@ from typing import Optional
 from sqlmodel import select, Session, SQLModel
 from datetime import datetime
 import requests
-import pdfplumber
+import fitz
 import spacy
+import concurrent.futures
 
 # Garante que o módulo backend/ seja encontrado quando executado diretamente
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -186,14 +187,14 @@ def fetch_detalhes_proposicao(id_proposicao_api: int) -> dict:
     
 def extrair_texto_pdf(url_pdf: Optional[str]) -> Optional[str]:
     """
-    Faz o download do PDF do inteiro teor de forma temporária,
-    extrai todo o conteúdo de texto e deleta o arquivo local de cache.
+    Faz o descarregamento do PDF de forma temporária e extrai 
+    todo o texto utilizando o PyMuPDF (fitz) para máxima velocidade.
     """
     if not url_pdf:
         return None
     
     try:
-        logger.info(f"Baixando PDF para extração: {url_pdf}")
+        logger.info(f"Descarregando PDF para extração rápida: {url_pdf}")
         resposta = requests.get(url_pdf, timeout=30)
         resposta.raise_for_status()
         
@@ -202,9 +203,10 @@ def extrair_texto_pdf(url_pdf: Optional[str]) -> Optional[str]:
             temp_pdf_path = temp_pdf.name
             
         texto_extraido = ""
-        with pdfplumber.open(temp_pdf_path) as pdf:
-            for pagina in pdf.pages:
-                texto = pagina.extract_text()
+        # A nova lógica de leitura ultrarrápida com PyMuPDF
+        with fitz.open(temp_pdf_path) as pdf:
+            for pagina in pdf:
+                texto = pagina.get_text()
                 if texto:
                     texto_extraido += texto + "\n"
                     
@@ -214,8 +216,6 @@ def extrair_texto_pdf(url_pdf: Optional[str]) -> Optional[str]:
     except Exception as e:
         logger.warning(f"Não foi possível processar o PDF da URL {url_pdf}: {e}")
         return None
-
-
 # ---------------------------------------------------------------------------
 # CAMADA DE NLP — Processamento de Linguagem Natural
 # ---------------------------------------------------------------------------
@@ -324,6 +324,20 @@ def transform_proposicao(dado_bruto: dict, autor_bruto: dict) -> Optional[tuple]
     
     return (proposicao, parlamentar)
 
+# ---------------------------------------------------------------------------
+# CAMADA DE OTIMIZAÇÃO (NOVO)
+# ---------------------------------------------------------------------------
+
+def obter_ids_existentes(origem_alvo: str) -> set:
+    """
+    Busca no banco todos os IDs externos já cadastrados para evitar 
+    o download repetido de PDFs e reprocessamento de NLP.
+    """
+    with Session(engine) as session:
+        # Selecionamos apenas a coluna id_externo para não sobrecarregar a memória
+        statement = select(Proposicao.id_externo).where(Proposicao.origem == origem_alvo)
+        resultados = session.exec(statement).all()
+        return set(resultados)
 
 # ---------------------------------------------------------------------------
 # CAMADA DE SAVE & RUN PIPELINE
@@ -359,11 +373,36 @@ def save_proposicoes(tuplas_prop_autor: list[tuple]) -> int:
         session.commit()
     return inseridos
 
+def processar_materia_individual(dado: dict, ids_existentes: set) -> Optional[tuple]:
+    """
+    Função isolada para ser executada em paralelo (Thread).
+    Faz o download do PDF e passa pela IA de forma independente.
+    """
+    id_bruto = dado.get("id")
+    id_externo_formatado = f"camara-{id_bruto}"
 
+    try:
+        # Puxa os dados adicionais da API
+        autor_bruto = fetch_autor_da_proposicao(id_bruto)
+        detalhes_brutos = fetch_detalhes_proposicao(id_bruto)
+        
+        # Injeta o link do PDF
+        dado["urlInteiroTeor"] = detalhes_brutos.get("urlInteiroTeor")
+        
+        # processamento pesado (PDF + NLP)
+        resultado = transform_proposicao(dado, autor_bruto)
+        if resultado:
+            logger.info(f"Nova matéria processada: {id_externo_formatado}")
+        return resultado
+    except Exception as exc:
+        logger.error(f"Erro na thread ao processar {id_externo_formatado}: {exc}")
+        return None
 def run_pipeline() -> None:
     logger.info("=== Iniciando pipeline ETL Inteligente (PDF + NLP) ===")
-    logger.info("Verificando/Criando tabelas no banco de dados...")
     SQLModel.metadata.create_all(engine)
+
+    ids_existentes = obter_ids_existentes(origem_alvo="Câmara")
+    logger.info(f"Cache local: {len(ids_existentes)} proposições da Câmara já existem.")
 
     # 1. EXTRACT
     dados_brutos = fetch_todas_proposicoes()
@@ -371,26 +410,44 @@ def run_pipeline() -> None:
         logger.warning("Nenhuma proposição capturada na extração externa.")
         return
 
-# 2. TRANSFORM
+    # 2. TRANSFORM OTIMIZADO (MULTITHREADING)
     tuplas: list[tuple] = []
-    for dado in dados_brutos:
-        id_prop = dado.get("id")
-        
-        # Faz as chamadas extras necessárias
-        autor_bruto = fetch_autor_da_proposicao(id_prop)
-        detalhes_brutos = fetch_detalhes_proposicao(id_prop)
-        
-        # Injeta o link do PDF no dado antes de transformar
-        dado["urlInteiroTeor"] = detalhes_brutos.get("urlInteiroTeor")
-        
-        resultado = transform_proposicao(dado, autor_bruto)
-        if resultado:
-            tuplas.append(resultado)
-            
-    # 3. LOAD
-    total_salvo = save_proposicoes(tuplas)
-    logger.info(f"=== Pipeline concluído. {total_salvo} novos registros inseridos com NLP. ===")
+    ids_processados_nesta_run = set()
+    dados_ineditos = []
 
+    # Filtra rapidamente tudo o que é novo e precisa ser processado
+    for dado in dados_brutos:
+        id_bruto = dado.get("id")
+        id_externo_formatado = f"camara-{id_bruto}"
+        
+        if id_externo_formatado not in ids_existentes and id_externo_formatado not in ids_processados_nesta_run:
+            dados_ineditos.append(dado)
+            ids_processados_nesta_run.add(id_externo_formatado)
+
+    if not dados_ineditos:
+        logger.info("=== Pipeline concluído. Nenhuma matéria inédita para processar hoje. ===")
+        return
+
+    logger.info(f"Iniciando download paralelo de {len(dados_ineditos)} PDFs. Isso será rápido...")
+
+    # A MÁGICA: Abre 10 linhas de execução simultâneas
+    with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+        # Envia todas as matérias inéditas para as threads trabalharem
+        futuros = {
+            executor.submit(processar_materia_individual, d, ids_existentes): d 
+            for d in dados_ineditos
+        }
+        
+        # Conforme as threads vão terminando o download e o NLP, vamos guardando o resultado
+        for futuro in concurrent.futures.as_completed(futuros):
+            resultado = futuro.result()
+            if resultado:
+                tuplas.append(resultado)
+
+    # 3. LOAD
+    if tuplas:
+        total_salvo = save_proposicoes(tuplas)
+        logger.info(f"=== Pipeline concluído. {total_salvo} novos registros inseridos com NLP. ===")
 
 if __name__ == "__main__":
     run_pipeline()
