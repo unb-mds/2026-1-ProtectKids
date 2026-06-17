@@ -1,6 +1,42 @@
 {
-    "last_updated": "2026-06-17T19:00:29.475796Z",
+    "last_updated": "2026-06-17T19:46:25.390483Z",
     "commits": [
+        {
+            "hash": "d536514a5d8dae8759353675e65916f0ebb307bb",
+            "date": "2026-06-17T16:45:51-03:00",
+            "message": "Merge pull request #100 from unb-mds/feat/implementa_tramitacao",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "d45bb824b8eb59e2705174b9d8bad22742a2e7ec",
+            "date": "2026-06-17T16:37:01-03:00",
+            "message": "feat: permite ao usuário aumentar o numero de paginas baixadas",
+            "is_conventional": true,
+            "insertions": 8,
+            "deletions": 7,
+            "total_diff": 15
+        },
+        {
+            "hash": "9d283c5a2b109a805c32b870ee144204ab9cb1d3",
+            "date": "2026-06-17T16:34:22-03:00",
+            "message": "feat: adiciona filtos para nuvem de palavras",
+            "is_conventional": true,
+            "insertions": 25,
+            "deletions": 4,
+            "total_diff": 29
+        },
+        {
+            "hash": "01ca3280d09f1420c539034afefac1e436175f43",
+            "date": "2026-06-17T16:03:52-03:00",
+            "message": "feat: adiciona endpoint para nuvem de palavras",
+            "is_conventional": true,
+            "insertions": 44,
+            "deletions": 1,
+            "total_diff": 45
+        },
         {
             "hash": "84f85a0c5c6c49cd0b6238e62146c4d9519670bf",
             "date": "2026-06-17T16:00:01-03:00",
@@ -1543,6 +1579,24 @@
     ],
     "issues": [
         {
+            "number": 102,
+            "title": "Configuração de Limite Dinâmico de Extração",
+            "state": "open",
+            "created_at": "2026-06-17T19:44:56Z",
+            "closed_at": null,
+            "resolution_time_hours": null,
+            "char_count": 1363
+        },
+        {
+            "number": 101,
+            "title": "Rota Analítica para Nuvem de Palavras",
+            "state": "open",
+            "created_at": "2026-06-17T19:42:13Z",
+            "closed_at": null,
+            "resolution_time_hours": null,
+            "char_count": 1413
+        },
+        {
             "number": 97,
             "title": "Rota da API para Histórico de Tramitações",
             "state": "open",
@@ -2045,32 +2099,14 @@
             "closed_at": "2026-04-05T14:26:42Z",
             "resolution_time_hours": 96.79,
             "char_count": 1291
-        },
-        {
-            "number": 2,
-            "title": "Estudo geral sobre Arquitetura de Software",
-            "state": "closed",
-            "created_at": "2026-03-30T18:32:17Z",
-            "closed_at": "2026-03-31T13:19:25Z",
-            "resolution_time_hours": 18.79,
-            "char_count": 1906
-        },
-        {
-            "number": 1,
-            "title": "twrs",
-            "state": "closed",
-            "created_at": "2026-03-30T16:15:24Z",
-            "closed_at": "2026-04-05T22:24:55Z",
-            "resolution_time_hours": 150.16,
-            "char_count": 34
         }
     ],
     "autores": {
         "augustogmedeiros": {
-            "commits": 106,
-            "insercoes": 6293,
-            "delecoes": 2946521,
-            "total_linhas": 2952814
+            "commits": 110,
+            "insercoes": 6370,
+            "delecoes": 2946533,
+            "total_linhas": 2952903
         },
         "Danielly Mendes": {
             "commits": 14,
