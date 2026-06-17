@@ -1,6 +1,24 @@
 {
-    "last_updated": "2026-06-17T14:21:40.311936Z",
+    "last_updated": "2026-06-17T16:18:35.274800Z",
     "commits": [
+        {
+            "hash": "743575dca91c8d0d2e1647c34967a4ba79ff60e4",
+            "date": "2026-06-17T13:17:50-03:00",
+            "message": "Merge pull request #98 from unb-mds/fix/corrige-senado",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "48faf493f0881cf8713b1b862bd09b700a004fe1",
+            "date": "2026-06-17T11:21:58-03:00",
+            "message": "feat:adiciona tempo de tramitação na main",
+            "is_conventional": true,
+            "insertions": 73,
+            "deletions": 4,
+            "total_diff": 77
+        },
         {
             "hash": "3d9127b95627ee41b8d24a200282136307c221a9",
             "date": "2026-06-17T11:21:03-03:00",
@@ -1986,10 +2004,10 @@
     ],
     "autores": {
         "augustogmedeiros": {
-            "commits": 97,
-            "insercoes": 6036,
-            "delecoes": 2946492,
-            "total_linhas": 2952528
+            "commits": 99,
+            "insercoes": 6109,
+            "delecoes": 2946496,
+            "total_linhas": 2952605
         },
         "Danielly Mendes": {
             "commits": 14,
