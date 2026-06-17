@@ -1,11 +1,9 @@
-name: Atualização de Tramitações (ETL)
+name: Atualização de Banco de Dados (ETL Completo)
 
 on:
   schedule:
-    # 0 6 * * 0,3 significa: 06:00 UTC (03:00 no horário de Brasília) aos Domingos (0) e Quartas (3)
     - cron: '0 6 1,15 * *'
   
-  # Este comando permite que você clique num botão no GitHub para rodar manualmente a qualquer momento
   workflow_dispatch: 
 
 jobs:
@@ -25,11 +23,14 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r backend/requirements.txt
+          python -m spacy download pt_core_news_sm
 
-      - name: Rodar Crawler de Tramitações
+      - name: Rodar Motores de Extração e Tramitações
         env:
-          # A esteira precisa das credenciais do banco de produção para salvar os dados
           DATABASE_URL: ${{ secrets.DATABASE_URL }} 
+          MAX_PAGES: 50
         run: |
           cd backend
+          python -m crawler.camara_api
+          python -m crawler.senado_api
           python -m crawler.tramitacoes_api

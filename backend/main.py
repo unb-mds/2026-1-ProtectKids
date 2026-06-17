@@ -6,8 +6,12 @@ from sqlmodel import SQLModel, Session, select, func
 from database import engine, get_session
 from models import Proposicao, Parlamentar, Tramitacao
 from fastapi.middleware.cors import CORSMiddleware
+import spacy
+from collections import Counter
 
 app = FastAPI(title="ProtectKids API")
+
+nlp = spacy.load("pt_core_news_sm")
 
 # CORS = TRAVA DE SEGURANÇA 
 app.add_middleware(
@@ -187,3 +191,63 @@ def obter_tramitacoes(id_externo: str, session: Session = Depends(get_session)):
     tramitacoes = session.exec(statement).all()
 
     return tramitacoes
+
+# ==========================================
+# 5. ROTA DE NUVEM DE PALAVRAS (DASHBOARD)
+# ==========================================
+@app.get("/analytics/nuvem-palavras")
+def get_nuvem_palavras(
+    ano: Optional[int] = None,
+    tema_nlp: Optional[str] = None,
+    session: Session = Depends(get_session)
+):
+    """
+    Retorna as palavras mais frequentes nas ementas das proposições.
+    Ideal para bibliotecas de Word Cloud no frontend.
+    """
+    query = select(Proposicao.ementa)
+    
+    if ano:
+        query = query.where(Proposicao.ano == ano)
+    if tema_nlp:
+        query = query.where(Proposicao.classificacao_nlp == tema_nlp)
+        
+    ementas = session.exec(query).all()
+    
+    if not ementas:
+        return []
+
+    texto_completo = " ".join([e for e in ementas if e])
+    doc = nlp(texto_completo)
+    
+# Lista de jargões legislativos que não agregam valor visual à Nuvem de Palavras
+    ruidos_legislativos = {
+        "lei", "alterar", "altera", "artigo", "inciso", 
+        "parágrafo", "dispor", "estabelecer", "acrescentar", 
+        "dar", "providência", "nº", "redação", "sobre",
+        
+        # Meses do ano
+        "janeiro", "fevereiro", "março", "abril", "maio", "junho", 
+        "julho", "agosto", "setembro", "outubro", "novembro", "dezembro",
+        
+        # Novos ruídos estruturais e burocráticos identificados
+        "art.", "institui", "instituir", "federal", "dispõe", "requer", 
+        "decreto-lei", "audiência", "realização", "termos", "regimento", 
+        "interno", "objetivo", "ano", "nacional", "público", "programa", "incluir", "âmbito", "ser", 
+    }
+
+    palavras = [
+            token.lemma_.lower() 
+            for token in doc 
+            if not token.is_stop 
+            and not token.is_punct 
+            and not token.like_num # Remove automaticamente números e anos (ex: 1990, 2026)
+            and len(token.text) > 2
+            and token.lemma_.lower() not in ruidos_legislativos
+            and token.text.lower() not in ruidos_legislativos
+        ]
+    
+    contagem = Counter(palavras)
+    top_palavras = contagem.most_common(50)
+    
+    return [{"text": palavra, "value": frequencia} for palavra, frequencia in top_palavras]

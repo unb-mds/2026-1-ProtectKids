@@ -98,7 +98,7 @@ PARAMS_BASE = {
 }
 
 # Número máximo de páginas a buscar por palavra-chave (evita explosão de dados)
-MAX_PAGES = 3
+LIMITE_PAGINAS = int(os.getenv("MAX_PAGES", 3))
 
 # ---------------------------------------------------------------------------
 # CAMADA DE FETCH — busca dados na API externa e extrai documentos
@@ -112,7 +112,7 @@ def fetch_proposicoes_por_keyword(keyword: str) -> list[dict]:
     """
     resultados: list[dict] = []
 
-    for pagina in range(1, MAX_PAGES + 1):
+    for pagina in range(1, LIMITE_PAGINAS + 1):
         params = {
             **PARAMS_BASE,
             "keywords": keyword,
