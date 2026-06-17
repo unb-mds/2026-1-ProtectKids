@@ -25,6 +25,7 @@ def on_startup():
 @app.get("/")
 def read_root():
     return {"status": "ProtectKids Online", "message": "API e Banco de Dados conectados com sucesso!"}
+
 # ==========================================
 # 1. ROTA DE PROPOSIÇÕES E DETALHES (COM FILTROS E AUTOR)
 # ==========================================
@@ -63,6 +64,7 @@ def get_todas_proposicoes(
         resultados.append(prop_dict)
         
     return resultados
+
 @app.get("/proposicoes/{id_busca}")
 def get_proposicao_por_id(id_busca: int, session: Session = Depends(get_session)):
     """
@@ -80,6 +82,7 @@ def get_proposicao_por_id(id_busca: int, session: Session = Depends(get_session)
     prop_dict["nome_autor"] = prop.autor.nome if prop.autor else "Autor Desconhecido"
     
     return prop_dict
+
 # ==========================================
 # 2. ROTA DE RANKING DE PARLAMENTARES (COM FILTROS)
 # ==========================================
@@ -148,36 +151,6 @@ def get_ranking_partidos(
         for row in resultados
     ]
 
-# [Aqui termina a sua rota antiga]
-@app.get("/analytics/partidos/ranking")
-def get_ranking_partidos(
-    ano: Optional[int] = None,
-    tema_nlp: Optional[str] = None,
-    session: Session = Depends(get_session)
-):
-    query = (
-        select(
-            Parlamentar.partido,
-            func.count(Proposicao.id_proposicao).label("total_projetos")
-        )
-        .join(Proposicao, Proposicao.id_autor == Parlamentar.id_parlamentar)
-    )
-    
-    if ano:
-        query = query.where(Proposicao.ano == ano)
-    if tema_nlp:
-        query = query.where(Proposicao.classificacao_nlp == tema_nlp)
-        
-    query = query.group_by(Parlamentar.partido).order_by(func.count(Proposicao.id_proposicao).desc())
-    
-    resultados = session.exec(query).all()
-    
-    return [
-        {"partido": row[0], "total_projetos": row[1]}
-        for row in resultados
-    ]
-
-
 # ==========================================
 # 4. ROTA DE HISTÓRICO DE TRAMITAÇÕES
 # ==========================================
@@ -193,7 +166,7 @@ def obter_tramitacoes(id_externo: str, session: Session = Depends(get_session)):
     """
     Retorna a linha do tempo do andamento de uma proposição.
     """
-    # Primeiro verifica se a lei existe no banco
+    # Passo A: Verificar se a lei existe no banco
     proposicao = session.exec(
         select(Proposicao).where(Proposicao.id_externo == id_externo)
     ).first()
@@ -204,7 +177,7 @@ def obter_tramitacoes(id_externo: str, session: Session = Depends(get_session)):
             detail=f"Proposição com ID {id_externo} não foi encontrada no banco de dados."
         )
 
-    # Depois busca as tramitações vinculadas a essa lei, ordenando da mais recente para a mais antiga
+    # Passo B: Buscar as tramitações vinculadas a essa lei, ordenando da mais recente para a mais antiga
     statement = (
         select(Tramitacao)
         .where(Tramitacao.id_proposicao_externo == id_externo)
@@ -212,5 +185,5 @@ def obter_tramitacoes(id_externo: str, session: Session = Depends(get_session)):
     )
     
     tramitacoes = session.exec(statement).all()
-    
+
     return tramitacoes
