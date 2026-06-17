@@ -1,8 +1,10 @@
-from typing import Optional
-from fastapi import FastAPI, Depends
+from typing import Optional, List
+from datetime import datetime
+from fastapi import FastAPI, Depends, HTTPException
+from pydantic import BaseModel
 from sqlmodel import SQLModel, Session, select, func
 from database import engine, get_session
-from models import Proposicao, Parlamentar
+from models import Proposicao, Parlamentar, Tramitacao
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="ProtectKids API")
@@ -23,6 +25,7 @@ def on_startup():
 @app.get("/")
 def read_root():
     return {"status": "ProtectKids Online", "message": "API e Banco de Dados conectados com sucesso!"}
+
 # ==========================================
 # 1. ROTA DE PROPOSIÇÕES E DETALHES (COM FILTROS E AUTOR)
 # ==========================================
@@ -61,6 +64,7 @@ def get_todas_proposicoes(
         resultados.append(prop_dict)
         
     return resultados
+
 @app.get("/proposicoes/{id_busca}")
 def get_proposicao_por_id(id_busca: int, session: Session = Depends(get_session)):
     """
@@ -78,6 +82,7 @@ def get_proposicao_por_id(id_busca: int, session: Session = Depends(get_session)
     prop_dict["nome_autor"] = prop.autor.nome if prop.autor else "Autor Desconhecido"
     
     return prop_dict
+
 # ==========================================
 # 2. ROTA DE RANKING DE PARLAMENTARES (COM FILTROS)
 # ==========================================
@@ -145,3 +150,40 @@ def get_ranking_partidos(
         {"partido": row[0], "total_projetos": row[1]}
         for row in resultados
     ]
+
+# ==========================================
+# 4. ROTA DE HISTÓRICO DE TRAMITAÇÕES
+# ==========================================
+
+# Cria o modelo de resposta para o frontend receber um JSON limpo
+class TramitacaoResponse(BaseModel):
+    data_hora: datetime
+    orgao: str
+    descricao: str
+
+@app.get("/proposicoes/{id_externo}/tramitacoes", response_model=List[TramitacaoResponse])
+def obter_tramitacoes(id_externo: str, session: Session = Depends(get_session)):
+    """
+    Retorna a linha do tempo do andamento de uma proposição.
+    """
+    # Passo A: Verificar se a lei existe no banco
+    proposicao = session.exec(
+        select(Proposicao).where(Proposicao.id_externo == id_externo)
+    ).first()
+    
+    if not proposicao:
+        raise HTTPException(
+            status_code=404, 
+            detail=f"Proposição com ID {id_externo} não foi encontrada no banco de dados."
+        )
+
+    # Passo B: Buscar as tramitações vinculadas a essa lei, ordenando da mais recente para a mais antiga
+    statement = (
+        select(Tramitacao)
+        .where(Tramitacao.id_proposicao_externo == id_externo)
+        .order_by(Tramitacao.data_hora.desc())
+    )
+    
+    tramitacoes = session.exec(statement).all()
+
+    return tramitacoes
