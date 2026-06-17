@@ -220,11 +220,32 @@ def get_nuvem_palavras(
     texto_completo = " ".join([e for e in ementas if e])
     doc = nlp(texto_completo)
     
+# Lista de jargões legislativos que não agregam valor visual à Nuvem de Palavras
+    ruidos_legislativos = {
+        "lei", "alterar", "altera", "artigo", "inciso", 
+        "parágrafo", "dispor", "estabelecer", "acrescentar", 
+        "dar", "providência", "nº", "redação", "sobre",
+        
+        # Meses do ano
+        "janeiro", "fevereiro", "março", "abril", "maio", "junho", 
+        "julho", "agosto", "setembro", "outubro", "novembro", "dezembro",
+        
+        # Novos ruídos estruturais e burocráticos identificados
+        "art.", "institui", "instituir", "federal", "dispõe", "requer", 
+        "decreto-lei", "audiência", "realização", "termos", "regimento", 
+        "interno", "objetivo", "ano", "nacional", "público", "programa", "incluir", "âmbito", "ser", 
+    }
+
     palavras = [
-        token.lemma_.lower() 
-        for token in doc 
-        if not token.is_stop and not token.is_punct and len(token.text) > 2
-    ]
+            token.lemma_.lower() 
+            for token in doc 
+            if not token.is_stop 
+            and not token.is_punct 
+            and not token.like_num # Remove automaticamente números e anos (ex: 1990, 2026)
+            and len(token.text) > 2
+            and token.lemma_.lower() not in ruidos_legislativos
+            and token.text.lower() not in ruidos_legislativos
+        ]
     
     contagem = Counter(palavras)
     top_palavras = contagem.most_common(50)
