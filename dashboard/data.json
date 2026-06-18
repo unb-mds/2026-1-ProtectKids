@@ -1,6 +1,15 @@
 {
-    "last_updated": "2026-06-17T19:46:25.390483Z",
+    "last_updated": "2026-06-18T15:34:11.286348Z",
     "commits": [
+        {
+            "hash": "5860f29711284826498eccaac9187a4ffe9372d5",
+            "date": "2026-06-18T12:33:44-03:00",
+            "message": "Feat/contrato api (#103)",
+            "is_conventional": false,
+            "insertions": 201,
+            "deletions": 13,
+            "total_diff": 214
+        },
         {
             "hash": "d536514a5d8dae8759353675e65916f0ebb307bb",
             "date": "2026-06-17T16:45:51-03:00",
@@ -1581,28 +1590,28 @@
         {
             "number": 102,
             "title": "Configuração de Limite Dinâmico de Extração",
-            "state": "open",
+            "state": "closed",
             "created_at": "2026-06-17T19:44:56Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
+            "closed_at": "2026-06-18T15:14:17Z",
+            "resolution_time_hours": 19.49,
             "char_count": 1363
         },
         {
             "number": 101,
             "title": "Rota Analítica para Nuvem de Palavras",
-            "state": "open",
+            "state": "closed",
             "created_at": "2026-06-17T19:42:13Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
+            "closed_at": "2026-06-18T15:14:25Z",
+            "resolution_time_hours": 19.54,
             "char_count": 1413
         },
         {
             "number": 97,
             "title": "Rota da API para Histórico de Tramitações",
-            "state": "open",
+            "state": "closed",
             "created_at": "2026-06-17T05:05:06Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
+            "closed_at": "2026-06-18T15:14:45Z",
+            "resolution_time_hours": 34.16,
             "char_count": 1292
         },
         {
@@ -2090,23 +2099,14 @@
             "closed_at": "2026-04-14T03:22:37Z",
             "resolution_time_hours": 301.65,
             "char_count": 899
-        },
-        {
-            "number": 3,
-            "title": "Estudo sobre Product Owner",
-            "state": "closed",
-            "created_at": "2026-04-01T13:39:26Z",
-            "closed_at": "2026-04-05T14:26:42Z",
-            "resolution_time_hours": 96.79,
-            "char_count": 1291
         }
     ],
     "autores": {
         "augustogmedeiros": {
-            "commits": 110,
-            "insercoes": 6370,
-            "delecoes": 2946533,
-            "total_linhas": 2952903
+            "commits": 111,
+            "insercoes": 6571,
+            "delecoes": 2946546,
+            "total_linhas": 2953117
         },
         "Danielly Mendes": {
             "commits": 14,
