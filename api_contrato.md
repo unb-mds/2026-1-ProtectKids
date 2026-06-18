@@ -122,3 +122,42 @@ Analisa os textos das leis (NLP) e devolve as palavras centrais para a bibliotec
   }
 ]
 ```
+
+---
+
+## ⚠️ Anexos de Integração (Dicionários e Erros)
+
+Para garantir que os filtros do frontend funcionem perfeitamente com o banco de dados e que as telas de erro sejam amigáveis, a equipe de React deve observar os seguintes padrões:
+
+### A. Dicionário de Domínio (Valores Exatos para Filtros)
+Ao montar os componentes de `Select` ou `Dropdown` para os filtros, os valores enviados na URL (`Query Parameters`) devem ser **exatamente** iguais a estas strings (Case Sensitive), caso contrário, a API retornará uma lista vazia.
+
+* **origem:** `Camara` ou `Senado` *(Sem acentos)*
+* **tema_nlp:** 
+  * `Cyberbullying`
+  * `Proteção de dados de menores`
+  * `Exploração sexual online`
+  * `Controle parental`
+  * `Regulação de plataformas digitais`
+  * `Exposição a conteúdo nocivo`
+
+### B. Contrato de Exceções (Tratamento de Erros)
+Quando uma requisição falha (ex: buscar os detalhes de um ID que não existe no banco de dados), o backend não devolve HTML ou texto solto. Ele devolve o status HTTP correspondente (ex: `404 Not Found`) e um JSON padronizado com a chave `detail`. 
+
+O frontend deve capturar essa chave para exibir "Toasts" ou Alertas ao usuário.
+
+* **Exemplo de Resposta de Erro (404 ou 500):**
+```json
+{
+  "detail": "Proposição com ID 12345 não foi encontrada no banco de dados."
+}
+```
+*(No Axios, isso seria acessado via `error.response.data.detail`)*
+
+### C. Configuração de Variáveis de Ambiente (Vite/React)
+O backend já está com o CORS configurado para aceitar requisições locais das portas `3000` e `5173`. Para que o frontend saiba com quem falar sem deixar a URL chumbada no código, criem um arquivo `.env` na raiz do projeto React com a seguinte variável:
+
+```env
+VITE_API_URL=http://localhost:8000
+```
+*(Todas as chamadas do Axios/Fetch devem usar essa base URL).*
