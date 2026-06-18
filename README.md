@@ -36,32 +36,57 @@ Acesse o design e a prototipação da interface do projeto:
 - *GitHub Actions* (CI/CD)
 
 ---
+### 🚀 Como Rodar o Projeto (Quickstart)
 
-# 🚀 Como Rodar o Projeto (Quickstart)
+Certifique-se de ter o **Git** e o **Docker Desktop** instalados e ativos em sua máquina antes de prosseguir.
 
-Certifique-se de ter o *Git* e o *Docker Desktop* instalados e ativos em sua máquina antes de prosseguir.
-
-### 1. Clonar o repositório
+**1. Clonar o repositório**
 ```bash
-git clone "https://github.com/unb-mds/2026-1-ProtectKids"
+git clone [https://github.com/unb-mds/2026-1-ProtectKids](https://github.com/unb-mds/2026-1-ProtectKids)
 cd 2026-1-ProtectKids
 ```
 
-### 2. Subir os contêineres
+**2. Configurar Variáveis de Ambiente**
+Antes de iniciar o Docker, é necessário definir as credenciais do banco de dados local.
+- Na raiz do projeto, faça uma cópia do arquivo `.env.example` e renomeie-a para `.env`.
+- Preencha o arquivo com os seguintes dados padrão de desenvolvimento:
+```env
+POSTGRES_USER=augusto
+POSTGRES_PASSWORD=squad10
+POSTGRES_DB=legislativo_db
+DATABASE_URL=postgresql://augusto:squad10@db:5432/legislativo_db
+```
+
+**3. Subir a Infraestrutura**
+Construa as imagens e inicie os serviços do banco, backend e frontend.
 ```bash
 docker-compose up -d --build
 ```
+*(Aguarde alguns instantes até os contêineres inicializarem)*
 
-### 3. Popular o banco de dados
+**4. Popular o Banco de Dados (ETL)**
+Para utilizar o sistema, é necessário baixar os dados oficiais da internet. Execute os scripts abaixo na ordem:
+
+Primeiro, baixe as proposições de lei base da Câmara e do Senado:
 ```bash
-docker-compose exec backend python crawler/camara_api.py
+docker-compose exec backend python -m crawler.camara_api
+docker-compose exec backend python -m crawler.senado_api
+```
+Em seguida, baixe o histórico de tramitações das leis recém-salvas:
+```bash
+docker-compose exec backend python -m crawler.tramitacoes_api
 ```
 
-### 4. Acessar a aplicação
-```bash
-Interface Web (Frontend): http://localhost:5173
-API Rest (Backend): http://localhost:8000
-Documentação Swagger: http://localhost:8000/docs 
+**5. Acessar a aplicação**
+- **Interface Web (Frontend):** http://localhost:5173
+- **API Rest (Backend):** http://localhost:8000
+- **Documentação Swagger:** http://localhost:8000/docs
+
+
+**💡 Dica de Desenvolvimento:** Caso o banco precise ser totalmente resetado ou suas variáveis do `.env` alteradas, utilize o comando `docker-compose down -v` para destruir os volumes internos e limpe o ambiente antes de subir a infraestrutura novamente.
+
+
+## 📖 Documentação Completa (MkDocs) 
 ```
 
 ## 📖 Documentação Completa (MkDocs)
