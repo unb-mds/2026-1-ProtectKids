@@ -55,12 +55,14 @@ POSTGRES_USER=augusto
 POSTGRES_PASSWORD=squad10
 POSTGRES_DB=legislativo_db
 DATABASE_URL=postgresql://augusto:squad10@db:5432/legislativo_db
+MAX_PAGES=3
 ```
 
 **3. Subir a Infraestrutura**
-Construa as imagens e inicie os serviços do banco, backend e frontend.
+Baixe as imagens oficiais mais recentes da nuvem (GHCR) e inicie os serviços do banco, backend e frontend.
 ```bash
-docker-compose up -d --build
+docker-compose pull
+docker-compose up -d
 ```
 *(Aguarde alguns instantes até os contêineres inicializarem)*
 
