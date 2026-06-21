@@ -107,7 +107,7 @@ LIMITE_PAGINAS = int(os.getenv("MAX_PAGES", 3))
 def fetch_proposicoes_por_keyword(keyword: str) -> list[dict]:
     """
     Consulta a API da Câmara buscando proposições que contenham `keyword`
-    na ementa. Pagina automaticamente até MAX_PAGES.
+    na ementa. Pagina automaticamente até LIMITE_PAGINAS.
     Injeta a palavra-chave usada dentro do dicionário para rastreamento posterior.
     """
     resultados: list[dict] = []
@@ -119,7 +119,7 @@ def fetch_proposicoes_por_keyword(keyword: str) -> list[dict]:
             "pagina": pagina,
         }
 
-        logger.info(f"Buscando keyword='{keyword}' | página {pagina}/{MAX_PAGES}")
+        logger.info(f"Buscando keyword='{keyword}' | página {pagina}/{LIMITE_PAGINAS}")
 
         try:
             response = requests.get(
