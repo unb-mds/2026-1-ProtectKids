@@ -354,7 +354,7 @@ def transform_proposicao(dado_bruto: dict, autor_bruto: dict) -> Optional[tuple]
     proposicao = Proposicao(
         id_externo=id_externo_formatado,
         id_autor=id_autor,
-        origem="Câmara", # Definindo a origem
+        origem="Camara",
         tipo=sigla,
         numero=int(numero),
         ano=int(ano),
@@ -445,7 +445,7 @@ def run_pipeline() -> None:
     logger.info("=== Iniciando pipeline ETL Inteligente (PDF + NLP) ===")
     SQLModel.metadata.create_all(engine)
 
-    ids_existentes = obter_ids_existentes(origem_alvo="Câmara")
+    ids_existentes = obter_ids_existentes(origem_alvo="Camara")
     logger.info(f"Cache local: {len(ids_existentes)} proposições da Câmara já existem.")
 
     # 1. EXTRACT

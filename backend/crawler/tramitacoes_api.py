@@ -26,7 +26,9 @@ def buscar_ids_camara_no_banco() -> list[str]:
     """Puxa do banco apenas os IDs de matérias da Câmara."""
     with Session(engine) as session:
         # Pega os IDs externos (ex: 'camara-12345')
-        statement = select(Proposicao.id_externo).where(Proposicao.origem == "Câmara")
+        statement = select(Proposicao.id_externo).where(
+    Proposicao.origem.in_(["Camara", "Câmara"])
+)
         return session.exec(statement).all()
 
 def fetch_tramitacoes_brutas(id_camara_numerico: str) -> list[dict]:
