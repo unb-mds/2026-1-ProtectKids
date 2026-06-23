@@ -1,6 +1,15 @@
 {
-    "last_updated": "2026-06-23T22:37:27.479032Z",
+    "last_updated": "2026-06-23T22:53:30.636529Z",
     "commits": [
+        {
+            "hash": "e6511e87a17013d1f0833bd6a7223539d007eacb",
+            "date": "2026-06-23T19:53:02-03:00",
+            "message": "Fix/backend crwaler (#114)",
+            "is_conventional": false,
+            "insertions": 166,
+            "deletions": 44,
+            "total_diff": 210
+        },
         {
             "hash": "5eece1fdf7568c59b6becd17206df6e0c603a259",
             "date": "2026-06-23T19:37:03-03:00",
@@ -1689,28 +1698,28 @@
         {
             "number": 109,
             "title": "Adição do campo dinâmico \"Título\" nas Proposições",
-            "state": "open",
+            "state": "closed",
             "created_at": "2026-06-23T21:35:40Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
+            "closed_at": "2026-06-23T22:53:04Z",
+            "resolution_time_hours": 1.29,
             "char_count": 715
         },
         {
             "number": 108,
             "title": "Flexibilização da Busca por ID e Tratamento de Erro 404",
-            "state": "open",
+            "state": "closed",
             "created_at": "2026-06-23T21:33:46Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
+            "closed_at": "2026-06-23T22:53:04Z",
+            "resolution_time_hours": 1.32,
             "char_count": 929
         },
         {
             "number": 107,
             "title": "Otimização de Payload e Novos Filtros na Listagem Geral",
-            "state": "open",
+            "state": "closed",
             "created_at": "2026-06-23T21:32:06Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
+            "closed_at": "2026-06-23T22:53:04Z",
+            "resolution_time_hours": 1.35,
             "char_count": 1112
         },
         {
@@ -2135,23 +2144,14 @@
             "closed_at": "2026-04-06T00:48:09Z",
             "resolution_time_hours": 1.03,
             "char_count": 0
-        },
-        {
-            "number": 14,
-            "title": "Estudo sobre Frontend",
-            "state": "closed",
-            "created_at": "2026-04-03T22:26:48Z",
-            "closed_at": "2026-04-14T03:24:34Z",
-            "resolution_time_hours": 244.96,
-            "char_count": 1140
         }
     ],
     "autores": {
         "augustogmedeiros": {
-            "commits": 114,
-            "insercoes": 6603,
-            "delecoes": 2946559,
-            "total_linhas": 2953162
+            "commits": 115,
+            "insercoes": 6769,
+            "delecoes": 2946603,
+            "total_linhas": 2953372
         },
         "DaniellyMendes": {
             "commits": 1,
