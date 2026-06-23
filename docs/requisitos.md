@@ -16,12 +16,13 @@ O sistema coletará dados da API de Dados Abertos da Câmara dos Deputados e do 
 
 Os temas monitorados pela plataforma compreendem as principais dimensões da proteção de crianças e adolescentes no ambiente digital:
 
-- **Cyberbullying:** proposições que tratam de assédio, perseguição ou humilhação de menores em ambientes virtuais.
-- **Proteção de dados de menores:** regulações sobre coleta, armazenamento e uso de dados pessoais de crianças e adolescentes por plataformas digitais.
-- **Exploração sexual online:** projetos que buscam combater a distribuição de conteúdo abusivo, aliciamento e outras formas de violência sexual mediadas por tecnologia.
-- **Controle parental:** mecanismos legais ou técnicos que habilitam pais e responsáveis a monitorar ou restringir o acesso de menores a conteúdos digitais.
-- **Regulação de plataformas digitais:** obrigações impostas a redes sociais, aplicativos e outros serviços quanto à proteção de usuários menores de idade.
-- **Exposição a conteúdo nocivo:** iniciativas legislativas que visam limitar ou sinalizar conteúdos violentos, de ódio ou inadequados para o público infanto-juvenil.
+- **Cyberbullying e Crimes Virtuais:** proposições que tratam de assédio, perseguição ou humilhação de menores em ambientes virtuais.
+- **Adoção e Orfanatos:** regulações sobre coleta, armazenamento e uso de dados pessoais de crianças e adolescentes por plataformas digitais.
+- **Violência e Abuso:** projetos que buscam combater a distribuição de conteúdo abusivo, aliciamento e outras formas de violência sexual mediadas por tecnologia.
+- **Educação e Cultura:** proposições voltadas à promoção da educação digital, da cidadania online e da conscientização de crianças, adolescentes, famílias e educadores sobre o uso seguro, ético e responsável das tecnologias e plataformas digitais.
+- **Proteção Geral:** projetos que estabelecem diretrizes, responsabilidades e mecanismos de proteção para garantir a segurança, o desenvolvimento saudável e os direitos de crianças e adolescentes no ambiente digital.
+- **Simbólico/Ruído:** iniciativas legislativas de caráter predominantemente declaratório, comemorativo ou de baixa efetividade prática, bem como propostas que possuem relação indireta ou limitada com a proteção infanto-juvenil no ambiente digital.
+- **Articulação Estratégica:** proposições que promovem a integração entre órgãos públicos, entidades privadas, organizações da sociedade civil e instituições de ensino para fortalecer ações coordenadas de proteção de crianças e adolescentes no ambiente digital.
 
 ---
 
@@ -133,7 +134,7 @@ O sistema deve identificar automaticamente padrões de linguagem recorrentes em 
 
 **RF02 — Obtenção do link do inteiro teor:** Para cada proposição recuperada, o sistema deve identificar e armazenar o link para o documento completo (PDF ou TXT) disponível nos servidores da Câmara ou Senado.
 
-**RF03 — Extração do texto completo:** O sistema deve realizar o download e a extração do conteúdo textual de documentos em formato PDF e TXT, tornando-os disponíveis para processamento.
+**RF03 — Extração do texto completo:** O sistema deve realizar o download e a extração do conteúdo textual de documentos em formato PDF, tornando-os disponíveis para processamento.
 
 **RF04 — Classificação por subtema via NLP:** O sistema deve aplicar um modelo de processamento de linguagem natural para classificar cada proposição em um ou mais subtemas predefinidos, com base no conteúdo do texto completo.
 
@@ -143,13 +144,11 @@ O sistema deve identificar automaticamente padrões de linguagem recorrentes em 
 
 **RF07 — Ranking de partidos:** O sistema deve exibir um ranking de partidos políticos ordenado pelo volume agregado de proposições relacionadas aos temas monitorados, filtrável por subtema.
 
-**RF07A - Identificação da Casa Legislativa:** O sistema deve registrar a origem de cada proposição (Câmara ou Senado) e permitir filtragem por casa legislativa.
+**RF08 - Identificação da Casa Legislativa:** O sistema deve registrar a origem de cada proposição (Câmara ou Senado) e permitir filtragem por casa legislativa.
 
 ---
 
 ## Should Have
-
-**RF08 — Gráfico de evolução temporal:** O sistema deve apresentar uma visualização da evolução do volume de proposições ao longo dos anos, segmentada por subtema e comparável entre subtemas distintos.
 
 **RF09 — Filtro por subtema:** Todos os painéis do painel devem suportar filtragem dinâmica por subtema, refletindo os resultados em tempo real nas visualizações exibidas.
 
@@ -203,19 +202,13 @@ O sistema deve identificar automaticamente padrões de linguagem recorrentes em 
 ## Cenário: Visualização do ranking de parlamentares
 
 **Dado que** estou visualizando o painel da plataforma  
-**Quando** seleciono o subtema "Cyberbullying" no painel de parlamentares  
+**Quando** seleciono o subtema "Cyberbullying e Crimes Virtuais" no painel de parlamentares  
 **Então** o sistema deve exibir uma lista de deputados ordenada pelo número de proposições apresentadas sobre aquele subtema, com nome, partido e quantidade visíveis
-
-## Cenário: Análise temporal por subtema
-
-**Dado que** estou visualizando o painel da plataforma  
-**Quando** seleciono um subtema no painel de evolução temporal  
-**Então** devo visualizar um gráfico com a distribuição anual de proposições classificadas naquele subtema, evidenciando tendências de crescimento ou queda ao longo do tempo
 
 ## Cenário: Auditoria de proposições antes de redigir projeto
 
 **Dado que** sou uma assessora legislativa e preciso verificar o que já foi proposto sobre "controle parental"  
-**Quando** aplico o filtro por subtema "Controle Parental" no painel de proposições  
+**Quando** aplico o filtro por subtema "Proteção Geral" no painel de proposições  
 **Então** o sistema deve exibir uma listagem completa das proposições classificadas naquele subtema, ordenada por data, com título, autor e situação atual de cada uma
 
 ---
@@ -240,7 +233,6 @@ O painel interativo será o ponto de acesso central da plataforma para todos os 
 
 - Gráficos de volume de proposições por subtema
 - Rankings de parlamentares e partidos, filtráveis por subtema
-- Gráficos de evolução temporal com suporte a comparação entre subtemas
 - Filtros combinados por período, tema, deputado e partido
 
 ---
@@ -268,7 +260,7 @@ O painel do MVP apresentará as proposições classificadas por subtema, com vis
 O sistema deve permitir a análise básica de proposições legislativas relacionadas à proteção de crianças e adolescentes no ambiente digital, classificando-as por tema e subtema com base no inteiro teor e apresentando os dados de forma clara, filtrável e acessível no painel.
 ---
 
-# 📌 Versionamento
+#  Versionamento
 
 | Versão | Data | Descrição |
 | ------ | ---- | --------- |
@@ -280,4 +272,4 @@ O sistema deve permitir a análise básica de proposições legislativas relacio
 |    1.3.2    |   08/06/2026   |     Complementa descrição de RFs e complmenta critérios de aceite |
 |    1.4    |   15/06/2026      |    Ajusta descrição do MVP e arquitetura                          |
 |    1.5    |   16/06/2026      |    Inclui explicitamente integração com API do Senado             |
-
+|    1.5.1  |   23/06/2026      |    Removido Rf08 referido à evolução temporal por não fazer mais parte do escopo do sistema; Títulos dos subtemas adaptados |
