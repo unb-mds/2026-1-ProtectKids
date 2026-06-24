@@ -16,7 +16,13 @@ from database import engine
 from models import Proposicao, Parlamentar
 
 # Reaproveita a inteligência do pipeline da Câmara
-from crawler.camara_api import KEYWORDS, classificar_com_ia, save_proposicoes, extrair_texto_pdf
+from crawler.camara_api import (
+    KEYWORDS,
+    TEMA_PADRAO,
+    classificar_com_ia,
+    save_proposicoes,
+    extrair_texto_pdf,
+)
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger(__name__)
@@ -137,12 +143,13 @@ def transform_materia_senado(materia_bruta: dict) -> Optional[tuple]:
         numero=int(numero),
         ano=int(ano),
         ementa=ementa,
+        tema=TEMA_PADRAO,
         data_apresentacao=data_apres,
         url_inteiro_teor=url_pdf_real,
         subtema=subtema_origem,
         texto_integral=texto_pdf,
-        classificacao_nlp=classificacao_ia
-    )
+        classificacao_nlp=classificacao_ia,
+)
     
     return (proposicao, parlamentar)
 
