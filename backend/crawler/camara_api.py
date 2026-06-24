@@ -18,6 +18,8 @@ import sys
 import os
 import logging
 import tempfile
+import re
+import unicodedata
 from typing import Optional
 from sqlmodel import select, Session, SQLModel
 from datetime import datetime
@@ -53,15 +55,27 @@ ENDPOINT_PROPOSICOES = f"{BASE_URL}/proposicoes"
 
 # Palavras-chave relacionadas à proteção infantil
 KEYWORDS = [
-    "criança", 
-    "infância", 
-    "ECA", 
-    "menor", 
+    "criança",
+    "adolescente",
+    "infância",
+    "ECA",
     "proteção infantil",
+    "direitos da criança",
+    "conselho tutelar",
     "cyberbullying",
+    "internet",
+    "proteção de dados",
     "adoção",
-    "trabalho infantil"
+    "acolhimento institucional",
+    "violência infantil",
+    "abuso sexual",
+    "exploração sexual",
+    "trabalho infantil",
+    "educação infantil",
+    "creche",
 ]
+TEMA_PADRAO = "Protecao Infantil"
+
 # ---------------------------------------------------------------------------
 # DICIONÁRIO DE FILTRAGEM (NLP FAST-PATH)
 # ---------------------------------------------------------------------------
@@ -245,60 +259,306 @@ def extrair_texto_pdf(url_pdf: Optional[str]) -> Optional[str]:
 # ---------------------------------------------------------------------------
 # CAMADA DE NLP — Processamento de Linguagem Natural
 # ---------------------------------------------------------------------------
+# ---------------------------------------------------------------------------
+# CAMADA DE NLP — Processamento de Linguagem Natural
+# ---------------------------------------------------------------------------
+
+CATEGORIA_PADRAO = "Proteção Geral"
+
+TERMOS_SIMBOLICOS = [
+    "voto de aplauso",
+    "voto de louvor",
+    "voto de congratulação",
+    "voto de congratulações",
+    "voto de pesar",
+    "título de cidadão",
+    "titulo de cidadao",
+    "homenagem",
+    "sessão solene",
+    "sessao solene",
+    "data comemorativa",
+    "dia nacional",
+]
+
+TERMOS_ESTRATEGICOS = [
+    "audiência pública",
+    "audiencia publica",
+    "regime de urgência",
+    "regime de urgencia",
+    "convocação",
+    "convocacao",
+    "pedido de informação",
+    "pedido de informacao",
+    "comissão parlamentar",
+    "comissao parlamentar",
+    "requerimento",
+]
+
+CATEGORIAS_NLP = {
+    "Cyberbullying e Crimes Virtuais": {
+        "frases": [
+            "cyberbullying",
+            "intimidação sistemática virtual",
+            "intimidacao sistematica virtual",
+            "crime virtual",
+            "crime cibernético",
+            "crime cibernetico",
+            "ambiente digital",
+            "rede social",
+            "redes sociais",
+            "plataforma digital",
+            "plataformas digitais",
+            "proteção de dados",
+            "protecao de dados",
+            "dados pessoais",
+            "controle parental",
+            "conteúdo nocivo",
+            "conteudo nocivo",
+            "exploração sexual online",
+            "exploracao sexual online",
+        ],
+        "termos": [
+            "cyberbullying",
+            "internet",
+            "digital",
+            "virtual",
+            "cibernético",
+            "cibernetico",
+            "computador",
+            "aplicativo",
+            "algoritmo",
+            "plataforma",
+        ],
+    },
+    "Adoção e Orfanatos": {
+        "frases": [
+            "adoção",
+            "adocao",
+            "acolhimento institucional",
+            "família substituta",
+            "familia substituta",
+            "destituição do poder familiar",
+            "destituicao do poder familiar",
+            "guarda provisória",
+            "guarda provisoria",
+            "abrigo institucional",
+        ],
+        "termos": [
+            "adoção",
+            "adocao",
+            "adotar",
+            "adotivo",
+            "adotante",
+            "adotado",
+            "órfão",
+            "orfao",
+            "orfanato",
+            "abrigamento",
+        ],
+    },
+    "Violência e Abuso": {
+        "frases": [
+            "abuso sexual",
+            "exploração sexual",
+            "exploracao sexual",
+            "violência doméstica",
+            "violencia domestica",
+            "violência contra criança",
+            "violencia contra crianca",
+            "violência contra adolescente",
+            "violencia contra adolescente",
+            "maus-tratos",
+            "trabalho infantil",
+            "pedofilia",
+        ],
+        "termos": [
+            "violência",
+            "violencia",
+            "abuso",
+            "exploração",
+            "exploracao",
+            "agressão",
+            "agressao",
+            "estupro",
+            "aliciamento",
+            "pedofilia",
+            "pornografia",
+            "maus-tratos",
+        ],
+    },
+    "Educação e Cultura": {
+        "frases": [
+            "educação infantil",
+            "educacao infantil",
+            "primeira infância",
+            "primeira infancia",
+            "ensino fundamental",
+            "alimentação escolar",
+            "alimentacao escolar",
+            "merenda escolar",
+            "material didático",
+            "material didatico",
+        ],
+        "termos": [
+            "escola",
+            "ensino",
+            "professor",
+            "merenda",
+            "didático",
+            "didatico",
+            "creche",
+            "colégio",
+            "colegio",
+            "alfabetização",
+            "alfabetizacao",
+        ],
+    },
+}
+
+MAX_CARACTERES_NLP = 80000
+PONTUACAO_MINIMA = 2
+
+
+def normalizar_texto(valor: Optional[str]) -> str:
+    """
+    Normaliza texto para comparação:
+    - minúsculas;
+    - sem acentos;
+    - espaços normalizados.
+    """
+    if not valor:
+        return ""
+
+    texto = str(valor).lower()
+    texto = unicodedata.normalize("NFD", texto)
+    texto = "".join(
+        caractere
+        for caractere in texto
+        if unicodedata.category(caractere) != "Mn"
+    )
+    texto = re.sub(r"\s+", " ", texto)
+
+    return texto.strip()
+
+
+def gerar_lemas(texto: Optional[str]) -> list[str]:
+    """
+    Gera lemas normalizados usando spaCy.
+    O texto é limitado para evitar estouro de memória com PDFs muito grandes.
+    """
+    if not texto:
+        return []
+
+    texto_limitado = str(texto)[:MAX_CARACTERES_NLP]
+    doc = nlp(texto_limitado.lower())
+
+    return [
+        normalizar_texto(token.lemma_)
+        for token in doc
+        if not token.is_stop
+        and not token.is_punct
+        and not token.like_num
+        and len(token.text) > 2
+    ]
+
+
+def calcular_pontuacao_categoria(
+    categoria: str,
+    regras: dict,
+    ementa_normalizada: str,
+    texto_normalizado: str,
+    lemas_ementa: list[str],
+    lemas_texto: list[str],
+) -> int:
+    """
+    Calcula pontuação ponderada de uma categoria.
+
+    A ementa tem peso maior porque costuma resumir melhor a proposição.
+    O texto integral entra como reforço, não como decisão absoluta.
+    """
+    pontuacao = 0
+
+    frases = regras.get("frases", [])
+    termos = {normalizar_texto(termo) for termo in regras.get("termos", [])}
+
+    for frase in frases:
+        frase_normalizada = normalizar_texto(frase)
+
+        if frase_normalizada and frase_normalizada in ementa_normalizada:
+            pontuacao += 6
+
+        if frase_normalizada and frase_normalizada in texto_normalizado:
+            pontuacao += 2
+
+    for lema in lemas_ementa:
+        if lema in termos:
+            pontuacao += 3
+
+    for lema in lemas_texto:
+        if lema in termos:
+            pontuacao += 1
+
+    return pontuacao
+
+
 def classificar_com_ia(texto: Optional[str], ementa: str) -> str:
     """
-    Classifica a proposição combinando heurística rápida (Fast-Path) 
-    para detecção de ruído e processamento NLP (spaCy) para matérias densas.
+    Classifica a proposição usando:
+    - filtros rápidos para ruído legislativo;
+    - spaCy para lematização;
+    - pontuação ponderada por categoria.
+
+    Observação:
+    esta abordagem é NLP heurístico, não modelo supervisionado treinado.
     """
-    ementa_limpa = str(ementa).lower()
-    
-    # 1. FAST-PATH: Filtro Heurístico
-    is_simbolico = any(termo in ementa_limpa for termo in TERMOS_SIMBOLICOS)
-    is_estrategico = any(termo in ementa_limpa for termo in TERMOS_ESTRATEGICOS)
-    
-    # Se for uma homenagem e NÃO contiver nenhum termo estratégico misturado
+    ementa_normalizada = normalizar_texto(ementa)
+    texto_normalizado = normalizar_texto(texto)
+
+    if not ementa_normalizada and not texto_normalizado:
+        return CATEGORIA_PADRAO
+
+    is_simbolico = any(
+        normalizar_texto(termo) in ementa_normalizada
+        for termo in TERMOS_SIMBOLICOS
+    )
+
+    is_estrategico = any(
+        normalizar_texto(termo) in ementa_normalizada
+        for termo in TERMOS_ESTRATEGICOS
+    )
+
     if is_simbolico and not is_estrategico:
         return "Simbólico/Ruído"
-        
-    # Se for um requerimento estratégico óbvio (Audiência Pública, Urgência)
+
     if is_estrategico:
         return "Articulação Estratégica"
-    
-    # 2. PROCESSAMENTO NLP PROFUNDO (spaCy)
-    texto_analise = texto if texto else ementa
-    if not texto_analise:
-        return "Proteção Geral"
-        
+
     try:
-        doc = nlp(texto_analise.lower())
-        
-        # Mapeamento taxonômico semântico do ProtectKids
-        categorias = {
-            "Cyberbullying e Crimes Virtuais": ["internet", "cyberbullying", "ofensa", "rede", "digital", "computador", "virtual", "crimes"],
-            "Adoção e Orfanatos": ["adoção", "adotar", "órfão", "abrigo", "família", "destituição"],
-            "Violência e Abuso": ["violência", "abuso", "exploração", "maus-tratos", "agressão", "sexual", "física"],
-            "Educação e Cultura": ["escola", "ensino", "professor", "merenda", "didático", "creche", "colégio"]
+        lemas_ementa = gerar_lemas(ementa)
+        lemas_texto = gerar_lemas(texto)
+
+        pontuacoes = {
+            categoria: calcular_pontuacao_categoria(
+                categoria=categoria,
+                regras=regras,
+                ementa_normalizada=ementa_normalizada,
+                texto_normalizado=texto_normalizado,
+                lemas_ementa=lemas_ementa,
+                lemas_texto=lemas_texto,
+            )
+            for categoria, regras in CATEGORIAS_NLP.items()
         }
-        
-        contagem_pesos = {cat: 0 for cat in categorias}
-        
-        # Varre os lemas (raízes linguísticas) identificados pela IA
-        for token in doc:
-            lema = token.lemma_
-            for categoria, termos in categorias.items():
-                if lema in termos:
-                    contagem_pesos[categoria] += 1
-                    
-        # Retorna a categoria com maior relevância textual identificada
-        categoria_vencedora = max(contagem_pesos, key=contagem_pesos.get)
-        if contagem_pesos[categoria_vencedora] > 0:
+
+        categoria_vencedora = max(pontuacoes, key=pontuacoes.get)
+
+        if pontuacoes[categoria_vencedora] >= PONTUACAO_MINIMA:
             return categoria_vencedora
-            
-        return "Proteção Geral"
-        
-    except Exception as e:
-        logger.error(f"Erro no processamento NLP: {e}")
-        return "Proteção Geral"
+
+        return CATEGORIA_PADRAO
+
+    except Exception as exc:
+        logger.error(f"Erro no processamento NLP: {exc}")
+        return CATEGORIA_PADRAO
 
 # ---------------------------------------------------------------------------
 # CAMADA DE TRANSFORM — mapeia dados da API para o modelo do sistema
@@ -354,17 +614,18 @@ def transform_proposicao(dado_bruto: dict, autor_bruto: dict) -> Optional[tuple]
     proposicao = Proposicao(
         id_externo=id_externo_formatado,
         id_autor=id_autor,
-        origem="Câmara", # Definindo a origem
+        origem="Camara",
         tipo=sigla,
         numero=int(numero),
         ano=int(ano),
         ementa=ementa,
+        tema=TEMA_PADRAO,
         data_apresentacao=data_apres,
         url_inteiro_teor=url_pdf,
         subtema=subtema_origem,
         texto_integral=texto_pdf,
-        classificacao_nlp=classificacao_ia
-    )
+        classificacao_nlp=classificacao_ia,
+)
     
     return (proposicao, parlamentar)
 
