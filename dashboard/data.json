@@ -1,6 +1,24 @@
 {
-    "last_updated": "2026-06-25T17:51:40.153643Z",
+    "last_updated": "2026-06-25T20:34:43.505277Z",
     "commits": [
+        {
+            "hash": "732baafe72bc4ba390cfefa0ecde75c45475036d",
+            "date": "2026-06-25T17:34:21-03:00",
+            "message": " corrige formatação e informações do README",
+            "is_conventional": false,
+            "insertions": 8,
+            "deletions": 7,
+            "total_diff": 15
+        },
+        {
+            "hash": "7229fab126bf92d2f5944cf544b02c4c91a142e9",
+            "date": "2026-06-25T14:50:35-03:00",
+            "message": "Revise API contract for ProtectKids integration (#123)",
+            "is_conventional": false,
+            "insertions": 300,
+            "deletions": 90,
+            "total_diff": 390
+        },
         {
             "hash": "a3990fa8e2c41c4c4a5fc733f7ec783ea64a1cfb",
             "date": "2026-06-25T14:45:46-03:00",
@@ -2174,11 +2192,17 @@
         }
     ],
     "autores": {
+        "yaxavier": {
+            "commits": 19,
+            "insercoes": 784,
+            "delecoes": 55,
+            "total_linhas": 839
+        },
         "augustogmedeiros": {
-            "commits": 116,
-            "insercoes": 6822,
-            "delecoes": 2946633,
-            "total_linhas": 2953455
+            "commits": 117,
+            "insercoes": 7122,
+            "delecoes": 2946723,
+            "total_linhas": 2953845
         },
         "DaniellyMendes": {
             "commits": 2,
@@ -2209,12 +2233,6 @@
             "insercoes": 1057,
             "delecoes": 235,
             "total_linhas": 1292
-        },
-        "yaxavier": {
-            "commits": 18,
-            "insercoes": 776,
-            "delecoes": 48,
-            "total_linhas": 824
         },
         "Ryan Lira": {
             "commits": 2,
