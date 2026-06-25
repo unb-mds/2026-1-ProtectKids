@@ -16,13 +16,13 @@ from database import engine
 from models import Proposicao, Parlamentar
 import hashlib
 
-# Reaproveita a inteligência do pipeline da Câmara
 from crawler.camara_api import (
     KEYWORDS,
     TEMA_PADRAO,
     classificar_com_ia,
     save_proposicoes,
     extrair_texto_pdf,
+    fazer_requisicao_com_retry,
 )
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
@@ -47,29 +47,56 @@ def find_value(obj, target_key: str):
     return None
 
 def fetch_proposicoes_senado(keyword: str) -> list[dict]:
+    """
+    Consulta a API do Senado buscando matérias pela palavra-chave informada.
+    """
     params = {"palavraChave": keyword}
     headers = {"Accept": "application/json"}
-    
-    logger.info(f"Buscando no Senado pela keyword: '{keyword}'")
-    try:
-        resp = requests.get(BASE_URL_SENADO, params=params, headers=headers, timeout=30)
-        resp.raise_for_status()
-        dados = resp.json()
-        
-        materias = dados.get("PesquisaBasicaMateria", {}).get("Materias", {}).get("Materia", [])
-        
-        if isinstance(materias, dict):
-            materias = [materias]
-            
-        for m in materias:
-            m["_keyword_origem"] = keyword
-            
-        logger.info(f"Encontradas {len(materias)} matérias no Senado para '{keyword}'.")
-        return materias
-    except Exception as exc:
-        logger.error(f"Erro ao buscar no Senado: {exc}")
+
+    logger.info("Buscando no Senado pela keyword: '%s'", keyword)
+
+    resp = fazer_requisicao_com_retry(
+        BASE_URL_SENADO,
+        params=params,
+        headers=headers,
+        timeout=30,
+    )
+
+    if resp is None:
+        logger.error("Falha ao buscar matérias no Senado para '%s'.", keyword)
         return []
-    
+
+    try:
+        dados = resp.json()
+    except ValueError:
+        logger.error("Resposta inválida da API do Senado para '%s'.", keyword)
+        return []
+
+    materias = (
+        dados
+        .get("PesquisaBasicaMateria", {})
+        .get("Materias", {})
+        .get("Materia", [])
+    )
+
+    if isinstance(materias, dict):
+        materias = [materias]
+
+    if not materias:
+        logger.info("Nenhuma matéria encontrada no Senado para '%s'.", keyword)
+        return []
+
+    for materia in materias:
+        materia["_keyword_origem"] = keyword
+
+    logger.info(
+        "Encontradas %s matérias no Senado para '%s'.",
+        len(materias),
+        keyword,
+    )
+
+    return materias
+
 def gerar_id_autor_senado(nome_autor: str) -> int:
     """
     Gera um identificador estável para autores do Senado quando a API
@@ -135,9 +162,9 @@ def transform_materia_senado(materia_bruta: dict) -> Optional[tuple]:
     if data_str:
         try:
             data_apres = datetime.fromisoformat(str(data_str)[:10]).date()
-        except:
-            pass
-        # 3. NLP & PDF (ATUALIZADO COM FALLBACK PARA IMAGENS)
+        except ValueError:
+            logger.warning("Data de apresentação inválida no Senado: %s", data_str)
+        
     subtema_origem = materia_bruta.get("_keyword_origem", "Geral")
     url_pdf_real = f"https://legis.senado.leg.br/sdleg-getter/documento/download/materia/{codigo_materia}"
     
@@ -184,53 +211,83 @@ def obter_ids_existentes(origem_alvo: str) -> set:
 def run_pipeline_senado():
     logger.info("=== Iniciando pipeline ETL do Senado Inteligente ===")
     SQLModel.metadata.create_all(engine)
-    
+
     ids_existentes = obter_ids_existentes(origem_alvo="Senado")
-    logger.info(f"Cache local: {len(ids_existentes)} proposições do Senado já existem no banco.")
-    
+    logger.info(
+        "Cache local: %s proposições do Senado já existem no banco.",
+        len(ids_existentes),
+    )
+
     tuplas = []
     ids_processados_nesta_run = set()
     materias_ineditas = []
-    
+
     # Coleta todas as matérias inéditas primeiro
     for keyword in KEYWORDS:
         materias = fetch_proposicoes_senado(keyword)
+
         for mat in materias:
-            codigo = find_value(mat, "Codigo") 
+            codigo = find_value(mat, "Codigo")
+
             if not codigo:
                 continue
-                
+
             id_externo_formatado = f"senado-{codigo}"
-            
-            if id_externo_formatado in ids_existentes or id_externo_formatado in ids_processados_nesta_run:
+
+            if (
+                id_externo_formatado in ids_existentes
+                or id_externo_formatado in ids_processados_nesta_run
+            ):
                 continue
-                
+
             ids_processados_nesta_run.add(id_externo_formatado)
             materias_ineditas.append(mat)
-                
+
     if not materias_ineditas:
-        logger.info("=== Pipeline do Senado concluído. Nenhuma matéria inédita para processar hoje. ===")
+        logger.info(
+            "=== Pipeline do Senado concluído. Nenhuma matéria inédita para processar hoje. ==="
+        )
         return
 
-    logger.info(f"Iniciando download paralelo de {len(materias_ineditas)} PDFs do Senado...")
+    logger.info(
+        "Iniciando download paralelo de %s PDFs do Senado...",
+        len(materias_ineditas),
+    )
 
-    # Dispara 10 downloads simultâneos
+    # Dispara downloads e processamento em paralelo
     with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
         futuros = {
-            executor.submit(transform_materia_senado, mat): mat 
+            executor.submit(transform_materia_senado, mat): mat
             for mat in materias_ineditas
         }
+
         for futuro in concurrent.futures.as_completed(futuros):
-            resultado = futuro.result()
+            materia = futuros[futuro]
+            codigo = find_value(materia, "Codigo") or "desconhecido"
+
+            try:
+                resultado = futuro.result()
+            except Exception as exc:
+                logger.error(
+                    "Erro ao processar matéria do Senado %s em paralelo: %s",
+                    codigo,
+                    exc,
+                )
+                continue
+
             if resultado:
                 tuplas.append(resultado)
-                    
+
     if tuplas:
         total_salvo = save_proposicoes(tuplas)
-        logger.info(f"=== Pipeline do Senado concluído. {total_salvo} registros normalizados salvos. ===")
+        logger.info(
+            "=== Pipeline do Senado concluído. %s registros normalizados salvos. ===",
+            total_salvo,
+        )
     else:
-        logger.info("=== Pipeline do Senado concluído. Nenhuma matéria nova processada. ===")
-
-
+        logger.info(
+            "=== Pipeline do Senado concluído. Nenhuma matéria nova processada. ==="
+        )
+        
 if __name__ == "__main__":
     run_pipeline_senado()

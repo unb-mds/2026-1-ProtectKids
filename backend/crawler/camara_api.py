@@ -20,6 +20,7 @@ import logging
 import tempfile
 import re
 import unicodedata
+import time
 from typing import Optional
 from sqlmodel import select, Session, SQLModel
 from datetime import datetime
@@ -122,6 +123,7 @@ def fetch_proposicoes_por_keyword(keyword: str) -> list[dict]:
     """
     Consulta a API da Câmara buscando proposições que contenham `keyword`
     na ementa. Pagina automaticamente até LIMITE_PAGINAS.
+
     Injeta a palavra-chave usada dentro do dicionário para rastreamento posterior.
     """
     resultados: list[dict] = []
@@ -133,38 +135,48 @@ def fetch_proposicoes_por_keyword(keyword: str) -> list[dict]:
             "pagina": pagina,
         }
 
-        logger.info(f"Buscando keyword='{keyword}' | página {pagina}/{LIMITE_PAGINAS}")
+        logger.info(
+            "Buscando keyword='%s' | página %s/%s",
+            keyword,
+            pagina,
+            LIMITE_PAGINAS,
+        )
+
+        response = fazer_requisicao_com_retry(
+            ENDPOINT_PROPOSICOES,
+            params=params,
+            headers={"Accept": "application/json"},
+            timeout=60,
+        )
+
+        if response is None:
+            logger.error(
+                "Falha ao buscar proposições para keyword '%s' na página %s.",
+                keyword,
+                pagina,
+            )
+            break
 
         try:
-            response = requests.get(
-                ENDPOINT_PROPOSICOES,
-                params=params,
-                timeout=60,
-                headers={"Accept": "application/json"},
+            dados = response.json().get("dados", [])
+        except ValueError:
+            logger.error(
+                "Resposta inválida da API da Câmara para keyword '%s' na página %s.",
+                keyword,
+                pagina,
             )
-            response.raise_for_status()
-        except requests.exceptions.Timeout:
-            logger.warning(f"Timeout na página {pagina} para keyword '{keyword}'. Pulando.")
             break
-        except requests.exceptions.HTTPError as exc:
-            logger.error(f"Erro HTTP {exc.response.status_code} para keyword '{keyword}': {exc}")
-            break
-        except requests.exceptions.RequestException as exc:
-            logger.error(f"Erro de rede para keyword '{keyword}': {exc}")
-            break
-
-        dados = response.json().get("dados", [])
 
         if not dados:
-            logger.info(f"Sem mais resultados para '{keyword}' na página {pagina}.")
+            logger.info("Sem mais resultados para '%s' na página %s.", keyword, pagina)
             break
 
-        # Injeta qual keyword trouxe essa proposição para usarmos como subtema inicial
-        for d in dados:
-            d["_keyword_origem"] = keyword
+        for dado in dados:
+            dado["_keyword_origem"] = keyword
 
         resultados.extend(dados)
-        logger.info(f"{len(dados)} proposições encontradas nesta página.")
+
+        logger.info("%s proposições encontradas nesta página.", len(dados))
 
     return resultados
 
@@ -188,43 +200,154 @@ def fetch_todas_proposicoes() -> list[dict]:
 
 
 def fetch_autor_da_proposicao(id_proposicao_api: int) -> dict:
+    """
+    Busca o autor principal de uma proposição da Câmara.
+
+    Primeiro consulta /proposicoes/{id}/autores.
+    Se o autor for deputado, consulta também o perfil do parlamentar
+    para obter partido e UF atualizados.
+    """
     url_autores = f"{BASE_URL}/proposicoes/{id_proposicao_api}/autores"
-    try:
-        resp_autores = requests.get(url_autores, timeout=30, headers={"Accept": "application/json"})
-        resp_autores.raise_for_status()
-        dados_autores = resp_autores.json().get("dados", [])
-        
-        if not dados_autores:
-            return {}
-            
-        autor = dados_autores[0]
-        uri_autor = autor.get("uri", "")
-        
-        if "deputados" in uri_autor:
-            resp_perfil = requests.get(uri_autor, timeout=30, headers={"Accept": "application/json"})
-            resp_perfil.raise_for_status()
-            perfil = resp_perfil.json().get("dados", {})
-            status = perfil.get("ultimoStatus", {})
-            
-            autor["siglaPartido"] = status.get("siglaPartido", "ND")
-            autor["siglaUf"] = status.get("siglaUf", "ND")
-            
-        return autor
-        
-    except Exception as exc:
-        logger.warning(f"Erro ao buscar autor da proposicao {id_proposicao_api}: {exc}")
+
+    resp_autores = fazer_requisicao_com_retry(
+        url_autores,
+        headers={"Accept": "application/json"},
+        timeout=30,
+    )
+
+    if resp_autores is None:
+        logger.warning(
+            "Não foi possível buscar autores da proposição %s.",
+            id_proposicao_api,
+        )
         return {}
+
+    try:
+        dados_autores = resp_autores.json().get("dados", [])
+    except ValueError:
+        logger.warning(
+            "Resposta inválida ao buscar autores da proposição %s.",
+            id_proposicao_api,
+        )
+        return {}
+
+    if not dados_autores:
+        return {}
+
+    autor = dados_autores[0]
+    uri_autor = autor.get("uri", "")
+
+    if "deputados" not in uri_autor:
+        return autor
+
+    resp_perfil = fazer_requisicao_com_retry(
+        uri_autor,
+        headers={"Accept": "application/json"},
+        timeout=30,
+    )
+
+    if resp_perfil is None:
+        logger.warning(
+            "Não foi possível buscar perfil do autor da proposição %s.",
+            id_proposicao_api,
+        )
+        return autor
+
+    try:
+        perfil = resp_perfil.json().get("dados", {})
+    except ValueError:
+        logger.warning(
+            "Resposta inválida ao buscar perfil do autor da proposição %s.",
+            id_proposicao_api,
+        )
+        return autor
+
+    status = perfil.get("ultimoStatus", {})
+
+    autor["siglaPartido"] = status.get("siglaPartido", "ND")
+    autor["siglaUf"] = status.get("siglaUf", "ND")
+
+    return autor
 
 def fetch_detalhes_proposicao(id_proposicao_api: int) -> dict:
     url_detalhes = f"{BASE_URL}/proposicoes/{id_proposicao_api}"
+
+    resp = fazer_requisicao_com_retry(
+        url_detalhes,
+        headers={"Accept": "application/json"},
+        timeout=30,
+    )
+
+    if resp is None:
+        logger.warning("Não foi possível buscar detalhes da proposição %s.", id_proposicao_api)
+        return {}
+
     try:
-        resp = requests.get(url_detalhes, timeout=30, headers={"Accept": "application/json"})
-        resp.raise_for_status()
         return resp.json().get("dados", {})
-    except Exception as exc:
-        logger.warning(f"Erro ao buscar detalhes da proposição {id_proposicao_api}: {exc}")
+    except ValueError:
+        logger.warning("Resposta inválida ao buscar detalhes da proposição %s.", id_proposicao_api)
         return {}
     
+def fazer_requisicao_com_retry(
+    url: str,
+    params: Optional[dict] = None,
+    headers: Optional[dict] = None,
+    timeout: int = 30,
+    max_tentativas: int = 3,
+    espera_inicial: int = 2,
+) -> Optional[requests.Response]:
+    """
+    Executa uma requisição HTTP GET com retry simples.
+
+    Retorna:
+    - Response em caso de sucesso;
+    - None em caso de falha definitiva.
+    """
+    for tentativa in range(1, max_tentativas + 1):
+        try:
+            response = requests.get(
+                url,
+                params=params,
+                headers=headers,
+                timeout=timeout,
+            )
+
+            if 400 <= response.status_code < 500:
+                logger.warning(
+                    "Erro cliente %s ao acessar %s. Sem retry.",
+                    response.status_code,
+                    url,
+                )
+                return None
+
+            response.raise_for_status()
+            return response
+
+        except requests.Timeout:
+            logger.warning(
+                "Timeout ao acessar %s. Tentativa %s/%s.",
+                url,
+                tentativa,
+                max_tentativas,
+            )
+
+        except requests.RequestException as exc:
+            logger.warning(
+                "Erro HTTP ao acessar %s. Tentativa %s/%s. Erro: %s",
+                url,
+                tentativa,
+                max_tentativas,
+                exc,
+            )
+
+        if tentativa < max_tentativas:
+            espera = espera_inicial * tentativa
+            logger.info("Aguardando %s segundos antes de tentar novamente.", espera)
+            time.sleep(espera)
+
+    logger.error("Falha definitiva ao acessar %s.", url)
+    return None
+
 def extrair_texto_pdf(url_pdf: Optional[str]) -> str:
     """
     Baixa um PDF e extrai seu texto usando PyMuPDF.
@@ -238,8 +361,10 @@ def extrair_texto_pdf(url_pdf: Optional[str]) -> str:
     temp_pdf_path = None
 
     try:
-        response = requests.get(url_pdf, timeout=30)
-        response.raise_for_status()
+        response = fazer_requisicao_com_retry(url_pdf, timeout=30)
+
+        if response is None:
+            return ""
 
         with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as temp_pdf:
             temp_pdf.write(response.content)
@@ -253,12 +378,8 @@ def extrair_texto_pdf(url_pdf: Optional[str]) -> str:
 
         return texto.strip()
 
-    except requests.RequestException as exc:
-        logger.error(f"Erro ao baixar PDF {url_pdf}: {exc}")
-        return ""
-
     except Exception as exc:
-        logger.error(f"Erro ao extrair texto do PDF {url_pdf}: {exc}")
+        logger.error("Erro ao extrair texto do PDF %s: %s", url_pdf, exc)
         return ""
 
     finally:
@@ -266,7 +387,11 @@ def extrair_texto_pdf(url_pdf: Optional[str]) -> str:
             try:
                 os.remove(temp_pdf_path)
             except OSError as exc:
-                logger.warning(f"Não foi possível remover arquivo temporário {temp_pdf_path}: {exc}")
+                logger.warning(
+                    "Não foi possível remover arquivo temporário %s: %s",
+                    temp_pdf_path,
+                    exc,
+                )
 
 CATEGORIA_PADRAO = "Proteção Geral"
 
@@ -565,10 +690,6 @@ def classificar_com_ia(texto: Optional[str], ementa: str) -> str:
         logger.error(f"Erro no processamento NLP: {exc}")
         return CATEGORIA_PADRAO
 
-# ---------------------------------------------------------------------------
-# CAMADA DE TRANSFORM — mapeia dados da API para o modelo do sistema
-# ---------------------------------------------------------------------------
-
 def transform_proposicao(dado_bruto: dict, autor_bruto: dict) -> Optional[tuple]:
     sigla = dado_bruto.get("siglaTipo", "PL")
     numero = dado_bruto.get("numero")
@@ -587,8 +708,9 @@ def transform_proposicao(dado_bruto: dict, autor_bruto: dict) -> Optional[tuple]
     if autor_bruto:
         uri = autor_bruto.get("uri", "")
         try:
-            id_autor = int(uri.split("/")[-1])
-        except:
+            id_autor = int(uri.rstrip("/").split("/")[-1])
+        except (ValueError, IndexError):
+            logger.warning("Não foi possível extrair ID do autor pela URI: %s", uri)
             id_autor = 999999
             
         parlamentar = Parlamentar(
@@ -604,8 +726,8 @@ def transform_proposicao(dado_bruto: dict, autor_bruto: dict) -> Optional[tuple]
     if data_str:
         try:
             data_apres = datetime.fromisoformat(data_str).date()
-        except:
-            pass
+        except ValueError:
+            logger.warning("Data de apresentação inválida: %s", data_str)
 
     # --- PROCESSAMENTO ENRIQUECIDO (PASSO 2) ---
     url_pdf = dado_bruto.get("urlInteiroTeor")
