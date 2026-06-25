@@ -706,7 +706,7 @@ def run_pipeline() -> None:
     logger.info("=== Iniciando pipeline ETL Inteligente (PDF + NLP) ===")
     SQLModel.metadata.create_all(engine)
 
-    ids_existentes = obter_ids_existentes(origem_alvo="Câmara")
+    ids_existentes = obter_ids_existentes(origem_alvo="Camara")
     logger.info(f"Cache local: {len(ids_existentes)} proposições da Câmara já existem.")
 
     # 1. EXTRACT

@@ -1,14 +1,31 @@
-[data-md-color-scheme="default"] {
-  /* Cabeçalho: Vermelho Escuro */
-  --md-primary-fg-color: #8A0B0B; 
+:root {
+  --md-primary-fg-color: #1b4b16; 
+  --md-default-bg-color: #333333; 
+  --md-default-fg-color: #ffffff; 
+  --md-accent-fg-color: #4caf50;  
+  
+  /* Esta é a linha que força o site todo a usar a fonte clássica de jornal/livro */
+  --md-text-font: "Times New Roman", Times, serif;
+}
 
-  /* Destaques (links e botões): Verde Vibrante */
-  --md-accent-fg-color: #21C03A; 
+.md-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+/* Centraliza os itens do menu de abas superior */
+.md-tabs__list {
+  justify-content: center;
+  width: 100%;
+}
 
-  /* Fundo da página: Cinza Claro */
-  --md-default-bg-color: #EFEFEF; 
+/* Aumenta o tamanho e o peso da fonte do menu */
+.md-tabs__link {
+  font-size: 1.15rem; /* Aumenta o texto (o padrão é em torno de 0.8rem) */
+  opacity: 0.9; /* Deixa o texto levemente mais forte */
+}
 
-  /* Textos gerais: Azul Escuro / Chumbo */
-  --md-default-fg-color: #262D35; 
-  --md-typeset-color: #262D35;
+/* Deixa o item que está selecionado no momento um pouco mais destacado */
+.md-tabs__link--active {
+  font-weight: bold;
+  opacity: 1;
 }
