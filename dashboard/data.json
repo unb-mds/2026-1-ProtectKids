@@ -1,6 +1,15 @@
 {
-    "last_updated": "2026-06-25T21:58:45.915188Z",
+    "last_updated": "2026-06-25T22:48:26.766454Z",
     "commits": [
+        {
+            "hash": "6a83c88fbdab91753e1c40529bbd21c79d79f65d",
+            "date": "2026-06-25T19:48:01-03:00",
+            "message": "Fix/backend crawler (#138)",
+            "is_conventional": false,
+            "insertions": 319,
+            "deletions": 90,
+            "total_diff": 409
+        },
         {
             "hash": "4045ff77e81b24d4bbeb59c391cf2570e2c1776e",
             "date": "2026-06-25T18:58:22-03:00",
@@ -1777,6 +1786,15 @@
     ],
     "issues": [
         {
+            "number": 137,
+            "title": "[Backend] Estabilização de Contratos da API e Centralização do Mecanismo de Retry",
+            "state": "closed",
+            "created_at": "2026-06-25T22:44:50Z",
+            "closed_at": "2026-06-25T22:48:02Z",
+            "resolution_time_hours": 0.05,
+            "char_count": 1829
+        },
+        {
             "number": 135,
             "title": "Revisar e padronizar o docker-compose.yml",
             "state": "open",
@@ -2225,38 +2243,20 @@
             "closed_at": "2026-05-13T05:15:17Z",
             "resolution_time_hours": 7.03,
             "char_count": 1359
-        },
-        {
-            "number": 38,
-            "title": "Desenvolvimento do Coletor de Métricas e Dashboard (D3.js)",
-            "state": "closed",
-            "created_at": "2026-05-12T22:05:59Z",
-            "closed_at": "2026-05-13T05:15:22Z",
-            "resolution_time_hours": 7.16,
-            "char_count": 1310
-        },
-        {
-            "number": 37,
-            "title": "Crawler de Extração de Dados: API da Câmara dos Deputados",
-            "state": "closed",
-            "created_at": "2026-05-02T19:24:31Z",
-            "closed_at": "2026-05-18T18:25:52Z",
-            "resolution_time_hours": 383.02,
-            "char_count": 1498
         }
     ],
     "autores": {
+        "augustogmedeiros": {
+            "commits": 119,
+            "insercoes": 7787,
+            "delecoes": 2946925,
+            "total_linhas": 2954712
+        },
         "yaxavier": {
             "commits": 23,
             "insercoes": 1424,
             "delecoes": 65,
             "total_linhas": 1489
-        },
-        "augustogmedeiros": {
-            "commits": 118,
-            "insercoes": 7468,
-            "delecoes": 2946835,
-            "total_linhas": 2954303
         },
         "DaniellyMendes": {
             "commits": 2,
