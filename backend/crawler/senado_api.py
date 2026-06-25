@@ -71,6 +71,23 @@ def fetch_proposicoes_senado(keyword: str) -> list[dict]:
     except ValueError:
         logger.error("Resposta inválida da API do Senado para '%s'.", keyword)
         return []
+    
+def gerar_id_autor_senado(nome_autor: str) -> int:
+    """
+    Gera um identificador estável para autores do Senado quando a API
+    não fornece um ID numérico confiável.
+
+    Evita o uso de hash() nativo do Python, pois ele pode variar entre
+    execuções diferentes.
+    """
+    nome_normalizado = nome_autor.strip().lower()
+
+    if not nome_normalizado:
+        return 0
+
+    digest = hashlib.sha256(nome_normalizado.encode("utf-8")).hexdigest()
+
+    return int(digest[:10], 16)
 
     materias = (
         dados
