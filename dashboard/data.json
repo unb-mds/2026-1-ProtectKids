@@ -1,6 +1,24 @@
 {
-    "last_updated": "2026-06-25T16:32:21.746471Z",
+    "last_updated": "2026-06-25T17:51:18.844217Z",
     "commits": [
+        {
+            "hash": "7229fab126bf92d2f5944cf544b02c4c91a142e9",
+            "date": "2026-06-25T14:50:35-03:00",
+            "message": "Revise API contract for ProtectKids integration (#123)",
+            "is_conventional": false,
+            "insertions": 300,
+            "deletions": 90,
+            "total_diff": 390
+        },
+        {
+            "hash": "a3990fa8e2c41c4c4a5fc733f7ec783ea64a1cfb",
+            "date": "2026-06-25T14:45:46-03:00",
+            "message": "Fix/backend crawler (#122)",
+            "is_conventional": false,
+            "insertions": 53,
+            "deletions": 30,
+            "total_diff": 83
+        },
         {
             "hash": "0ccc3d36f3276b7d381b8ac3c0e5d5b1c7749fc1",
             "date": "2026-06-25T13:31:58-03:00",
@@ -1705,21 +1723,30 @@
     ],
     "issues": [
         {
-            "number": 120,
-            "title": "[Backend] Melhorar extração de PDF com limpeza segura de arquivos temporários",
+            "number": 121,
+            "title": "[Backend] Implementar mecanismo de retry nas requisições HTTP do Crawler",
             "state": "open",
-            "created_at": "2026-06-25T16:31:33Z",
+            "created_at": "2026-06-25T16:43:50Z",
             "closed_at": null,
             "resolution_time_hours": null,
+            "char_count": 1557
+        },
+        {
+            "number": 120,
+            "title": "[Backend] Melhorar extração de PDF com limpeza segura de arquivos temporários",
+            "state": "closed",
+            "created_at": "2026-06-25T16:31:33Z",
+            "closed_at": "2026-06-25T17:45:47Z",
+            "resolution_time_hours": 1.24,
             "char_count": 1283
         },
         {
             "number": 119,
             "title": "[Backend] Corrigir ID instável do autor no crawler do Senado",
-            "state": "open",
+            "state": "closed",
             "created_at": "2026-06-25T16:30:39Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
+            "closed_at": "2026-06-25T17:45:47Z",
+            "resolution_time_hours": 1.25,
             "char_count": 1275
         },
         {
@@ -2153,36 +2180,15 @@
             "closed_at": "2026-05-02T18:50:19Z",
             "resolution_time_hours": 366.55,
             "char_count": 1495
-        },
-        {
-            "number": 23,
-            "title": "Configuração do MkDocs e Deploy via GitHub Pages",
-            "state": "closed",
-            "created_at": "2026-04-17T12:13:29Z",
-            "closed_at": "2026-05-12T21:12:26Z",
-            "resolution_time_hours": 608.98,
-            "char_count": 1346
-        },
-        {
-            "number": 22,
-            "title": "Revisão de User Stories",
-            "state": "closed",
-            "created_at": "2026-04-17T11:59:58Z",
-            "closed_at": "2026-04-25T20:41:14Z",
-            "resolution_time_hours": 200.69,
-            "char_count": 1335
-        },
-        {
-            "number": 21,
-            "title": "Prototipo da arquitetura do projeto",
-            "state": "closed",
-            "created_at": "2026-04-12T20:57:59Z",
-            "closed_at": "2026-04-17T11:48:06Z",
-            "resolution_time_hours": 110.84,
-            "char_count": 1596
         }
     ],
     "autores": {
+        "augustogmedeiros": {
+            "commits": 117,
+            "insercoes": 7122,
+            "delecoes": 2946723,
+            "total_linhas": 2953845
+        },
         "DaniellyMendes": {
             "commits": 2,
             "insercoes": 398,
@@ -2194,12 +2200,6 @@
             "insercoes": 13157,
             "delecoes": 892,
             "total_linhas": 14049
-        },
-        "augustogmedeiros": {
-            "commits": 115,
-            "insercoes": 6769,
-            "delecoes": 2946603,
-            "total_linhas": 2953372
         },
         "Danielly": {
             "commits": 3,
