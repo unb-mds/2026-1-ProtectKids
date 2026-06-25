@@ -83,6 +83,43 @@ def valores_origem_para_consulta(origem_padronizada: Optional[str]) -> Optional[
 
     return None
 
+def aplicar_filtros_analytics(
+    query,
+    ano: Optional[int] = None,
+    tema_nlp: Optional[str] = None,
+    origem: Optional[str] = None,
+    uf: Optional[str] = None,
+    partido: Optional[str] = None,
+):
+    """
+    Aplica filtros comuns aos endpoints analíticos.
+
+    Filtros:
+    - ano
+    - tema_nlp
+    - origem
+    - uf
+    - partido
+    """
+    if ano:
+        query = query.where(Proposicao.ano == ano)
+
+    if tema_nlp:
+        query = query.where(Proposicao.classificacao_nlp == tema_nlp)
+
+    origem_padronizada = normalizar_origem(origem)
+    origens_consulta = valores_origem_para_consulta(origem_padronizada)
+
+    if origens_consulta:
+        query = query.where(Proposicao.origem.in_(origens_consulta))
+
+    if uf:
+        query = query.where(Parlamentar.uf == uf.upper())
+
+    if partido:
+        query = query.where(Parlamentar.partido == partido.upper())
+
+    return query
 
 def serializar_proposicao(prop: Proposicao, incluir_texto: bool = False) -> dict:
     """
@@ -214,40 +251,67 @@ def get_proposicao_por_id(
 
     return serializar_proposicao(prop, incluir_texto=True)
 
-# ==========================================
-# 2. ROTA DE RANKING DE PARLAMENTARES (COM FILTROS)
-# ==========================================
 @app.get("/analytics/parlamentares/ranking")
 def get_ranking_parlamentares(
     ano: Optional[int] = None,
     tema_nlp: Optional[str] = None,
-    session: Session = Depends(get_session)
+    origem: Optional[str] = None,
+    uf: Optional[str] = None,
+    partido: Optional[str] = None,
+    limit: int = Query(default=10, ge=1, le=100),
+    session: Session = Depends(get_session),
 ):
+    """
+    Retorna o ranking de parlamentares com mais proposições cadastradas.
+
+    Filtros disponíveis:
+    - ano
+    - tema_nlp
+    - origem: Camara ou Senado
+    - uf
+    - partido
+    - limit
+    """
     query = (
         select(
             Parlamentar.nome,
             Parlamentar.partido,
             Parlamentar.uf,
-            func.count(Proposicao.id_proposicao).label("total_projetos")
+            func.count(Proposicao.id_proposicao).label("total_proposicoes"),
         )
         .join(Proposicao, Proposicao.id_autor == Parlamentar.id_parlamentar)
     )
-    
-    # Filtra os gráficos se o frontend pedir
-    if ano:
-        query = query.where(Proposicao.ano == ano)
-    if tema_nlp:
-        query = query.where(Proposicao.classificacao_nlp == tema_nlp)
-        
-    query = (
-        query.group_by(Parlamentar.id_parlamentar, Parlamentar.nome, Parlamentar.partido, Parlamentar.uf)
-        .order_by(func.count(Proposicao.id_proposicao).desc())
+
+    query = aplicar_filtros_analytics(
+        query=query,
+        ano=ano,
+        tema_nlp=tema_nlp,
+        origem=origem,
+        uf=uf,
+        partido=partido,
     )
-    
+
+    query = (
+        query
+        .group_by(
+            Parlamentar.id_parlamentar,
+            Parlamentar.nome,
+            Parlamentar.partido,
+            Parlamentar.uf,
+        )
+        .order_by(func.count(Proposicao.id_proposicao).desc())
+        .limit(limit)
+    )
+
     resultados = session.exec(query).all()
-    
+
     return [
-        {"nome": row[0], "partido": row[1], "uf": row[2], "total_projetos": row[3]}
+        {
+            "nome": row[0],
+            "partido": row[1],
+            "uf": row[2],
+            "total_proposicoes": row[3],
+        }
         for row in resultados
     ]
 
@@ -258,27 +322,54 @@ def get_ranking_parlamentares(
 def get_ranking_partidos(
     ano: Optional[int] = None,
     tema_nlp: Optional[str] = None,
-    session: Session = Depends(get_session)
+    origem: Optional[str] = None,
+    uf: Optional[str] = None,
+    partido: Optional[str] = None,
+    limit: int = Query(default=10, ge=1, le=100),
+    session: Session = Depends(get_session),
 ):
+    """
+    Retorna o ranking de partidos com mais proposições cadastradas.
+
+    Filtros disponíveis:
+    - ano
+    - tema_nlp
+    - origem: Camara ou Senado
+    - uf
+    - partido
+    - limit
+    """
     query = (
         select(
             Parlamentar.partido,
-            func.count(Proposicao.id_proposicao).label("total_projetos")
+            func.count(Proposicao.id_proposicao).label("total_proposicoes"),
         )
         .join(Proposicao, Proposicao.id_autor == Parlamentar.id_parlamentar)
     )
-    
-    if ano:
-        query = query.where(Proposicao.ano == ano)
-    if tema_nlp:
-        query = query.where(Proposicao.classificacao_nlp == tema_nlp)
-        
-    query = query.group_by(Parlamentar.partido).order_by(func.count(Proposicao.id_proposicao).desc())
-    
+
+    query = aplicar_filtros_analytics(
+        query=query,
+        ano=ano,
+        tema_nlp=tema_nlp,
+        origem=origem,
+        uf=uf,
+        partido=partido,
+    )
+
+    query = (
+        query
+        .group_by(Parlamentar.partido)
+        .order_by(func.count(Proposicao.id_proposicao).desc())
+        .limit(limit)
+    )
+
     resultados = session.exec(query).all()
-    
+
     return [
-        {"partido": row[0], "total_projetos": row[1]}
+        {
+            "partido": row[0],
+            "total_proposicoes": row[1],
+        }
         for row in resultados
     ]
 
@@ -326,55 +417,90 @@ def obter_tramitacoes(id_externo: str, session: Session = Depends(get_session)):
 def get_nuvem_palavras(
     ano: Optional[int] = None,
     tema_nlp: Optional[str] = None,
-    session: Session = Depends(get_session)
+    origem: Optional[str] = None,
+    uf: Optional[str] = None,
+    partido: Optional[str] = None,
+    limit: int = Query(default=50, ge=1, le=100),
+    session: Session = Depends(get_session),
 ):
     """
     Retorna as palavras mais frequentes nas ementas das proposições.
-    Ideal para bibliotecas de Word Cloud no frontend.
+
+    Esta rota deve ser usada na tela inicial do projeto para a nuvem de palavras.
+
+    Filtros disponíveis:
+    - ano
+    - tema_nlp
+    - origem: Camara ou Senado
+    - uf
+    - partido
+    - limit
     """
     query = select(Proposicao.ementa)
-    
-    if ano:
-        query = query.where(Proposicao.ano == ano)
-    if tema_nlp:
-        query = query.where(Proposicao.classificacao_nlp == tema_nlp)
-        
+
+    if uf or partido:
+        query = query.join(
+            Parlamentar,
+            Proposicao.id_autor == Parlamentar.id_parlamentar,
+        )
+
+    query = aplicar_filtros_analytics(
+        query=query,
+        ano=ano,
+        tema_nlp=tema_nlp,
+        origem=origem,
+        uf=uf,
+        partido=partido,
+    )
+
     ementas = session.exec(query).all()
-    
+
     if not ementas:
         return []
 
-    texto_completo = " ".join([e for e in ementas if e])
+    texto_completo = " ".join([ementa for ementa in ementas if ementa])
+
+    if not texto_completo.strip():
+        return []
+
     doc = nlp(texto_completo)
-    
-# Lista de jargões legislativos que não agregam valor visual à Nuvem de Palavras
+
     ruidos_legislativos = {
-        "lei", "alterar", "altera", "artigo", "inciso", 
-        "parágrafo", "dispor", "estabelecer", "acrescentar", 
-        "dar", "providência", "nº", "redação", "sobre",
-        
-        # Meses do ano
-        "janeiro", "fevereiro", "março", "abril", "maio", "junho", 
-        "julho", "agosto", "setembro", "outubro", "novembro", "dezembro",
-        
-        # Novos ruídos estruturais e burocráticos identificados
-        "art.", "institui", "instituir", "federal", "dispõe", "requer", 
-        "decreto-lei", "audiência", "realização", "termos", "regimento", 
-        "interno", "objetivo", "ano", "nacional", "público", "programa", "incluir", "âmbito", "ser", 
+        "lei", "alterar", "altera", "artigo", "inciso",
+        "parágrafo", "paragrafo", "dispor", "estabelecer",
+        "acrescentar", "dar", "providência", "providencia",
+        "nº", "redação", "redacao", "sobre",
+
+        "janeiro", "fevereiro", "março", "marco", "abril",
+        "maio", "junho", "julho", "agosto", "setembro",
+        "outubro", "novembro", "dezembro",
+
+        "art.", "institui", "instituir", "federal", "dispõe",
+        "dispoe", "requer", "decreto-lei", "audiência",
+        "audiencia", "realização", "realizacao", "termos",
+        "regimento", "interno", "objetivo", "ano", "nacional",
+        "público", "publico", "programa", "incluir", "âmbito",
+        "ambito", "ser",
     }
 
     palavras = [
-            token.lemma_.lower() 
-            for token in doc 
-            if not token.is_stop 
-            and not token.is_punct 
-            and not token.like_num # Remove automaticamente números e anos (ex: 1990, 2026)
-            and len(token.text) > 2
-            and token.lemma_.lower() not in ruidos_legislativos
-            and token.text.lower() not in ruidos_legislativos
-        ]
-    
+        token.lemma_.lower()
+        for token in doc
+        if not token.is_stop
+        and not token.is_punct
+        and not token.like_num
+        and len(token.text) > 2
+        and token.lemma_.lower() not in ruidos_legislativos
+        and token.text.lower() not in ruidos_legislativos
+    ]
+
     contagem = Counter(palavras)
-    top_palavras = contagem.most_common(50)
-    
-    return [{"text": palavra, "value": frequencia} for palavra, frequencia in top_palavras]
+    top_palavras = contagem.most_common(limit)
+
+    return [
+        {
+            "text": palavra,
+            "value": frequencia,
+        }
+        for palavra, frequencia in top_palavras
+    ]
