@@ -1,6 +1,24 @@
 {
-    "last_updated": "2026-06-25T21:36:33.586374Z",
+    "last_updated": "2026-06-25T21:58:45.915188Z",
     "commits": [
+        {
+            "hash": "4045ff77e81b24d4bbeb59c391cf2570e2c1776e",
+            "date": "2026-06-25T18:58:22-03:00",
+            "message": "corrigindo indentação",
+            "is_conventional": false,
+            "insertions": 0,
+            "deletions": 2,
+            "total_diff": 2
+        },
+        {
+            "hash": "35ff8a367661ef89c1e2bbb87bd3d7ba4a7f2798",
+            "date": "2026-06-25T18:44:38-03:00",
+            "message": "adiciona documentação do Docker Compose ao MkDocs",
+            "is_conventional": false,
+            "insertions": 13,
+            "deletions": 5,
+            "total_diff": 18
+        },
         {
             "hash": "15fa5a8f6402bb5908ae62e4ce96e212249c4f20",
             "date": "2026-06-25T18:36:09-03:00",
@@ -2229,10 +2247,10 @@
     ],
     "autores": {
         "yaxavier": {
-            "commits": 21,
-            "insercoes": 1411,
-            "delecoes": 58,
-            "total_linhas": 1469
+            "commits": 23,
+            "insercoes": 1424,
+            "delecoes": 65,
+            "total_linhas": 1489
         },
         "augustogmedeiros": {
             "commits": 118,
