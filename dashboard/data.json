@@ -1,15 +1,6 @@
 {
-    "last_updated": "2026-06-25T17:51:18.844217Z",
+    "last_updated": "2026-06-25T17:51:40.153643Z",
     "commits": [
-        {
-            "hash": "7229fab126bf92d2f5944cf544b02c4c91a142e9",
-            "date": "2026-06-25T14:50:35-03:00",
-            "message": "Revise API contract for ProtectKids integration (#123)",
-            "is_conventional": false,
-            "insertions": 300,
-            "deletions": 90,
-            "total_diff": 390
-        },
         {
             "hash": "a3990fa8e2c41c4c4a5fc733f7ec783ea64a1cfb",
             "date": "2026-06-25T14:45:46-03:00",
@@ -2184,10 +2175,10 @@
     ],
     "autores": {
         "augustogmedeiros": {
-            "commits": 117,
-            "insercoes": 7122,
-            "delecoes": 2946723,
-            "total_linhas": 2953845
+            "commits": 116,
+            "insercoes": 6822,
+            "delecoes": 2946633,
+            "total_linhas": 2953455
         },
         "DaniellyMendes": {
             "commits": 2,
