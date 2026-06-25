@@ -1,6 +1,15 @@
 {
-    "last_updated": "2026-06-25T20:34:43.505277Z",
+    "last_updated": "2026-06-25T21:31:14.063829Z",
     "commits": [
+        {
+            "hash": "5ab9fbd05e0f9b6e556fbe9860b11c5947b5f76c",
+            "date": "2026-06-25T18:30:40-03:00",
+            "message": "Fix/backend crawler (#136)",
+            "is_conventional": false,
+            "insertions": 346,
+            "deletions": 112,
+            "total_diff": 458
+        },
         {
             "hash": "732baafe72bc4ba390cfefa0ecde75c45475036d",
             "date": "2026-06-25T17:34:21-03:00",
@@ -1732,12 +1741,111 @@
     ],
     "issues": [
         {
-            "number": 121,
-            "title": "[Backend] Implementar mecanismo de retry nas requisições HTTP do Crawler",
+            "number": 135,
+            "title": "Revisar e padronizar o docker-compose.yml",
             "state": "open",
-            "created_at": "2026-06-25T16:43:50Z",
+            "created_at": "2026-06-25T21:25:43Z",
             "closed_at": null,
             "resolution_time_hours": null,
+            "char_count": 1927
+        },
+        {
+            "number": 134,
+            "title": "Implementação: Aplicar as novas cores nos componentes e estilos globais do código.",
+            "state": "open",
+            "created_at": "2026-06-25T21:08:32Z",
+            "closed_at": null,
+            "resolution_time_hours": null,
+            "char_count": 0
+        },
+        {
+            "number": 133,
+            "title": "Refatoração de Arquivos: Modificar as variáveis e referências de cores nos arquivos de configuração do projeto.",
+            "state": "open",
+            "created_at": "2026-06-25T21:08:29Z",
+            "closed_at": null,
+            "resolution_time_hours": null,
+            "char_count": 0
+        },
+        {
+            "number": 132,
+            "title": "Ajuste de Telas: Alterar e validar as cores em todas as telas e fluxos de design do projeto no Figma.",
+            "state": "closed",
+            "created_at": "2026-06-25T21:08:21Z",
+            "closed_at": "2026-06-25T21:12:21Z",
+            "resolution_time_hours": 0.07,
+            "char_count": 0
+        },
+        {
+            "number": 131,
+            "title": "Atualização Global: Substituir as cores antigas pelas novas especificações no Figma geral.",
+            "state": "closed",
+            "created_at": "2026-06-25T21:08:17Z",
+            "closed_at": "2026-06-25T21:12:21Z",
+            "resolution_time_hours": 0.07,
+            "char_count": 0
+        },
+        {
+            "number": 130,
+            "title": "Definição de Paleta: Mudar a paleta de cores oficial do projeto.",
+            "state": "closed",
+            "created_at": "2026-06-25T21:08:13Z",
+            "closed_at": "2026-06-25T21:12:21Z",
+            "resolution_time_hours": 0.07,
+            "char_count": 0
+        },
+        {
+            "number": 128,
+            "title": "Integração de Sistemas: Realizar a integração completa dos endpoints do Backend com os componentes do Frontend da nova página.",
+            "state": "open",
+            "created_at": "2026-06-25T21:02:48Z",
+            "closed_at": null,
+            "resolution_time_hours": null,
+            "char_count": 0
+        },
+        {
+            "number": 127,
+            "title": "Implementação de Interface: Atualizar a página de início seguindo estritamente o novo layout e especificações definidas no Figma.",
+            "state": "open",
+            "created_at": "2026-06-25T21:02:43Z",
+            "closed_at": null,
+            "resolution_time_hours": null,
+            "char_count": 0
+        },
+        {
+            "number": 126,
+            "title": "**Seção de Categorias:** Substituir a seção atual de *\"proposições mais relevantes\"* por um componente de exibição/mostrador de categorias.",
+            "state": "closed",
+            "created_at": "2026-06-25T21:02:22Z",
+            "closed_at": "2026-06-25T21:05:30Z",
+            "resolution_time_hours": 0.05,
+            "char_count": 0
+        },
+        {
+            "number": 125,
+            "title": "Seção de Dados: Adicionar os blocos com as estatísticas mais relevantes logo no início da página no Figma",
+            "state": "closed",
+            "created_at": "2026-06-25T21:02:16Z",
+            "closed_at": "2026-06-25T21:15:21Z",
+            "resolution_time_hours": 0.22,
+            "char_count": 0
+        },
+        {
+            "number": 124,
+            "title": "Limpeza de Layout: Remover todo o conteúdo atual da página de início no Figma",
+            "state": "closed",
+            "created_at": "2026-06-25T21:00:52Z",
+            "closed_at": "2026-06-25T21:15:16Z",
+            "resolution_time_hours": 0.24,
+            "char_count": 0
+        },
+        {
+            "number": 121,
+            "title": "[Backend] Implementar mecanismo de retry nas requisições HTTP do Crawler",
+            "state": "closed",
+            "created_at": "2026-06-25T16:43:50Z",
+            "closed_at": "2026-06-25T21:30:41Z",
+            "resolution_time_hours": 4.78,
             "char_count": 1557
         },
         {
@@ -1945,7 +2053,7 @@
             "created_at": "2026-06-07T23:46:07Z",
             "closed_at": null,
             "resolution_time_hours": null,
-            "char_count": 1055
+            "char_count": 383
         },
         {
             "number": 76,
@@ -1954,7 +2062,7 @@
             "created_at": "2026-06-07T23:36:14Z",
             "closed_at": null,
             "resolution_time_hours": null,
-            "char_count": 847
+            "char_count": 473
         },
         {
             "number": 75,
@@ -2099,110 +2207,20 @@
             "closed_at": "2026-05-18T18:25:52Z",
             "resolution_time_hours": 383.02,
             "char_count": 1498
-        },
-        {
-            "number": 36,
-            "title": "[QA] Configuração Base do Ambiente de Testes Automatizados (Backend e Frontend)",
-            "state": "closed",
-            "created_at": "2026-05-02T19:23:12Z",
-            "closed_at": "2026-05-18T05:29:17Z",
-            "resolution_time_hours": 370.1,
-            "char_count": 1245
-        },
-        {
-            "number": 35,
-            "title": "Configuração da Pipeline de Integração Contínua (CI) com GitHub Actions",
-            "state": "closed",
-            "created_at": "2026-05-02T19:19:54Z",
-            "closed_at": "2026-05-26T21:24:39Z",
-            "resolution_time_hours": 578.08,
-            "char_count": 1402
-        },
-        {
-            "number": 33,
-            "title": "Integração do FastAPI com PostgreSQL via SQLModel",
-            "state": "closed",
-            "created_at": "2026-05-02T18:54:54Z",
-            "closed_at": "2026-05-02T19:11:28Z",
-            "resolution_time_hours": 0.28,
-            "char_count": 1316
-        },
-        {
-            "number": 32,
-            "title": "Correções de Configuração do Vite, Docker e Renderização Inicial",
-            "state": "closed",
-            "created_at": "2026-05-02T17:39:10Z",
-            "closed_at": "2026-05-06T15:11:01Z",
-            "resolution_time_hours": 93.53,
-            "char_count": 1699
-        },
-        {
-            "number": 30,
-            "title": "Realocação e atualização do gitignore",
-            "state": "closed",
-            "created_at": "2026-05-02T17:10:47Z",
-            "closed_at": "2026-05-02T17:10:57Z",
-            "resolution_time_hours": 0.0,
-            "char_count": 833
-        },
-        {
-            "number": 29,
-            "title": "Correção Diagrama C4",
-            "state": "closed",
-            "created_at": "2026-05-02T17:08:49Z",
-            "closed_at": "2026-05-02T17:11:02Z",
-            "resolution_time_hours": 0.04,
-            "char_count": 1185
-        },
-        {
-            "number": 27,
-            "title": "Setup do FastAPI e Criação da Rota Mockada",
-            "state": "closed",
-            "created_at": "2026-04-17T12:33:55Z",
-            "closed_at": "2026-04-17T14:08:53Z",
-            "resolution_time_hours": 1.58,
-            "char_count": 1595
-        },
-        {
-            "number": 26,
-            "title": "Criação do README Oficial do Repositório",
-            "state": "closed",
-            "created_at": "2026-04-17T12:27:42Z",
-            "closed_at": "2026-04-22T15:12:31Z",
-            "resolution_time_hours": 122.75,
-            "char_count": 1280
-        },
-        {
-            "number": 25,
-            "title": "Modelagem e Implementação do Schema de Banco de Dados",
-            "state": "closed",
-            "created_at": "2026-04-17T12:23:07Z",
-            "closed_at": "2026-04-22T15:13:26Z",
-            "resolution_time_hours": 122.84,
-            "char_count": 1393
-        },
-        {
-            "number": 24,
-            "title": "Inicialização do Projeto e Setup Base",
-            "state": "closed",
-            "created_at": "2026-04-17T12:17:15Z",
-            "closed_at": "2026-05-02T18:50:19Z",
-            "resolution_time_hours": 366.55,
-            "char_count": 1495
         }
     ],
     "autores": {
+        "augustogmedeiros": {
+            "commits": 118,
+            "insercoes": 7468,
+            "delecoes": 2946835,
+            "total_linhas": 2954303
+        },
         "yaxavier": {
             "commits": 19,
             "insercoes": 784,
             "delecoes": 55,
             "total_linhas": 839
-        },
-        "augustogmedeiros": {
-            "commits": 117,
-            "insercoes": 7122,
-            "delecoes": 2946723,
-            "total_linhas": 2953845
         },
         "DaniellyMendes": {
             "commits": 2,
