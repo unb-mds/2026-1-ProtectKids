@@ -14,6 +14,7 @@ import concurrent.futures
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from database import engine
 from models import Proposicao, Parlamentar
+import hashlib
 
 # Reaproveita a inteligência do pipeline da Câmara
 from crawler.camara_api import (
@@ -68,6 +69,23 @@ def fetch_proposicoes_senado(keyword: str) -> list[dict]:
     except Exception as exc:
         logger.error(f"Erro ao buscar no Senado: {exc}")
         return []
+    
+def gerar_id_autor_senado(nome_autor: str) -> int:
+    """
+    Gera um identificador estável para autores do Senado quando a API
+    não fornece um ID numérico confiável.
+
+    Evita o uso de hash() nativo do Python, pois ele pode variar entre
+    execuções diferentes.
+    """
+    nome_normalizado = nome_autor.strip().lower()
+
+    if not nome_normalizado:
+        return 0
+
+    digest = hashlib.sha256(nome_normalizado.encode("utf-8")).hexdigest()
+
+    return int(digest[:10], 16)
 
 def transform_materia_senado(materia_bruta: dict) -> Optional[tuple]:
     """O Adaptador resiliente atualizado com as chaves reais do Senado."""
@@ -102,7 +120,7 @@ def transform_materia_senado(materia_bruta: dict) -> Optional[tuple]:
             uf = partido_uf[1].strip()
             
     # Como o Senado não enviou o ID numérico do autor, criamos um numérico baseado no nome
-    id_autor = abs(hash(nome_autor)) % 1000000 
+    id_autor = gerar_id_autor_senado(nome_autor) 
     
     parlamentar = Parlamentar(
         id_parlamentar=id_autor,

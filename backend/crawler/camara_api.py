@@ -225,43 +225,48 @@ def fetch_detalhes_proposicao(id_proposicao_api: int) -> dict:
         logger.warning(f"Erro ao buscar detalhes da proposição {id_proposicao_api}: {exc}")
         return {}
     
-def extrair_texto_pdf(url_pdf: Optional[str]) -> Optional[str]:
+def extrair_texto_pdf(url_pdf: Optional[str]) -> str:
     """
-    Faz o descarregamento do PDF de forma temporária e extrai 
-    todo o texto utilizando o PyMuPDF (fitz) para máxima velocidade.
+    Baixa um PDF e extrai seu texto usando PyMuPDF.
+
+    A função usa arquivo temporário e garante limpeza com finally,
+    evitando que arquivos fiquem acumulados em caso de erro.
     """
     if not url_pdf:
-        return None
-    
+        return ""
+
+    temp_pdf_path = None
+
     try:
-        logger.info(f"Descarregando PDF para extração rápida: {url_pdf}")
-        resposta = requests.get(url_pdf, timeout=30)
-        resposta.raise_for_status()
-        
+        response = requests.get(url_pdf, timeout=30)
+        response.raise_for_status()
+
         with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as temp_pdf:
-            temp_pdf.write(resposta.content)
+            temp_pdf.write(response.content)
             temp_pdf_path = temp_pdf.name
-            
-        texto_extraido = ""
-        # A nova lógica de leitura ultrarrápida com PyMuPDF
+
+        texto = ""
+
         with fitz.open(temp_pdf_path) as pdf:
             for pagina in pdf:
-                texto = pagina.get_text()
-                if texto:
-                    texto_extraido += texto + "\n"
-                    
-        os.remove(temp_pdf_path)
-        return texto_extraido.strip() if texto_extraido else None
-        
-    except Exception as e:
-        logger.warning(f"Não foi possível processar o PDF da URL {url_pdf}: {e}")
-        return None
-# ---------------------------------------------------------------------------
-# CAMADA DE NLP — Processamento de Linguagem Natural
-# ---------------------------------------------------------------------------
-# ---------------------------------------------------------------------------
-# CAMADA DE NLP — Processamento de Linguagem Natural
-# ---------------------------------------------------------------------------
+                texto += pagina.get_text()
+
+        return texto.strip()
+
+    except requests.RequestException as exc:
+        logger.error(f"Erro ao baixar PDF {url_pdf}: {exc}")
+        return ""
+
+    except Exception as exc:
+        logger.error(f"Erro ao extrair texto do PDF {url_pdf}: {exc}")
+        return ""
+
+    finally:
+        if temp_pdf_path and os.path.exists(temp_pdf_path):
+            try:
+                os.remove(temp_pdf_path)
+            except OSError as exc:
+                logger.warning(f"Não foi possível remover arquivo temporário {temp_pdf_path}: {exc}")
 
 CATEGORIA_PADRAO = "Proteção Geral"
 
