@@ -1,6 +1,15 @@
 {
-    "last_updated": "2026-06-25T21:31:14.063829Z",
+    "last_updated": "2026-06-25T21:32:39.699472Z",
     "commits": [
+        {
+            "hash": "f9e0a6597b82cbf4ae9e6687661af99bf6a96090",
+            "date": "2026-06-25T18:32:18-03:00",
+            "message": "Revisão",
+            "is_conventional": false,
+            "insertions": 3,
+            "deletions": 3,
+            "total_diff": 6
+        },
         {
             "hash": "5ab9fbd05e0f9b6e556fbe9860b11c5947b5f76c",
             "date": "2026-06-25T18:30:40-03:00",
@@ -2210,17 +2219,17 @@
         }
     ],
     "autores": {
+        "yaxavier": {
+            "commits": 20,
+            "insercoes": 787,
+            "delecoes": 58,
+            "total_linhas": 845
+        },
         "augustogmedeiros": {
             "commits": 118,
             "insercoes": 7468,
             "delecoes": 2946835,
             "total_linhas": 2954303
-        },
-        "yaxavier": {
-            "commits": 19,
-            "insercoes": 784,
-            "delecoes": 55,
-            "total_linhas": 839
         },
         "DaniellyMendes": {
             "commits": 2,
