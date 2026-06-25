@@ -22,7 +22,7 @@ class Proposicao(SQLModel, table=True):
     numero: int
     ano: int
     ementa: str
-    tema: str = "Protecao Infantil Digital"
+    tema: str = "Protecao Infantil"
     data_apresentacao: Optional[date] = None
     url_inteiro_teor: Optional[str] = Field(default=None)   
     subtema: Optional[str] = Field(default=None)            
