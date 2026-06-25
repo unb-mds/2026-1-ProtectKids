@@ -20,7 +20,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    ## image: ghcr.io/unb-mds/2026-1-protectkids-backend:latest
+    # image: ghcr.io/unb-mds/2026-1-protectkids-backend:latest
     ports:
       - "8000:8000"
     volumes:
@@ -44,7 +44,7 @@ services:
       - /app/node_modules
     depends_on:
       - backend
-    command: npm run dev -- --host
+    command: npm run dev -- --host 0.0.0.0
 
 volumes:
   postgres_data:
