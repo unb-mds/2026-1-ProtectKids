@@ -1,163 +1,373 @@
-# 📄 Contrato de Integração da API - ProtectKids (Backend -> Frontend)
+# Contrato da API — ProtectKids
 
-**Base URL Local:** `http://localhost:8000`  
-**Documentação Interativa (Swagger):** `http://localhost:8000/docs`
+Este documento define o contrato de integração entre o backend FastAPI e o frontend React/Vite do projeto **ProtectKids**.
 
-O backend expõe 6 rotas principais, divididas entre dados transacionais (busca de leis) e rotas analíticas (dashboards). Todos os endpoints retornam dados no formato `JSON`.
+## URL Base
 
----
+Ambiente local:
 
-### 1. Buscar Todas as Proposições (Com Filtros)
-Retorna a lista de projetos de lei, ideal para a tela de "Busca Avançada" ou "Auditoria".
-
-* **Endpoint:** `GET /proposicoes`
-* **Query Parameters (Opcionais):**
-  * `uf` (string): Ex: `SP`, `RJ`.
-  * `partido` (string): Ex: `PL`, `PT`, `PSOL`.
-  * `ano` (int): Ex: `2026`.
-  * `tema_nlp` (string): Ex: `Cyberbullying`, `Exploração sexual online`.
-* **Exemplo de Chamada:** `/proposicoes?ano=2026&tema_nlp=Cyberbullying`
-* **Resposta Esperada (200 OK):**
-```json
-[
-  {
-    "id_proposicao": 1,
-    "id_externo": "24792026",
-    "titulo": "PL 2479/2026",
-    "ementa": "Altera o ECA para criminalizar...",
-    "ano": 2026,
-    "classificacao_nlp": "Cyberbullying",
-    "origem": "Camara",
-    "nome_autor": "João Silva"
-  }
-]
+```text
+http://localhost:8000
 ```
 
----
-
-### 2. Buscar Detalhes de uma Lei
-Retorna os dados completos de uma única lei.
-
-* **Endpoint:** `GET /proposicoes/{id_busca}`
-* **Path Parameter:**
-  * `id_busca` (int ou string): Pode ser o ID do banco ou o `id_externo` oficial da Câmara/Senado.
-* **Resposta Esperada (200 OK):** Objeto JSON único contendo os detalhes da proposição.
-
----
-
-### 3. Linha do Tempo (Histórico de Tramitações)
-Alimenta o componente visual de "Status/Passo a Passo" de uma lei específica. Já vem ordenado da tramitação mais recente (topo) para a mais antiga.
-
-* **Endpoint:** `GET /proposicoes/{id_externo}/tramitacoes`
-* **Path Parameter:**
-  * `id_externo` (string): Obrigatório. O ID oficial da lei.
-* **Resposta Esperada (200 OK):**
-```json
-[
-  {
-    "data_hora": "2026-05-18T14:30:00",
-    "orgao": "Mesa Diretora",
-    "descricao": "Apresentação do Projeto de Lei..."
-  }
-]
-```
-
----
-
-### 4. Dashboard: Ranking de Parlamentares
-Retorna os deputados/senadores que mais propõem leis sobre proteção infantil.
-
-* **Endpoint:** `GET /analytics/parlamentares/ranking`
-* **Query Parameters (Opcionais):** `ano`, `tema_nlp`.
-* **Resposta Esperada (200 OK):**
-```json
-[
-  {
-    "nome": "João Silva",
-    "partido": "PL",
-    "uf": "SP",
-    "total_projetos": 15
-  }
-]
-```
-
----
-
-### 5. Dashboard: Ranking de Partidos
-Retorna o volume agregado de leis propostas por cada partido.
-
-* **Endpoint:** `GET /analytics/partidos/ranking`
-* **Query Parameters (Opcionais):** `ano`, `tema_nlp`.
-* **Resposta Esperada (200 OK):**
-```json
-[
-  {
-    "partido": "PL",
-    "total_projetos": 45
-  },
-  {
-    "partido": "PT",
-    "total_projetos": 38
-  }
-]
-```
-
----
-
-### 6. Dashboard: Nuvem de Palavras
-Analisa os textos das leis (NLP) e devolve as palavras centrais para a biblioteca de Word Cloud da página inicial, já sem pontuações ou jargões legislativos ("lei", "artigo", meses do ano, etc).
-
-* **Endpoint:** `GET /analytics/nuvem-palavras`
-* **Query Parameters (Opcionais):** `ano`, `tema_nlp`.
-* **Resposta Esperada (200 OK):**
-```json
-[
-  {
-    "text": "criança",
-    "value": 150
-  },
-  {
-    "text": "internet",
-    "value": 95
-  }
-]
-```
-
----
-
-## ⚠️ Anexos de Integração (Dicionários e Erros)
-
-Para garantir que os filtros do frontend funcionem perfeitamente com o banco de dados e que as telas de erro sejam amigáveis, a equipe de React deve observar os seguintes padrões:
-
-### A. Dicionário de Domínio (Valores Exatos para Filtros)
-Ao montar os componentes de `Select` ou `Dropdown` para os filtros, os valores enviados na URL (`Query Parameters`) devem ser **exatamente** iguais a estas strings (Case Sensitive), caso contrário, a API retornará uma lista vazia.
-
-* **origem:** `Camara` ou `Senado` *(Sem acentos)*
-* **tema_nlp:** 
-  * `Cyberbullying`
-  * `Proteção de dados de menores`
-  * `Exploração sexual online`
-  * `Controle parental`
-  * `Regulação de plataformas digitais`
-  * `Exposição a conteúdo nocivo`
-
-### B. Contrato de Exceções (Tratamento de Erros)
-Quando uma requisição falha (ex: buscar os detalhes de um ID que não existe no banco de dados), o backend não devolve HTML ou texto solto. Ele devolve o status HTTP correspondente (ex: `404 Not Found`) e um JSON padronizado com a chave `detail`. 
-
-O frontend deve capturar essa chave para exibir "Toasts" ou Alertas ao usuário.
-
-* **Exemplo de Resposta de Erro (404 ou 500):**
-```json
-{
-  "detail": "Proposição com ID 12345 não foi encontrada no banco de dados."
-}
-```
-*(No Axios, isso seria acessado via `error.response.data.detail`)*
-
-### C. Configuração de Variáveis de Ambiente (Vite/React)
-O backend já está com o CORS configurado para aceitar requisições locais das portas `3000` e `5173`. Para que o frontend saiba com quem falar sem deixar a URL chumbada no código, criem um arquivo `.env` na raiz do projeto React com a seguinte variável:
+Configuração recomendada no frontend:
 
 ```env
 VITE_API_URL=http://localhost:8000
 ```
-*(Todas as chamadas do Axios/Fetch devem usar essa base URL).*
+
+```javascript
+import axios from "axios";
+
+export const api = axios.create({
+  baseURL: import.meta.env.VITE_API_URL || "http://localhost:8000",
+});
+```
+
+---
+
+# 1. Status da API
+
+## `GET /`
+
+Verifica se a API está ativa.
+
+### Resposta 200
+
+```json
+{
+  "message": "API ProtectKids está no ar!"
+}
+```
+
+---
+
+# 2. Listar proposições
+
+## `GET /proposicoes`
+
+Retorna uma lista paginada e resumida de proposições.
+
+Esta rota deve ser usada para listagens, cards, tabelas e dashboards. Ela **não retorna `texto_integral`**.
+
+## Parâmetros
+
+| Parâmetro  | Tipo    | Obrigatório | Descrição                                                    |
+| ---------- | ------- | ----------- | ------------------------------------------------------------ |
+| `uf`       | string  | Não         | Filtra pela UF do autor. Exemplo: `DF`.                      |
+| `partido`  | string  | Não         | Filtra pelo partido do autor. Exemplo: `PT`.                 |
+| `ano`      | integer | Não         | Filtra pelo ano da proposição.                               |
+| `tema_nlp` | string  | Não         | Filtra pela classificação temática.                          |
+| `origem`   | string  | Não         | Valores aceitos: `Camara` ou `Senado`.                       |
+| `limit`    | integer | Não         | Quantidade de itens retornados. Padrão: `50`. Máximo: `200`. |
+| `offset`   | integer | Não         | Quantidade de itens ignorados. Padrão: `0`.                  |
+
+## Exemplo
+
+```http
+GET /proposicoes?origem=Camara&limit=10&offset=0
+```
+
+## Resposta 200
+
+```json
+[
+  {
+    "id_proposicao": 3,
+    "id_externo": "camara-2634854",
+    "titulo": "PL 3270/2026",
+    "origem": "Camara",
+    "tipo": "PL",
+    "numero": 3270,
+    "ano": 2026,
+    "ementa": "Institui a Política Nacional de Infraestrutura Familiar e Acessível nas Praias Brasileiras...",
+    "tema": "Protecao Infantil",
+    "subtema": "criança",
+    "classificacao_nlp": "Proteção Geral",
+    "data_apresentacao": "2026-06-23",
+    "url_inteiro_teor": "https://www.camara.leg.br/...",
+    "id_autor": 220540,
+    "nome_autor": "Duda Ramos",
+    "partido_autor": "PODE",
+    "uf_autor": "RR"
+  }
+]
+```
+
+## Erro 400 — origem inválida
+
+```json
+{
+  "detail": "Origem inválida. Use 'Camara' ou 'Senado'."
+}
+```
+
+---
+
+# 3. Detalhar proposição
+
+## `GET /proposicoes/{id_busca}`
+
+Retorna os dados completos de uma proposição.
+
+O parâmetro `id_busca` aceita:
+
+| Formato              | Exemplo          |
+| -------------------- | ---------------- |
+| ID interno           | `3`              |
+| ID externo da Câmara | `camara-2634854` |
+| ID externo do Senado | `senado-123456`  |
+
+## Exemplo
+
+```http
+GET /proposicoes/camara-2634854
+```
+
+## Resposta 200
+
+```json
+{
+  "id_proposicao": 3,
+  "id_externo": "camara-2634854",
+  "titulo": "PL 3270/2026",
+  "origem": "Camara",
+  "tipo": "PL",
+  "numero": 3270,
+  "ano": 2026,
+  "ementa": "Institui a Política Nacional de Infraestrutura Familiar e Acessível nas Praias Brasileiras...",
+  "tema": "Protecao Infantil",
+  "subtema": "criança",
+  "classificacao_nlp": "Proteção Geral",
+  "data_apresentacao": "2026-06-23",
+  "url_inteiro_teor": "https://www.camara.leg.br/...",
+  "id_autor": 220540,
+  "nome_autor": "Duda Ramos",
+  "partido_autor": "PODE",
+  "uf_autor": "RR",
+  "texto_integral": "Texto integral extraído do PDF..."
+}
+```
+
+## Erro 404
+
+```json
+{
+  "detail": "Proposição com ID camara-999999999 não foi encontrada no banco de dados."
+}
+```
+
+---
+
+# 4. Tramitações
+
+## `GET /proposicoes/{id_externo}/tramitacoes`
+
+Retorna o histórico de tramitações de uma proposição.
+
+## Exemplo
+
+```http
+GET /proposicoes/camara-2634854/tramitacoes
+```
+
+## Resposta 200
+
+```json
+[
+  {
+    "data_hora": "2026-06-23T15:10:00",
+    "orgao": "MESA",
+    "descricao": "Apresentação de Proposição"
+  }
+]
+```
+
+Observação: nesta versão, as tramitações estão mais consolidadas para proposições da Câmara.
+
+---
+
+# 5. Ranking de parlamentares
+
+## `GET /analytics/parlamentares/ranking`
+
+Retorna o ranking de parlamentares por quantidade de proposições cadastradas.
+
+## Resposta 200
+
+```json
+[
+  {
+    "nome": "Duda Ramos",
+    "partido": "PODE",
+    "uf": "RR",
+    "total_proposicoes": 3
+  }
+]
+```
+
+---
+
+# 6. Ranking de partidos
+
+## `GET /analytics/partidos/ranking`
+
+Retorna o ranking de partidos por quantidade de proposições cadastradas.
+
+## Resposta 200
+
+```json
+[
+  {
+    "partido": "PODE",
+    "total_proposicoes": 5
+  }
+]
+```
+
+---
+
+# 7. Nuvem de palavras
+
+## `GET /analytics/nuvem-palavras`
+
+Retorna as palavras mais frequentes nas ementas das proposições cadastradas.
+
+Esta rota deve ser usada na **tela inicial do projeto**, conforme requisito solicitado para exibição da nuvem de palavras.
+
+## Exemplo
+
+```http
+GET /analytics/nuvem-palavras
+```
+
+## Resposta 200
+
+```json
+[
+  {
+    "text": "criança",
+    "value": 18
+  },
+  {
+    "text": "adolescente",
+    "value": 14
+  },
+  {
+    "text": "proteção",
+    "value": 10
+  }
+]
+```
+
+## Tipo esperado no frontend
+
+```typescript
+type PalavraNuvem = {
+  text: string;
+  value: number;
+};
+```
+
+---
+
+# 8. Taxonomia temática
+
+O campo `classificacao_nlp` pode retornar:
+
+```text
+Cyberbullying e Crimes Virtuais
+Adoção e Orfanatos
+Violência e Abuso
+Educação e Cultura
+Proteção Geral
+Simbólico/Ruído
+Articulação Estratégica
+```
+
+O campo `tema` usa o valor padrão:
+
+```text
+Protecao Infantil
+```
+
+A classificação usa processamento de linguagem natural com spaCy e regras heurísticas.
+
+---
+
+# 9. Funções recomendadas no frontend
+
+## Buscar proposições
+
+```javascript
+export async function buscarProposicoes(params = {}) {
+  const { data } = await api.get("/proposicoes", { params });
+  return data;
+}
+```
+
+## Buscar detalhe
+
+```javascript
+export async function buscarProposicaoPorId(idBusca) {
+  const { data } = await api.get(`/proposicoes/${idBusca}`);
+  return data;
+}
+```
+
+## Buscar tramitações
+
+```javascript
+export async function buscarTramitacoes(idExterno) {
+  const { data } = await api.get(`/proposicoes/${idExterno}/tramitacoes`);
+  return data;
+}
+```
+
+## Buscar nuvem de palavras
+
+```javascript
+export async function buscarNuvemPalavras() {
+  const { data } = await api.get("/analytics/nuvem-palavras");
+  return data;
+}
+```
+
+## Buscar rankings
+
+```javascript
+export async function buscarRankingParlamentares() {
+  const { data } = await api.get("/analytics/parlamentares/ranking");
+  return data;
+}
+
+export async function buscarRankingPartidos() {
+  const { data } = await api.get("/analytics/partidos/ranking");
+  return data;
+}
+```
+
+---
+
+# 10. Orientações para o frontend
+
+A tela inicial deve consumir:
+
+```http
+GET /analytics/nuvem-palavras
+```
+
+A tela de listagem deve consumir:
+
+```http
+GET /proposicoes
+```
+
+A tela de detalhes deve consumir:
+
+```http
+GET /proposicoes/{id_busca}
+GET /proposicoes/{id_externo}/tramitacoes
+```
+
+A listagem não possui `texto_integral`. O texto completo só aparece na rota de detalhe.
