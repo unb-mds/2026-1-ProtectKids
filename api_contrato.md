@@ -193,6 +193,31 @@ Observação: nesta versão, as tramitações estão mais consolidadas para prop
 
 Retorna o ranking de parlamentares por quantidade de proposições cadastradas.
 
+## Parâmetros
+
+| Parâmetro  | Tipo    | Obrigatório | Descrição                                                    |
+| ---------- | ------- | ----------- | ------------------------------------------------------------ |
+| `ano`      | integer | Não         | Filtra pelo ano da proposição.                               |
+| `tema_nlp` | string  | Não         | Filtra pela classificação temática.                          |
+| `origem`   | string  | Não         | Valores aceitos: `Camara` ou `Senado`.                       |
+| `uf`       | string  | Não         | Filtra pela UF do autor. Exemplo: `DF`.                      |
+| `partido`  | string  | Não         | Filtra pelo partido do autor. Exemplo: `PT`.                 |
+| `limit`    | integer | Não         | Quantidade de itens retornados. Padrão: `10`. Máximo: `100`. |
+
+## Exemplos
+
+```http
+GET /analytics/parlamentares/ranking
+```
+
+```http
+GET /analytics/parlamentares/ranking?origem=Camara&limit=5
+```
+
+```http
+GET /analytics/parlamentares/ranking?ano=2026&tema_nlp=Proteção Geral&limit=10
+```
+
 ## Resposta 200
 
 ```json
@@ -213,6 +238,31 @@ Retorna o ranking de parlamentares por quantidade de proposições cadastradas.
 ## `GET /analytics/partidos/ranking`
 
 Retorna o ranking de partidos por quantidade de proposições cadastradas.
+
+## Parâmetros
+
+| Parâmetro  | Tipo    | Obrigatório | Descrição                                                    |
+| ---------- | ------- | ----------- | ------------------------------------------------------------ |
+| `ano`      | integer | Não         | Filtra pelo ano da proposição.                               |
+| `tema_nlp` | string  | Não         | Filtra pela classificação temática.                          |
+| `origem`   | string  | Não         | Valores aceitos: `Camara` ou `Senado`.                       |
+| `uf`       | string  | Não         | Filtra pela UF do autor. Exemplo: `DF`.                      |
+| `partido`  | string  | Não         | Filtra pelo partido do autor. Exemplo: `PT`.                 |
+| `limit`    | integer | Não         | Quantidade de itens retornados. Padrão: `10`. Máximo: `100`. |
+
+## Exemplos
+
+```http
+GET /analytics/partidos/ranking
+```
+
+```http
+GET /analytics/partidos/ranking?origem=Senado&limit=5
+```
+
+```http
+GET /analytics/partidos/ranking?ano=2026&uf=DF&limit=10
+```
 
 ## Resposta 200
 
@@ -235,10 +285,39 @@ Retorna as palavras mais frequentes nas ementas das proposições cadastradas.
 
 Esta rota deve ser usada na **tela inicial do projeto**, conforme requisito solicitado para exibição da nuvem de palavras.
 
-## Exemplo
+A nuvem de palavras é gerada a partir das **ementas** das proposições, não do texto integral dos PDFs.
+
+## Parâmetros
+
+| Parâmetro  | Tipo    | Obrigatório | Descrição                                                       |
+| ---------- | ------- | ----------- | --------------------------------------------------------------- |
+| `ano`      | integer | Não         | Filtra pelo ano da proposição.                                  |
+| `tema_nlp` | string  | Não         | Filtra pela classificação temática.                             |
+| `origem`   | string  | Não         | Valores aceitos: `Camara` ou `Senado`.                          |
+| `uf`       | string  | Não         | Filtra pela UF do autor. Exemplo: `DF`.                         |
+| `partido`  | string  | Não         | Filtra pelo partido do autor. Exemplo: `PT`.                    |
+| `limit`    | integer | Não         | Quantidade de palavras retornadas. Padrão: `50`. Máximo: `100`. |
+
+## Exemplos
 
 ```http
 GET /analytics/nuvem-palavras
+```
+
+```http
+GET /analytics/nuvem-palavras?limit=50
+```
+
+```http
+GET /analytics/nuvem-palavras?origem=Camara&limit=30
+```
+
+```http
+GET /analytics/nuvem-palavras?origem=Senado&limit=30
+```
+
+```http
+GET /analytics/nuvem-palavras?ano=2026&tema_nlp=Proteção Geral&limit=30
 ```
 
 ## Resposta 200
@@ -306,6 +385,16 @@ export async function buscarProposicoes(params = {}) {
 }
 ```
 
+Exemplo:
+
+```javascript
+const proposicoes = await buscarProposicoes({
+  origem: "Camara",
+  limit: 10,
+  offset: 0,
+});
+```
+
 ## Buscar detalhe
 
 ```javascript
@@ -327,24 +416,46 @@ export async function buscarTramitacoes(idExterno) {
 ## Buscar nuvem de palavras
 
 ```javascript
-export async function buscarNuvemPalavras() {
-  const { data } = await api.get("/analytics/nuvem-palavras");
+export async function buscarNuvemPalavras(params = {}) {
+  const { data } = await api.get("/analytics/nuvem-palavras", { params });
   return data;
 }
 ```
 
-## Buscar rankings
+Exemplo de uso na Home:
 
 ```javascript
-export async function buscarRankingParlamentares() {
-  const { data } = await api.get("/analytics/parlamentares/ranking");
-  return data;
-}
+const palavras = await buscarNuvemPalavras({
+  origem: "Camara",
+  limit: 50,
+});
+```
 
-export async function buscarRankingPartidos() {
-  const { data } = await api.get("/analytics/partidos/ranking");
+## Buscar ranking de parlamentares
+
+```javascript
+export async function buscarRankingParlamentares(params = {}) {
+  const { data } = await api.get("/analytics/parlamentares/ranking", { params });
   return data;
 }
+```
+
+## Buscar ranking de partidos
+
+```javascript
+export async function buscarRankingPartidos(params = {}) {
+  const { data } = await api.get("/analytics/partidos/ranking", { params });
+  return data;
+}
+```
+
+Exemplo:
+
+```javascript
+const rankingPartidos = await buscarRankingPartidos({
+  origem: "Senado",
+  limit: 5,
+});
 ```
 
 ---
@@ -355,6 +466,13 @@ A tela inicial deve consumir:
 
 ```http
 GET /analytics/nuvem-palavras
+```
+
+Também é possível criar abas ou filtros na Home usando:
+
+```http
+GET /analytics/nuvem-palavras?origem=Camara
+GET /analytics/nuvem-palavras?origem=Senado
 ```
 
 A tela de listagem deve consumir:
@@ -371,3 +489,5 @@ GET /proposicoes/{id_externo}/tramitacoes
 ```
 
 A listagem não possui `texto_integral`. O texto completo só aparece na rota de detalhe.
+
+Os endpoints de analytics aceitam filtros para permitir dashboards dinâmicos por origem, ano, tema, UF e partido.
