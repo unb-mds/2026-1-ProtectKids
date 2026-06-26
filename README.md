@@ -62,7 +62,7 @@ MAX_PAGES=3
 **3. Subir a Infraestrutura**
 Baixe as imagens oficiais mais recentes da nuvem (GHCR) e inicie os serviços do banco, backend e frontend.
 ```bash
-docker-compose pull
+docker compose up --build -d
 docker-compose up -d
 ```
 *(Aguarde alguns instantes até os contêineres inicializarem)*
