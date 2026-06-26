@@ -1,6 +1,15 @@
 {
-    "last_updated": "2026-06-25T22:48:26.766454Z",
+    "last_updated": "2026-06-26T17:53:24.015073Z",
     "commits": [
+        {
+            "hash": "9f47dc50fd65ce6bb818a25b6a74df2ecabbbd70",
+            "date": "2026-06-26T14:53:02-03:00",
+            "message": "Change docker-compose command to docker compose",
+            "is_conventional": false,
+            "insertions": 1,
+            "deletions": 1,
+            "total_diff": 2
+        },
         {
             "hash": "6a83c88fbdab91753e1c40529bbd21c79d79f65d",
             "date": "2026-06-25T19:48:01-03:00",
@@ -2247,10 +2256,10 @@
     ],
     "autores": {
         "augustogmedeiros": {
-            "commits": 119,
-            "insercoes": 7787,
-            "delecoes": 2946925,
-            "total_linhas": 2954712
+            "commits": 120,
+            "insercoes": 7788,
+            "delecoes": 2946926,
+            "total_linhas": 2954714
         },
         "yaxavier": {
             "commits": 23,
