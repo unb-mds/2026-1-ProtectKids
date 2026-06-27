@@ -1,6 +1,15 @@
 {
-    "last_updated": "2026-06-27T15:55:42.651977Z",
+    "last_updated": "2026-06-27T16:17:10.606943Z",
     "commits": [
+        {
+            "hash": "452096fe00251c874724813e16543f80d086fe3c",
+            "date": "2026-06-27T13:16:40-03:00",
+            "message": "troca da barras",
+            "is_conventional": false,
+            "insertions": 1,
+            "deletions": 1,
+            "total_diff": 2
+        },
         {
             "hash": "c8c789fa04727dfb946f3943225fa25b09017191",
             "date": "2026-06-27T12:55:01-03:00",
@@ -1842,19 +1851,19 @@
         {
             "number": 134,
             "title": "Implementação: Aplicar as novas cores nos componentes e estilos globais do código.",
-            "state": "open",
+            "state": "closed",
             "created_at": "2026-06-25T21:08:32Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
+            "closed_at": "2026-06-27T16:01:30Z",
+            "resolution_time_hours": 42.88,
             "char_count": 0
         },
         {
             "number": 133,
             "title": "Refatoração de Arquivos: Modificar as variáveis e referências de cores nos arquivos de configuração do projeto.",
-            "state": "open",
+            "state": "closed",
             "created_at": "2026-06-25T21:08:29Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
+            "closed_at": "2026-06-27T16:01:51Z",
+            "resolution_time_hours": 42.89,
             "char_count": 0
         },
         {
@@ -1896,10 +1905,10 @@
         {
             "number": 127,
             "title": "Implementação de Interface: Atualizar a página de início seguindo estritamente o novo layout e especificações definidas no Figma.",
-            "state": "open",
+            "state": "closed",
             "created_at": "2026-06-25T21:02:43Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
+            "closed_at": "2026-06-27T16:00:12Z",
+            "resolution_time_hours": 42.96,
             "char_count": 0
         },
         {
@@ -2148,10 +2157,10 @@
         {
             "number": 76,
             "title": "Ajustar a paleta de cores",
-            "state": "open",
+            "state": "closed",
             "created_at": "2026-06-07T23:36:14Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
+            "closed_at": "2026-06-27T16:02:27Z",
+            "resolution_time_hours": 472.44,
             "char_count": 473
         },
         {
@@ -2270,23 +2279,14 @@
             "closed_at": "2026-05-13T05:15:27Z",
             "resolution_time_hours": 6.7,
             "char_count": 139
-        },
-        {
-            "number": 40,
-            "title": "Automação do Coletor de Métricas (GitHub Actions) e Deploy no Pages",
-            "state": "closed",
-            "created_at": "2026-05-12T22:13:45Z",
-            "closed_at": "2026-05-13T05:15:17Z",
-            "resolution_time_hours": 7.03,
-            "char_count": 1359
         }
     ],
     "autores": {
         "cgbriel28": {
-            "commits": 13,
-            "insercoes": 13400,
-            "delecoes": 949,
-            "total_linhas": 14349
+            "commits": 14,
+            "insercoes": 13401,
+            "delecoes": 950,
+            "total_linhas": 14351
         },
         "augustogmedeiros": {
             "commits": 120,
