@@ -1,21 +1,44 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, FileText, ExternalLink, Milestone, User } from 'lucide-react';
-import { buscarLeiPorId } from '../api';
+import { buscarLeiPorId, buscarTramitacoes } from '../api';
 
 export default function DetalhesLei() {
   const { id } = useParams();
   const [lei, setLei] = useState(null);
+  const [tramitacoes, setTramitacoes] = useState([]);
   const [carregando, setCarregando] = useState(true);
 
   useEffect(() => {
-    buscarLeiPorId(id).then((dados) => {
-      setLei(dados);
-      setCarregando(false);
-    }).catch(err => {
-      console.error("Erro ao buscar detalhes da lei", err);
-      setCarregando(false);
-    });
+    let ativo = true;
+
+    const carregarDados = async () => {
+      try {
+        const dadosLei = await buscarLeiPorId(id);
+        if (!ativo) return;
+
+        setLei(dadosLei);
+
+        const dadosTramitacoes = await buscarTramitacoes(dadosLei.id_externo);
+        if (!ativo) return;
+        setTramitacoes(dadosTramitacoes);
+      } catch (err) {
+        console.error("Erro ao buscar detalhes da lei", err);
+        if (!ativo) return;
+        setLei(null);
+        setTramitacoes([]);
+      } finally {
+        if (ativo) {
+          setCarregando(false);
+        }
+      }
+    };
+
+    carregarDados();
+
+    return () => {
+      ativo = false;
+    };
   }, [id]);
 
   if (carregando) {
@@ -99,23 +122,35 @@ export default function DetalhesLei() {
             <h2 className="text-lg font-bold text-gray-900 mb-6 font-serif border-b pb-2">
               Status de Tramitação
             </h2>
-            
-            <div className="relative pl-6 border-l-2 border-blue-200 space-y-6 ml-2">
               
-              {/* Ponto 1: Atual */}
-              <div className="relative">
-                <div className="absolute -left-[31px] top-1 bg-blue-600 w-4 h-4 rounded-full border-4 border-white shadow"></div>
-                <h3 className="text-sm font-bold text-gray-900">Análise de IA (NLP) Concluída</h3>
-                <p className="text-xs text-gray-500 mb-1">Classificado como: {lei.classificacao_nlp}</p>
-              </div>
+            <div className="relative pl-6 border-l-2 border-blue-200 space-y-6 ml-2">
+              {tramitacoes.length > 0 ? (
+                tramitacoes.map((tramitacao, index) => (
+                  <div key={`${tramitacao.data_hora}-${tramitacao.orgao}-${index}`} className="relative">
+                    <div className="absolute -left-[31px] top-1 bg-blue-600 w-4 h-4 rounded-full border-4 border-white shadow"></div>
+                    <h3 className="text-sm font-bold text-gray-900">{tramitacao.orgao}</h3>
+                    <p className="text-xs text-gray-500 mb-1">
+                      {new Date(tramitacao.data_hora).toLocaleDateString('pt-BR')}
+                    </p>
+                    <p className="text-xs text-gray-500">{tramitacao.descricao}</p>
+                  </div>
+                ))
+              ) : (
+                <>
+                  <div className="relative">
+                    <div className="absolute -left-[31px] top-1 bg-blue-600 w-4 h-4 rounded-full border-4 border-white shadow"></div>
+                    <h3 className="text-sm font-bold text-gray-900">Análise de IA (NLP) Concluída</h3>
+                    <p className="text-xs text-gray-500 mb-1">Classificado como: {lei.classificacao_nlp}</p>
+                  </div>
 
-              {/* Ponto 2: Apresentação */}
-              <div className="relative">
-                <div className="absolute -left-[31px] top-1 bg-blue-400 w-4 h-4 rounded-full border-4 border-white shadow"></div>
-                <h3 className="text-sm font-bold text-gray-800">Proposição Apresentada</h3>
-                <p className="text-xs text-gray-500">Data: {new Date(lei.data_apresentacao).toLocaleDateString('pt-BR')}</p>
-                <p className="text-xs text-gray-500">Enviado para a Mesa Diretora</p>
-              </div>
+                  <div className="relative">
+                    <div className="absolute -left-[31px] top-1 bg-blue-400 w-4 h-4 rounded-full border-4 border-white shadow"></div>
+                    <h3 className="text-sm font-bold text-gray-800">Proposição Apresentada</h3>
+                    <p className="text-xs text-gray-500">Data: {new Date(lei.data_apresentacao).toLocaleDateString('pt-BR')}</p>
+                    <p className="text-xs text-gray-500">Enviado para a Mesa Diretora</p>
+                  </div>
+                </>
+              )}
 
             </div>
           </div>

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const api = axios.create({
-  baseURL: 'http://localhost:8000', // A porta do backend Docker
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000',
 });
 
 export const buscarLeis = async (filtros = {}) => {
@@ -10,17 +10,31 @@ export const buscarLeis = async (filtros = {}) => {
 };
 
 export const buscarLeiPorId = async (id) => {
-  const { data } = await api.get('/proposicoes');
-  // Filtra a lei correspondente pelo id_proposicao
-  return data.find(lei => lei.id_proposicao === parseInt(id));
+  const { data } = await api.get(`/proposicoes/${id}`);
+  return data;
+};
+
+export const buscarTramitacoes = async (idExterno) => {
+  if (!idExterno) {
+    return [];
+  }
+
+  const { data } = await api.get(`/proposicoes/${idExterno}/tramitacoes`);
+  return data;
 };
 
 export const buscarRankingParlamentares = async () => {
   const { data } = await api.get('/analytics/parlamentares/ranking');
-  return data;
+  return data.map((item) => ({
+    ...item,
+    total_projetos: item.total_projetos ?? item.total_proposicoes ?? 0,
+  }));
 };
 
 export const buscarRankingPartidos = async () => {
   const { data } = await api.get('/analytics/partidos/ranking');
-  return data;
+  return data.map((item) => ({
+    ...item,
+    total_projetos: item.total_projetos ?? item.total_proposicoes ?? 0,
+  }));
 };
