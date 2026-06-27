@@ -158,7 +158,7 @@ export default function Inicio() {
      </section>
 
      <section className="bg-[#EFEFEF] py-12 px-6 w-full flex justify-center items-center font-sans select-none">
-      <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-3 gap-30">
+      <div className="w-full max-w-8xl grid grid-cols-1 md:grid-cols-3 gap-30">
         
         {/* Card 1: Transparência Total (Amarelo) */}
         <div className="bg-[#EAB308] border-[3px] border-[#6B7280] rounded-[24px] p-6 flex flex-col items-center text-center justify-between min-h-[250px] shadow-sm">
