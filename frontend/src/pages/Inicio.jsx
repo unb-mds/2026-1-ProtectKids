@@ -156,6 +156,66 @@ export default function Inicio() {
 
       </div>
      </section>
+
+     <section className="bg-[#EFEFEF] py-12 px-6 w-full flex justify-center items-center font-sans select-none">
+      <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-3 gap-30">
+        
+        {/* Card 1: Transparência Total (Amarelo) */}
+        <div className="bg-[#EAB308] border-[3px] border-[#6B7280] rounded-[24px] p-6 flex flex-col items-center text-center justify-between min-h-[250px] shadow-sm">
+          <div className="flex flex-col gap-3">
+            <h3 className="text-white text-lg sm:text-xl font-bold font-serif uppercase tracking-wider">
+              Transparência Total
+            </h3>
+            <p className="text-white text-xs sm:text-sm font-medium uppercase tracking-wide leading-relaxed max-w-xs opacity-90">
+              Todos os dados são obtidos diretamente da API oficial da Câmara dos Deputados, garantindo informações atualizadas e confiáveis.
+            </p>
+          </div>
+          {/* Ícone de Escudo com Check */}
+          <div className="mt-4">
+            <svg className="w-8 h-8 text-black" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.745 3.745 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
+            </svg>
+          </div>
+        </div>
+
+        {/* Card 2: Foco Especializado (Azul) */}
+        <div className="bg-[#1D4ED8] border-[3px] border-[#6B7280] rounded-[24px] p-6 flex flex-col items-center text-center justify-between min-h-[250px] shadow-sm">
+          <div className="flex flex-col gap-3">
+            <h3 className="text-white text-lg sm:text-xl font-bold font-serif uppercase tracking-wider">
+              Foco Especializado
+            </h3>
+            <p className="text-white text-xs sm:text-sm font-medium uppercase tracking-wide leading-relaxed max-w-xs opacity-90">
+              Filtramos apenas proposições relacionadas à proteção infantil, cyberbullying e segurança digital de menores.
+            </p>
+          </div>
+          {/* Ícone de Exclamação/Alerta */}
+          <div className="mt-4">
+            <svg className="w-8 h-8 text-black" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+            </svg>
+          </div>
+        </div>
+
+        {/* Card 3: Acompanhamento em Tempo Real (Laranja) */}
+        <div className="bg-[#EA580C] border-[3px] border-[#6B7280] rounded-[24px] p-6 flex flex-col items-center text-center justify-between min-h-[250px] shadow-sm">
+          <div className="flex flex-col gap-3">
+            <h3 className="text-white text-lg sm:text-xl font-bold font-serif uppercase tracking-wider">
+              Acompanhamento em Tempo Real
+            </h3>
+            <p className="text-white text-xs sm:text-sm font-medium uppercase tracking-wide leading-relaxed max-w-xs opacity-90">
+              Monitore o status de cada proposição, desde a apresentação até a aprovação ou arquivamento.
+            </p>
+          </div>
+          {/* Ícone de Gráfico de Tendência para Cima */}
+          <div className="mt-4">
+            <svg className="w-8 h-8 text-black" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" />
+            </svg>
+          </div>
+        </div>
+
+      </div>
+    </section>
     </>
    );
 
