@@ -1,6 +1,15 @@
 {
-    "last_updated": "2026-06-27T15:40:52.707443Z",
+    "last_updated": "2026-06-27T15:55:42.651977Z",
     "commits": [
+        {
+            "hash": "c8c789fa04727dfb946f3943225fa25b09017191",
+            "date": "2026-06-27T12:55:01-03:00",
+            "message": "teste de cores",
+            "is_conventional": false,
+            "insertions": 114,
+            "deletions": 26,
+            "total_diff": 140
+        },
         {
             "hash": "ed3535bbf9598561b290c3a1009a1da3d3d6e1de",
             "date": "2026-06-27T12:37:57-03:00",
@@ -1806,10 +1815,10 @@
         {
             "number": 139,
             "title": "Atualizar Visao geral e index do mkdocs",
-            "state": "open",
+            "state": "closed",
             "created_at": "2026-06-27T15:39:45Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
+            "closed_at": "2026-06-27T15:44:26Z",
+            "resolution_time_hours": 0.08,
             "char_count": 0
         },
         {
@@ -2274,10 +2283,10 @@
     ],
     "autores": {
         "cgbriel28": {
-            "commits": 12,
-            "insercoes": 13286,
-            "delecoes": 923,
-            "total_linhas": 14209
+            "commits": 13,
+            "insercoes": 13400,
+            "delecoes": 949,
+            "total_linhas": 14349
         },
         "augustogmedeiros": {
             "commits": 120,

@@ -1,31 +1,109 @@
+/* ===========================
+   CORES DO PROTECTKIDS
+=========================== */
+
 :root {
-  --md-primary-fg-color: #1b4b16; 
-  --md-default-bg-color: #333333; 
-  --md-default-fg-color: #ffffff; 
-  --md-accent-fg-color: #4caf50;  
-  
-  /* Esta é a linha que força o site todo a usar a fonte clássica de jornal/livro */
-  --md-text-font: "Times New Roman", Times, serif;
+    --md-primary-fg-color: #2554D8;
+    --md-primary-fg-color--light: #4A74E8;
+    --md-primary-fg-color--dark: #153CB2;
+
+    --md-accent-fg-color: #F8C63D;
+
+    --md-default-bg-color: #FFFFFF;
+    --md-default-fg-color: #2B2B2B;
+
+    --md-text-font: "Roboto", Arial, sans-serif;
 }
+
+/* ===========================
+   HEADER
+=========================== */
+
+.md-header {
+    background-color: #2554D8;
+}
+
+.md-tabs {
+    background-color: #2554D8;
+}
+
+/* ===========================
+   MENU SUPERIOR
+=========================== */
+
+.md-tabs__list {
+    justify-content: center;
+}
+
+.md-tabs__link {
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: white;
+}
+
+.md-tabs__link--active {
+    font-weight: 700;
+    border-bottom: 3px solid #F8C63D;
+}
+
+/* ===========================
+   CONTEÚDO
+=========================== */
 
 .md-content {
-  max-width: 1000px;
-  margin: 0 auto;
-}
-/* Centraliza os itens do menu de abas superior */
-.md-tabs__list {
-  justify-content: center;
-  width: 100%;
+    max-width: 1100px;
+    margin: auto;
 }
 
-/* Aumenta o tamanho e o peso da fonte do menu */
-.md-tabs__link {
-  font-size: 1.15rem; /* Aumenta o texto (o padrão é em torno de 0.8rem) */
-  opacity: 0.9; /* Deixa o texto levemente mais forte */
+/* ===========================
+   LINKS
+=========================== */
+
+.md-typeset a {
+    color: #2554D8;
 }
 
-/* Deixa o item que está selecionado no momento um pouco mais destacado */
-.md-tabs__link--active {
-  font-weight: bold;
-  opacity: 1;
+.md-typeset a:hover {
+    color: #F47B20;
+}
+
+/* ===========================
+   BOTÕES
+=========================== */
+
+.md-button--primary {
+    background: #F47B20;
+    border-color: #F47B20;
+}
+
+.md-button--primary:hover {
+    background: #d86412;
+    border-color: #d86412;
+}
+
+/* ===========================
+   TABELAS
+=========================== */
+
+.md-typeset table:not([class]) th {
+    background: #2554D8;
+    color: white;
+}
+
+/* ===========================
+   TÍTULOS
+=========================== */
+
+.md-typeset h1 {
+    color: #2554D8;
+    font-weight: 700;
+}
+
+.md-typeset h2 {
+    color: #2554D8;
+}
+
+.md-typeset h3 {
+    color: #2554D8;
 }

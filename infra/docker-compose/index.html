@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="pt" class="no-js">
   <head>
     
       <meta charset="utf-8">
@@ -65,7 +65,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -75,7 +75,7 @@
       
         
         <a href="#docker-compose" class="md-skip">
-          Skip to content
+          Pular para conteúdo
         </a>
       
     </div>
@@ -86,8 +86,10 @@
     
       
 
-<header class="md-header" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
     <a href="../.." title="ProtectKids" class="md-header__button md-logo" aria-label="ProtectKids" data-md-component="logo">
       
   
@@ -121,7 +123,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
     
   
 </form>
@@ -142,27 +144,29 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
-      <nav class="md-search__options" aria-label="Search">
+      <nav class="md-search__options" aria-label="Pesquisar">
         
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
       </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
       
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            Initializing search
+            Inicializando busca
           </div>
           <ol class="md-search-result__list" role="presentation"></ol>
         </div>
@@ -175,15 +179,9 @@
     
   </nav>
   
-</header>
     
-    <div class="md-container" data-md-component="container">
       
-      
-        
-          
-            
-<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
   <div class="md-grid">
     <ul class="md-tabs__list">
       
@@ -305,7 +303,13 @@
     </ul>
   </div>
 </nav>
-          
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
         
       
       <main class="md-main" data-md-component="main">
@@ -324,7 +328,7 @@
 
   
 
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navegação" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="ProtectKids" class="md-nav__button md-logo" aria-label="ProtectKids" data-md-component="logo">
       
@@ -457,6 +461,8 @@
     
       
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -585,102 +591,102 @@
 <p>Além dos serviços, o arquivo também define um volume persistente para armazenar os dados do banco PostgreSQL.</p>
 <hr />
 <h2 id="estrutura-geral">Estrutura geral<a class="headerlink" href="#estrutura-geral" title="Permanent link">&para;</a></h2>
-<pre><code class="language-yaml">services:
-  db:
-    ...
-  backend:
-    ...
-  frontend:
-    ...
+<div class="highlight"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">db</span><span class="p">:</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">  </span><span class="nt">backend</span><span class="p">:</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">  </span><span class="nt">frontend</span><span class="p">:</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 
-volumes:
-  postgres_data:
-</code></pre>
+<span class="nt">volumes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">postgres_data</span><span class="p">:</span>
+</code></pre></div>
 <p>A chave <code>services</code> agrupa os containers da aplicação.
 A chave <code>volumes</code> define volumes persistentes utilizados pelos containers.</p>
 <hr />
 <h2 id="servico-db">Serviço <code>db</code><a class="headerlink" href="#servico-db" title="Permanent link">&para;</a></h2>
 <p>O serviço <code>db</code> é responsável por executar o banco de dados PostgreSQL utilizado pelo backend.</p>
-<pre><code class="language-yaml">db:
-  container_name: ProtectKids_db
-  image: postgres:15
-  env_file:
-    - .env
-  ports:
-    - &quot;5432:5432&quot;
-  volumes:
-    - postgres_data:/var/lib/postgresql/data
-  healthcheck:
-    test: [&quot;CMD-SHELL&quot;, &quot;pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}&quot;]
-    interval: 10s
-    timeout: 5s
-    retries: 5
-    start_period: 10s
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">db</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ProtectKids_db</span>
+<span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres:15</span>
+<span class="w">  </span><span class="nt">env_file</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.env</span>
+<span class="w">  </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;5432:5432&quot;</span>
+<span class="w">  </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres_data:/var/lib/postgresql/data</span>
+<span class="w">  </span><span class="nt">healthcheck</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">test</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;CMD-SHELL&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;pg_isready</span><span class="nv"> </span><span class="s">-U</span><span class="nv"> </span><span class="s">$${POSTGRES_USER}</span><span class="nv"> </span><span class="s">-d</span><span class="nv"> </span><span class="s">$${POSTGRES_DB}&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10s</span>
+<span class="w">    </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5s</span>
+<span class="w">    </span><span class="nt">retries</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+<span class="w">    </span><span class="nt">start_period</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10s</span>
+</code></pre></div>
 <h3 id="container_name"><code>container_name</code><a class="headerlink" href="#container_name" title="Permanent link">&para;</a></h3>
-<pre><code class="language-yaml">container_name: ProtectKids_db
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ProtectKids_db</span>
+</code></pre></div>
 <p>Define o nome do container do banco de dados.</p>
 <p>Esse nome facilita a identificação do container ao executar comandos como:</p>
-<pre><code class="language-bash">docker ps
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>ps
+</code></pre></div>
 <hr />
 <h3 id="image"><code>image</code><a class="headerlink" href="#image" title="Permanent link">&para;</a></h3>
-<pre><code class="language-yaml">image: postgres:15
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres:15</span>
+</code></pre></div>
 <p>Define que o serviço utilizará a imagem oficial do PostgreSQL na versão 15.</p>
 <hr />
 <h3 id="env_file"><code>env_file</code><a class="headerlink" href="#env_file" title="Permanent link">&para;</a></h3>
-<pre><code class="language-yaml">env_file:
-  - .env
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">env_file</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.env</span>
+</code></pre></div>
 <p>Indica que o serviço deve carregar variáveis de ambiente a partir do arquivo <code>.env</code>.</p>
 <p>No caso do PostgreSQL, as principais variáveis esperadas são:</p>
-<pre><code class="language-env">POSTGRES_USER=usuario
+<div class="highlight"><pre><span></span><code>POSTGRES_USER=usuario
 POSTGRES_PASSWORD=senha
 POSTGRES_DB=nome_do_banco
-</code></pre>
+</code></pre></div>
 <p>Essas variáveis configuram o usuário, a senha e o nome do banco criado no container.</p>
 <hr />
 <h3 id="ports"><code>ports</code><a class="headerlink" href="#ports" title="Permanent link">&para;</a></h3>
-<pre><code class="language-yaml">ports:
-  - &quot;5432:5432&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">ports</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;5432:5432&quot;</span>
+</code></pre></div>
 <p>Mapeia a porta do PostgreSQL.</p>
 <p>O primeiro valor representa a porta da máquina local.
 O segundo valor representa a porta interna do container.</p>
 <p>Neste caso:</p>
-<pre><code class="language-text">localhost:5432 -&gt; container:5432
-</code></pre>
+<div class="highlight"><pre><span></span><code>localhost:5432 -&gt; container:5432
+</code></pre></div>
 <p>Isso permite acessar o banco PostgreSQL localmente pela porta <code>5432</code>.</p>
 <hr />
 <h3 id="volumes"><code>volumes</code><a class="headerlink" href="#volumes" title="Permanent link">&para;</a></h3>
-<pre><code class="language-yaml">volumes:
-  - postgres_data:/var/lib/postgresql/data
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres_data:/var/lib/postgresql/data</span>
+</code></pre></div>
 <p>Define um volume persistente para armazenar os dados do PostgreSQL.</p>
 <p>Sem esse volume, os dados poderiam ser perdidos ao remover o container.</p>
 <p>O volume <code>postgres_data</code> é definido no final do arquivo:</p>
-<pre><code class="language-yaml">volumes:
-  postgres_data:
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">postgres_data</span><span class="p">:</span>
+</code></pre></div>
 <hr />
 <h3 id="healthcheck"><code>healthcheck</code><a class="headerlink" href="#healthcheck" title="Permanent link">&para;</a></h3>
-<pre><code class="language-yaml">healthcheck:
-  test: [&quot;CMD-SHELL&quot;, &quot;pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}&quot;]
-  interval: 10s
-  timeout: 5s
-  retries: 5
-  start_period: 10s
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">healthcheck</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">test</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;CMD-SHELL&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;pg_isready</span><span class="nv"> </span><span class="s">-U</span><span class="nv"> </span><span class="s">$${POSTGRES_USER}</span><span class="nv"> </span><span class="s">-d</span><span class="nv"> </span><span class="s">$${POSTGRES_DB}&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10s</span>
+<span class="w">  </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5s</span>
+<span class="w">  </span><span class="nt">retries</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+<span class="w">  </span><span class="nt">start_period</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10s</span>
+</code></pre></div>
 <p>O <code>healthcheck</code> verifica se o PostgreSQL está pronto para receber conexões.</p>
 <p>O comando utilizado é:</p>
-<pre><code class="language-bash">pg_isready
-</code></pre>
+<div class="highlight"><pre><span></span><code>pg_isready
+</code></pre></div>
 <p>Ele testa a conexão usando as variáveis:</p>
-<pre><code class="language-env">POSTGRES_USER
+<div class="highlight"><pre><span></span><code>POSTGRES_USER
 POSTGRES_DB
-</code></pre>
+</code></pre></div>
 <p>O uso de <code>$${POSTGRES_USER}</code> e <code>$${POSTGRES_DB}</code> é necessário para evitar que o Docker Compose tente substituir essas variáveis antes da execução dentro do container.</p>
 <p>Configurações do <code>healthcheck</code>:</p>
 <table>
@@ -716,92 +722,92 @@ POSTGRES_DB
 <hr />
 <h2 id="servico-backend">Serviço <code>backend</code><a class="headerlink" href="#servico-backend" title="Permanent link">&para;</a></h2>
 <p>O serviço <code>backend</code> é responsável por executar a API do projeto ProtectKids.</p>
-<pre><code class="language-yaml">backend:
-  container_name: ProtectKids_backend
-  build:
-    context: ./backend
-    dockerfile: Dockerfile
-  # image: ghcr.io/unb-mds/2026-1-protectkids-backend:latest
-  ports:
-    - &quot;8000:8000&quot;
-  volumes:
-    - ./backend:/app
-  depends_on:
-    db:
-      condition: service_healthy
-  env_file:
-    - .env
-  command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">backend</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ProtectKids_backend</span>
+<span class="w">  </span><span class="nt">build</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">context</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./backend</span>
+<span class="w">    </span><span class="nt">dockerfile</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dockerfile</span>
+<span class="w">  </span><span class="c1"># image: ghcr.io/unb-mds/2026-1-protectkids-backend:latest</span>
+<span class="w">  </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;8000:8000&quot;</span>
+<span class="w">  </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./backend:/app</span>
+<span class="w">  </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">db</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">service_healthy</span>
+<span class="w">  </span><span class="nt">env_file</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.env</span>
+<span class="w">  </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uvicorn main:app --host 0.0.0.0 --port 8000 --reload</span>
+</code></pre></div>
 <hr />
 <h3 id="container_name_1"><code>container_name</code><a class="headerlink" href="#container_name_1" title="Permanent link">&para;</a></h3>
-<pre><code class="language-yaml">container_name: ProtectKids_backend
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ProtectKids_backend</span>
+</code></pre></div>
 <p>Define o nome do container do backend.</p>
 <p>Esse nome facilita a identificação do serviço durante testes e depuração.</p>
 <hr />
 <h3 id="build"><code>build</code><a class="headerlink" href="#build" title="Permanent link">&para;</a></h3>
-<pre><code class="language-yaml">build:
-  context: ./backend
-  dockerfile: Dockerfile
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">build</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">context</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./backend</span>
+<span class="w">  </span><span class="nt">dockerfile</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dockerfile</span>
+</code></pre></div>
 <p>Indica que a imagem do backend será construída localmente a partir da pasta <code>./backend</code>.</p>
 <p>O campo <code>dockerfile</code> informa qual Dockerfile será utilizado para montar a imagem.</p>
 <p>Essa configuração é adequada para ambiente de desenvolvimento, pois permite executar o backend diretamente a partir do código local do projeto.</p>
 <hr />
 <h3 id="imagem-ghcr-comentada">Imagem GHCR comentada<a class="headerlink" href="#imagem-ghcr-comentada" title="Permanent link">&para;</a></h3>
-<pre><code class="language-yaml"># image: ghcr.io/unb-mds/2026-1-protectkids-backend:latest
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># image: ghcr.io/unb-mds/2026-1-protectkids-backend:latest</span>
+</code></pre></div>
 <p>Essa linha está comentada e representa uma alternativa para usar uma imagem publicada no GitHub Container Registry.</p>
 <p>No ambiente atual de desenvolvimento, foi priorizado o uso de <code>build</code> local para evitar problemas de autenticação com imagem privada no GHCR.</p>
 <p>Caso a imagem seja futuramente publicada de forma acessível, essa configuração poderá ser revisada.</p>
 <hr />
 <h3 id="ports_1"><code>ports</code><a class="headerlink" href="#ports_1" title="Permanent link">&para;</a></h3>
-<pre><code class="language-yaml">ports:
-  - &quot;8000:8000&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">ports</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;8000:8000&quot;</span>
+</code></pre></div>
 <p>Mapeia a porta da API.</p>
 <p>Neste caso:</p>
-<pre><code class="language-text">localhost:8000 -&gt; container:8000
-</code></pre>
+<div class="highlight"><pre><span></span><code>localhost:8000 -&gt; container:8000
+</code></pre></div>
 <p>Com isso, a API pode ser acessada em:</p>
-<pre><code class="language-text">http://localhost:8000
-</code></pre>
+<div class="highlight"><pre><span></span><code>http://localhost:8000
+</code></pre></div>
 <p>A documentação Swagger da API fica disponível em:</p>
-<pre><code class="language-text">http://localhost:8000/docs
-</code></pre>
+<div class="highlight"><pre><span></span><code>http://localhost:8000/docs
+</code></pre></div>
 <hr />
 <h3 id="volumes_1"><code>volumes</code><a class="headerlink" href="#volumes_1" title="Permanent link">&para;</a></h3>
-<pre><code class="language-yaml">volumes:
-  - ./backend:/app
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./backend:/app</span>
+</code></pre></div>
 <p>Monta a pasta local <code>./backend</code> dentro do container no caminho <code>/app</code>.</p>
 <p>Isso permite que alterações feitas no código local sejam refletidas dentro do container.</p>
 <p>Essa configuração é útil para desenvolvimento, principalmente junto com o modo <code>--reload</code> do Uvicorn.</p>
 <hr />
 <h3 id="depends_on"><code>depends_on</code><a class="headerlink" href="#depends_on" title="Permanent link">&para;</a></h3>
-<pre><code class="language-yaml">depends_on:
-  db:
-    condition: service_healthy
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">db</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">service_healthy</span>
+</code></pre></div>
 <p>Define que o backend depende do serviço <code>db</code>.</p>
 <p>Com a condição <code>service_healthy</code>, o backend só será iniciado depois que o banco PostgreSQL passar no <code>healthcheck</code>.</p>
 <p>Isso evita que a API tente se conectar ao banco antes dele estar pronto.</p>
 <hr />
 <h3 id="env_file_1"><code>env_file</code><a class="headerlink" href="#env_file_1" title="Permanent link">&para;</a></h3>
-<pre><code class="language-yaml">env_file:
-  - .env
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">env_file</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.env</span>
+</code></pre></div>
 <p>Carrega as variáveis de ambiente do arquivo <code>.env</code>.</p>
 <p>O backend utiliza principalmente a variável <code>DATABASE_URL</code>, responsável pela conexão com o banco de dados.</p>
 <p>Exemplo:</p>
-<pre><code class="language-env">DATABASE_URL=postgresql://usuario:senha@db:5432/nome_do_banco
-</code></pre>
+<div class="highlight"><pre><span></span><code>DATABASE_URL=postgresql://usuario:senha@db:5432/nome_do_banco
+</code></pre></div>
 <p>Dentro do Docker Compose, o host do banco deve ser <code>db</code>, pois esse é o nome do serviço definido no arquivo.</p>
 <hr />
 <h3 id="command"><code>command</code><a class="headerlink" href="#command" title="Permanent link">&para;</a></h3>
-<pre><code class="language-yaml">command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uvicorn main:app --host 0.0.0.0 --port 8000 --reload</span>
+</code></pre></div>
 <p>Define o comando executado ao iniciar o container do backend.</p>
 <p>Esse comando inicia a aplicação FastAPI usando o Uvicorn.</p>
 <p>Partes do comando:</p>
@@ -839,79 +845,79 @@ POSTGRES_DB
 <hr />
 <h2 id="servico-frontend">Serviço <code>frontend</code><a class="headerlink" href="#servico-frontend" title="Permanent link">&para;</a></h2>
 <p>O serviço <code>frontend</code> é responsável por executar a interface web do ProtectKids.</p>
-<pre><code class="language-yaml">frontend:
-  container_name: ProtectKids_frontend
-  build:
-    context: ./frontend
-    dockerfile: Dockerfile
-  ports:
-    - &quot;5173:5173&quot;
-  volumes:
-    - ./frontend:/app
-    - /app/node_modules
-  depends_on:
-    - backend
-  command: npm run dev -- --host
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">frontend</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ProtectKids_frontend</span>
+<span class="w">  </span><span class="nt">build</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">context</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./frontend</span>
+<span class="w">    </span><span class="nt">dockerfile</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dockerfile</span>
+<span class="w">  </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;5173:5173&quot;</span>
+<span class="w">  </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./frontend:/app</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/app/node_modules</span>
+<span class="w">  </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">backend</span>
+<span class="w">  </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">npm run dev -- --host</span>
+</code></pre></div>
 <hr />
 <h3 id="container_name_2"><code>container_name</code><a class="headerlink" href="#container_name_2" title="Permanent link">&para;</a></h3>
-<pre><code class="language-yaml">container_name: ProtectKids_frontend
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ProtectKids_frontend</span>
+</code></pre></div>
 <p>Define o nome do container do frontend.</p>
 <hr />
 <h3 id="build_1"><code>build</code><a class="headerlink" href="#build_1" title="Permanent link">&para;</a></h3>
-<pre><code class="language-yaml">build:
-  context: ./frontend
-  dockerfile: Dockerfile
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">build</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">context</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./frontend</span>
+<span class="w">  </span><span class="nt">dockerfile</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dockerfile</span>
+</code></pre></div>
 <p>Indica que a imagem do frontend será construída localmente a partir da pasta <code>./frontend</code>.</p>
 <p>O Dockerfile usado será o arquivo localizado dentro dessa pasta.</p>
 <hr />
 <h3 id="ports_2"><code>ports</code><a class="headerlink" href="#ports_2" title="Permanent link">&para;</a></h3>
-<pre><code class="language-yaml">ports:
-  - &quot;5173:5173&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">ports</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;5173:5173&quot;</span>
+</code></pre></div>
 <p>Mapeia a porta usada pelo Vite.</p>
 <p>Neste caso:</p>
-<pre><code class="language-text">localhost:5173 -&gt; container:5173
-</code></pre>
+<div class="highlight"><pre><span></span><code>localhost:5173 -&gt; container:5173
+</code></pre></div>
 <p>Com isso, o frontend pode ser acessado em:</p>
-<pre><code class="language-text">http://localhost:5173
-</code></pre>
+<div class="highlight"><pre><span></span><code>http://localhost:5173
+</code></pre></div>
 <hr />
 <h3 id="volumes_2"><code>volumes</code><a class="headerlink" href="#volumes_2" title="Permanent link">&para;</a></h3>
-<pre><code class="language-yaml">volumes:
-  - ./frontend:/app
-  - /app/node_modules
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./frontend:/app</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/app/node_modules</span>
+</code></pre></div>
 <p>O primeiro volume monta a pasta local <code>./frontend</code> dentro do container no caminho <code>/app</code>.</p>
 <p>Isso permite que alterações feitas no código do frontend sejam refletidas no container.</p>
 <p>O segundo volume:</p>
-<pre><code class="language-yaml">- /app/node_modules
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/app/node_modules</span>
+</code></pre></div>
 <p>preserva a pasta <code>node_modules</code> dentro do container.</p>
 <p>Essa configuração evita conflitos entre as dependências instaladas no container e a pasta local do desenvolvedor.</p>
 <hr />
 <h3 id="depends_on_1"><code>depends_on</code><a class="headerlink" href="#depends_on_1" title="Permanent link">&para;</a></h3>
-<pre><code class="language-yaml">depends_on:
-  - backend
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">backend</span>
+</code></pre></div>
 <p>Define que o frontend depende do backend.</p>
 <p>Isso organiza a ordem de inicialização dos serviços, fazendo com que o backend seja iniciado antes do frontend.</p>
 <hr />
 <h3 id="command_1"><code>command</code><a class="headerlink" href="#command_1" title="Permanent link">&para;</a></h3>
-<pre><code class="language-yaml">command: npm run dev -- --host
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">npm run dev -- --host</span>
+</code></pre></div>
 <p>Executa o servidor de desenvolvimento do frontend.</p>
 <p>Esse comando inicia o Vite em modo de desenvolvimento e permite acesso ao serviço fora do container.</p>
 <p>Uma alternativa mais explícita seria:</p>
-<pre><code class="language-yaml">command: npm run dev -- --host 0.0.0.0
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">npm run dev -- --host 0.0.0.0</span>
+</code></pre></div>
 <hr />
 <h2 id="volume-postgres_data">Volume <code>postgres_data</code><a class="headerlink" href="#volume-postgres_data" title="Permanent link">&para;</a></h2>
-<pre><code class="language-yaml">volumes:
-  postgres_data:
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">postgres_data</span><span class="p">:</span>
+</code></pre></div>
 <p>Define o volume persistente usado pelo banco PostgreSQL.</p>
 <p>Esse volume armazena os dados do banco fora do ciclo de vida do container.</p>
 <p>Assim, mesmo que o container do banco seja removido e recriado, os dados podem ser mantidos.</p>
@@ -919,11 +925,11 @@ POSTGRES_DB
 <h2 id="comunicacao-entre-os-servicos">Comunicação entre os serviços<a class="headerlink" href="#comunicacao-entre-os-servicos" title="Permanent link">&para;</a></h2>
 <p>Dentro da rede criada automaticamente pelo Docker Compose, os containers conseguem se comunicar usando o nome do serviço.</p>
 <p>Por isso, o backend deve acessar o banco usando o host:</p>
-<pre><code class="language-text">db
-</code></pre>
+<div class="highlight"><pre><span></span><code>db
+</code></pre></div>
 <p>Exemplo de <code>DATABASE_URL</code>:</p>
-<pre><code class="language-env">DATABASE_URL=postgresql://usuario:senha@db:5432/nome_do_banco
-</code></pre>
+<div class="highlight"><pre><span></span><code>DATABASE_URL=postgresql://usuario:senha@db:5432/nome_do_banco
+</code></pre></div>
 <p>Não deve ser usado <code>localhost</code> para conectar o backend ao banco dentro do Docker, pois <code>localhost</code> dentro do container do backend aponta para o próprio container do backend.</p>
 <hr />
 <h2 id="portas-utilizadas">Portas utilizadas<a class="headerlink" href="#portas-utilizadas" title="Permanent link">&para;</a></h2>
@@ -961,43 +967,43 @@ POSTGRES_DB
 <h2 id="arquivo-env">Arquivo <code>.env</code><a class="headerlink" href="#arquivo-env" title="Permanent link">&para;</a></h2>
 <p>O arquivo <code>.env</code> deve conter as variáveis necessárias para configurar o banco e o backend.</p>
 <p>Exemplo:</p>
-<pre><code class="language-env">POSTGRES_USER=usuario
+<div class="highlight"><pre><span></span><code>POSTGRES_USER=usuario
 POSTGRES_PASSWORD=senha
 POSTGRES_DB=protectkids_db
 DATABASE_URL=postgresql://usuario:senha@db:5432/protectkids_db
-</code></pre>
+</code></pre></div>
 <p>O arquivo <code>.env</code> não deve ser versionado no GitHub.</p>
 <p>Para isso, ele deve estar listado no <code>.gitignore</code>.</p>
 <p>O repositório deve manter apenas um arquivo <code>.env.example</code>, sem credenciais reais.</p>
 <hr />
 <h2 id="como-executar-o-ambiente">Como executar o ambiente<a class="headerlink" href="#como-executar-o-ambiente" title="Permanent link">&para;</a></h2>
 <p>Na raiz do projeto, execute:</p>
-<pre><code class="language-bash">docker compose up --build
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>--build
+</code></pre></div>
 <p>Esse comando constrói as imagens locais e inicia os containers.</p>
 <p>Para parar os containers:</p>
-<pre><code class="language-bash">docker compose down
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
+</code></pre></div>
 <p>Para parar os containers e remover o volume do banco:</p>
-<pre><code class="language-bash">docker compose down -v
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down<span class="w"> </span>-v
+</code></pre></div>
 <p>Atenção: o comando <code>docker compose down -v</code> remove o volume <code>postgres_data</code> e apaga os dados locais do banco.</p>
 <hr />
 <h2 id="como-verificar-os-containers">Como verificar os containers<a class="headerlink" href="#como-verificar-os-containers" title="Permanent link">&para;</a></h2>
-<pre><code class="language-bash">docker ps
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>ps
+</code></pre></div>
 <p>Para visualizar os logs:</p>
-<pre><code class="language-bash">docker compose logs
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>logs
+</code></pre></div>
 <p>Logs específicos do backend:</p>
-<pre><code class="language-bash">docker compose logs backend
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>backend
+</code></pre></div>
 <p>Logs específicos do banco:</p>
-<pre><code class="language-bash">docker compose logs db
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>db
+</code></pre></div>
 <p>Logs específicos do frontend:</p>
-<pre><code class="language-bash">docker compose logs frontend
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>frontend
+</code></pre></div>
 <hr />
 <h2 id="resumo-da-configuracao">Resumo da configuração<a class="headerlink" href="#resumo-da-configuracao" title="Permanent link">&para;</a></h2>
 <table>
@@ -1064,7 +1070,7 @@ DATABASE_URL=postgresql://usuario:senha@db:5432/protectkids_db
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
-  Back to top
+  Voltar para o topo
 </button>
         
       </main>
@@ -1096,7 +1102,7 @@ DATABASE_URL=postgresql://usuario:senha@db:5432/protectkids_db
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.top", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.sections", "toc.integrate", "content.code.copy", "search.highlight", "search.suggest"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
