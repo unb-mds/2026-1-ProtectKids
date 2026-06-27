@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#visao-geral-do-projeto" class="md-skip">
+        <a href="#funcionalidades" class="md-skip">
           Skip to content
         </a>
       
@@ -383,6 +383,8 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -425,6 +427,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -433,10 +437,87 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#visao-geral-do-projeto" class="md-nav__link">
+  <a href="#coleta-automatizada" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Visão Geral do Projeto
+        Coleta Automatizada
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#processamento-do-inteiro-teor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Processamento do Inteiro Teor
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classificacao-tematica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Classificação Temática
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consulta-de-proposicoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consulta de Proposições
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#historico-de-tramitacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Histórico de Tramitações
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dashboard-analitico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dashboard Analítico
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ranking-de-parlamentares" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ranking de Parlamentares
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ranking-de-partidos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ranking de Partidos
       
     </span>
   </a>
@@ -634,33 +715,109 @@
 
 
 
-  <h1>Visão Geral</h1>
-
-<h2 id="visao-geral-do-projeto">Visão Geral do Projeto<a class="headerlink" href="#visao-geral-do-projeto" title="Permanent link">&para;</a></h2>
-<p>O <strong>ProtectKids</strong> é uma plataforma desenvolvida com o objetivo de auxiliar no monitoramento, análise e organização de informações relacionadas à proteção infantil no contexto legislativo brasileiro. O sistema realiza a coleta automatizada de dados públicos, processa essas informações utilizando técnicas de análise textual e disponibiliza os resultados de forma acessível para consulta e acompanhamento.</p>
-<p>A proposta do projeto surgiu da necessidade de centralizar informações que, apesar de públicas, encontram-se dispersas em diferentes fontes e formatos, dificultando o acompanhamento por cidadãos, pesquisadores e organizações interessadas no tema.</p>
-<p>A arquitetura da solução foi projetada para garantir modularidade, escalabilidade e facilidade de manutenção. Para isso, o sistema utiliza uma infraestrutura baseada em contêineres Docker, permitindo a separação clara entre os componentes responsáveis pela interface do usuário, processamento de dados, análise textual e persistência das informações.</p>
-<p>O funcionamento da plataforma ocorre em etapas principais:</p>
-<ol>
-<li>
-<p><strong>Coleta de Dados</strong>
-   O sistema consome informações provenientes de fontes públicas, como a API de Dados Abertos da Câmara dos Deputados.</p>
-</li>
-<li>
-<p><strong>Processamento e Análise</strong>
-   Os dados coletados passam por etapas de tratamento e análise textual utilizando técnicas de NLP (<em>Natural Language Processing</em>), permitindo identificar conteúdos relevantes para o contexto do projeto.</p>
-</li>
-<li>
-<p><strong>Armazenamento</strong>
-   Após o processamento, as informações são armazenadas em banco de dados para garantir persistência e rapidez no acesso.</p>
-</li>
-<li>
-<p><strong>Disponibilização ao Usuário</strong>
-   Os dados processados são exibidos em uma interface web intuitiva, permitindo consultas e acompanhamento das informações de maneira organizada.</p>
-</li>
-</ol>
-<p>Além do desenvolvimento técnico, o projeto também prioriza aspectos de documentação e organização arquitetural, utilizando o Modelo C4 para representar visualmente a estrutura do sistema e facilitar a comunicação entre os membros da equipe.</p>
-<p>Dessa forma, o ProtectKids busca unir tecnologia, automação e análise de dados para contribuir com a transparência e o acompanhamento de informações relevantes à proteção infantil.</p>
+<h1 id="funcionalidades">Funcionalidades<a class="headerlink" href="#funcionalidades" title="Permanent link">&para;</a></h1>
+<p>O <strong>ProtectKids</strong> reúne funcionalidades voltadas ao monitoramento, organização e análise de proposições legislativas relacionadas à proteção de crianças e adolescentes.</p>
+<h2 id="coleta-automatizada">Coleta Automatizada<a class="headerlink" href="#coleta-automatizada" title="Permanent link">&para;</a></h2>
+<p>Realiza a busca automática de proposições legislativas em fontes oficiais da <strong>Câmara dos Deputados</strong> e do <strong>Senado Federal</strong>.</p>
+<h2 id="processamento-do-inteiro-teor">Processamento do Inteiro Teor<a class="headerlink" href="#processamento-do-inteiro-teor" title="Permanent link">&para;</a></h2>
+<p>Efetua a leitura e extração de textos de documentos legislativos em formato PDF utilizando ferramentas automatizadas.</p>
+<h2 id="classificacao-tematica">Classificação Temática<a class="headerlink" href="#classificacao-tematica" title="Permanent link">&para;</a></h2>
+<p>Organiza as proposições em categorias relacionadas à proteção infantojuvenil por meio de técnicas de <strong>Processamento de Linguagem Natural (PLN)</strong> e regras heurísticas.</p>
+<h2 id="consulta-de-proposicoes">Consulta de Proposições<a class="headerlink" href="#consulta-de-proposicoes" title="Permanent link">&para;</a></h2>
+<p>Disponibiliza informações detalhadas sobre cada proposição, incluindo:</p>
+<ul>
+<li>Título;</li>
+<li>Ementa;</li>
+<li>Origem legislativa;</li>
+<li>Autor;</li>
+<li>Partido;</li>
+<li>Unidade Federativa (UF);</li>
+<li>Data de apresentação;</li>
+<li>Link para o inteiro teor.</li>
+</ul>
+<h2 id="historico-de-tramitacoes">Histórico de Tramitações<a class="headerlink" href="#historico-de-tramitacoes" title="Permanent link">&para;</a></h2>
+<p>Permite acompanhar todas as movimentações legislativas associadas às proposições monitoradas.</p>
+<h2 id="dashboard-analitico">Dashboard Analítico<a class="headerlink" href="#dashboard-analitico" title="Permanent link">&para;</a></h2>
+<p>Apresenta indicadores e informações consolidadas para facilitar a interpretação do cenário legislativo.</p>
+<h2 id="ranking-de-parlamentares">Ranking de Parlamentares<a class="headerlink" href="#ranking-de-parlamentares" title="Permanent link">&para;</a></h2>
+<p>Exibe a atuação de parlamentares com proposições relacionadas à proteção de crianças e adolescentes.</p>
+<h2 id="ranking-de-partidos">Ranking de Partidos<a class="headerlink" href="#ranking-de-partidos" title="Permanent link">&para;</a></h2>
+<p>Apresenta a participação dos partidos políticos nas proposições monitoradas.</p>
+<hr />
+<h1 id="objetivos">Objetivos<a class="headerlink" href="#objetivos" title="Permanent link">&para;</a></h1>
+<p>O ProtectKids busca:</p>
+<ul>
+<li>Centralizar informações legislativas sobre proteção de crianças e adolescentes;</li>
+<li>Facilitar a consulta e análise de proposições da Câmara dos Deputados e do Senado Federal;</li>
+<li>Apoiar a identificação de padrões e tendências legislativas;</li>
+<li>Organizar proposições por categorias temáticas;</li>
+<li>Disponibilizar uma base de dados útil para pesquisa, acompanhamento social e transparência pública;</li>
+<li>Auxiliar organizações, pesquisadores e cidadãos interessados na proteção infantojuvenil.</li>
+</ul>
+<hr />
+<h1 id="tecnologias-utilizadas">Tecnologias Utilizadas<a class="headerlink" href="#tecnologias-utilizadas" title="Permanent link">&para;</a></h1>
+<p>O ProtectKids utiliza uma arquitetura baseada em serviços conteinerizados, promovendo a separação entre <strong>backend</strong>, <strong>frontend</strong> e <strong>banco de dados</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Camada</th>
+<th>Tecnologia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Backend</strong></td>
+<td>Python, FastAPI e SQLModel</td>
+</tr>
+<tr>
+<td><strong>Banco de Dados</strong></td>
+<td>PostgreSQL</td>
+</tr>
+<tr>
+<td><strong>Frontend</strong></td>
+<td>React + Vite</td>
+</tr>
+<tr>
+<td><strong>Processamento de PDFs</strong></td>
+<td>PyMuPDF</td>
+</tr>
+<tr>
+<td><strong>Processamento de Linguagem Natural</strong></td>
+<td>spaCy (modelo para português)</td>
+</tr>
+<tr>
+<td><strong>Infraestrutura</strong></td>
+<td>Docker, Docker Compose e GitHub Actions</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="fontes-de-dados">Fontes de Dados<a class="headerlink" href="#fontes-de-dados" title="Permanent link">&para;</a></h1>
+<p>As informações disponibilizadas pelo ProtectKids são obtidas a partir de fontes oficiais do Poder Legislativo Federal:</p>
+<ul>
+<li>Câmara dos Deputados;</li>
+<li>Senado Federal.</li>
+</ul>
+<p>Essas fontes fornecem dados sobre:</p>
+<ul>
+<li>Proposições legislativas;</li>
+<li>Autores;</li>
+<li>Ementas;</li>
+<li>Textos integrais;</li>
+<li>Tramitações.</li>
+</ul>
+<hr />
+<h1 id="publico-alvo">Público-Alvo<a class="headerlink" href="#publico-alvo" title="Permanent link">&para;</a></h1>
+<p>O ProtectKids foi desenvolvido para atender diferentes perfis de usuários interessados no acompanhamento legislativo da proteção infantojuvenil, tais como:</p>
+<ul>
+<li>Pesquisadores;</li>
+<li>Estudantes;</li>
+<li>Jornalistas;</li>
+<li>Organizações da sociedade civil;</li>
+<li>Gestores públicos;</li>
+<li>Profissionais da área jurídica;</li>
+<li>Cidadãos interessados em transparência legislativa.</li>
+</ul>
 
 
 
