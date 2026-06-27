@@ -1,6 +1,24 @@
 {
-    "last_updated": "2026-06-27T17:39:51.932742Z",
+    "last_updated": "2026-06-27T20:43:27.034344Z",
     "commits": [
+        {
+            "hash": "73498913e31818dde5deea4287d1ae0d203fac3d",
+            "date": "2026-06-27T17:43:05-03:00",
+            "message": "Merge pull request #142 from unb-mds/feat/frontend-site",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "189dfafb1eb3f5d2a8a7cf7b0d21761455ee7700",
+            "date": "2026-06-27T16:56:10-03:00",
+            "message": "Merge remote-tracking branch 'origin/main' into feat/frontend-site",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
         {
             "hash": "8e4266110cc09f9aba06e94e08a3fac52b8f3b92",
             "date": "2026-06-27T14:39:19-03:00",
@@ -20,6 +38,15 @@
             "total_diff": 2
         },
         {
+            "hash": "c5183d15a84d5db0ac0cde6b2c8edf77dd3ec3ef",
+            "date": "2026-06-27T13:15:43-03:00",
+            "message": "frontend: alterção nas cores da página sobre",
+            "is_conventional": false,
+            "insertions": 26,
+            "deletions": 10,
+            "total_diff": 36
+        },
+        {
             "hash": "c8c789fa04727dfb946f3943225fa25b09017191",
             "date": "2026-06-27T12:55:01-03:00",
             "message": "teste de cores",
@@ -29,6 +56,42 @@
             "total_diff": 140
         },
         {
+            "hash": "61e245db1f8c04d87c2c8416ea01d28f6dce74dd",
+            "date": "2026-06-27T12:54:40-03:00",
+            "message": "frontend: ajuste de tamanho da seção de qualidades",
+            "is_conventional": false,
+            "insertions": 1,
+            "deletions": 1,
+            "total_diff": 2
+        },
+        {
+            "hash": "b1c2d8111772eb802e3a152dc075ec7427b4a5cf",
+            "date": "2026-06-27T12:54:07-03:00",
+            "message": "frontend: alteração das cores do footer",
+            "is_conventional": false,
+            "insertions": 36,
+            "deletions": 32,
+            "total_diff": 68
+        },
+        {
+            "hash": "087f64a266d084300ad06a6c64c79855be0a136d",
+            "date": "2026-06-27T12:53:45-03:00",
+            "message": "frontend: concerto das rotas da header",
+            "is_conventional": false,
+            "insertions": 6,
+            "deletions": 6,
+            "total_diff": 12
+        },
+        {
+            "hash": "2d20f6b378c4efb6e71e44b886ee4e15465edb18",
+            "date": "2026-06-27T12:40:53-03:00",
+            "message": "frontend: seção de qualidades do site",
+            "is_conventional": false,
+            "insertions": 60,
+            "deletions": 0,
+            "total_diff": 60
+        },
+        {
             "hash": "ed3535bbf9598561b290c3a1009a1da3d3d6e1de",
             "date": "2026-06-27T12:37:57-03:00",
             "message": "Atualizaçao de visao geral e indexs",
@@ -36,6 +99,24 @@
             "insertions": 129,
             "deletions": 31,
             "total_diff": 160
+        },
+        {
+            "hash": "cf1e6f483bb56be4ad5d3f56b736c5b4e2df4a76",
+            "date": "2026-06-27T02:09:38-03:00",
+            "message": "frontend: Remoção do conteúdo da página de início e adição do novo conteúdo.",
+            "is_conventional": false,
+            "insertions": 139,
+            "deletions": 134,
+            "total_diff": 273
+        },
+        {
+            "hash": "0c8bace0a60370a5a10e6a033d1dcdb3d9210de1",
+            "date": "2026-06-26T18:03:18-03:00",
+            "message": "frontend: alteração nas cores da header",
+            "is_conventional": false,
+            "insertions": 835,
+            "deletions": 62,
+            "total_diff": 897
         },
         {
             "hash": "9f47dc50fd65ce6bb818a25b6a74df2ecabbbd70",
@@ -180,6 +261,15 @@
             "insertions": 26,
             "deletions": 9,
             "total_diff": 35
+        },
+        {
+            "hash": "66edc8b46841484c8611b718d1dce7fd165fb318",
+            "date": "2026-06-23T18:15:36-03:00",
+            "message": "correção de hexadecimal da cor branca",
+            "is_conventional": false,
+            "insertions": 2,
+            "deletions": 2,
+            "total_diff": 4
         },
         {
             "hash": "851cc474cdcf6276ad328bb44158bfae26a56c90",
@@ -657,6 +747,15 @@
             "insertions": 6,
             "deletions": 5,
             "total_diff": 11
+        },
+        {
+            "hash": "721f713ee65b36a2b5c027c908a3de16ff72509b",
+            "date": "2026-06-07T21:54:45-03:00",
+            "message": "nova paleta de cores",
+            "is_conventional": false,
+            "insertions": 33,
+            "deletions": 12,
+            "total_diff": 45
         },
         {
             "hash": "72683f8349cab23e7546d50a84b800299ecc419d",
@@ -1831,6 +1930,15 @@
     ],
     "issues": [
         {
+            "number": 141,
+            "title": "Espaços para documentaçao de sprints",
+            "state": "closed",
+            "created_at": "2026-06-27T17:41:27Z",
+            "closed_at": "2026-06-27T17:42:18Z",
+            "resolution_time_hours": 0.01,
+            "char_count": 0
+        },
+        {
             "number": 139,
             "title": "Atualizar Visao geral e index do mkdocs",
             "state": "closed",
@@ -1995,10 +2103,10 @@
         {
             "number": 115,
             "title": "Configurar novo visual para Mkdocs",
-            "state": "open",
+            "state": "closed",
             "created_at": "2026-06-24T00:36:00Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
+            "closed_at": "2026-06-27T17:40:07Z",
+            "resolution_time_hours": 89.07,
             "char_count": 0
         },
         {
@@ -2279,29 +2387,32 @@
             "closed_at": "2026-05-13T14:14:47Z",
             "resolution_time_hours": 0.03,
             "char_count": 1292
-        },
-        {
-            "number": 41,
-            "title": "colocar o arquivo site no gitignore e arrumar o doc/docs",
-            "state": "closed",
-            "created_at": "2026-05-12T22:33:12Z",
-            "closed_at": "2026-05-13T05:15:27Z",
-            "resolution_time_hours": 6.7,
-            "char_count": 139
         }
     ],
     "autores": {
+        "augustogmedeiros": {
+            "commits": 121,
+            "insercoes": 7788,
+            "delecoes": 2946926,
+            "total_linhas": 2954714
+        },
+        "VegasVvegas": {
+            "commits": 1,
+            "insercoes": 0,
+            "delecoes": 0,
+            "total_linhas": 0
+        },
         "cgbriel28": {
             "commits": 15,
             "insercoes": 13597,
             "delecoes": 958,
             "total_linhas": 14555
         },
-        "augustogmedeiros": {
-            "commits": 120,
-            "insercoes": 7788,
-            "delecoes": 2946926,
-            "total_linhas": 2954714
+        "wandinhawright": {
+            "commits": 16,
+            "insercoes": 4168,
+            "delecoes": 262,
+            "total_linhas": 4430
         },
         "yaxavier": {
             "commits": 23,
@@ -2320,12 +2431,6 @@
             "insercoes": 17,
             "delecoes": 2,
             "total_linhas": 19
-        },
-        "wandinhawright": {
-            "commits": 7,
-            "insercoes": 3030,
-            "delecoes": 3,
-            "total_linhas": 3033
         },
         "Danielly Mendes": {
             "commits": 14,
