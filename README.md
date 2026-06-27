@@ -36,40 +36,67 @@ Acesse o design e a prototipação da interface do projeto:
 - *GitHub Actions* (CI/CD)
 
 ---
+### 🚀 Como Rodar o Projeto (Quickstart)
 
-# 🚀 Como Rodar o Projeto (Quickstart)
+Certifique-se de ter o **Git**, o **Docker** e o **Docker Compose** instalados e ativos em sua máquina antes de prosseguir.
 
-Certifique-se de ter o *Git* e o *Docker Desktop* instalados e ativos em sua máquina antes de prosseguir.
+**1. Clonar o repositório**
 
-### 1. Clonar o repositório
 ```bash
-git clone "https://github.com/unb-mds/2026-1-ProtectKids"
+git clone https://github.com/unb-mds/2026-1-ProtectKids.git
 cd 2026-1-ProtectKids
 ```
 
-### 2. Subir os contêineres
-```bash
-docker-compose up -d --build
+**2. Configurar Variáveis de Ambiente**
+Antes de iniciar o Docker, é necessário definir as credenciais do banco de dados local.
+- Na raiz do projeto, faça uma cópia do arquivo `.env.example` e renomeie-a para `.env`.
+- Preencha o arquivo com os seguintes dados padrão de desenvolvimento:
+```env
+POSTGRES_USER=augusto
+POSTGRES_PASSWORD=squad10
+POSTGRES_DB=legislativo_db
+DATABASE_URL=postgresql://augusto:squad10@db:5432/legislativo_db
+MAX_PAGES=3
 ```
 
-### 3. Popular o banco de dados
+**3. Subir a Infraestrutura**
+Baixe as imagens oficiais mais recentes da nuvem (GHCR) e inicie os serviços do banco, backend e frontend.
 ```bash
-docker-compose exec backend python crawler/camara_api.py
+docker compose up --build -d
+docker-compose up -d
+```
+*(Aguarde alguns instantes até os contêineres inicializarem)*
+
+**4. Popular o Banco de Dados (ETL)**
+Para utilizar o sistema, é necessário baixar os dados oficiais da internet. Execute os scripts abaixo na ordem:
+
+Primeiro, baixe as proposições de lei base da Câmara e do Senado:
+```bash
+docker-compose exec backend python -m crawler.camara_api
+docker-compose exec backend python -m crawler.senado_api
+```
+Em seguida, baixe o histórico de tramitações das leis recém-salvas:
+```bash
+docker-compose exec backend python -m crawler.tramitacoes_api
 ```
 
-### 4. Acessar a aplicação
-```bash
-Interface Web (Frontend): http://localhost:5173
-API Rest (Backend): http://localhost:8000
-Documentação Swagger: http://localhost:8000/docs 
-```
+**5. Acessar a aplicação**
+- **Interface Web (Frontend):** http://localhost:5173
+- **API Rest (Backend):** http://localhost:8000
+- **Documentação Swagger:** http://localhost:8000/docs
+
+
+**💡 Dica de Desenvolvimento:** Caso o banco precise ser totalmente resetado ou suas variáveis do `.env` alteradas, utilize o comando `docker-compose down -v` para destruir os volumes internos e limpe o ambiente antes de subir a infraestrutura novamente.
+
 
 ## 📖 Documentação Completa (MkDocs)
 
-Para detalhes profundos sobre a arquitetura de microsserviços, diagramas UML, modelagem do banco de dados PostgreSQL e guias de contribuição, consulte a nossa documentação oficial integrada.
-https://unb-mds.github.io/2026-1-ProtectKids/
+Para detalhes profundos sobre a arquitetura da aplicação, documentação técnica, modelagem do banco de dados PostgreSQL e guias de contribuição, consulte a nossa documentação oficial integrada:
+
+[Documentação ProtectKids](https://unb-mds.github.io/2026-1-ProtectKids/)
 
 ## 👥 Equipe
+
 | Nome | GitHub |
 |---|---|
 | Augusto Garcia | [@augustogmedeiros](https://github.com/augustogmedeiros) |
@@ -79,6 +106,7 @@ https://unb-mds.github.io/2026-1-ProtectKids/
 | Ryan Lira | [@Golira12](https://github.com/Golira12) |
 | Wanda Maria | [@Wandinhawright](https://github.com/Wandinhawright) |
 | Yara Xavier | [@VegasVegas](https://github.com/VegasVegas) |
+
 ## 📄 Licença
 
 Este projeto é destinado estritamente para fins acadêmicos e de pesquisa.

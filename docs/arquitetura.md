@@ -6,6 +6,8 @@ O Modelo C4 pode ser entendido como um sistema de *zoom arquitetural*, no qual c
 
 ### Nível 1 — Diagrama de Contexto
 
+![Modelo C4 do ProtectKids](./assets/images/c4_contexto.png)
+
 No primeiro nível, o sistema é tratado como uma caixa preta, abstraindo detalhes de implementação e código. O objetivo principal é responder às seguintes perguntas:
 
 * Quem utiliza o sistema?
@@ -14,6 +16,8 @@ No primeiro nível, o sistema é tratado como uma caixa preta, abstraindo detalh
 Essa visão permitiu mapear de forma clara o fluxo de interação entre os usuários do ProtectKids e serviços externos essenciais para o projeto, como a API de Dados Abertos da Câmara dos Deputados.
 
 ### Nível 2 — Diagrama de Contêineres
+
+![Modelo C4 do ProtectKids](./assets/images/c4_container.png)
 
 No segundo nível, é apresentada a macroarquitetura da aplicação, detalhando os principais componentes de software e suas responsabilidades.
 

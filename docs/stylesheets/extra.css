@@ -1,4 +1,181 @@
-.md-grid {
-  max-width: 100% !important;
-  background: rgb(254, 253, 253) !important;
+/* ===========================
+   CORES DO PROTECTKIDS
+=========================== */
+
+:root {
+    --md-primary-fg-color: #2554D8;
+    --md-primary-fg-color--light: #4A74E8;
+    --md-primary-fg-color--dark: #153CB2;
+
+    --md-accent-fg-color: #F8C63D;
+
+    --md-default-bg-color: #FFFFFF;
+    --md-default-fg-color: #2B2B2B;
+
+    --md-text-font: "Roboto", Arial, sans-serif;
+}
+
+/* ===========================
+   HEADER
+=========================== */
+
+.md-header {
+    background-color: #2554D8;
+}
+
+.md-tabs {
+    background-color: #2554D8;
+}
+
+/* ===========================
+   MENU SUPERIOR
+=========================== */
+
+.md-tabs__list {
+    justify-content: center;
+}
+
+.md-tabs__link {
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: white;
+}
+
+.md-tabs__link--active {
+    font-weight: 700;
+    border-bottom: 3px solid #F8C63D;
+}
+
+/* ===========================
+   CONTEÚDO
+=========================== */
+
+.md-content {
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* ===========================
+   LINKS
+=========================== */
+
+.md-typeset a {
+    color: #2554D8;
+}
+
+.md-typeset a:hover {
+    color: #F47B20;
+}
+
+/* ===========================
+   BOTÕES
+=========================== */
+
+.md-button--primary {
+    background: #F47B20;
+    border-color: #F47B20;
+}
+
+.md-button--primary:hover {
+    background: #d86412;
+    border-color: #d86412;
+}
+
+/* ===========================
+   TABELAS
+=========================== */
+
+.md-typeset table:not([class]) th {
+    background: #2554D8;
+    color: white;
+}
+
+/* ===========================
+   TÍTULOS
+=========================== */
+
+.md-typeset h1 {
+    color: #2554D8;
+    font-weight: 700;
+}
+
+.md-typeset h2 {
+    color: #2554D8;
+}
+
+.md-typeset h3 {
+    color: #2554D8;
+}
+
+/* ===========================
+   GRADE DE SPRINTS (CARDS)
+=========================== */
+
+.sprint-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+    gap: 24px !important;
+    margin-top: 24px !important;
+    margin-bottom: 24px !important;
+    font-family: var(--md-text-font) !important;
+}
+
+.sprint-card {
+    background-color: var(--md-default-bg-color) !important;
+    border: 1px solid #e0e0e0 !important;
+    border-radius: 8px !important;
+    padding: 20px !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.sprint-card:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 8px 16px rgba(37, 84, 216, 0.15) !important;
+    border-color: var(--md-primary-fg-color--light) !important;
+}
+
+.sprint-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 24px !important;
+    border-bottom: 1px solid #f0f0f0 !important;
+    padding-bottom: 12px !important;
+}
+
+.sprint-title {
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+    color: var(--md-primary-fg-color) !important;
+    margin: 0 !important;
+}
+
+.sprint-date {
+    font-size: 0.85rem !important;
+    color: #777777 !important;
+    font-weight: 500 !important;
+}
+
+.sprint-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-color: #F47B20 !important;
+    color: #ffffff !important;
+    padding: 8px 18px !important;
+    border-radius: 4px !important;
+    text-decoration: none !important;
+    font-weight: bold !important;
+    font-size: 0.9rem !important;
+    width: fit-content !important;
+    transition: background-color 0.2s !important;
+}
+
+.sprint-btn:hover {
+    background-color: #d86412 !important;
 }
