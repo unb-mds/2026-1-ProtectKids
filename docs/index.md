@@ -4,7 +4,7 @@ hide:
   - toc
 ---
 
-<div style="background-color: #1b4b16; color: white; text-align: center; padding: 80px 20px; margin: -30px calc(50% - 50vw) 40px calc(50% - 50vw); width: 100vw; box-sizing: border-box;">
+<div style="background-color: rgb(245, 121, 6); color: white; text-align: center; padding: 80px 20px; margin: -30px calc(50% - 50vw) 40px calc(50% - 50vw); width: 100vw; box-sizing: border-box;">
   <h1 style="color: white; font-size: 2.5em; margin-bottom: 10px; font-weight: bold;">ProtectKids</h1>
   <p style="font-size: 1.2em;">Plataforma de Monitoramento Legislativo para Proteção Infantojuvenil no Ambiente Digital</p>
 </div>
