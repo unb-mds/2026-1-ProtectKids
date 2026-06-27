@@ -33,19 +33,19 @@ function App() {
       <nav className="mt-5 md:mt-0">
         <ul className="flex flex-wrap items-center gap-6 sm:gap-8 text-sm sm:text-base tracking-wide font-medium">
           <li>
-            <a href="#inicio" className="uppercase hover:opacity-80 transition-opacity">
+            <Link to="/" className="uppercase hover:opacity-80 transition-opacity">
               Início
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#todas-as-leis" className="uppercase hover:opacity-80 transition-opacity">
+            <Link to="/leis" className="uppercase hover:opacity-80 transition-opacity">
               Todas as Leis
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#sobre" className="uppercase hover:opacity-80 transition-opacity">
+            <Link to="/sobre" className="uppercase hover:opacity-80 transition-opacity">
               Sobre o Projeto
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>
