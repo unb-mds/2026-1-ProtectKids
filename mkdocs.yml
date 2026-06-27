@@ -7,11 +7,7 @@ nav:
   - Requisitos: requisitos.md
   - Arquitetura: arquitetura.md
 
-  # Adiciona a seção de Infraestrutura na documentação do MkDocs.
-  # Essa seção agrupa documentos técnicos relacionados ao ambiente Docker do projeto.
   - Infraestrutura:
-      # Página criada para documentar o arquivo docker-compose.yml,
-      # explicando os serviços db, backend, frontend, volumes, portas e variáveis de ambiente.
       - Docker Compose: infra/dockercompose.md
 
   - Contribuição: contribuicao.md
@@ -19,19 +15,33 @@ nav:
 theme:
   name: material
 
+  language: pt-BR
+
   palette:
-    - scheme: slate  # Isso garante o fundo escuro
-      primary: custom # Isso avisa para usar a cor do extra.css
+    - scheme: default
+      primary: custom
       accent: custom
 
   features:
-    - navigation.tabs # Isso é o que cria a barra superior horizontal!
+    - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.top
+    - navigation.sections
     - toc.integrate
+    - content.code.copy
+    - search.highlight
+    - search.suggest
 
 markdown_extensions:
   - toc:
       permalink: true
+  - admonition
+  - attr_list
+  - tables
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
 
 extra_css:
   - stylesheets/extra.css
