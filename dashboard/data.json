@@ -1,6 +1,15 @@
 {
-    "last_updated": "2026-06-27T16:17:10.606943Z",
+    "last_updated": "2026-06-27T17:39:51.932742Z",
     "commits": [
+        {
+            "hash": "8e4266110cc09f9aba06e94e08a3fac52b8f3b92",
+            "date": "2026-06-27T14:39:19-03:00",
+            "message": "esqueleto das organizaçoes das sprints",
+            "is_conventional": false,
+            "insertions": 196,
+            "deletions": 8,
+            "total_diff": 204
+        },
         {
             "hash": "452096fe00251c874724813e16543f80d086fe3c",
             "date": "2026-06-27T13:16:40-03:00",
@@ -2283,10 +2292,10 @@
     ],
     "autores": {
         "cgbriel28": {
-            "commits": 14,
-            "insercoes": 13401,
-            "delecoes": 950,
-            "total_linhas": 14351
+            "commits": 15,
+            "insercoes": 13597,
+            "delecoes": 958,
+            "total_linhas": 14555
         },
         "augustogmedeiros": {
             "commits": 120,
