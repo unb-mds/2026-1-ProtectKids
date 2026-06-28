@@ -38,11 +38,12 @@ Acesse o design e a prototipação da interface do projeto:
 ---
 ### 🚀 Como Rodar o Projeto (Quickstart)
 
-Certifique-se de ter o **Git** e o **Docker Desktop** instalados e ativos em sua máquina antes de prosseguir.
+Certifique-se de ter o **Git**, o **Docker** e o **Docker Compose** instalados e ativos em sua máquina antes de prosseguir.
 
 **1. Clonar o repositório**
+
 ```bash
-git clone [https://github.com/unb-mds/2026-1-ProtectKids](https://github.com/unb-mds/2026-1-ProtectKids)
+git clone https://github.com/unb-mds/2026-1-ProtectKids.git
 cd 2026-1-ProtectKids
 ```
 
@@ -61,7 +62,7 @@ MAX_PAGES=3
 **3. Subir a Infraestrutura**
 Baixe as imagens oficiais mais recentes da nuvem (GHCR) e inicie os serviços do banco, backend e frontend.
 ```bash
-docker-compose pull
+docker compose up --build -d
 docker-compose up -d
 ```
 *(Aguarde alguns instantes até os contêineres inicializarem)*
@@ -88,15 +89,14 @@ docker-compose exec backend python -m crawler.tramitacoes_api
 **💡 Dica de Desenvolvimento:** Caso o banco precise ser totalmente resetado ou suas variáveis do `.env` alteradas, utilize o comando `docker-compose down -v` para destruir os volumes internos e limpe o ambiente antes de subir a infraestrutura novamente.
 
 
-## 📖 Documentação Completa (MkDocs) 
-```
-
 ## 📖 Documentação Completa (MkDocs)
 
-Para detalhes profundos sobre a arquitetura de microsserviços, diagramas UML, modelagem do banco de dados PostgreSQL e guias de contribuição, consulte a nossa documentação oficial integrada.
-https://unb-mds.github.io/2026-1-ProtectKids/
+Para detalhes profundos sobre a arquitetura da aplicação, documentação técnica, modelagem do banco de dados PostgreSQL e guias de contribuição, consulte a nossa documentação oficial integrada:
+
+[Documentação ProtectKids](https://unb-mds.github.io/2026-1-ProtectKids/)
 
 ## 👥 Equipe
+
 | Nome | GitHub |
 |---|---|
 | Augusto Garcia | [@augustogmedeiros](https://github.com/augustogmedeiros) |
@@ -106,6 +106,7 @@ https://unb-mds.github.io/2026-1-ProtectKids/
 | Ryan Lira | [@Golira12](https://github.com/Golira12) |
 | Wanda Maria | [@Wandinhawright](https://github.com/Wandinhawright) |
 | Yara Xavier | [@VegasVegas](https://github.com/VegasVegas) |
+
 ## 📄 Licença
 
 Este projeto é destinado estritamente para fins acadêmicos e de pesquisa.

@@ -5,27 +5,53 @@ nav:
   - Início: index.md
   - Visão Geral: visao-geral.md
   - Requisitos: requisitos.md
-  - Arquitetura: arquitetura.md
+  - Arquitetura: architecture.md
+  - Sprints:
+      - Histórico de Sprints: sprints/index.md
+      - Detalhes das Sprints:
+          - Sprint 0: sprints/sprint_00.md
+          - Sprint 1: sprints/sprint_01.md
+          - Sprint 2: sprints/sprint_02.md
+          - Sprint 3: sprints/sprint_03.md
+          - Sprint 4: sprints/sprint_04.md
+          - Sprint 5: sprints/sprint_05.md
+          - Sprint 6: sprints/sprint_06.md
+          - Sprint 7: sprints/sprint_07.md
+          - Sprint 8: sprints/sprint_08.md
+          - Sprint 9: sprints/sprint_09.md
+          - Sprint 10: sprints/sprint_10.md
+  - Infraestrutura:
+      - Docker Compose: infra/docker-compose.md
   - Contribuição: contribuicao.md
 
 theme:
   name: material
-  
+  language: pt-BR
   palette:
-    - scheme: slate  # Isso garante o fundo escuro
-      primary: custom # Isso avisa para usar a cor do extra.css
+    - scheme: default
+      primary: custom
       accent: custom
-      
- 
-    
   features:
-    - navigation.tabs # Isso é o que cria a barra superior horizontal!
+    - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.top
+    - navigation.sections
     - toc.integrate
+    - content.code.copy
+    - search.highlight
+    - search.suggest
 
 markdown_extensions:
   - toc:
       permalink: true
+  - admonition
+  - attr_list
+  - tables
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - md_in_html
 
 extra_css:
   - stylesheets/extra.css

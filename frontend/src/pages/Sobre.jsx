@@ -4,16 +4,32 @@ export default function Sobre() {
   return (
     <div className="flex flex-col w-full">
       {/* CABEÇALHO */}
-      <section className="bg-pk-dark text-white py-16 px-8 flex justify-center shadow-inner">
-        <div className="max-w-4xl w-full text-center">
-          <h1 className="text-3xl md:text-5xl font-bold tracking-wide leading-tight mb-4 uppercase font-serif">
-            Sobre o <span className="text-pk-red">Projeto</span>
-          </h1>
-          <p className="text-gray-300 font-medium text-sm md:text-base max-w-2xl mx-auto uppercase tracking-wider">
-            Conheça o contexto, a missão e a equipe por trás da plataforma ProtectKids.
-          </p>
-        </div>
-      </section>
+    <div className="block w-full bg-[#FBBF24] py-10 px-4 text-center select-none clearfix">
+      <div className="max-w-7xl mx-auto flex flex-col items-center justify-center">
+        {/* Container do Título Principal */}
+        <h1 className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-2xl sm:text-3xl md:text-4xl uppercase tracking-wide">
+          {/* "SOBRE O" em tom azul escuro e fonte serifada */}
+          <span className="font-serif font-bold text-[#1E3A8A]">
+            Sobre o
+          </span>
+          
+          {/* "PROTECT" em branco e fonte sans-serif */}
+          <span className="font-sans font-extrabold text-white">
+            Protect
+          </span>
+          
+          {/* "KIDS" dentro do badge azul escuro */}
+          <span className="bg-[#1E3A8A] text-[#FBBF24] font-sans font-black px-3 py-1 rounded-xl text-xl sm:text-2xl md:text-3xl tracking-wider inline-block">
+            Kids
+          </span>
+        </h1>
+
+        {/* Subtítulo */}
+        <p className="mt-4 text-[#1E3A8A]/90 text-xs sm:text-sm md:text-base font-bold tracking-normal max-w-2xl font-sans">
+          Plataforma de transparência e monitoramento legislativo focada em proteção infantil
+        </p>
+      </div>
+    </div>
 
       {/* CONTEÚDO PRINCIPAL */}
       <section className="py-16 px-4 max-w-4xl mx-auto w-full flex flex-col gap-12">
