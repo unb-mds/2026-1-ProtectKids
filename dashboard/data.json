@@ -1,6 +1,33 @@
 {
-    "last_updated": "2026-06-27T20:43:27.034344Z",
+    "last_updated": "2026-06-29T03:43:37.344148Z",
     "commits": [
+        {
+            "hash": "dd416d1deb6e2a38f58676c18b8e02e64abf12b7",
+            "date": "2026-06-29T00:43:13-03:00",
+            "message": "Merge pull request #144 from unb-mds/fix/backend_crawler",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "46cdac50c7865281e4fb6985bec9130c3afaeb8f",
+            "date": "2026-06-29T00:37:10-03:00",
+            "message": "fix:correçao na ETL",
+            "is_conventional": true,
+            "insertions": 304,
+            "deletions": 52,
+            "total_diff": 356
+        },
+        {
+            "hash": "efaf502b7baf5aa7b8aa01ade60d361b288cc0b0",
+            "date": "2026-06-28T19:54:47-03:00",
+            "message": "Merge branch 'main' of https://github.com/unb-mds/2026-1-Squad10 into fix/backend_crawler",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
         {
             "hash": "73498913e31818dde5deea4287d1ae0d203fac3d",
             "date": "2026-06-27T17:43:05-03:00",
@@ -137,6 +164,15 @@
             "total_diff": 409
         },
         {
+            "hash": "3f216ead6c58f5941ec7436ec558996266c795cd",
+            "date": "2026-06-25T19:45:44-03:00",
+            "message": "fix: melhora nos filtros de busca para os dashboards do frontend",
+            "is_conventional": true,
+            "insertions": 319,
+            "deletions": 73,
+            "total_diff": 392
+        },
+        {
             "hash": "4045ff77e81b24d4bbeb59c391cf2570e2c1776e",
             "date": "2026-06-25T18:58:22-03:00",
             "message": "corrigindo indentação",
@@ -182,6 +218,15 @@
             "total_diff": 458
         },
         {
+            "hash": "3830a1ef459dd85dbc4e08f6399bde5ab15dd768",
+            "date": "2026-06-25T18:28:25-03:00",
+            "message": "adicionado https try em todas as funções",
+            "is_conventional": false,
+            "insertions": 330,
+            "deletions": 113,
+            "total_diff": 443
+        },
+        {
             "hash": "732baafe72bc4ba390cfefa0ecde75c45475036d",
             "date": "2026-06-25T17:34:21-03:00",
             "message": " corrige formatação e informações do README",
@@ -209,6 +254,24 @@
             "total_diff": 83
         },
         {
+            "hash": "77910a76a9abf649544dfccb536e16d1b2fa01f3",
+            "date": "2026-06-25T14:44:49-03:00",
+            "message": "docs: corrige  contrato de integracao da api",
+            "is_conventional": true,
+            "insertions": 300,
+            "deletions": 90,
+            "total_diff": 390
+        },
+        {
+            "hash": "ce5ef9dab1e5caa0d69248c3dd1a43d44d071a0e",
+            "date": "2026-06-25T13:44:58-03:00",
+            "message": "limpeza segure dos arqvuiso temporarios e correção do ID instável",
+            "is_conventional": false,
+            "insertions": 53,
+            "deletions": 30,
+            "total_diff": 83
+        },
+        {
             "hash": "0ccc3d36f3276b7d381b8ac3c0e5d5b1c7749fc1",
             "date": "2026-06-25T13:31:58-03:00",
             "message": "Fix/backend crawler (#118)",
@@ -216,6 +279,51 @@
             "insertions": 398,
             "deletions": 55,
             "total_diff": 453
+        },
+        {
+            "hash": "96c4597b3182c3558752a600befd8c96efbb4446",
+            "date": "2026-06-25T12:55:12-03:00",
+            "message": "Merge remote-tracking branch 'origin/main' into fix/backend_crawler",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "dadff11dbde0f58c49ca4746b1b73ae9475e266e",
+            "date": "2026-06-25T11:55:48-03:00",
+            "message": "feat: implementa função reprocessar_classificação refs #116",
+            "is_conventional": true,
+            "insertions": 75,
+            "deletions": 0,
+            "total_diff": 75
+        },
+        {
+            "hash": "d62e857bb04d8660d1417cc323ab6159cec036cc",
+            "date": "2026-06-24T17:22:46-03:00",
+            "message": "fix: altera escopo do tema de Proposicao para 'Protecao Infantil' refs #116",
+            "is_conventional": true,
+            "insertions": 1,
+            "deletions": 1,
+            "total_diff": 2
+        },
+        {
+            "hash": "c0ec0b085afb4458aa8df6805f932fe3c3a1fc2d",
+            "date": "2026-06-24T17:16:22-03:00",
+            "message": "fix: ajustando e padronizando tema geral em senado_api refs #116",
+            "is_conventional": true,
+            "insertions": 10,
+            "deletions": 3,
+            "total_diff": 13
+        },
+        {
+            "hash": "03844d80b5cca9ceacca8c67d1ff76990dd54d50",
+            "date": "2026-06-24T15:55:27-03:00",
+            "message": "fix: melhora função classificar_com_ia e padronização do tema geral em camara_api refs #116",
+            "is_conventional": true,
+            "insertions": 313,
+            "deletions": 52,
+            "total_diff": 365
         },
         {
             "hash": "2e593f8f92fbe155f2140ff0bb6cd850ac2a4672",
@@ -1930,6 +2038,15 @@
     ],
     "issues": [
         {
+            "number": 143,
+            "title": "[Backend] Ajuste da ETL para coleta ampla e classificação pelo texto integral",
+            "state": "closed",
+            "created_at": "2026-06-29T03:41:53Z",
+            "closed_at": "2026-06-29T03:43:14Z",
+            "resolution_time_hours": 0.02,
+            "char_count": 1964
+        },
+        {
             "number": 141,
             "title": "Espaços para documentaçao de sprints",
             "state": "closed",
@@ -2391,10 +2508,10 @@
     ],
     "autores": {
         "augustogmedeiros": {
-            "commits": 121,
-            "insercoes": 7788,
-            "delecoes": 2946926,
-            "total_linhas": 2954714
+            "commits": 129,
+            "insercoes": 9094,
+            "delecoes": 2947284,
+            "total_linhas": 2956378
         },
         "VegasVvegas": {
             "commits": 1,
@@ -2427,10 +2544,10 @@
             "total_linhas": 453
         },
         "Danielly": {
-            "commits": 3,
-            "insercoes": 17,
-            "delecoes": 2,
-            "total_linhas": 19
+            "commits": 7,
+            "insercoes": 416,
+            "delecoes": 58,
+            "total_linhas": 474
         },
         "Danielly Mendes": {
             "commits": 14,
