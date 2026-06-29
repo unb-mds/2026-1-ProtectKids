@@ -1,6 +1,15 @@
 {
-    "last_updated": "2026-06-29T13:51:25.908256Z",
+    "last_updated": "2026-06-29T14:08:10.997633Z",
     "commits": [
+        {
+            "hash": "1cc2822af25f28e006bf97a57c414d23459942d6",
+            "date": "2026-06-29T11:07:42-03:00",
+            "message": "frontend: remoção de imagens e icones inutilizados",
+            "is_conventional": false,
+            "insertions": 0,
+            "deletions": 25,
+            "total_diff": 25
+        },
         {
             "hash": "0d94120c745e0856df6606b914fad1e0747eb002",
             "date": "2026-06-29T10:50:58-03:00",
@@ -2670,10 +2679,10 @@
     ],
     "autores": {
         "wandinhawright": {
-            "commits": 21,
+            "commits": 22,
             "insercoes": 4168,
-            "delecoes": 262,
-            "total_linhas": 4430
+            "delecoes": 287,
+            "total_linhas": 4455
         },
         "augustogmedeiros": {
             "commits": 138,
