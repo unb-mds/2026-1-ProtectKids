@@ -180,25 +180,114 @@ def fetch_proposicoes_por_keyword(keyword: str) -> list[dict]:
 
     return resultados
 
+def fetch_proposicoes_amplas_por_ano(ano: int) -> list[dict]:
+    """
+    Busca proposições da Câmara por ano, sem depender de palavra-chave.
+
+    Essa coleta existe para atender ao critério de aceitação da ETL:
+    proposições com ementa genérica também devem ser capturadas,
+    ter o inteiro teor baixado e ser classificadas pelo conteúdo completo.
+    """
+    resultados: list[dict] = []
+
+    for pagina in range(1, LIMITE_PAGINAS + 1):
+        params = {
+            **PARAMS_BASE,
+            "ano": ano,
+            "pagina": pagina,
+        }
+
+        logger.info(
+            "Buscando proposições amplas do ano %s | página %s/%s",
+            ano,
+            pagina,
+            LIMITE_PAGINAS,
+        )
+
+        response = fazer_requisicao_com_retry(
+            ENDPOINT_PROPOSICOES,
+            params=params,
+            headers={"Accept": "application/json"},
+            timeout=60,
+        )
+
+        if response is None:
+            logger.error(
+                "Falha ao buscar proposições amplas do ano %s na página %s.",
+                ano,
+                pagina,
+            )
+            break
+
+        try:
+            dados = response.json().get("dados", [])
+        except ValueError:
+            logger.error(
+                "Resposta inválida da API da Câmara na coleta ampla do ano %s.",
+                ano,
+            )
+            break
+
+        if not dados:
+            logger.info(
+                "Sem mais resultados na coleta ampla do ano %s, página %s.",
+                ano,
+                pagina,
+            )
+            break
+
+        for dado in dados:
+            dado["_keyword_origem"] = "Coleta ampla por ano"
+
+        resultados.extend(dados)
+
+        logger.info(
+            "%s proposições encontradas na coleta ampla desta página.",
+            len(dados),
+        )
+
+    return resultados
 
 def fetch_todas_proposicoes() -> list[dict]:
     """
-    Executa a busca para todas as KEYWORDS e retorna uma lista consolidada,
-    removendo duplicatas pelo campo 'id' da API.
+    Executa duas estratégias de extração:
+
+    1. Busca por palavras-chave:
+       rápida e direcionada ao tema do projeto.
+
+    2. Busca ampla por ano:
+       permite capturar proposições com ementa genérica, mas cujo texto
+       integral contenha temas relevantes para proteção infantil.
+
+    As duas listas são consolidadas removendo duplicatas pelo campo 'id'
+    da API da Câmara.
     """
     todas: dict[int, dict] = {}
 
     for keyword in KEYWORDS:
         proposicoes = fetch_proposicoes_por_keyword(keyword)
+
         for prop in proposicoes:
             api_id = prop.get("id")
+
             if api_id and api_id not in todas:
                 todas[api_id] = prop
 
-    logger.info(f"Total de proposições únicas encontradas: {len(todas)}")
+    ano_coleta = int(os.getenv("ANO_COLETA_AMPLA", datetime.now().year))
+    proposicoes_amplas = fetch_proposicoes_amplas_por_ano(ano_coleta)
+
+    for prop in proposicoes_amplas:
+        api_id = prop.get("id")
+
+        if api_id and api_id not in todas:
+            todas[api_id] = prop
+
+    logger.info(
+        "Total de proposições únicas encontradas após keyword + coleta ampla: %s",
+        len(todas),
+    )
+
     return list(todas.values())
-
-
 def fetch_autor_da_proposicao(id_proposicao_api: int) -> dict:
     """
     Busca o autor principal de uma proposição da Câmara.
@@ -690,6 +779,27 @@ def classificar_com_ia(texto: Optional[str], ementa: str) -> str:
         logger.error(f"Erro no processamento NLP: {exc}")
         return CATEGORIA_PADRAO
 
+def contem_indicador_protecao_infantil(
+    texto: Optional[str],
+    ementa: Optional[str],
+) -> bool:
+    """
+    Verifica se a proposição possui algum indício mínimo de relação
+    com proteção infantil.
+
+    Esse filtro é usado principalmente para a coleta ampla, evitando que
+    proposições sem relação com o tema sejam salvas apenas porque foram
+    capturadas por ano.
+    """
+    conteudo = normalizar_texto(f"{ementa or ''} {texto or ''}")
+
+    if not conteudo:
+        return False
+
+    termos_chave = [normalizar_texto(termo) for termo in KEYWORDS]
+
+    return any(termo and termo in conteudo for termo in termos_chave)
+
 def transform_proposicao(dado_bruto: dict, autor_bruto: dict) -> Optional[tuple]:
     sigla = dado_bruto.get("siglaTipo", "PL")
     numero = dado_bruto.get("numero")
@@ -729,15 +839,24 @@ def transform_proposicao(dado_bruto: dict, autor_bruto: dict) -> Optional[tuple]
         except ValueError:
             logger.warning("Data de apresentação inválida: %s", data_str)
 
-    # --- PROCESSAMENTO ENRIQUECIDO (PASSO 2) ---
     url_pdf = dado_bruto.get("urlInteiroTeor")
-    
-    # Executa o pipeline de PDF e IA
     texto_pdf = extrair_texto_pdf(url_pdf)
     classificacao_ia = classificar_com_ia(texto_pdf, ementa)
     subtema_origem = dado_bruto.get("_keyword_origem", "Geral")
 
-    # 3. Monta a Proposicao com os novos campos populados
+    foi_coleta_ampla = subtema_origem == "Coleta ampla por ano"
+
+    if (
+        foi_coleta_ampla
+        and classificacao_ia == CATEGORIA_PADRAO
+        and not contem_indicador_protecao_infantil(texto_pdf, ementa)
+    ):
+        logger.info(
+            "Proposição Câmara %s descartada: coleta ampla sem indício de proteção infantil.",
+            id_externo_formatado,
+        )
+        return None
+
     proposicao = Proposicao(
         id_externo=id_externo_formatado,
         id_autor=id_autor,

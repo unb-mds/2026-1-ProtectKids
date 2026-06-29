@@ -6,7 +6,6 @@ Pipeline ETL — Senado Federal → PostgreSQL
 import sys
 import os
 import logging
-import requests
 from typing import Optional
 from datetime import datetime
 from sqlmodel import Session, select, SQLModel
@@ -19,16 +18,22 @@ import hashlib
 from crawler.camara_api import (
     KEYWORDS,
     TEMA_PADRAO,
+    CATEGORIA_PADRAO,
     classificar_com_ia,
     save_proposicoes,
     extrair_texto_pdf,
     fazer_requisicao_com_retry,
+    contem_indicador_protecao_infantil,
 )
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger(__name__)
 
 BASE_URL_SENADO = "https://legis.senado.leg.br/dadosabertos/materia/pesquisa/lista"
+SIGLAS_SENADO_COLETA = ["PL", "PLS", "PLC", "PEC"]
+ANO_COLETA_AMPLA_SENADO = int(
+    os.getenv("ANO_COLETA_AMPLA_SENADO", datetime.now().year)
+)
 
 def find_value(obj, target_key: str):
     """Busca recursivamente por uma chave no JSON, ignorando maiúsculas/minúsculas e aninhamentos."""
@@ -45,6 +50,28 @@ def find_value(obj, target_key: str):
             if res is not None:
                 return res
     return None
+
+def extrair_materias_resposta_senado(dados: dict) -> list[dict]:
+    """
+    Extrai a lista de matérias da resposta da API do Senado.
+
+    A API pode retornar uma única matéria como dict ou várias matérias como list.
+    Esta função normaliza sempre para list[dict].
+    """
+    materias = (
+        dados
+        .get("PesquisaBasicaMateria", {})
+        .get("Materias", {})
+        .get("Materia", [])
+    )
+
+    if isinstance(materias, dict):
+        materias = [materias]
+
+    if not isinstance(materias, list):
+        return []
+
+    return materias
 
 def fetch_proposicoes_senado(keyword: str) -> list[dict]:
     """
@@ -72,15 +99,7 @@ def fetch_proposicoes_senado(keyword: str) -> list[dict]:
         logger.error("Resposta inválida da API do Senado para '%s'.", keyword)
         return []
 
-    materias = (
-        dados
-        .get("PesquisaBasicaMateria", {})
-        .get("Materias", {})
-        .get("Materia", [])
-    )
-
-    if isinstance(materias, dict):
-        materias = [materias]
+    materias = extrair_materias_resposta_senado(dados)
 
     if not materias:
         logger.info("Nenhuma matéria encontrada no Senado para '%s'.", keyword)
@@ -97,22 +116,132 @@ def fetch_proposicoes_senado(keyword: str) -> list[dict]:
 
     return materias
 
+def fetch_proposicoes_senado_por_ano(ano: int) -> list[dict]:
+    """
+    Busca matérias do Senado por ano e sigla, sem depender de palavra-chave.
+
+    Essa coleta ampla atende ao critério de aceitação da ETL:
+    matérias com ementa genérica também devem ser capturadas,
+    ter o texto integral baixado e ser classificadas pelo conteúdo completo.
+    """
+    resultados: list[dict] = []
+    headers = {"Accept": "application/json"}
+
+    for sigla in SIGLAS_SENADO_COLETA:
+        params = {
+            "sigla": sigla,
+            "ano": ano,
+        }
+
+        logger.info(
+            "Buscando matérias amplas no Senado | sigla=%s | ano=%s",
+            sigla,
+            ano,
+        )
+
+        resp = fazer_requisicao_com_retry(
+            BASE_URL_SENADO,
+            params=params,
+            headers=headers,
+            timeout=30,
+        )
+
+        if resp is None:
+            logger.warning(
+                "Falha na coleta ampla do Senado para sigla=%s, ano=%s.",
+                sigla,
+                ano,
+            )
+            continue
+
+        try:
+            dados = resp.json()
+        except ValueError:
+            logger.warning(
+                "Resposta inválida na coleta ampla do Senado para sigla=%s, ano=%s.",
+                sigla,
+                ano,
+            )
+            continue
+
+        materias = extrair_materias_resposta_senado(dados)
+
+        if not materias:
+            logger.info(
+                "Nenhuma matéria ampla encontrada no Senado para sigla=%s, ano=%s.",
+                sigla,
+                ano,
+            )
+            continue
+
+        for materia in materias:
+            materia["_keyword_origem"] = "Coleta ampla por ano"
+
+        resultados.extend(materias)
+
+        logger.info(
+            "%s matérias encontradas na coleta ampla do Senado para sigla=%s, ano=%s.",
+            len(materias),
+            sigla,
+            ano,
+        )
+
+    return resultados
+
+def fetch_todas_materias_senado() -> list[dict]:
+    """
+    Executa duas estratégias de extração no Senado:
+
+    1. Busca por palavras-chave;
+    2. Busca ampla por ano e sigla.
+
+    Remove duplicatas pelo Código da matéria.
+    """
+    todas: dict[str, dict] = {}
+
+    # Estratégia 1: busca por keywords
+    for keyword in KEYWORDS:
+        materias = fetch_proposicoes_senado(keyword)
+
+        for materia in materias:
+            codigo = find_value(materia, "Codigo")
+
+            if codigo and str(codigo) not in todas:
+                todas[str(codigo)] = materia
+
+    # Estratégia 2: coleta ampla
+    materias_amplas = fetch_proposicoes_senado_por_ano(ANO_COLETA_AMPLA_SENADO)
+
+    for materia in materias_amplas:
+        codigo = find_value(materia, "Codigo")
+
+        if codigo and str(codigo) not in todas:
+            todas[str(codigo)] = materia
+
+    logger.info(
+        "Total de matérias únicas do Senado após keyword + coleta ampla: %s",
+        len(todas),
+    )
+
+    return list(todas.values())
+
 def gerar_id_autor_senado(nome_autor: str) -> int:
     """
     Gera um identificador estável para autores do Senado quando a API
     não fornece um ID numérico confiável.
 
-    Evita o uso de hash() nativo do Python, pois ele pode variar entre
-    execuções diferentes.
+    Usa uma faixa alta para reduzir conflito com IDs reais da Câmara,
+    mas sem ultrapassar o limite de INTEGER do PostgreSQL.
     """
     nome_normalizado = nome_autor.strip().lower()
 
     if not nome_normalizado:
-        return 0
+        nome_normalizado = "autor-desconhecido-senado"
 
     digest = hashlib.sha256(nome_normalizado.encode("utf-8")).hexdigest()
+    valor_hash = int(digest[:8], 16)
 
-    return int(digest[:10], 16)
+    return 1_000_000_000 + (valor_hash % 900_000_000)
 
 def transform_materia_senado(materia_bruta: dict) -> Optional[tuple]:
     """O Adaptador resiliente atualizado com as chaves reais do Senado."""
@@ -128,25 +257,21 @@ def transform_materia_senado(materia_bruta: dict) -> Optional[tuple]:
     
     ementa = find_value(materia_bruta, "Ementa") or "Sem ementa disponível"
     ementa = str(ementa).strip()
-    
-    # 1. Monta o Parlamentar (Tratando a string única do Senado)
+
     autor_string = find_value(materia_bruta, "Autor") or "Desconhecido"
     nome_autor = autor_string
     partido = "ND"
     uf = "ND"
-    
-    # Se a string vier no formato "Nome (PARTIDO/UF)", nós a dividimos:
+
     if "(" in autor_string and ")" in autor_string:
         partes = autor_string.split("(")
-        nome_autor = partes[0].strip() # Pega o que vem antes do parêntese
-        
-        # Pega o que está dentro do parêntese e divide pela barra
+        nome_autor = partes[0].strip() 
+
         partido_uf = partes[1].replace(")", "").split("/")
         if len(partido_uf) == 2:
             partido = partido_uf[0].strip()
             uf = partido_uf[1].strip()
-            
-    # Como o Senado não enviou o ID numérico do autor, criamos um numérico baseado no nome
+
     id_autor = gerar_id_autor_senado(nome_autor) 
     
     parlamentar = Parlamentar(
@@ -156,7 +281,6 @@ def transform_materia_senado(materia_bruta: dict) -> Optional[tuple]:
         uf=uf
     )
         
-    # 2. Formata a Data
     data_apres = None
     data_str = find_value(materia_bruta, "Data")
     if data_str:
@@ -168,18 +292,27 @@ def transform_materia_senado(materia_bruta: dict) -> Optional[tuple]:
     subtema_origem = materia_bruta.get("_keyword_origem", "Geral")
     url_pdf_real = f"https://legis.senado.leg.br/sdleg-getter/documento/download/materia/{codigo_materia}"
     
-    # extrai o texto limpo
     texto_pdf = extrair_texto_pdf(url_pdf_real)
-    
-    # O PLANO B: Se vier vazio (documento escaneado ou erro de leitura)
+
     if not texto_pdf:
         texto_pdf = (
             "O texto integral desta matéria está indisponível para extração digital.\n\n"
             f"Ementa Original: {ementa}"
         )
     classificacao_ia = classificar_com_ia(texto=texto_pdf, ementa=ementa)
+    foi_coleta_ampla = subtema_origem == "Coleta ampla por ano"
 
-    # 4. Monta a Proposicao
+    if (
+        foi_coleta_ampla
+        and classificacao_ia == CATEGORIA_PADRAO
+        and not contem_indicador_protecao_infantil(texto_pdf, ementa)
+    ):
+        logger.info(
+            "Matéria Senado %s descartada: coleta ampla sem indício de proteção infantil.",
+            id_externo_formatado,
+        )
+        return None
+    
     proposicao = Proposicao(
         id_externo=id_externo_formatado,
         origem="Senado",
@@ -222,26 +355,25 @@ def run_pipeline_senado():
     ids_processados_nesta_run = set()
     materias_ineditas = []
 
-    # Coleta todas as matérias inéditas primeiro
-    for keyword in KEYWORDS:
-        materias = fetch_proposicoes_senado(keyword)
+        # 1. EXTRACT: coleta por keyword + coleta ampla por ano
+    materias_brutas = fetch_todas_materias_senado()
 
-        for mat in materias:
-            codigo = find_value(mat, "Codigo")
+    for mat in materias_brutas:
+        codigo = find_value(mat, "Codigo")
 
-            if not codigo:
-                continue
+        if not codigo:
+            continue
 
-            id_externo_formatado = f"senado-{codigo}"
+        id_externo_formatado = f"senado-{codigo}"
 
-            if (
-                id_externo_formatado in ids_existentes
-                or id_externo_formatado in ids_processados_nesta_run
-            ):
-                continue
+        if (
+            id_externo_formatado in ids_existentes
+            or id_externo_formatado in ids_processados_nesta_run
+        ):
+            continue
 
-            ids_processados_nesta_run.add(id_externo_formatado)
-            materias_ineditas.append(mat)
+        ids_processados_nesta_run.add(id_externo_formatado)
+        materias_ineditas.append(mat)
 
     if not materias_ineditas:
         logger.info(
