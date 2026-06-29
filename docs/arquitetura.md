@@ -17,7 +17,7 @@ Essa visão permitiu mapear de forma clara o fluxo de interação entre os usuá
 
 ### Nível 2 — Diagrama de Contêineres
 
-![Modelo C4 do ProtectKids](./assets/images/c4_container_nivel_2.png)
+![Modelo C4 do ProtectKids](./assets/images/C4_container_nivel_2.drawio.png)
 
 No segundo nível, é apresentada a macroarquitetura da aplicação, detalhando os principais componentes de software e suas responsabilidades.
 
@@ -34,7 +34,7 @@ Além disso, o diagrama demonstra como esses componentes se comunicam entre si p
 
 ### Nível 3 - Diagrama de Componentes
 
-![Modelo C4 do ProtectKids](./assets/images/c4_container_nivel_3.png)
+![Modelo C4 do ProtectKids](./assets/images/c4_container_nivel_3.drawio.png)
 
 No terceiro nível, o foco passa a ser a estrutura interna de um dos contêineres apresentados no nível anterior. No caso do ProtectKids, o detalhamento foi aplicado ao contêiner da API Application, implementada com FastAPI.
 Esse nível permite compreender como o backend organiza suas responsabilidades internas para atender às requisições do frontend e consultar os dados armazenados no PostgreSQL.
