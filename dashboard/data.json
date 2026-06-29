@@ -1,6 +1,15 @@
 {
-    "last_updated": "2026-06-29T05:05:37.044815Z",
+    "last_updated": "2026-06-29T05:18:07.541282Z",
     "commits": [
+        {
+            "hash": "4a26acee9d132cfd5c034965d22bdf3866d2f78b",
+            "date": "2026-06-29T02:17:38-03:00",
+            "message": "revisao de documentaçao e alterao na sprint 6",
+            "is_conventional": false,
+            "insertions": 6,
+            "deletions": 46,
+            "total_diff": 52
+        },
         {
             "hash": "f675d4aa0d3e7a5f608133bdf77e9ce50abcb679",
             "date": "2026-06-29T02:05:07-03:00",
@@ -2544,10 +2553,10 @@
     ],
     "autores": {
         "cgbriel28": {
-            "commits": 18,
-            "insercoes": 14154,
-            "delecoes": 969,
-            "total_linhas": 15123
+            "commits": 19,
+            "insercoes": 14160,
+            "delecoes": 1015,
+            "total_linhas": 15175
         },
         "augustogmedeiros": {
             "commits": 129,
