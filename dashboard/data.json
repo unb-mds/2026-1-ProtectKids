@@ -1,6 +1,15 @@
 {
-    "last_updated": "2026-06-29T14:08:10.997633Z",
+    "last_updated": "2026-06-29T14:08:33.947324Z",
     "commits": [
+        {
+            "hash": "f32943fa742d4ae53c35e8b1b2f984889a72c046",
+            "date": "2026-06-29T11:08:05-03:00",
+            "message": "frontend: corrige o caminhos dos links no footer",
+            "is_conventional": false,
+            "insertions": 3,
+            "deletions": 3,
+            "total_diff": 6
+        },
         {
             "hash": "1cc2822af25f28e006bf97a57c414d23459942d6",
             "date": "2026-06-29T11:07:42-03:00",
@@ -2679,10 +2688,10 @@
     ],
     "autores": {
         "wandinhawright": {
-            "commits": 22,
-            "insercoes": 4168,
-            "delecoes": 287,
-            "total_linhas": 4455
+            "commits": 23,
+            "insercoes": 4171,
+            "delecoes": 290,
+            "total_linhas": 4461
         },
         "augustogmedeiros": {
             "commits": 138,
