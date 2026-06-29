@@ -1,6 +1,15 @@
 {
-    "last_updated": "2026-06-29T13:50:32.747267Z",
+    "last_updated": "2026-06-29T13:51:06.357270Z",
     "commits": [
+        {
+            "hash": "c2d52fe17930564863caddb43d12fade801c98a0",
+            "date": "2026-06-29T10:50:36-03:00",
+            "message": "frontend: Substituição do frame antigo de sobre o projeto para o novo do figma",
+            "is_conventional": false,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
         {
             "hash": "25405d3b9d29e647856b46940761e84e83d1948d",
             "date": "2026-06-29T10:50:05-03:00",
@@ -2652,7 +2661,7 @@
     ],
     "autores": {
         "wandinhawright": {
-            "commits": 19,
+            "commits": 20,
             "insercoes": 4168,
             "delecoes": 262,
             "total_linhas": 4430
