@@ -1,6 +1,24 @@
 {
-    "last_updated": "2026-06-29T05:26:06.060511Z",
+    "last_updated": "2026-06-29T05:53:37.063297Z",
     "commits": [
+        {
+            "hash": "ba7df5d3e2363b45196f8acdbf90de6793599189",
+            "date": "2026-06-29T02:53:15-03:00",
+            "message": "Merge pull request #148 from unb-mds/fix/backend_crawler",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "00cfbc51d406389841e9ce3703438e76301dec3e",
+            "date": "2026-06-29T02:44:41-03:00",
+            "message": "fix:alteraçoes feitas após verificaçao no sonarqube",
+            "is_conventional": true,
+            "insertions": 96,
+            "deletions": 57,
+            "total_diff": 153
+        },
         {
             "hash": "94ba139731ddcacbed614bc7e99f6562b287dbda",
             "date": "2026-06-29T02:25:36-03:00",
@@ -2083,6 +2101,15 @@
     ],
     "issues": [
         {
+            "number": 147,
+            "title": "[Backend] Ajustes de qualidade identificados pelo SonarQube",
+            "state": "closed",
+            "created_at": "2026-06-29T05:49:10Z",
+            "closed_at": "2026-06-29T05:53:17Z",
+            "resolution_time_hours": 0.07,
+            "char_count": 1906
+        },
+        {
             "number": 146,
             "title": "documetaçao de issues (6-9)",
             "state": "closed",
@@ -2549,29 +2576,20 @@
             "closed_at": "2026-05-26T21:31:47Z",
             "resolution_time_hours": 194.73,
             "char_count": 1513
-        },
-        {
-            "number": 48,
-            "title": "Revisão e Correção do Crawler",
-            "state": "closed",
-            "created_at": "2026-05-18T18:34:39Z",
-            "closed_at": "2026-05-18T18:35:12Z",
-            "resolution_time_hours": 0.01,
-            "char_count": 1364
         }
     ],
     "autores": {
+        "augustogmedeiros": {
+            "commits": 131,
+            "insercoes": 9190,
+            "delecoes": 2947341,
+            "total_linhas": 2956531
+        },
         "cgbriel28": {
             "commits": 20,
             "insercoes": 14171,
             "delecoes": 1026,
             "total_linhas": 15197
-        },
-        "augustogmedeiros": {
-            "commits": 129,
-            "insercoes": 9094,
-            "delecoes": 2947284,
-            "total_linhas": 2956378
         },
         "VegasVvegas": {
             "commits": 1,
