@@ -1,6 +1,15 @@
 {
-    "last_updated": "2026-06-29T06:32:03.370516Z",
+    "last_updated": "2026-06-29T13:49:37.058334Z",
     "commits": [
+        {
+            "hash": "ce3f82013c037e146ed4861c7f0e27774dd2a9a7",
+            "date": "2026-06-29T10:49:06-03:00",
+            "message": "frontend: Substituição do frame antigo de filtro de busca para o novo do figma",
+            "is_conventional": false,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
         {
             "hash": "18c19dba15b5e6d2540f3c7795c5ae40eeae7673",
             "date": "2026-06-29T03:31:36-03:00",
@@ -2624,6 +2633,12 @@
         }
     ],
     "autores": {
+        "wandinhawright": {
+            "commits": 17,
+            "insercoes": 4168,
+            "delecoes": 262,
+            "total_linhas": 4430
+        },
         "augustogmedeiros": {
             "commits": 138,
             "insercoes": 9223,
@@ -2641,12 +2656,6 @@
             "insercoes": 0,
             "delecoes": 0,
             "total_linhas": 0
-        },
-        "wandinhawright": {
-            "commits": 16,
-            "insercoes": 4168,
-            "delecoes": 262,
-            "total_linhas": 4430
         },
         "yaxavier": {
             "commits": 23,
