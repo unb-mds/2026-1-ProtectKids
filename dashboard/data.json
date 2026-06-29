@@ -1,6 +1,24 @@
 {
-    "last_updated": "2026-06-29T06:07:34.894995Z",
+    "last_updated": "2026-06-29T06:13:36.621836Z",
     "commits": [
+        {
+            "hash": "308997179c8f89fe3bc10e3249e00ca6ea895652",
+            "date": "2026-06-29T03:13:14-03:00",
+            "message": "Merge pull request #150 from unb-mds/docs/arquitetura",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "38e5d302864cc217763627385ef09c88f421189c",
+            "date": "2026-06-29T03:12:18-03:00",
+            "message": "Revise C4 architecture documentation with new diagrams",
+            "is_conventional": false,
+            "insertions": 22,
+            "deletions": 3,
+            "total_diff": 25
+        },
         {
             "hash": "0622542ba53d05e2fa44aa271b268a725b478a83",
             "date": "2026-06-29T03:07:13-03:00",
@@ -2589,10 +2607,10 @@
     ],
     "autores": {
         "augustogmedeiros": {
-            "commits": 133,
-            "insercoes": 9190,
-            "delecoes": 2947341,
-            "total_linhas": 2956531
+            "commits": 135,
+            "insercoes": 9212,
+            "delecoes": 2947344,
+            "total_linhas": 2956556
         },
         "cgbriel28": {
             "commits": 20,

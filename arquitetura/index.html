@@ -525,6 +525,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#nivel-3-diagrama-de-componentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nível 3 - Diagrama de Componentes
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1153,15 +1164,15 @@
 <p>A arquitetura do <strong>ProtectKids</strong> foi documentada utilizando o <strong>Modelo C4</strong>, escolhido por sua abordagem hierárquica e pelo foco na clareza da comunicação. Esse modelo permite que tanto desenvolvedores quanto usuários compreendam o funcionamento do sistema sem a necessidade de conhecer padrões complexos de notação.</p>
 <p>O Modelo C4 pode ser entendido como um sistema de <em>zoom arquitetural</em>, no qual cada nível apresenta uma visão diferente da plataforma.</p>
 <h3 id="nivel-1-diagrama-de-contexto">Nível 1 — Diagrama de Contexto<a class="headerlink" href="#nivel-1-diagrama-de-contexto" title="Permanent link">&para;</a></h3>
-<p><img alt="Modelo C4 do ProtectKids" src="../assets/images/c4_contexto.png" /></p>
+<p><img alt="Modelo C4 do ProtectKids" src="../assets/images/c4_container_nivel_1.png" /></p>
 <p>No primeiro nível, o sistema é tratado como uma caixa preta, abstraindo detalhes de implementação e código. O objetivo principal é responder às seguintes perguntas:</p>
 <ul>
 <li>Quem utiliza o sistema?</li>
 <li>Com quais sistemas externos ele se integra?</li>
 </ul>
-<p>Essa visão permitiu mapear de forma clara o fluxo de interação entre os usuários do ProtectKids e serviços externos essenciais para o projeto, como a API de Dados Abertos da Câmara dos Deputados.</p>
+<p>Essa visão permitiu mapear de forma clara o fluxo de interação entre os usuários do ProtectKids e serviços externos essenciais para o projeto, como a API de Dados Abertos da Câmara dos Deputados e do Senado Federal.</p>
 <h3 id="nivel-2-diagrama-de-conteineres">Nível 2 — Diagrama de Contêineres<a class="headerlink" href="#nivel-2-diagrama-de-conteineres" title="Permanent link">&para;</a></h3>
-<p><img alt="Modelo C4 do ProtectKids" src="../assets/images/c4_container.png" /></p>
+<p><img alt="Modelo C4 do ProtectKids" src="./assets/images/c4_container_nivel_2.png" /></p>
 <p>No segundo nível, é apresentada a macroarquitetura da aplicação, detalhando os principais componentes de software e suas responsabilidades.</p>
 <p>Essa etapa é especialmente importante para o projeto, pois representa diretamente a infraestrutura conteinerizada baseada em Docker. Nela, são evidenciadas as interações entre:</p>
 <ul>
@@ -1172,6 +1183,19 @@
 <li>Banco de Dados</li>
 </ul>
 <p>Além disso, o diagrama demonstra como esses componentes se comunicam entre si para realizar o processamento e a disponibilização das informações.</p>
+<h3 id="nivel-3-diagrama-de-componentes">Nível 3 - Diagrama de Componentes<a class="headerlink" href="#nivel-3-diagrama-de-componentes" title="Permanent link">&para;</a></h3>
+<p><img alt="Modelo C4 do ProtectKids" src="./assets/images/c4_container_nivel_3.png" /></p>
+<p>No terceiro nível, o foco passa a ser a estrutura interna de um dos contêineres apresentados no nível anterior. No caso do ProtectKids, o detalhamento foi aplicado ao contêiner da API Application, implementada com FastAPI.
+Esse nível permite compreender como o backend organiza suas responsabilidades internas para atender às requisições do frontend e consultar os dados armazenados no PostgreSQL.</p>
+<p>No diagrama de componentes, a API é dividida em partes como:</p>
+<p>Roteador principal da aplicação FastAPI
+Endpoints de proposições
+Endpoints de analytics
+Endpoints de tramitações
+Funções auxiliares de filtros e serialização
+Integração com os modelos de domínio
+Camada de acesso ao banco por meio do SQLModel
+Geração da nuvem de palavras com apoio do processamento NLP</p>
 <h2 id="beneficios-da-utilizacao-do-modelo-c4">Benefícios da Utilização do Modelo C4<a class="headerlink" href="#beneficios-da-utilizacao-do-modelo-c4" title="Permanent link">&para;</a></h2>
 <h3 id="comunicacao-clara">Comunicação Clara<a class="headerlink" href="#comunicacao-clara" title="Permanent link">&para;</a></h3>
 <p>A utilização de caixas e relacionamentos simplificados torna a arquitetura compreensível tanto para pessoas técnicas quanto não técnicas.</p>
