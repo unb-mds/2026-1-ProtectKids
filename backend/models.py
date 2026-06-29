@@ -22,7 +22,7 @@ class Proposicao(SQLModel, table=True):
     numero: int
     ano: int
     ementa: str
-    tema: str = "Protecao Infantil Digital"
+    tema: str = "Protecao Infantil"
     data_apresentacao: Optional[date] = None
     url_inteiro_teor: Optional[str] = Field(default=None)   
     subtema: Optional[str] = Field(default=None)            
@@ -30,6 +30,8 @@ class Proposicao(SQLModel, table=True):
     classificacao_nlp: Optional[str] = Field(default=None)  
     tramitacoes: List["Tramitacao"] = Relationship(back_populates="proposicao")
     autor: Optional[Parlamentar] = Relationship(back_populates="proposicoes")
+    fonte_classificacao: Optional[str] = Field(default=None)
+    trecho_classificacao: Optional[str] = Field(default=None)
 
 
 # CORREÇÃO 1: A classe agora está fora (sem o recuo)

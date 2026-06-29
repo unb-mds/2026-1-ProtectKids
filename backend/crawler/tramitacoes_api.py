@@ -8,11 +8,10 @@ já existentes no banco de dados.
 import sys
 import os
 import logging
-import requests
 from datetime import datetime
 from sqlmodel import Session, select
 import concurrent.futures
-
+from crawler.camara_api import fazer_requisicao_com_retry
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from database import engine
 from models import Proposicao, Tramitacao
@@ -32,14 +31,53 @@ def buscar_ids_camara_no_banco() -> list[str]:
         return session.exec(statement).all()
 
 def fetch_tramitacoes_brutas(id_camara_numerico: str) -> list[dict]:
-    """Bate na API da Câmara e traz a linha do tempo bruta da proposição."""
+    """
+    Busca na API da Câmara a linha do tempo bruta de tramitações
+    de uma proposição.
+
+    Usa fazer_requisicao_com_retry para tratar timeout,
+    falhas temporárias de rede e erros HTTP de forma padronizada.
+    """
     url = f"{BASE_URL_CAMARA}/proposicoes/{id_camara_numerico}/tramitacoes"
+
     try:
-        resp = requests.get(url, timeout=30, headers={"Accept": "application/json"})
-        resp.raise_for_status()
-        return resp.json().get("dados", [])
+        resp = fazer_requisicao_com_retry(
+            url,
+            headers={"Accept": "application/json"},
+            timeout=30,
+        )
+
+        if resp is None:
+            logger.warning(
+                "Não foi possível buscar tramitações para %s na URL %s.",
+                id_camara_numerico,
+                url,
+            )
+            return []
+
+        if 400 <= resp.status_code < 500:
+            logger.warning(
+                "Erro cliente %s ao buscar tramitações para %s.",
+                resp.status_code,
+                id_camara_numerico,
+            )
+            return []
+
+        try:
+            return resp.json().get("dados", [])
+        except ValueError:
+            logger.warning(
+                "Resposta inválida ao buscar tramitações para %s.",
+                id_camara_numerico,
+            )
+            return []
+
     except Exception as exc:
-        logger.warning(f"Falha ao buscar tramitações para {id_camara_numerico}: {exc}")
+        logger.warning(
+            "Falha inesperada ao buscar tramitações para %s: %s",
+            id_camara_numerico,
+            exc,
+        )
         return []
 
 def processar_tramitacoes_individuais(id_externo: str) -> list[Tramitacao]:
@@ -54,11 +92,15 @@ def processar_tramitacoes_individuais(id_externo: str) -> list[Tramitacao]:
         data_str = dado.get("dataHora")
         data_hora_formatada = datetime.now() # Fallback de segurança
         
-        if data_str:
-            try:
-                data_hora_formatada = datetime.fromisoformat(data_str)
-            except:
-                pass
+    if data_str:
+        try:
+            data_hora_formatada = datetime.fromisoformat(str(data_str))
+        except ValueError:
+            logger.warning(
+                "Data de tramitação inválida para %s: %s",
+                id_externo,
+                data_str,
+            )
 
         nova_tramitacao = Tramitacao(
             id_proposicao_externo=id_externo,
