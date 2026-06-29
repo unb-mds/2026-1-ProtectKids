@@ -8,7 +8,7 @@ Organização e acompanhamento das entregas do projeto ProtectKids ao longo das 
     <div class="sprint-card">
         <div class="sprint-header">
             <h3 class="sprint-title">Sprint 10</h3>
-            <span class="sprint-date">02/11/2025</span>
+            <span class="sprint-date">01/06/2026</span>
         </div>
         <a href="sprint_10/" class="sprint-btn">→ Acessar</a>
     </div>
@@ -17,7 +17,7 @@ Organização e acompanhamento das entregas do projeto ProtectKids ao longo das 
     <div class="sprint-card">
         <div class="sprint-header">
             <h3 class="sprint-title">Sprint 9</h3>
-            <span class="sprint-date">26/10/2025</span>
+            <span class="sprint-date">21/06/2026</span>
         </div>
         <a href="sprint_09/" class="sprint-btn">→ Acessar</a>
     </div>
@@ -26,7 +26,7 @@ Organização e acompanhamento das entregas do projeto ProtectKids ao longo das 
     <div class="sprint-card">
         <div class="sprint-header">
             <h3 class="sprint-title">Sprint 8</h3>
-            <span class="sprint-date">19/10/2025</span>
+            <span class="sprint-date">17/06/2026</span>
         </div>
         <a href="sprint_08/" class="sprint-btn">→ Acessar</a>
     </div>
@@ -35,7 +35,7 @@ Organização e acompanhamento das entregas do projeto ProtectKids ao longo das 
     <div class="sprint-card">
         <div class="sprint-header">
             <h3 class="sprint-title">Sprint 7</h3>
-            <span class="sprint-date">13/10/2025</span>
+            <span class="sprint-date">03/06/2026</span>
         </div>
         <a href="sprint_07/" class="sprint-btn">→ Acessar</a>
     </div>
@@ -44,7 +44,7 @@ Organização e acompanhamento das entregas do projeto ProtectKids ao longo das 
     <div class="sprint-card">
         <div class="sprint-header">
             <h3 class="sprint-title">Sprint 6</h3>
-            <span class="sprint-date">05/10/2025</span>
+            <span class="sprint-date">28/05/2026</span>
         </div>
         <a href="sprint_06/" class="sprint-btn">→ Acessar</a>
     </div>
@@ -53,7 +53,7 @@ Organização e acompanhamento das entregas do projeto ProtectKids ao longo das 
     <div class="sprint-card">
         <div class="sprint-header">
             <h3 class="sprint-title">Sprint 5</h3>
-            <span class="sprint-date">29/09/2025</span>
+            <span class="sprint-date">20/05/2026</span>
         </div>
         <a href="sprint_05/" class="sprint-btn">→ Acessar</a>
     </div>
@@ -62,7 +62,7 @@ Organização e acompanhamento das entregas do projeto ProtectKids ao longo das 
     <div class="sprint-card">
         <div class="sprint-header">
             <h3 class="sprint-title">Sprint 4</h3>
-            <span class="sprint-date">24/09/2025</span>
+            <span class="sprint-date">06/05/2026</span>
         </div>
         <a href="sprint_04/" class="sprint-btn">→ Acessar</a>
     </div>
@@ -71,7 +71,7 @@ Organização e acompanhamento das entregas do projeto ProtectKids ao longo das 
     <div class="sprint-card">
         <div class="sprint-header">
             <h3 class="sprint-title">Sprint 3</h3>
-            <span class="sprint-date">15/09/2025</span>
+            <span class="sprint-date">20/04/2026</span>
         </div>
         <a href="sprint_03/" class="sprint-btn">→ Acessar</a>
     </div>
@@ -80,7 +80,7 @@ Organização e acompanhamento das entregas do projeto ProtectKids ao longo das 
     <div class="sprint-card">
         <div class="sprint-header">
             <h3 class="sprint-title">Sprint 2</h3>
-            <span class="sprint-date">07/09/2025</span>
+            <span class="sprint-date">12/04/2026</span>
         </div>
         <a href="sprint_02/" class="sprint-btn">→ Acessar</a>
     </div>
@@ -89,7 +89,7 @@ Organização e acompanhamento das entregas do projeto ProtectKids ao longo das 
     <div class="sprint-card">
         <div class="sprint-header">
             <h3 class="sprint-title">Sprint 1</h3>
-            <span class="sprint-date">31/08/2025</span>
+            <span class="sprint-date">06/04/2026</span>
         </div>
         <a href="sprint_01/" class="sprint-btn">→ Acessar</a>
     </div>
@@ -98,7 +98,7 @@ Organização e acompanhamento das entregas do projeto ProtectKids ao longo das 
     <div class="sprint-card">
         <div class="sprint-header">
             <h3 class="sprint-title">Sprint 0</h3>
-            <span class="sprint-date">24/08/2025</span>
+            <span class="sprint-date">06/04/2026</span>
         </div>
         <a href="sprint_00/" class="sprint-btn">→ Acessar</a>
     </div>
