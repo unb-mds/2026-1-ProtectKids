@@ -1,38 +1,46 @@
-# Diretrizes de Identidade Visual (Frontend) — Protect Kids
+# Paleta de Cores
+## Paleta Escolhida
 
-Este documento estabelece as especificações da paleta de cores oficial para o portal de notícias **Protect Kids**. A combinação foi cuidadosamente planeada para garantir um visual leve, limpo e acolhedor para as Organizações Não Governamentais (ONGs), sem perder a sobriedade, a credibilidade e o profissionalismo exigidos por um público adulto.
-
----
-
-## 🎨 Paleta de Cores Oficial
-
-| Amostra | Nome Técnico | Código Hex | Função e Uso Recomendado |
-| :---: | :--- | :---: | :--- |
-| <img src="https://via.placeholder.com/15/EEEEEE/000000?text=+" width="15" height="15" /> | **Branco Off-White** | `#EEEEEE` | **Fundo Principal (Background):** Proporciona máxima leveza, respiro visual e reduz o cansaço ocular durante leituras prolongadas. |
-| <img src="https://via.placeholder.com/15/24285A/000000?text=+" width="15" height="15" /> | **Azul Noturno Profundo** | `#24285A` | **Elementos de Identidade e Destaques:** Usado em cabeçalhos (headers), menus de navegação ou marcas secundárias para transmitir segurança e autoridade. |
-| <img src="https://via.placeholder.com/15/414141/000000?text=+" width="15" height="15" /> | **Cinza Antracite** | `#414141` | **Tipografia Principal (Texto):** Substitui o preto puro para suavizar a leitura de artigos, mantendo um contraste ideal e acessível. |
-| <img src="https://via.placeholder.com/15/FFD04D/000000?text=+" width="15" height="15" /> | **Amarelo Sol** | `#FFD04D` | **Destaques e Notificações:** Perfeito para realçar categorias importantes, botões secundários, sinalizações de apoio ou secções especiais com energia positiva. |
-| <img src="https://via.placeholder.com/15/00C5EE/000000?text=+" width="15" height="15" /> | **Ciano Proteção / Ação** | `#00C5EE` | **Ações Principais (CTA) e Links:** Cor de grande visibilidade, ideal para botões de denúncia, subscrição, suporte a ONGs e links ativos. |
+| Cor        | Código Hex | Significado                               |
+| ---------- | ---------- | ----------------------------------------- |
+| 🔵 Azul    | `#2563EB`  | Seriedade, confiança e contraste visual.  |
+| 🟡 Amarelo | `#FACC15`  | Juventude, esperança e clareza.           |
+| 🟠 Laranja | `#F97316`  | Proteção infantil, acolhimento e cuidado. |
 
 ---
 
-## 🛠️ Implementação Técnica (CSS Variables)
+# Justificativa da Escolha
 
-Para garantir a consistência e facilidade de manutenção no desenvolvimento do frontend, utilize o seguinte bloco de código no seu ficheiro global de estilos (`global.css` ou `variables.css`):
+A identidade visual do dashboard foi desenvolvida para transmitir confiança, acolhimento e facilidade na interpretação das informações. A escolha das cores não foi apenas estética, mas também simbólica, buscando representar os valores do projeto e seu público-alvo.
 
-```css
-:root {
-  /* Cores de Fundo e Superfície */
-  --color-bg-main: #F8F9FA;
+## 🟡 Amarelo (#FACC15)
 
+O amarelo representa a **juventude**, a energia e o potencial das crianças e adolescentes, público diretamente relacionado ao contexto do projeto. Além do seu significado simbólico, essa cor transmite sensação de **clareza**, tornando a interface mais leve e agradável.
 
-  /* Cores de Tipografia */
-  --color-text-primary: #414141;
+Sua utilização também auxilia na criação de pontos de destaque, guiando o olhar do usuário para informações importantes sem comprometer a legibilidade do dashboard.
 
-  /* Cores de Identidade e Branding */
-  --color-brand-dark: #24285A;
-  
-  /* Cores de Destaque e Interação */
-  --color-accent-action: #00C5EE;
-  --color-accent-warning: #FFD04D;
-}
+---
+
+## 🔵 Azul (#2563EB)
+
+O azul foi escolhido como a cor predominante da interface por transmitir **seriedade, confiança e credibilidade**, características essenciais em um sistema voltado para análise de dados e monitoramento de informações.
+
+Além disso, o azul oferece excelente contraste com o fundo claro do sistema e com as demais cores da paleta, facilitando a leitura de gráficos, indicadores e componentes visuais. Essa combinação contribui para uma navegação mais intuitiva e para uma experiência visual profissional.
+
+---
+
+## 🟠 Laranja (#F97316)
+
+O laranja foi incorporado à identidade visual por sua forte associação com o **acolhimento, a proteção e o cuidado com a infância**. Trata-se de uma cor amplamente utilizada por organizações e campanhas voltadas à defesa dos direitos das crianças e adolescentes, justamente por transmitir proximidade, empatia e ação.
+
+No dashboard, essa cor destaca informações relevantes e complementa a paleta, trazendo dinamismo sem perder a harmonia visual.
+
+---
+
+# Harmonia da Paleta
+
+A combinação entre azul, amarelo e laranja proporciona equilíbrio entre profissionalismo e acolhimento.
+
+Enquanto o **azul** comunica segurança e confiança, o **amarelo** torna a interface mais clara e representa a juventude. Já o **laranja** reforça o compromisso com a proteção infantil e aproxima visualmente o usuário da proposta social do projeto.
+
+Essa composição resulta em uma interface moderna, acessível e intuitiva, fortalecendo tanto a identidade visual quanto a comunicação dos valores do sistema.
