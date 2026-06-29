@@ -34,12 +34,12 @@ export default function Footer() {
               </a>
             </li>
             <li>
-              <a href="https://www.gov.mdh" target="_blank" rel="noreferrer" className="underline hover:opacity-80 transition-opacity">
+              <a href="https://www.gov.br/mdh/pt-br" target="_blank" rel="noreferrer" className="underline hover:opacity-80 transition-opacity">
                 Ministério dos Direitos Humanos
               </a>
             </li>
             <li>
-              <a href="#eca" className="underline hover:opacity-80 transition-opacity">
+              <a href="https://www.gov.br/mdh/pt-br/assuntos/noticias/2021/julho/trinta-e-um-anos-do-estatuto-da-crianca-e-do-adolescente-confira-as-novas-acoes-para-fortalecer-o-eca/ECA2021_Digital.pdf" className="underline hover:opacity-80 transition-opacity">
                 Estatuto da Criança e Adolescente
               </a>
             </li>
@@ -52,7 +52,7 @@ export default function Footer() {
             Projeto
           </h4>
           <a 
-            href="https://github.com" 
+            href="https://github.com/unb-mds/2026-1-ProtectKids" 
             target="_blank" 
             rel="noreferrer" 
             className="flex items-center gap-2 text-sm sm:text-base font-bold font-serif uppercase tracking-wide underline hover:opacity-80 transition-opacity group"
