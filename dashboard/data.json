@@ -1,6 +1,24 @@
 {
-    "last_updated": "2026-06-29T06:13:36.621836Z",
+    "last_updated": "2026-06-29T06:25:10.530951Z",
     "commits": [
+        {
+            "hash": "cf1a6e4fcddecb306402208b53e379bc0bc8e38a",
+            "date": "2026-06-29T03:24:46-03:00",
+            "message": "Merge pull request #151 from unb-mds/docs/arquitetura",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "954aa5b302e97e29a3ba9a23b0418ef743ef810a",
+            "date": "2026-06-29T03:22:55-03:00",
+            "message": "docs: corrige link errado para arquitetura c4",
+            "is_conventional": true,
+            "insertions": 2,
+            "deletions": 2,
+            "total_diff": 4
+        },
         {
             "hash": "308997179c8f89fe3bc10e3249e00ca6ea895652",
             "date": "2026-06-29T03:13:14-03:00",
@@ -2594,23 +2612,14 @@
             "closed_at": "2026-05-21T20:19:34Z",
             "resolution_time_hours": 24.54,
             "char_count": 111
-        },
-        {
-            "number": 51,
-            "title": "adicionar /venv no gitignore",
-            "state": "closed",
-            "created_at": "2026-05-20T19:44:50Z",
-            "closed_at": "2026-05-21T20:19:32Z",
-            "resolution_time_hours": 24.58,
-            "char_count": 720
         }
     ],
     "autores": {
         "augustogmedeiros": {
-            "commits": 135,
-            "insercoes": 9212,
-            "delecoes": 2947344,
-            "total_linhas": 2956556
+            "commits": 137,
+            "insercoes": 9214,
+            "delecoes": 2947346,
+            "total_linhas": 2956560
         },
         "cgbriel28": {
             "commits": 20,
