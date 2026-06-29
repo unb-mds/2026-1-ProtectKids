@@ -5,7 +5,7 @@ nav:
   - Início: index.md
   - Visão Geral: visao-geral.md
   - Requisitos: requisitos.md
-  - Arquitetura: architecture.md
+  - Arquitetura: arquitetura.md
   - Sprints:
       - Histórico de Sprints: sprints/index.md
       - Detalhes das Sprints:
@@ -22,7 +22,7 @@ nav:
           - Sprint 10: sprints/sprint_10.md
   - Infraestrutura:
       - Docker Compose: infra/docker-compose.md
-  - Contribuição: contribuicao.md
+  
 
 theme:
   name: material

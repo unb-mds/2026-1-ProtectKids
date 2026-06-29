@@ -96,3 +96,7 @@ Ao final da Sprint 06, foram alcançados os seguintes resultados:
 A Sprint 06 representou o encerramento da primeira grande etapa de desenvolvimento do ProtectKids. A integração entre backend, frontend, banco de dados e processamento de linguagem natural resultou em uma versão funcional capaz de coletar, processar, classificar e apresentar informações legislativas relacionadas à proteção infantojuvenil.
 
 Além da consolidação das funcionalidades essenciais da plataforma, a equipe fortaleceu a infraestrutura do projeto com testes automatizados, documentação atualizada e melhorias na experiência do usuário, entregando uma **Release 1** consistente e preparada para servir de base para as próximas evoluções do sistema.
+
+---
+## Adendo
+Durante a Sprint 06, um dos integrantes da equipe precisou se desligar da disciplina, o que reduziu a capacidade de desenvolvimento disponível para as atividades de frontend. Como consequência, houve uma redistribuição das responsabilidades entre os demais membros, que assumiram as tarefas pendentes para assegurar a entrega da Release 1. Apesar da sobrecarga ocasionada, os objetivos planejados para a sprint foram concluídos com sucesso.
