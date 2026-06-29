@@ -1,6 +1,24 @@
 {
-    "last_updated": "2026-06-29T05:53:37.063297Z",
+    "last_updated": "2026-06-29T06:07:34.894995Z",
     "commits": [
+        {
+            "hash": "0622542ba53d05e2fa44aa271b268a725b478a83",
+            "date": "2026-06-29T03:07:13-03:00",
+            "message": "Merge pull request #149 from unb-mds/docs/arquitetura",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "ccf18cd2d923a9f9913ddf8806d52cd11cecb8f0",
+            "date": "2026-06-29T03:05:45-03:00",
+            "message": "docs: corrige c4 nivel 1 e 2, e adiciona nivel 3",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
         {
             "hash": "ba7df5d3e2363b45196f8acdbf90de6793599189",
             "date": "2026-06-29T02:53:15-03:00",
@@ -2567,20 +2585,11 @@
             "closed_at": "2026-05-21T20:19:32Z",
             "resolution_time_hours": 24.58,
             "char_count": 720
-        },
-        {
-            "number": 49,
-            "title": "Figma de Alta Fidelidade",
-            "state": "closed",
-            "created_at": "2026-05-18T18:48:16Z",
-            "closed_at": "2026-05-26T21:31:47Z",
-            "resolution_time_hours": 194.73,
-            "char_count": 1513
         }
     ],
     "autores": {
         "augustogmedeiros": {
-            "commits": 131,
+            "commits": 133,
             "insercoes": 9190,
             "delecoes": 2947341,
             "total_linhas": 2956531
