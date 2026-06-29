@@ -1185,17 +1185,19 @@
 <p>Além disso, o diagrama demonstra como esses componentes se comunicam entre si para realizar o processamento e a disponibilização das informações.</p>
 <h3 id="nivel-3-diagrama-de-componentes">Nível 3 - Diagrama de Componentes<a class="headerlink" href="#nivel-3-diagrama-de-componentes" title="Permanent link">&para;</a></h3>
 <p><img alt="Modelo C4 do ProtectKids" src="../assets/images/c4_container_nivel_3.drawio.png" /></p>
-<p>No terceiro nível, o foco passa a ser a estrutura interna de um dos contêineres apresentados no nível anterior. No caso do ProtectKids, o detalhamento foi aplicado ao contêiner da API Application, implementada com FastAPI.
-Esse nível permite compreender como o backend organiza suas responsabilidades internas para atender às requisições do frontend e consultar os dados armazenados no PostgreSQL.</p>
+<p>No terceiro nível, o foco passa a ser a estrutura interna de um dos contêineres apresentados no nível anterior. No caso do ProtectKids, o detalhamento foi aplicado ao contêiner da API Application, implementada com FastAPI.</p>
+<p>Esse nível permite compreender como o backend organiza suas responsabilidades internas para atender às requisições do frontend e consultar os dados armazenados no PostgreSQL.</p>
 <p>No diagrama de componentes, a API é dividida em partes como:</p>
-<p>Roteador principal da aplicação FastAPI
-Endpoints de proposições
-Endpoints de analytics
-Endpoints de tramitações
-Funções auxiliares de filtros e serialização
-Integração com os modelos de domínio
-Camada de acesso ao banco por meio do SQLModel
-Geração da nuvem de palavras com apoio do processamento NLP</p>
+<ul>
+<li>Roteador principal da aplicação FastAPI</li>
+<li>Endpoints de proposições</li>
+<li>Endpoints de analytics</li>
+<li>Endpoints de tramitações</li>
+<li>Funções auxiliares de filtros e serialização</li>
+<li>Integração com os modelos de domínio</li>
+<li>Camada de acesso ao banco por meio do SQLModel</li>
+<li>Geração da nuvem de palavras com apoio do processamento NLP</li>
+</ul>
 <h2 id="beneficios-da-utilizacao-do-modelo-c4">Benefícios da Utilização do Modelo C4<a class="headerlink" href="#beneficios-da-utilizacao-do-modelo-c4" title="Permanent link">&para;</a></h2>
 <h3 id="comunicacao-clara">Comunicação Clara<a class="headerlink" href="#comunicacao-clara" title="Permanent link">&para;</a></h3>
 <p>A utilização de caixas e relacionamentos simplificados torna a arquitetura compreensível tanto para pessoas técnicas quanto não técnicas.</p>
