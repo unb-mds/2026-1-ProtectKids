@@ -1,6 +1,15 @@
 {
-    "last_updated": "2026-06-29T14:08:33.947324Z",
+    "last_updated": "2026-06-29T14:09:13.988019Z",
     "commits": [
+        {
+            "hash": "ce5a54f34e78ceafbc1546a1c64795670b8be4a2",
+            "date": "2026-06-29T11:08:40-03:00",
+            "message": "frontend: adiciona a imagem onde estava faltando.",
+            "is_conventional": false,
+            "insertions": 10,
+            "deletions": 16,
+            "total_diff": 26
+        },
         {
             "hash": "f32943fa742d4ae53c35e8b1b2f984889a72c046",
             "date": "2026-06-29T11:08:05-03:00",
@@ -2688,10 +2697,10 @@
     ],
     "autores": {
         "wandinhawright": {
-            "commits": 23,
-            "insercoes": 4171,
-            "delecoes": 290,
-            "total_linhas": 4461
+            "commits": 24,
+            "insercoes": 4181,
+            "delecoes": 306,
+            "total_linhas": 4487
         },
         "augustogmedeiros": {
             "commits": 138,
