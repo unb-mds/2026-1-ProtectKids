@@ -37,18 +37,19 @@ Além disso, o diagrama demonstra como esses componentes se comunicam entre si p
 ![Modelo C4 do ProtectKids](./assets/images/c4_container_nivel_3.drawio.png)
 
 No terceiro nível, o foco passa a ser a estrutura interna de um dos contêineres apresentados no nível anterior. No caso do ProtectKids, o detalhamento foi aplicado ao contêiner da API Application, implementada com FastAPI.
+
 Esse nível permite compreender como o backend organiza suas responsabilidades internas para atender às requisições do frontend e consultar os dados armazenados no PostgreSQL.
 
 No diagrama de componentes, a API é dividida em partes como:
 
-Roteador principal da aplicação FastAPI
-Endpoints de proposições
-Endpoints de analytics
-Endpoints de tramitações
-Funções auxiliares de filtros e serialização
-Integração com os modelos de domínio
-Camada de acesso ao banco por meio do SQLModel
-Geração da nuvem de palavras com apoio do processamento NLP
+* Roteador principal da aplicação FastAPI
+* Endpoints de proposições
+* Endpoints de analytics
+* Endpoints de tramitações
+* Funções auxiliares de filtros e serialização
+* Integração com os modelos de domínio
+* Camada de acesso ao banco por meio do SQLModel
+* Geração da nuvem de palavras com apoio do processamento NLP
 
 ## Benefícios da Utilização do Modelo C4
 
