@@ -1,5 +1,6 @@
 import { Search, TrendingUp, ArrowRight, ShieldCheck, AlertCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import familia from '../../assets/img/maeefilha.png';
 
 export default function Inicio() {
  return (
@@ -121,37 +122,30 @@ export default function Inicio() {
           {/* Container dos Botões */}
           <div className="flex flex-wrap gap-4 mt-2">
             {/* Botão Principal (Azul) */}
-            <a 
-              href="#proposicoes" 
+            <Link 
+              to="/leis" 
               className="bg-[#0038A8] hover:bg-[#002b80] text-white font-serif font-bold text-sm sm:text-base px-6 py-3.5 rounded-lg flex items-center gap-2 transition-all shadow-md group uppercase tracking-wider"
             >
               Ver as proposições 
               <span className="inline-block transform group-hover:translate-x-1 transition-transform">→</span>
-            </a>
+            </Link>
             
             {/* Botão Secundário (Roxo Cinzento) */}
-            <a 
-              href="#sobre" 
+            <Link 
+              to="/sobre" 
               className="bg-[#5D4E6D] hover:bg-[#4d405a] border border-slate-700 text-white font-serif font-bold text-sm sm:text-base px-6 py-3.5 rounded-lg flex items-center gap-2 transition-all shadow-md uppercase tracking-wider"
             >
               Sobre o projeto 
               <span className="text-gray-300 font-mono">&lt;/&gt;</span>
-            </a>
+            </Link>
           </div>
         </div>
 
         {/* Lado Direito: Espaço para a Imagem (Ocupa 5 das 12 colunas em telas grandes) */}
         <div className="w-full h-[300px] sm:h-[400px] lg:h-[450px] lg:col-span-5 relative rounded-2xl overflow-hidden shadow-xl border border-white/10 bg-orange-600/30 flex items-center justify-center">
-          {/* Substitua a tag abaixo pelo seu componente de imagem final.
-            Exemplo: <img src="/caminho-da-sua-imagem.png" alt="Crianças brincando" className="w-full h-full object-cover" />
-          */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center text-white/80 border-4 border-dashed border-white/20 rounded-2xl">
-            <svg className="w-14 h-14 mb-3 opacity-60" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-            </svg>
-            <span className="text-sm font-semibold uppercase tracking-wider">Espaço reservado para a Imagem</span>
-            <span className="text-xs opacity-60 mt-1">(Preenchimento total da lateral)</span>
-          </div>
+          <img src={familia} alt="Família feliz" className="w-full h-full object-cover" />
+
+          
         </div>
 
       </div>
