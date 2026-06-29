@@ -399,11 +399,10 @@ def run_pipeline_senado():
 
             try:
                 resultado = futuro.result()
-            except Exception as exc:
-                logger.error(
+            except Exception:
+                logger.exception(
                     "Erro ao processar matéria do Senado %s em paralelo: %s",
                     codigo,
-                    exc,
                 )
                 continue
 

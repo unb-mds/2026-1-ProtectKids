@@ -48,11 +48,10 @@ except OSError:
     logger.error("Modelo 'pt_core_news_sm' do spaCy não encontrado. Execute o download no Docker antes.")
     raise
 
-# ---------------------------------------------------------------------------
-# Constantes
-# ---------------------------------------------------------------------------
 BASE_URL = "https://dadosabertos.camara.leg.br/api/v2"
 ENDPOINT_PROPOSICOES = f"{BASE_URL}/proposicoes"
+ACCEPT_JSON = "application/json"
+JSON_HEADERS = {"Accept": ACCEPT_JSON}
 
 # Palavras-chave relacionadas à proteção infantil
 KEYWORDS = [
@@ -145,7 +144,7 @@ def fetch_proposicoes_por_keyword(keyword: str) -> list[dict]:
         response = fazer_requisicao_com_retry(
             ENDPOINT_PROPOSICOES,
             params=params,
-            headers={"Accept": "application/json"},
+            headers=JSON_HEADERS,
             timeout=60,
         )
 
@@ -207,7 +206,7 @@ def fetch_proposicoes_amplas_por_ano(ano: int) -> list[dict]:
         response = fazer_requisicao_com_retry(
             ENDPOINT_PROPOSICOES,
             params=params,
-            headers={"Accept": "application/json"},
+            headers=JSON_HEADERS,
             timeout=60,
         )
 
@@ -300,7 +299,7 @@ def fetch_autor_da_proposicao(id_proposicao_api: int) -> dict:
 
     resp_autores = fazer_requisicao_com_retry(
         url_autores,
-        headers={"Accept": "application/json"},
+        headers=JSON_HEADERS,
         timeout=30,
     )
 
@@ -331,7 +330,7 @@ def fetch_autor_da_proposicao(id_proposicao_api: int) -> dict:
 
     resp_perfil = fazer_requisicao_com_retry(
         uri_autor,
-        headers={"Accept": "application/json"},
+        headers=JSON_HEADERS,
         timeout=30,
     )
 
@@ -363,7 +362,7 @@ def fetch_detalhes_proposicao(id_proposicao_api: int) -> dict:
 
     resp = fazer_requisicao_com_retry(
         url_detalhes,
-        headers={"Accept": "application/json"},
+        headers=JSON_HEADERS,
         timeout=30,
     )
 
@@ -468,7 +467,7 @@ def extrair_texto_pdf(url_pdf: Optional[str]) -> str:
         return texto.strip()
 
     except Exception as exc:
-        logger.error("Erro ao extrair texto do PDF %s: %s", url_pdf, exc)
+        logger.exception("Erro ao extrair texto do PDF %s.", url_pdf)
         return ""
 
     finally:
@@ -563,8 +562,6 @@ CATEGORIAS_NLP = {
             "abrigo institucional",
         ],
         "termos": [
-            "adoção",
-            "adocao",
             "adotar",
             "adotivo",
             "adotante",
@@ -682,7 +679,6 @@ def gerar_lemas(texto: Optional[str]) -> list[str]:
 
 
 def calcular_pontuacao_categoria(
-    categoria: str,
     regras: dict,
     ementa_normalizada: str,
     texto_normalizado: str,
@@ -758,7 +754,6 @@ def classificar_com_ia(texto: Optional[str], ementa: str) -> str:
 
         pontuacoes = {
             categoria: calcular_pontuacao_categoria(
-                categoria=categoria,
                 regras=regras,
                 ementa_normalizada=ementa_normalizada,
                 texto_normalizado=texto_normalizado,
@@ -775,8 +770,8 @@ def classificar_com_ia(texto: Optional[str], ementa: str) -> str:
 
         return CATEGORIA_PADRAO
 
-    except Exception as exc:
-        logger.error(f"Erro no processamento NLP: {exc}")
+    except Exception:
+        logger.exception("Erro no processamento NLP.")
         return CATEGORIA_PADRAO
 
 def contem_indicador_protecao_infantil(
@@ -945,9 +940,13 @@ def processar_materia_individual(dado: dict, ids_existentes: set) -> Optional[tu
         if resultado:
             logger.info(f"Nova matéria processada: {id_externo_formatado}")
         return resultado
-    except Exception as exc:
-        logger.error(f"Erro na thread ao processar {id_externo_formatado}: {exc}")
-        return None
+    
+    except Exception:
+        logger.exception(
+            "Erro na thread ao processar %s.",
+            id_externo_formatado,
+        )
+    return None
 def run_pipeline() -> None:
     logger.info("=== Iniciando pipeline ETL Inteligente (PDF + NLP) ===")
     SQLModel.metadata.create_all(engine)
@@ -981,15 +980,11 @@ def run_pipeline() -> None:
 
     logger.info(f"Iniciando download paralelo de {len(dados_ineditos)} PDFs. Isso será rápido...")
 
-    # A MÁGICA: Abre 10 linhas de execução simultâneas
     with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
-        # Envia todas as matérias inéditas para as threads trabalharem
         futuros = {
             executor.submit(processar_materia_individual, d, ids_existentes): d 
             for d in dados_ineditos
         }
-        
-        # Conforme as threads vão terminando o download e o NLP, vamos guardando o resultado
         for futuro in concurrent.futures.as_completed(futuros):
             resultado = futuro.result()
             if resultado:

@@ -92,11 +92,15 @@ def processar_tramitacoes_individuais(id_externo: str) -> list[Tramitacao]:
         data_str = dado.get("dataHora")
         data_hora_formatada = datetime.now() # Fallback de segurança
         
-        if data_str:
-            try:
-                data_hora_formatada = datetime.fromisoformat(data_str)
-            except:
-                pass
+    if data_str:
+        try:
+            data_hora_formatada = datetime.fromisoformat(str(data_str))
+        except ValueError:
+            logger.warning(
+                "Data de tramitação inválida para %s: %s",
+                id_externo,
+                data_str,
+            )
 
         nova_tramitacao = Tramitacao(
             id_proposicao_externo=id_externo,

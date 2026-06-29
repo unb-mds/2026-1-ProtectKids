@@ -1,4 +1,4 @@
-from typing import Optional, List
+from typing import Optional, List, Annotated
 from datetime import datetime
 from fastapi import FastAPI, Depends, HTTPException, Query
 from pydantic import BaseModel
@@ -33,6 +33,32 @@ def read_root():
 # ==========================================
 # FUNÇÕES AUXILIARES DE SERIALIZAÇÃO / FILTROS
 # ==========================================
+RESPOSTA_ORIGEM_INVALIDA = {
+    400: {
+        "description": "Origem inválida informada no filtro.",
+        "content": {
+            "application/json": {
+                "example": {
+                    "detail": "Origem inválida. Use 'Camara' ou 'Senado'."
+                }
+            }
+        },
+    }
+}
+
+RESPOSTA_PROPOSICAO_NAO_ENCONTRADA = {
+    404: {
+        "description": "Proposição não encontrada no banco de dados.",
+        "content": {
+            "application/json": {
+                "example": {
+                    "detail": "Proposição com ID informado não foi encontrada no banco de dados."
+                }
+            }
+        },
+    }
+}
+
 
 ORIGENS_VALIDAS = {
     "camara": "Camara",
@@ -150,18 +176,23 @@ def serializar_proposicao(prop: Proposicao, incluir_texto: bool = False) -> dict
 
     if incluir_texto:
         dados["texto_integral"] = prop.texto_integral
+        dados["fonte_classificacao"] = prop.fonte_classificacao
+        dados["trecho_classificacao"] = prop.trecho_classificacao
 
     return dados
-@app.get("/proposicoes")
+@app.get(
+    "/proposicoes",
+    responses=RESPOSTA_ORIGEM_INVALIDA,
+)
 def get_todas_proposicoes(
+    session: Annotated[Session, Depends(get_session)],
     uf: Optional[str] = None,
     partido: Optional[str] = None,
     ano: Optional[int] = None,
     tema_nlp: Optional[str] = None,
     origem: Optional[str] = None,
-    limit: int = Query(default=50, ge=1, le=200),
-    offset: int = Query(default=0, ge=0),
-    session: Session = Depends(get_session),
+    limit: Annotated[int, Query(ge=1, le=200)] = 50,
+    offset: Annotated[int, Query(ge=0)] = 0,
 ):
     """
     Retorna a lista resumida de proposições.
@@ -217,10 +248,13 @@ def get_todas_proposicoes(
         for prop in proposicoes_db
     ]
 
-@app.get("/proposicoes/{id_busca}")
+@app.get(
+    "/proposicoes/{id_busca}",
+    responses=RESPOSTA_PROPOSICAO_NAO_ENCONTRADA,
+)
 def get_proposicao_por_id(
     id_busca: str,
-    session: Session = Depends(get_session),
+    session: Annotated[Session, Depends(get_session)],
 ):
     """
     Busca uma proposição por:
@@ -251,15 +285,18 @@ def get_proposicao_por_id(
 
     return serializar_proposicao(prop, incluir_texto=True)
 
-@app.get("/analytics/parlamentares/ranking")
+@app.get(
+    "/analytics/parlamentares/ranking",
+    responses=RESPOSTA_ORIGEM_INVALIDA,
+)
 def get_ranking_parlamentares(
+    session: Annotated[Session, Depends(get_session)],
     ano: Optional[int] = None,
     tema_nlp: Optional[str] = None,
     origem: Optional[str] = None,
     uf: Optional[str] = None,
     partido: Optional[str] = None,
-    limit: int = Query(default=10, ge=1, le=100),
-    session: Session = Depends(get_session),
+    limit: Annotated[int, Query(ge=1, le=100)] = 10,
 ):
     """
     Retorna o ranking de parlamentares com mais proposições cadastradas.
@@ -318,15 +355,18 @@ def get_ranking_parlamentares(
 # ==========================================
 # 3. ROTA DE RANKING DE PARTIDOS (COM FILTROS)
 # ==========================================
-@app.get("/analytics/partidos/ranking")
+@app.get(
+    "/analytics/partidos/ranking",
+    responses=RESPOSTA_ORIGEM_INVALIDA,
+)
 def get_ranking_partidos(
+    session: Annotated[Session, Depends(get_session)],
     ano: Optional[int] = None,
     tema_nlp: Optional[str] = None,
     origem: Optional[str] = None,
     uf: Optional[str] = None,
     partido: Optional[str] = None,
-    limit: int = Query(default=10, ge=1, le=100),
-    session: Session = Depends(get_session),
+    limit: Annotated[int, Query(ge=1, le=100)] = 10,
 ):
     """
     Retorna o ranking de partidos com mais proposições cadastradas.
@@ -373,22 +413,24 @@ def get_ranking_partidos(
         for row in resultados
     ]
 
-# ==========================================
-# 4. ROTA DE HISTÓRICO DE TRAMITAÇÕES
-# ==========================================
 
-# Cria o modelo de resposta para o frontend receber um JSON limpo
 class TramitacaoResponse(BaseModel):
     data_hora: datetime
     orgao: str
     descricao: str
 
-@app.get("/proposicoes/{id_externo}/tramitacoes", response_model=List[TramitacaoResponse])
-def obter_tramitacoes(id_externo: str, session: Session = Depends(get_session)):
+@app.get(
+    "/proposicoes/{id_externo}/tramitacoes",
+    response_model=List[TramitacaoResponse],
+    responses=RESPOSTA_PROPOSICAO_NAO_ENCONTRADA,
+)
+def obter_tramitacoes(
+    id_externo: str,
+    session: Annotated[Session, Depends(get_session)],
+):
     """
     Retorna a linha do tempo do andamento de uma proposição.
     """
-    # Passo A: Verificar se a lei existe no banco
     proposicao = session.exec(
         select(Proposicao).where(Proposicao.id_externo == id_externo)
     ).first()
@@ -399,7 +441,6 @@ def obter_tramitacoes(id_externo: str, session: Session = Depends(get_session)):
             detail=f"Proposição com ID {id_externo} não foi encontrada no banco de dados."
         )
 
-    # Passo B: Buscar as tramitações vinculadas a essa lei, ordenando da mais recente para a mais antiga
     statement = (
         select(Tramitacao)
         .where(Tramitacao.id_proposicao_externo == id_externo)
@@ -410,18 +451,18 @@ def obter_tramitacoes(id_externo: str, session: Session = Depends(get_session)):
 
     return tramitacoes
 
-# ==========================================
-# 5. ROTA DE NUVEM DE PALAVRAS (DASHBOARD)
-# ==========================================
-@app.get("/analytics/nuvem-palavras")
+@app.get(
+    "/analytics/nuvem-palavras",
+    responses=RESPOSTA_ORIGEM_INVALIDA,
+)
 def get_nuvem_palavras(
+    session: Annotated[Session, Depends(get_session)],
     ano: Optional[int] = None,
     tema_nlp: Optional[str] = None,
     origem: Optional[str] = None,
     uf: Optional[str] = None,
     partido: Optional[str] = None,
-    limit: int = Query(default=50, ge=1, le=100),
-    session: Session = Depends(get_session),
+    limit: Annotated[int, Query(ge=1, le=100)] = 50,
 ):
     """
     Retorna as palavras mais frequentes nas ementas das proposições.
