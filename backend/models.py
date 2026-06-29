@@ -30,6 +30,8 @@ class Proposicao(SQLModel, table=True):
     classificacao_nlp: Optional[str] = Field(default=None)  
     tramitacoes: List["Tramitacao"] = Relationship(back_populates="proposicao")
     autor: Optional[Parlamentar] = Relationship(back_populates="proposicoes")
+    fonte_classificacao: Optional[str] = Field(default=None)
+    trecho_classificacao: Optional[str] = Field(default=None)
 
 
 # CORREÇÃO 1: A classe agora está fora (sem o recuo)
