@@ -52,211 +52,161 @@ BASE_URL = "https://dadosabertos.camara.leg.br/api/v2"
 ENDPOINT_PROPOSICOES = f"{BASE_URL}/proposicoes"
 ACCEPT_JSON = "application/json"
 JSON_HEADERS = {"Accept": ACCEPT_JSON}
-
 KEYWORDS = [
-    "crianças na internet",
     "criança internet",
+    "crianças internet",
     "adolescente internet",
-    "proteção de dados de menores",
-    "dados pessoais de crianças",
-    "dados pessoais de adolescentes",
-    "LGPD crianças",
-    "cyberbullying",
-    "segurança digital",
+    "adolescentes internet",
+    "menor internet",
+    "menores internet",
+
+    "criança digital",
+    "crianças digital",
+    "adolescente digital",
+    "adolescentes digital",
+    "menor digital",
+    "menores digital",
+
+    "crianças redes sociais",
+    "adolescentes redes sociais",
+    "menores redes sociais",
+
+    "crianças plataformas digitais",
+    "adolescentes plataformas digitais",
+    "menores plataformas digitais",
+
     "controle parental",
-    "exploração infantil online",
-    "exploração sexual online",
+    "consentimento parental",
+    "verificação de idade",
+    "idade mínima redes sociais",
+
+    "dados pessoais crianças",
+    "dados pessoais adolescentes",
+    "dados pessoais menores",
+    "proteção de dados crianças",
+    "proteção de dados adolescentes",
+    "proteção de dados menores",
+    "privacidade crianças",
+    "privacidade adolescentes",
+    "privacidade menores",
+    "LGPD crianças",
+    "LGPD adolescentes",
+
+    "cyberbullying",
+    "ciberbullying",
+    "bullying virtual",
+    "intimidação sistemática virtual",
+
     "aliciamento digital",
-    "plataformas digitais",
-    "redes sociais menores",
-    "redes sociais crianças",
-    "redes sociais adolescentes",
-    "conteúdo nocivo",
-    "ambiente digital",
-    "proteção infantil internet",
+    "aliciamento online",
+    "exploração sexual infantil online",
+    "abuso sexual infantil online",
+    "pornografia infantil online",
+
+    "conteúdo nocivo crianças",
+    "conteúdo nocivo adolescentes",
+    "segurança digital crianças",
+    "segurança digital adolescentes",
+    "educação digital crianças",
+    "educação digital adolescentes",
 ]
+
 TEMA_PADRAO = "Proteção de Crianças e Adolescentes no Ambiente Digital"
 
-TERMOS_SIMBOLICOS = [
-    "voto de aplauso",
-    "voto de louvor",
-    "voto de congratulação",
-    "voto de congratulações",
-    "voto de pesar",
-    "título de cidadão",
-    "homenagem",
-    "sessão solene",
-    "data comemorativa",
-    "dia nacional"
-]
-
-TERMOS_ESTRATEGICOS = [
-    "audiência pública",
-    "regime de urgência",
-    "convocação",
-    "pedido de informação",
-    "comissão parlamentar",
-    "ministério",
-    "recursos financeiros"
-]
-
-# Parâmetros fixos da busca
 PARAMS_BASE = {
-    "siglaTipo": "PL",          # Somente Projetos de Lei
-    "itens": 20,                 # Resultados por página
+    "siglaTipo": "PL",          
+    "itens": 20,                 
     "ordem": "DESC",
     "ordenarPor": "id",
 }
 
-# Número máximo de páginas a buscar por palavra-chave (evita explosão de dados)
 LIMITE_PAGINAS = int(os.getenv("MAX_PAGES", 3))
-
-# ---------------------------------------------------------------------------
-# CAMADA DE FETCH — busca dados na API externa e extrai documentos
-# ---------------------------------------------------------------------------
+ANO_INICIO_COLETA = int(os.getenv("ANO_INICIO_COLETA", 2015))
+ANO_FIM_COLETA = int(os.getenv("ANO_FIM_COLETA", datetime.now().year))
 
 def fetch_proposicoes_por_keyword(keyword: str) -> list[dict]:
     """
-    Consulta a API da Câmara buscando proposições que contenham `keyword`
-    na ementa. Pagina automaticamente até LIMITE_PAGINAS.
+    Consulta a API da Câmara por palavra-chave, varrendo ano a ano.
 
-    Injeta a palavra-chave usada dentro do dicionário para rastreamento posterior.
+    Isso aumenta a cobertura histórica sem usar coleta ampla.
+    Diferente da coleta ampla, aqui toda busca ainda precisa ter uma keyword.
     """
     resultados: list[dict] = []
 
-    for pagina in range(1, LIMITE_PAGINAS + 1):
-        params = {
-            **PARAMS_BASE,
-            "keywords": keyword,
-            "pagina": pagina,
-        }
+    for ano in range(ANO_FIM_COLETA, ANO_INICIO_COLETA - 1, -1):
+        for pagina in range(1, LIMITE_PAGINAS + 1):
+            params = {
+                **PARAMS_BASE,
+                "keywords": keyword,
+                "ano": ano,
+                "pagina": pagina,
+            }
 
-        logger.info(
-            "Buscando keyword='%s' | página %s/%s",
-            keyword,
-            pagina,
-            LIMITE_PAGINAS,
-        )
-
-        response = fazer_requisicao_com_retry(
-            ENDPOINT_PROPOSICOES,
-            params=params,
-            headers=JSON_HEADERS,
-            timeout=60,
-        )
-
-        if response is None:
-            logger.error(
-                "Falha ao buscar proposições para keyword '%s' na página %s.",
-                keyword,
-                pagina,
-            )
-            break
-
-        try:
-            dados = response.json().get("dados", [])
-        except ValueError:
-            logger.error(
-                "Resposta inválida da API da Câmara para keyword '%s' na página %s.",
-                keyword,
-                pagina,
-            )
-            break
-
-        if not dados:
-            logger.info("Sem mais resultados para '%s' na página %s.", keyword, pagina)
-            break
-
-        for dado in dados:
-            dado["_keyword_origem"] = keyword
-
-        resultados.extend(dados)
-
-        logger.info("%s proposições encontradas nesta página.", len(dados))
-
-    return resultados
-
-def fetch_proposicoes_amplas_por_ano(ano: int) -> list[dict]:
-    """
-    Busca proposições da Câmara por ano, sem depender de palavra-chave.
-
-    Essa coleta existe para atender ao critério de aceitação da ETL:
-    proposições com ementa genérica também devem ser capturadas,
-    ter o inteiro teor baixado e ser classificadas pelo conteúdo completo.
-    """
-    resultados: list[dict] = []
-
-    for pagina in range(1, LIMITE_PAGINAS + 1):
-        params = {
-            **PARAMS_BASE,
-            "ano": ano,
-            "pagina": pagina,
-        }
-
-        logger.info(
-            "Buscando proposições amplas do ano %s | página %s/%s",
-            ano,
-            pagina,
-            LIMITE_PAGINAS,
-        )
-
-        response = fazer_requisicao_com_retry(
-            ENDPOINT_PROPOSICOES,
-            params=params,
-            headers=JSON_HEADERS,
-            timeout=60,
-        )
-
-        if response is None:
-            logger.error(
-                "Falha ao buscar proposições amplas do ano %s na página %s.",
-                ano,
-                pagina,
-            )
-            break
-
-        try:
-            dados = response.json().get("dados", [])
-        except ValueError:
-            logger.error(
-                "Resposta inválida da API da Câmara na coleta ampla do ano %s.",
-                ano,
-            )
-            break
-
-        if not dados:
             logger.info(
-                "Sem mais resultados na coleta ampla do ano %s, página %s.",
+                "Buscando Câmara | keyword='%s' | ano=%s | página %s/%s",
+                keyword,
+                ano,
+                pagina,
+                LIMITE_PAGINAS,
+            )
+
+            response = fazer_requisicao_com_retry(
+                ENDPOINT_PROPOSICOES,
+                params=params,
+                headers=JSON_HEADERS,
+                timeout=60,
+            )
+
+            if response is None:
+                logger.error(
+                    "Falha ao buscar Câmara para keyword='%s', ano=%s, página=%s.",
+                    keyword,
+                    ano,
+                    pagina,
+                )
+                break
+
+            try:
+                dados = response.json().get("dados", [])
+            except ValueError:
+                logger.error(
+                    "Resposta inválida da Câmara para keyword='%s', ano=%s, página=%s.",
+                    keyword,
+                    ano,
+                    pagina,
+                )
+                break
+
+            if not dados:
+                break
+
+            for dado in dados:
+                dado["_keyword_origem"] = keyword
+
+            resultados.extend(dados)
+
+            logger.info(
+                "%s proposições encontradas | keyword='%s' | ano=%s | página=%s.",
+                len(dados),
+                keyword,
                 ano,
                 pagina,
             )
-            break
-
-        for dado in dados:
-            dado["_keyword_origem"] = "Coleta ampla por ano"
-
-        resultados.extend(dados)
-
-        logger.info(
-            "%s proposições encontradas na coleta ampla desta página.",
-            len(dados),
-        )
 
     return resultados
 
 def fetch_todas_proposicoes() -> list[dict]:
     """
-    Executa duas estratégias de extração:
+    Executa a extração principal da Câmara usando apenas palavras-chave.
 
-    1. Busca por palavras-chave:
-       rápida e direcionada ao tema do projeto.
+    A coleta ampla por ano foi removida porque estava trazendo muitos
+    falsos positivos fora do escopo do ProtectKids, como proposições sobre
+    agropecuária, inadimplência, consumidor e temas administrativos.
 
-    2. Busca ampla por ano:
-       permite capturar proposições com ementa genérica, mas cujo texto
-       integral contenha temas relevantes para proteção infantil.
-
-    As duas listas são consolidadas removendo duplicatas pelo campo 'id'
-    da API da Câmara.
+    Estratégia atual:
+    - busca por palavras-chave relacionadas à proteção digital infantil;
+    - remove duplicatas pelo ID da API da Câmara;
+    - transforma e classifica apenas os resultados encontrados por keyword.
     """
     todas: dict[int, dict] = {}
 
@@ -269,28 +219,50 @@ def fetch_todas_proposicoes() -> list[dict]:
             if api_id and api_id not in todas:
                 todas[api_id] = prop
 
-    ano_coleta = int(os.getenv("ANO_COLETA_AMPLA", datetime.now().year))
-    proposicoes_amplas = fetch_proposicoes_amplas_por_ano(ano_coleta)
-
-    for prop in proposicoes_amplas:
-        api_id = prop.get("id")
-
-        if api_id and api_id not in todas:
-            todas[api_id] = prop
-
     logger.info(
-        "Total de proposições únicas encontradas após keyword + coleta ampla: %s",
+        "Total de proposições únicas encontradas por palavras-chave: %s",
         len(todas),
     )
 
     return list(todas.values())
+def escolher_autor_preferencial(dados_autores: list[dict]) -> dict:
+    """
+    Escolhe o melhor autor para a proposição.
+
+    A API da Câmara às vezes retorna autores institucionais como:
+    - Câmara dos Deputados
+    - Mesa Diretora
+    - Comissão
+
+    Para o ranking do ProtectKids, preferimos um autor parlamentar,
+    quando existir.
+    """
+    if not dados_autores:
+        return {}
+
+    # 1. Preferência máxima: autor com URI de deputado.
+    for autor in dados_autores:
+        uri = autor.get("uri", "") or ""
+        tipo = str(autor.get("tipo", "") or "").lower()
+
+        if "/deputados/" in uri or "deputado" in tipo:
+            return autor
+
+    # 2. Segunda preferência: autor que já venha com partido e UF.
+    for autor in dados_autores:
+        if autor.get("siglaPartido") and autor.get("siglaUf"):
+            return autor
+
+    # 3. Fallback: mantém o primeiro autor retornado pela API.
+    return dados_autores[0]
+
+
 def fetch_autor_da_proposicao(id_proposicao_api: int) -> dict:
     """
     Busca o autor principal de uma proposição da Câmara.
 
-    Primeiro consulta /proposicoes/{id}/autores.
-    Se o autor for deputado, consulta também o perfil do parlamentar
-    para obter partido e UF atualizados.
+    Preferimos autores parlamentares, quando existirem, para evitar salvar
+    "Câmara dos Deputados" como autor principal no ranking.
     """
     url_autores = f"{BASE_URL}/proposicoes/{id_proposicao_api}/autores"
 
@@ -319,10 +291,14 @@ def fetch_autor_da_proposicao(id_proposicao_api: int) -> dict:
     if not dados_autores:
         return {}
 
-    autor = dados_autores[0]
-    uri_autor = autor.get("uri", "")
+    autor = escolher_autor_preferencial(dados_autores)
+    uri_autor = autor.get("uri", "") or ""
 
-    if "deputados" not in uri_autor:
+    # Se não for deputado, provavelmente é autor institucional.
+    # Nesse caso, não há partido/UF confiável.
+    if "/deputados/" not in uri_autor:
+        autor["siglaPartido"] = autor.get("siglaPartido") or "ND"
+        autor["siglaUf"] = autor.get("siglaUf") or "ND"
         return autor
 
     resp_perfil = fazer_requisicao_com_retry(
@@ -336,6 +312,8 @@ def fetch_autor_da_proposicao(id_proposicao_api: int) -> dict:
             "Não foi possível buscar perfil do autor da proposição %s.",
             id_proposicao_api,
         )
+        autor["siglaPartido"] = autor.get("siglaPartido") or "ND"
+        autor["siglaUf"] = autor.get("siglaUf") or "ND"
         return autor
 
     try:
@@ -345,12 +323,30 @@ def fetch_autor_da_proposicao(id_proposicao_api: int) -> dict:
             "Resposta inválida ao buscar perfil do autor da proposição %s.",
             id_proposicao_api,
         )
+        autor["siglaPartido"] = autor.get("siglaPartido") or "ND"
+        autor["siglaUf"] = autor.get("siglaUf") or "ND"
         return autor
 
-    status = perfil.get("ultimoStatus", {})
+    status = perfil.get("ultimoStatus", {}) or {}
 
-    autor["siglaPartido"] = status.get("siglaPartido", "ND")
-    autor["siglaUf"] = status.get("siglaUf", "ND")
+    autor["siglaPartido"] = (
+        status.get("siglaPartido")
+        or autor.get("siglaPartido")
+        or "ND"
+    )
+
+    autor["siglaUf"] = (
+        status.get("siglaUf")
+        or autor.get("siglaUf")
+        or "ND"
+    )
+
+    autor["nome"] = (
+        status.get("nomeEleitoral")
+        or perfil.get("nomeCivil")
+        or autor.get("nome")
+        or "Desconhecido"
+    )
 
     return autor
 
@@ -534,10 +530,6 @@ CATEGORIAS_NLP = {
             "sexual",
             "pornografia",
             "pedofilia",
-            "internet",
-            "online",
-            "virtual",
-            "digital",
         ],
     },
 
@@ -565,17 +557,11 @@ CATEGORIAS_NLP = {
             "reconhecimento facial de criancas",
         ],
         "termos": [
-            "dados",
             "privacidade",
             "lgpd",
             "consentimento",
             "parental",
             "biometria",
-            "cadastro",
-            "identificação",
-            "identificacao",
-            "tratamento",
-            "compartilhamento",
         ],
     },
 
@@ -771,6 +757,111 @@ def normalizar_texto(valor: Optional[str]) -> str:
 
     return texto.strip()
 
+TERMOS_INFANTIS_ESCOPO = (
+    "criança",
+    "crianca",
+    "crianças",
+    "criancas",
+    "adolescente",
+    "adolescentes",
+    "menor",
+    "menores",
+    "infantil",
+    "infantojuvenil",
+    "infanto-juvenil",
+)
+
+TERMOS_DIGITAIS_ESCOPO = (
+    "internet",
+    "online",
+    "digital",
+    "digitais",
+    "virtual",
+    "virtuais",
+    "rede social",
+    "redes sociais",
+    "plataforma digital",
+    "plataformas digitais",
+    "aplicativo",
+    "aplicativos",
+    "dados pessoais",
+    "proteção de dados",
+    "protecao de dados",
+    "privacidade",
+    "lgpd",
+    "algoritmo",
+    "algoritmos",
+    "inteligência artificial",
+    "inteligencia artificial",
+)
+
+TERMOS_RISCO_EXPLICITO = (
+    "cyberbullying",
+    "ciberbullying",
+    "bullying virtual",
+    "intimidação sistemática virtual",
+    "intimidacao sistematica virtual",
+    "aliciamento digital",
+    "aliciamento online",
+    "exploração sexual infantil online",
+    "exploracao sexual infantil online",
+    "abuso sexual infantil online",
+    "pornografia infantil online",
+    "controle parental",
+    "consentimento parental",
+)
+
+TERMOS_FORA_ESCOPO = (
+    "herança digital",
+    "heranca digital",
+    "patrimônio digital",
+    "patrimonio digital",
+    "bens digitais",
+    "ativo digital",
+    "ativos digitais",
+    "rastreabilidade bovina",
+    "agricultura familiar",
+    "inadimplente",
+    "inadimplentes",
+    "inadimplência",
+    "inadimplencia",
+    "débitos decorrentes",
+    "debitos decorrentes",
+    "serviços públicos essenciais",
+    "servicos publicos essenciais",
+    "código de defesa do consumidor",
+    "codigo de defesa do consumidor",
+    "cadastro de inadimplente",
+    "cadastros de inadimplentes",
+)
+
+
+def contem_termo(conteudo: str, termos: tuple[str, ...]) -> bool:
+    return any(normalizar_texto(termo) in conteudo for termo in termos)
+
+
+def esta_no_escopo_protectkids(texto: str | None, ementa: str | None) -> bool:
+    """
+    Decide se a proposição pertence ao escopo do ProtectKids.
+
+    Usa somente a ementa e o texto real da proposição.
+    Não usa a keyword de busca, para evitar falso positivo.
+    """
+    conteudo = normalizar_texto(f"{ementa or ''} {texto or ''}")
+
+    if not conteudo:
+        return False
+
+    if contem_termo(conteudo, TERMOS_FORA_ESCOPO):
+        return False
+
+    if contem_termo(conteudo, TERMOS_RISCO_EXPLICITO):
+        return True
+
+    tem_infantil = contem_termo(conteudo, TERMOS_INFANTIS_ESCOPO)
+    tem_digital = contem_termo(conteudo, TERMOS_DIGITAIS_ESCOPO)
+
+    return tem_infantil and tem_digital
 
 def gerar_lemas(texto: Optional[str]) -> list[str]:
     """
@@ -894,55 +985,45 @@ def contem_indicador_protecao_infantil(
     ementa: Optional[str],
 ) -> bool:
     """
-    Verifica se a proposição possui algum indício mínimo de relação
-    com proteção infantil.
-
-    Esse filtro é usado principalmente para a coleta ampla, evitando que
-    proposições sem relação com o tema sejam salvas apenas porque foram
-    capturadas por ano.
+    Mantida por compatibilidade com outros arquivos.
+    Usa a nova regra de escopo.
     """
-    conteudo = normalizar_texto(f"{ementa or ''} {texto or ''}")
-
-    if not conteudo:
-        return False
-
-    termos_chave = [normalizar_texto(termo) for termo in KEYWORDS]
-
-    return any(termo and termo in conteudo for termo in termos_chave)
+    return esta_no_escopo_protectkids(texto, ementa)
 
 def transform_proposicao(dado_bruto: dict, autor_bruto: dict) -> Optional[tuple]:
     sigla = dado_bruto.get("siglaTipo", "PL")
     numero = dado_bruto.get("numero")
     ano = dado_bruto.get("ano")
     ementa = dado_bruto.get("ementa", "").strip()
-    
+
     if not numero or not ano or not ementa:
         return None
-        
+
     id_bruto = dado_bruto.get("id")
     id_externo_formatado = f"camara-{id_bruto}"
 
-    # 1. Monta o Parlamentar
     parlamentar = None
     id_autor = None
+
     if autor_bruto:
         uri = autor_bruto.get("uri", "")
+
         try:
             id_autor = int(uri.rstrip("/").split("/")[-1])
         except (ValueError, IndexError):
             logger.warning("Não foi possível extrair ID do autor pela URI: %s", uri)
             id_autor = 999999
-            
+
         parlamentar = Parlamentar(
             id_parlamentar=id_autor,
             nome=autor_bruto.get("nome", "Desconhecido"),
             partido=autor_bruto.get("siglaPartido", "ND"),
-            uf=autor_bruto.get("siglaUf", "ND")
+            uf=autor_bruto.get("siglaUf", "ND"),
         )
-        
-    # 2. Formata a Data
+
     data_apres = None
     data_str = dado_bruto.get("dataApresentacao")
+
     if data_str:
         try:
             data_apres = datetime.fromisoformat(data_str).date()
@@ -950,22 +1031,21 @@ def transform_proposicao(dado_bruto: dict, autor_bruto: dict) -> Optional[tuple]
             logger.warning("Data de apresentação inválida: %s", data_str)
 
     url_pdf = dado_bruto.get("urlInteiroTeor")
-    texto_pdf = extrair_texto_pdf(url_pdf)
-    classificacao_ia = classificar_com_ia(texto_pdf, ementa)
+    texto_pdf = extrair_texto_pdf(url_pdf) or ""
+
     subtema_origem = dado_bruto.get("_keyword_origem", "Geral")
 
-    foi_coleta_ampla = subtema_origem == "Coleta ampla por ano"
-
-    if (
-        foi_coleta_ampla
-        and classificacao_ia == CATEGORIA_PADRAO
-        and not contem_indicador_protecao_infantil(texto_pdf, ementa)
+    if not esta_no_escopo_protectkids(
+        texto=texto_pdf,
+        ementa=ementa,
     ):
         logger.info(
-            "Proposição Câmara %s descartada: coleta ampla sem indício de proteção infantil.",
+            "Proposição Câmara %s descartada: fora do escopo ProtectKids. Ementa: %s",
             id_externo_formatado,
+            ementa[:180],
         )
         return None
+    classificacao_ia = classificar_com_ia(texto_pdf, ementa)
 
     proposicao = Proposicao(
         id_externo=id_externo_formatado,
@@ -981,13 +1061,9 @@ def transform_proposicao(dado_bruto: dict, autor_bruto: dict) -> Optional[tuple]
         subtema=subtema_origem,
         texto_integral=texto_pdf,
         classificacao_nlp=classificacao_ia,
-)
-    
-    return (proposicao, parlamentar)
+    )
 
-# ---------------------------------------------------------------------------
-# CAMADA DE OTIMIZAÇÃO (NOVO)
-# ---------------------------------------------------------------------------
+    return (proposicao, parlamentar)
 
 def obter_ids_existentes(origem_alvo: str) -> set:
     """
@@ -995,14 +1071,9 @@ def obter_ids_existentes(origem_alvo: str) -> set:
     o download repetido de PDFs e reprocessamento de NLP.
     """
     with Session(engine) as session:
-        # Selecionamos apenas a coluna id_externo para não sobrecarregar a memória
         statement = select(Proposicao.id_externo).where(Proposicao.origem == origem_alvo)
         resultados = session.exec(statement).all()
         return set(resultados)
-
-# ---------------------------------------------------------------------------
-# CAMADA DE SAVE & RUN PIPELINE
-# ---------------------------------------------------------------------------
 
 def save_proposicoes(tuplas_prop_autor: list[tuple]) -> int:
     inseridos = 0
@@ -1034,7 +1105,7 @@ def save_proposicoes(tuplas_prop_autor: list[tuple]) -> int:
         session.commit()
     return inseridos
 
-def processar_materia_individual(dado: dict, ids_existentes: set) -> Optional[tuple]:
+def processar_materia_individual(dado: dict) -> Optional[tuple]:
     """
     Função isolada para ser executada em paralelo (Thread).
     Faz o download do PDF e passa pela IA de forma independente.
@@ -1043,14 +1114,11 @@ def processar_materia_individual(dado: dict, ids_existentes: set) -> Optional[tu
     id_externo_formatado = f"camara-{id_bruto}"
 
     try:
-        # Puxa os dados adicionais da API
         autor_bruto = fetch_autor_da_proposicao(id_bruto)
         detalhes_brutos = fetch_detalhes_proposicao(id_bruto)
         
-        # Injeta o link do PDF
         dado["urlInteiroTeor"] = detalhes_brutos.get("urlInteiroTeor")
         
-        # processamento pesado (PDF + NLP)
         resultado = transform_proposicao(dado, autor_bruto)
         if resultado:
             logger.info(f"Nova matéria processada: {id_externo_formatado}")
@@ -1069,18 +1137,15 @@ def run_pipeline() -> None:
     ids_existentes = obter_ids_existentes(origem_alvo="Camara")
     logger.info(f"Cache local: {len(ids_existentes)} proposições da Câmara já existem.")
 
-    # 1. EXTRACT
     dados_brutos = fetch_todas_proposicoes()
     if not dados_brutos:
         logger.warning("Nenhuma proposição capturada na extração externa.")
         return
 
-    # 2. TRANSFORM OTIMIZADO (MULTITHREADING)
     tuplas: list[tuple] = []
     ids_processados_nesta_run = set()
     dados_ineditos = []
 
-    # Filtra rapidamente tudo o que é novo e precisa ser processado
     for dado in dados_brutos:
         id_bruto = dado.get("id")
         id_externo_formatado = f"camara-{id_bruto}"
@@ -1097,7 +1162,7 @@ def run_pipeline() -> None:
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
         futuros = {
-            executor.submit(processar_materia_individual, d, ids_existentes): d 
+            executor.submit(processar_materia_individual, d): d
             for d in dados_ineditos
         }
         for futuro in concurrent.futures.as_completed(futuros):
@@ -1105,7 +1170,6 @@ def run_pipeline() -> None:
             if resultado:
                 tuplas.append(resultado)
 
-    # 3. LOAD
     if tuplas:
         total_salvo = save_proposicoes(tuplas)
         logger.info(f"=== Pipeline concluído. {total_salvo} novos registros inseridos com NLP. ===")

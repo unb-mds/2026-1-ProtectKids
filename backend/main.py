@@ -1,5 +1,7 @@
 from typing import Optional, List, Annotated
 from datetime import datetime
+from functools import lru_cache
+import os
 from fastapi import FastAPI, Depends, HTTPException, Query
 from pydantic import BaseModel
 from sqlmodel import SQLModel, Session, select, func
@@ -10,8 +12,32 @@ import spacy
 from collections import Counter
 from contextlib import asynccontextmanager
 
+def carregar_cors_origins() -> list[str]:
+    """
+    Lê as origens permitidas do CORS pela variável CORS_ORIGINS.
 
-nlp = spacy.load("pt_core_news_sm")
+    Exemplo no .env:
+    CORS_ORIGINS=http://localhost:5173,https://protectkids.com.br
+    """
+    origins = os.getenv(
+        "CORS_ORIGINS",
+        "http://localhost:3000,http://localhost:5173",
+    )
+
+    return [
+        origin.strip()
+        for origin in origins.split(",")
+        if origin.strip()
+    ]
+@lru_cache
+def get_nlp():
+    """
+    Carrega o spaCy somente quando a rota de nuvem de palavras for chamada.
+
+    Isso evita que a API demore mais para subir e reduz risco em deploy barato.
+    """
+    modelo = os.getenv("SPACY_MODEL", "pt_core_news_sm")
+    return spacy.load(modelo)
 
 @asynccontextmanager
 async def lifespan(_app: FastAPI):
@@ -20,12 +46,11 @@ async def lifespan(_app: FastAPI):
 
 app = FastAPI(title="ProtectKids API", lifespan=lifespan)
 
-# CORS = TRAVA DE SEGURANÇA 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:5173"], # porta do Vite (5173) adicionada por garantia
+    allow_origins=carregar_cors_origins(),
     allow_credentials=True,
-    allow_methods=["*"], 
+    allow_methods=["*"],
     allow_headers=["*"],
 )
 
@@ -34,9 +59,6 @@ app.add_middleware(
 def read_root():
     return {"status": "ProtectKids Online", "message": "API e Banco de Dados conectados com sucesso!"}
 
-# ==========================================
-# FUNÇÕES AUXILIARES DE SERIALIZAÇÃO / FILTROS
-# ==========================================
 RESPOSTA_ORIGEM_INVALIDA = {
     400: {
         "description": "Origem inválida informada no filtro.",
@@ -69,6 +91,23 @@ ORIGENS_VALIDAS = {
     "câmara": "Camara",
     "senado": "Senado",
 }
+
+AUTORES_INSTITUCIONAIS = [
+    "Câmara dos Deputados",
+    "Camara dos Deputados",
+    "Senado Federal",
+    "Poder Executivo",
+    "Mesa Diretora",
+    "Mesa Diretora da Câmara dos Deputados",
+    "Mesa Diretora da Camara dos Deputados",
+    "Comissão",
+    "Comissao",
+    "Comissões",
+    "Comissoes",
+]
+
+PARTIDO_NAO_DEFINIDO = "ND"
+UF_NAO_DEFINIDA = "ND"
 
 
 def normalizar_origem(origem: Optional[str]) -> Optional[str]:
@@ -150,6 +189,24 @@ def aplicar_filtros_analytics(
         query = query.where(Parlamentar.partido == partido.upper())
 
     return query
+
+def aplicar_filtro_parlamentares_validos(query):
+    """
+    Remove autores institucionais e registros sem partido/UF dos rankings.
+
+    Isso evita que itens como "Câmara dos Deputados — ND/ND" apareçam
+    como se fossem parlamentares reais no painel analítico.
+    """
+    return (
+        query
+        .where(Parlamentar.nome.is_not(None))
+        .where(Parlamentar.partido.is_not(None))
+        .where(Parlamentar.uf.is_not(None))
+        .where(Parlamentar.partido != PARTIDO_NAO_DEFINIDO)
+        .where(Parlamentar.uf != UF_NAO_DEFINIDA)
+        .where(Parlamentar.nome.notin_(AUTORES_INSTITUCIONAIS))
+    )
+
 
 def serializar_proposicao(prop: Proposicao, incluir_texto: bool = False) -> dict:
     """
@@ -332,6 +389,8 @@ def get_ranking_parlamentares(
         partido=partido,
     )
 
+    query = aplicar_filtro_parlamentares_validos(query)
+
     query = (
         query
         .group_by(
@@ -397,6 +456,8 @@ def get_ranking_partidos(
         uf=uf,
         partido=partido,
     )
+
+    query = aplicar_filtro_parlamentares_validos(query)
 
     query = (
         query
@@ -604,24 +665,31 @@ def get_nuvem_palavras(
     if not texto_completo.strip():
         return []
 
-    doc = nlp(texto_completo)
+    doc = get_nlp()(texto_completo)
 
     ruidos_legislativos = {
         "lei", "alterar", "altera", "artigo", "inciso",
         "parágrafo", "paragrafo", "dispor", "estabelecer",
         "acrescentar", "dar", "providência", "providencia",
         "nº", "redação", "redacao", "sobre",
-
         "janeiro", "fevereiro", "março", "marco", "abril",
         "maio", "junho", "julho", "agosto", "setembro",
         "outubro", "novembro", "dezembro",
-
         "art.", "institui", "instituir", "federal", "dispõe",
         "dispoe", "requer", "decreto-lei", "audiência",
         "audiencia", "realização", "realizacao", "termos",
         "regimento", "interno", "objetivo", "ano", "nacional",
         "público", "publico", "programa", "incluir", "âmbito",
         "ambito", "ser",
+        "consumidor", "consumidores", "cadastro", "cadastros",
+        "inadimplente", "inadimplentes", "débito", "debito",
+        "débitos", "debitos", "serviço", "servico", "serviços",
+        "servicos", "essencial", "essenciais", "públicos", "publicos",
+        "estatuto", "código", "codigo", "penal",
+        "medida", "medidas", "aplicação", "aplicacao",
+        "prever", "prevê", "preve", "provedor", "provedores",
+        "mecanismo", "mecanismos", "dado", "dados",
+        "sistemático", "sistematica", "sistemática",
     }
 
     palavras = [
