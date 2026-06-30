@@ -43,3 +43,18 @@ backend/venv/
 venv/
 *.sqlite3
 *.db
+
+# ===== Testes e Cobertura =====
+htmlcov/
+.coverage
+.coverage.*
+*.cover
+.pytest_cache/
+
+# ===== Ambiente virtual =====
+.venv/
+env/
+
+# ===== Python =====
+*.pyo
+*.egg-info/

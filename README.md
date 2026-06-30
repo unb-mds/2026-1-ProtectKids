@@ -84,6 +84,52 @@ docker-compose exec backend python -m crawler.tramitacoes_api
 - **API Rest (Backend):** http://localhost:8000
 - **Documentação Swagger:** http://localhost:8000/docs
 
+## 🧪 Testes e Cobertura de Código
+
+O backend utiliza [`pytest`](https://docs.pytest.org/) para testes automatizados e [`pytest-cov`](https://pytest-cov.readthedocs.io/) para medir a cobertura de código.
+
+### Pré-requisitos
+
+Certifique-se de que o ambiente virtual está ativado e as dependências instaladas:
+
+```bash
+# Windows (PowerShell)
+.\venv\Scripts\Activate.ps1
+
+# Linux/macOS
+source venv/bin/activate
+
+pip install -r requirements.txt
+```
+
+### Rodando os testes
+
+Para rodar toda a suíte de testes:
+
+```bash
+pytest tests/
+```
+
+### Gerando relatório de cobertura
+
+Para rodar os testes e gerar um relatório visual em HTML:
+
+```bash
+pytest tests/ --cov=. --cov-report=html
+```
+
+Esse comando cria a pasta `htmlcov/` na raiz do backend. Para visualizar o relatório, abra o arquivo `htmlcov/index.html` no navegador.
+
+Se preferir ver a cobertura direto no terminal, sem abrir o navegador:
+
+```bash
+pytest tests/ --cov=. --cov-report=term-missing
+```
+
+A flag `term-missing` mostra no terminal exatamente quais linhas do código ainda não estão cobertas por testes.
+
+> ⚠️ **Atenção:** a pasta `htmlcov/` e o arquivo `.coverage` são gerados localmente por cada desenvolvedor e **não devem ser commitados**. Eles já estão listados no `.gitignore` do projeto.
+
 
 **💡 Dica de Desenvolvimento:** Caso o banco precise ser totalmente resetado ou suas variáveis do `.env` alteradas, utilize o comando `docker-compose down -v` para destruir os volumes internos e limpe o ambiente antes de subir a infraestrutura novamente.
 

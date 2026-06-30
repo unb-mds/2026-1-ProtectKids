@@ -8,10 +8,17 @@ from models import Proposicao, Parlamentar, Tramitacao
 from fastapi.middleware.cors import CORSMiddleware
 import spacy
 from collections import Counter
+from contextlib import asynccontextmanager
 
-app = FastAPI(title="ProtectKids API")
 
 nlp = spacy.load("pt_core_news_sm")
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    SQLModel.metadata.create_all(engine)
+    yield
+
+app = FastAPI(title="ProtectKids API", lifespan=lifespan)
 
 # CORS = TRAVA DE SEGURANÇA 
 app.add_middleware(
@@ -22,9 +29,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.on_event("startup")
-def on_startup():
-    SQLModel.metadata.create_all(engine)
 
 @app.get("/")
 def read_root():
