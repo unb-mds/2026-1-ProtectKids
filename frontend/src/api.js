@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { TAMANHO_PAGINA_API, LIMITE_ANALYTICS_FRONTEND } from './constants/analytics';
 
+const API_BASE_URL = (import.meta.env.VITE_API_URL || 'http://localhost:8000').replace(/\/$/, '');
+
 export const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000',
+  baseURL: API_BASE_URL,
 });
 
 export const buscarLeis = async (filtros = {}) => {

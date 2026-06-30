@@ -65,3 +65,4 @@ htmlcov/
 # Cobertura frontend
 coverage/
 frontend/coverage/
+
