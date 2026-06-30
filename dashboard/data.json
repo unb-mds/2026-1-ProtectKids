@@ -1,6 +1,24 @@
 {
-    "last_updated": "2026-06-30T21:21:25.006680Z",
+    "last_updated": "2026-06-30T21:37:01.272796Z",
     "commits": [
+        {
+            "hash": "c35a1b5bd7b69b5c0695564d842995146d6324ad",
+            "date": "2026-06-30T18:36:38-03:00",
+            "message": "Merge pull request #171 from unb-mds/feature/testes-issue-3",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "62ba2be60c17bb381daf94667bbfc90a0c14e4f0",
+            "date": "2026-06-30T18:30:50-03:00",
+            "message": "test: adiciona testes da Issue 3 - busca por ID e validacao de 404",
+            "is_conventional": true,
+            "insertions": 81,
+            "deletions": 0,
+            "total_diff": 81
+        },
         {
             "hash": "7b9ac17878bd84a6856f722fced50163c0c3e47d",
             "date": "2026-06-30T18:21:04-03:00",
@@ -2634,10 +2652,10 @@
         {
             "number": 161,
             "title": "[QA]: Implementar testes de busca por ID e validação de existência",
-            "state": "open",
+            "state": "closed",
             "created_at": "2026-06-30T06:58:05Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
+            "closed_at": "2026-06-30T21:36:40Z",
+            "resolution_time_hours": 14.64,
             "char_count": 661
         },
         {
@@ -3084,10 +3102,10 @@
     ],
     "autores": {
         "marispmorais": {
-            "commits": 24,
-            "insercoes": 2933041,
+            "commits": 26,
+            "insercoes": 2933122,
             "delecoes": 145,
-            "total_linhas": 2933186
+            "total_linhas": 2933267
         },
         "augustogmedeiros": {
             "commits": 148,
