@@ -121,7 +121,6 @@ def fetch_tramitacoes_brutas(id_camara_numerico: str) -> Optional[list[dict]]:
             id_camara_numerico,
         )
         return None
-
     try:
         dados = resp.json().get("dados", [])
     except ValueError:
@@ -157,10 +156,6 @@ def processar_tramitacoes_individuais(
         logger.warning("ID externo inválido para tramitação: %s", id_externo)
         return id_externo, None
 
-def processar_tramitacoes_individuais(
-    id_externo: str,
-) -> tuple[str, list[Tramitacao] | None]:
-    id_numerico = id_externo.split("-")[1]
     dados_brutos = fetch_tramitacoes_brutas(id_numerico)
 
     if dados_brutos is None:
