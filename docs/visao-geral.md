@@ -1,25 +1,103 @@
-## Visão Geral do Projeto
+# Funcionalidades
 
-O **ProtectKids** é uma plataforma desenvolvida com o objetivo de auxiliar no monitoramento, análise e organização de informações relacionadas à proteção infantil no contexto legislativo brasileiro. O sistema realiza a coleta automatizada de dados públicos, processa essas informações utilizando técnicas de análise textual e disponibiliza os resultados de forma acessível para consulta e acompanhamento.
+O **ProtectKids** reúne funcionalidades voltadas ao monitoramento, organização e análise de proposições legislativas relacionadas à proteção de crianças e adolescentes.
 
-A proposta do projeto surgiu da necessidade de centralizar informações que, apesar de públicas, encontram-se dispersas em diferentes fontes e formatos, dificultando o acompanhamento por cidadãos, pesquisadores e organizações interessadas no tema.
+## Coleta Automatizada
 
-A arquitetura da solução foi projetada para garantir modularidade, escalabilidade e facilidade de manutenção. Para isso, o sistema utiliza uma infraestrutura baseada em contêineres Docker, permitindo a separação clara entre os componentes responsáveis pela interface do usuário, processamento de dados, análise textual e persistência das informações.
+Realiza a busca automática de proposições legislativas em fontes oficiais da **Câmara dos Deputados** e do **Senado Federal**.
 
-O funcionamento da plataforma ocorre em etapas principais:
+## Processamento do Inteiro Teor
 
-1. **Coleta de Dados**
-   O sistema consome informações provenientes de fontes públicas, como a API de Dados Abertos da Câmara dos Deputados.
+Efetua a leitura e extração de textos de documentos legislativos em formato PDF utilizando ferramentas automatizadas.
 
-2. **Processamento e Análise**
-   Os dados coletados passam por etapas de tratamento e análise textual utilizando técnicas de NLP (*Natural Language Processing*), permitindo identificar conteúdos relevantes para o contexto do projeto.
+## Classificação Temática
 
-3. **Armazenamento**
-   Após o processamento, as informações são armazenadas em banco de dados para garantir persistência e rapidez no acesso.
+Organiza as proposições em categorias relacionadas à proteção infantojuvenil por meio de técnicas de **Processamento de Linguagem Natural (PLN)** e regras heurísticas.
 
-4. **Disponibilização ao Usuário**
-   Os dados processados são exibidos em uma interface web intuitiva, permitindo consultas e acompanhamento das informações de maneira organizada.
+## Consulta de Proposições
 
-Além do desenvolvimento técnico, o projeto também prioriza aspectos de documentação e organização arquitetural, utilizando o Modelo C4 para representar visualmente a estrutura do sistema e facilitar a comunicação entre os membros da equipe.
+Disponibiliza informações detalhadas sobre cada proposição, incluindo:
 
-Dessa forma, o ProtectKids busca unir tecnologia, automação e análise de dados para contribuir com a transparência e o acompanhamento de informações relevantes à proteção infantil.
+-  Título;
+-  Ementa;
+-  Origem legislativa;
+-  Autor;
+-  Partido;
+-  Unidade Federativa (UF);
+-  Data de apresentação;
+-  Link para o inteiro teor.
+
+## Histórico de Tramitações
+
+Permite acompanhar todas as movimentações legislativas associadas às proposições monitoradas.
+
+## Dashboard Analítico
+
+Apresenta indicadores e informações consolidadas para facilitar a interpretação do cenário legislativo.
+
+## Ranking de Parlamentares
+
+Exibe a atuação de parlamentares com proposições relacionadas à proteção de crianças e adolescentes.
+
+## Ranking de Partidos
+
+Apresenta a participação dos partidos políticos nas proposições monitoradas.
+
+---
+
+# Objetivos
+
+O ProtectKids busca:
+
+- Centralizar informações legislativas sobre proteção de crianças e adolescentes;
+- Facilitar a consulta e análise de proposições da Câmara dos Deputados e do Senado Federal;
+- Apoiar a identificação de padrões e tendências legislativas;
+- Organizar proposições por categorias temáticas;
+- Disponibilizar uma base de dados útil para pesquisa, acompanhamento social e transparência pública;
+- Auxiliar organizações, pesquisadores e cidadãos interessados na proteção infantojuvenil.
+
+---
+
+# Tecnologias Utilizadas
+
+O ProtectKids utiliza uma arquitetura baseada em serviços conteinerizados, promovendo a separação entre **backend**, **frontend** e **banco de dados**.
+
+| Camada | Tecnologia |
+|---------|------------|
+| **Backend** | Python, FastAPI e SQLModel |
+| **Banco de Dados** | PostgreSQL |
+| **Frontend** | React + Vite |
+| **Processamento de PDFs** | PyMuPDF |
+| **Processamento de Linguagem Natural** | spaCy (modelo para português) |
+| **Infraestrutura** | Docker, Docker Compose e GitHub Actions |
+
+---
+
+# Fontes de Dados
+
+As informações disponibilizadas pelo ProtectKids são obtidas a partir de fontes oficiais do Poder Legislativo Federal:
+
+-  Câmara dos Deputados;
+-  Senado Federal.
+
+Essas fontes fornecem dados sobre:
+
+- Proposições legislativas;
+- Autores;
+- Ementas;
+- Textos integrais;
+- Tramitações.
+
+---
+
+# Público-Alvo
+
+O ProtectKids foi desenvolvido para atender diferentes perfis de usuários interessados no acompanhamento legislativo da proteção infantojuvenil, tais como:
+
+-  Pesquisadores;
+-  Estudantes;
+-  Jornalistas;
+-  Organizações da sociedade civil;
+-  Gestores públicos;
+-  Profissionais da área jurídica;
+-  Cidadãos interessados em transparência legislativa.

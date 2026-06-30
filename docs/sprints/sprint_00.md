@@ -1,0 +1,3 @@
+## Capacitação Técnica da Equipe
+
+Antes do início do desenvolvimento das funcionalidades do ProtectKids, a equipe realizou uma sprint de estudos destinada ao aprofundamento nas tecnologias que compõem a solução. As issues desta Sprint 00 envolveram pesquisas, testes e familiarização com frameworks, bibliotecas e ferramentas de infraestrutura, estabelecendo uma base sólida para as próximas sprints de desenvolvimento.

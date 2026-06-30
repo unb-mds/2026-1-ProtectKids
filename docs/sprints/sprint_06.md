@@ -1,0 +1,102 @@
+# Sprint 06 - Release 1 (R1)
+
+## Objetivo
+
+A Sprint 06 marcou o encerramento do ciclo de desenvolvimento da **Release 1 (R1)** do **ProtectKids**. O principal objetivo desta iteração foi consolidar as funcionalidades essenciais do sistema, integrando o pipeline de Processamento de Linguagem Natural (NLP) ao processo de extração de dados, estruturando os recursos analíticos do backend e finalizando as principais interfaces do frontend.
+
+Além da implementação das funcionalidades previstas, esta sprint concentrou esforços na estabilização da aplicação, realização de ajustes na arquitetura, fortalecimento dos processos de integração contínua e refinamento da documentação técnica, preparando o projeto para sua primeira entrega oficial.
+
+---
+
+## Entregas Realizadas
+
+### Backend, Banco de Dados e Processamento de Linguagem Natural
+
+* Integração da extração de arquivos PDF ao pipeline de classificação utilizando **Processamento de Linguagem Natural (NLP)**;
+* Implementação do motor de classificação das proposições legislativas diretamente no crawler;
+* Atualização da estrutura do banco de dados para suportar os novos atributos utilizados pelo NLP;
+* Correção de inconsistências nas tabelas e ajustes na variável `id_proposicao` e na lógica de agrupamento dos dados;
+* Criação das rotas analíticas para geração dos rankings de parlamentares;
+* Implementação dos filtros utilizados pelo dashboard analítico;
+* Atualização do arquivo `requirements.txt` com as novas dependências do projeto;
+* Remoção de rotas de testes obsoletas do backend.
+
+### Frontend
+
+* Implementação do roteamento dinâmico da aplicação;
+* Desenvolvimento das páginas **Sobre** e **Detalhes da Lei**;
+* Integração dos filtros de pesquisa e das tabelas de rankings ao frontend;
+* Ajustes na interface, incluindo:
+
+  * atualização da paleta de cores conforme o protótipo do Figma;
+  * implementação do rodapé da aplicação;
+  * exibição do autor das proposições;
+  * remoção de estilos globais que interferiam na renderização do site.
+
+### DevOps e Documentação
+
+* Configuração da execução automática dos testes utilizando **GitHub Actions**;
+* Correções na documentação gerada pelo **MkDocs**;
+* Inclusão do Diagrama C4 na documentação oficial;
+* Ajustes no envio e renderização das imagens da arquitetura;
+* Atualização do `.gitignore`, adicionando a pasta `venv` ao controle de exclusão de arquivos.
+
+---
+
+## Issues da Sprint
+
+| Issue | Descrição                                         | Status      |
+| ----- | ------------------------------------------------- | ----------- |
+| #51   | Adicionar `/venv` ao `.gitignore`                 | ✅ Concluído |
+| #56   | Correções no banco de dados                       | ✅ Concluído |
+| #59   | Inclusão das colunas utilizadas pelo NLP          | ✅ Concluído |
+| #61   | Atualização do `requirements.txt`                 | ✅ Concluído |
+| #62   | Implementação do NLP no crawler                   | ✅ Concluído |
+| #64   | Implementação dos filtros do dashboard no backend | ✅ Concluído |
+| #66   | Implementação das interfaces do frontend          | ✅ Concluído |
+
+### Pull Requests Relacionadas
+
+* PR #53 — Atualização do `.gitignore` e organização da documentação;
+* PR #54 — Rotas de ranking dos parlamentares;
+* PR #55 — Remoção de rotas de teste do banco de dados;
+* PR #57 — Correção da lógica de agrupamento e `id_proposicao`;
+* PR #58 — Configuração dos testes automatizados via GitHub Actions;
+* PR #60 — Correções estruturais no banco de dados;
+* PR #63 — Integração da extração de PDFs e classificação por NLP;
+* PR #65 — Finalização das requisições do pipeline de NLP;
+* PR #67 — Implementação das páginas "Sobre", "Detalhes da Lei" e roteamento dinâmico;
+* PR #68 — Integração dos filtros e rankings ao frontend;
+* PR #69 — Ajustes visuais da interface, footer e exibição dos autores;
+* PR #70 — Correções na documentação do MkDocs;
+* PR #71 — Remoção do background global do CSS;
+* PR #72 — Aplicação da paleta de cores baseada no protótipo do Figma;
+* PR #73 — Inclusão do Diagrama C4 na documentação;
+* PR #74 — Correção da renderização da imagem do Diagrama C4.
+
+---
+
+## Resultados Obtidos
+
+Ao final da Sprint 06, foram alcançados os seguintes resultados:
+
+* Pipeline completo de extração e classificação das proposições legislativas utilizando NLP;
+* Banco de dados atualizado para suportar as novas funcionalidades analíticas;
+* Backend preparado para disponibilizar rankings e filtros utilizados pelo dashboard;
+* Frontend estruturado com as principais páginas da aplicação e navegação dinâmica;
+* Interface alinhada ao protótipo de alta fidelidade desenvolvido no Figma;
+* Processo de testes automatizados configurado via GitHub Actions;
+* Documentação técnica revisada e atualizada;
+* Primeira versão funcional (**Release 1**) concluída.
+
+---
+
+## Conclusão
+
+A Sprint 06 representou o encerramento da primeira grande etapa de desenvolvimento do ProtectKids. A integração entre backend, frontend, banco de dados e processamento de linguagem natural resultou em uma versão funcional capaz de coletar, processar, classificar e apresentar informações legislativas relacionadas à proteção infantojuvenil.
+
+Além da consolidação das funcionalidades essenciais da plataforma, a equipe fortaleceu a infraestrutura do projeto com testes automatizados, documentação atualizada e melhorias na experiência do usuário, entregando uma **Release 1** consistente e preparada para servir de base para as próximas evoluções do sistema.
+
+---
+## Adendo
+Durante a Sprint 06, um dos integrantes da equipe precisou se desligar da disciplina, o que reduziu a capacidade de desenvolvimento disponível para as atividades de frontend. Como consequência, houve uma redistribuição das responsabilidades entre os demais membros, que assumiram as tarefas pendentes para assegurar a entrega da Release 1. Apesar da sobrecarga ocasionada, os objetivos planejados para a sprint foram concluídos com sucesso.

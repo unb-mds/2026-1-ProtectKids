@@ -12,20 +12,44 @@ function App() {
       <div className="min-h-screen flex flex-col font-sans">
         
         {/* NAVBAR */}
-        <nav className="bg-pk-red text-white py-4 px-8 flex justify-between items-center shadow-md">
-          <div className="font-bold text-2xl tracking-tighter">
-            PROTECT<span className="text-gray-300">KIDS</span>
-            <p className="text-xs font-normal text-gray-300 uppercase tracking-widest mt-1">
-              Monitoramento Legislativo
-            </p>
-          </div>
-          <div className="space-x-6 text-sm font-semibold">
-            <Link to="/" className="hover:text-gray-300 transition">INÍCIO</Link>
-            <Link to="/leis" className="hover:text-gray-300 transition">TODAS AS LEIS</Link>
-            <Link to="/estatisticas" className="hover:text-gray-300 transition">ESTATÍSTICAS</Link>
-            <Link to="/sobre" className="hover:text-gray-300 transition">SOBRE O PROJETO</Link>
-          </div>
-        </nav>
+        <header className="bg-[#2563EB] text-white px-6 py-5 flex flex-col md:flex-row md:items-center md:justify-between font-serif select-none">
+      
+      <div className="flex flex-col gap-2">
+       
+        <div className="flex items-center gap-2 font-sans">
+          <span className="text-3xl sm:text-4xl font-bold tracking-wide uppercase">
+            Protect
+          </span>
+          <span className="bg-[#FBBF24] text-[#1E293B] text-2xl sm:text-3xl font-black px-3 py-1 rounded-md uppercase tracking-wider">
+            Kids
+          </span>
+        </div>
+        <p className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#1E293B]/80 max-w-xs leading-tight">
+          Monitoramento Legislativo para Proteção Infantil
+        </p>
+      </div>
+
+      
+      <nav className="mt-5 md:mt-0">
+        <ul className="flex flex-wrap items-center gap-6 sm:gap-8 text-sm sm:text-base tracking-wide font-medium">
+          <li>
+            <Link to="/" className="uppercase hover:opacity-80 transition-opacity">
+              Início
+            </Link>
+          </li>
+          <li>
+            <Link to="/leis" className="uppercase hover:opacity-80 transition-opacity">
+              Todas as Leis
+            </Link>
+          </li>
+          <li>
+            <Link to="/sobre" className="uppercase hover:opacity-80 transition-opacity">
+              Sobre o Projeto
+            </Link>
+          </li>
+        </ul>
+      </nav>
+    </header>
 
         {/* CONTEÚDO DINÂMICO */}
         <main className="flex-grow">

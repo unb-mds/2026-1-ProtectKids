@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     && pip install --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt \
+    && python -m spacy download pt_core_news_sm \
     && python -c "import spacy; spacy.load('pt_core_news_sm'); print('Modelo pt_core_news_sm carregado com sucesso')" \
     && apt-get purge -y --auto-remove gcc \
     && rm -rf /var/lib/apt/lists/*

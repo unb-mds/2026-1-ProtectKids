@@ -43,3 +43,7 @@ backend/venv/
 venv/
 *.sqlite3
 *.db
+
+# Relatórios de Cobertura de Testes
+htmlcov/
+.coverage
