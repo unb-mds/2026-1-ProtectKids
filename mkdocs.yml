@@ -6,7 +6,7 @@ nav:
   - Visão Geral: visao-geral.md
   - Requisitos: requisitos.md
   - Arquitetura: arquitetura.md
-  - Estratégia de Testes: estudos/estrategia_testes.md
+  - Estratégia de Testes: estudos/testes/estrategia_testes.md
   - Sprints:
       - Histórico de Sprints: sprints/index.md
       - Detalhes das Sprints:
@@ -23,6 +23,7 @@ nav:
           - Sprint 10: sprints/sprint_10.md
   - Infraestrutura:
       - Docker Compose: infra/docker-compose.md
+      - CI/CD (GitHub Actions): infra/ci-cd.md
   
 
 theme:
