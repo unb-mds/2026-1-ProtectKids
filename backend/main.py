@@ -1,5 +1,8 @@
 from typing import Optional, List, Annotated
 from datetime import datetime
+from functools import lru_cache
+import os
+
 from fastapi import FastAPI, Depends, HTTPException, Query
 from pydantic import BaseModel
 from sqlmodel import SQLModel, Session, select, func
@@ -10,8 +13,32 @@ import spacy
 from collections import Counter
 from contextlib import asynccontextmanager
 
+def carregar_cors_origins() -> list[str]:
+    """
+    Lê as origens permitidas do CORS pela variável CORS_ORIGINS.
 
-nlp = spacy.load("pt_core_news_sm")
+    Exemplo no .env:
+    CORS_ORIGINS=http://localhost:5173,https://protectkids.com.br
+    """
+    origins = os.getenv(
+        "CORS_ORIGINS",
+        "http://localhost:3000,http://localhost:5173",
+    )
+
+    return [
+        origin.strip()
+        for origin in origins.split(",")
+        if origin.strip()
+    ]
+@lru_cache
+def get_nlp():
+    """
+    Carrega o spaCy somente quando a rota de nuvem de palavras for chamada.
+
+    Isso evita que a API demore mais para subir e reduz risco em deploy barato.
+    """
+    modelo = os.getenv("SPACY_MODEL", "pt_core_news_sm")
+    return spacy.load(modelo)
 
 @asynccontextmanager
 async def lifespan(_app: FastAPI):
@@ -20,12 +47,11 @@ async def lifespan(_app: FastAPI):
 
 app = FastAPI(title="ProtectKids API", lifespan=lifespan)
 
-# CORS = TRAVA DE SEGURANÇA 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:5173"], # porta do Vite (5173) adicionada por garantia
+    allow_origins=carregar_cors_origins(),
     allow_credentials=True,
-    allow_methods=["*"], 
+    allow_methods=["*"],
     allow_headers=["*"],
 )
 
@@ -604,7 +630,7 @@ def get_nuvem_palavras(
     if not texto_completo.strip():
         return []
 
-    doc = nlp(texto_completo)
+    doc = get_nlp()(texto_completo)
 
     ruidos_legislativos = {
         "lei", "alterar", "altera", "artigo", "inciso",

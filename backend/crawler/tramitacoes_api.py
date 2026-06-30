@@ -81,35 +81,33 @@ def fetch_tramitacoes_brutas(id_camara_numerico: str) -> list[dict]:
         return []
 
 def processar_tramitacoes_individuais(id_externo: str) -> list[Tramitacao]:
-    """Extrai, transforma e retorna as tramitações prontas para salvar."""
-    # Extrai só o número do ID (tira o 'camara-')
-    id_numerico = id_externo.split("-")[1] 
-    
+    id_numerico = id_externo.split("-")[1]
     dados_brutos = fetch_tramitacoes_brutas(id_numerico)
     tramitacoes_processadas = []
-    
+
     for dado in dados_brutos:
         data_str = dado.get("dataHora")
-        data_hora_formatada = datetime.now() # Fallback de segurança
-        
-    if data_str:
-        try:
-            data_hora_formatada = datetime.fromisoformat(str(data_str))
-        except ValueError:
-            logger.warning(
-                "Data de tramitação inválida para %s: %s",
-                id_externo,
-                data_str,
-            )
+        data_hora_formatada = datetime.now()
+
+        if data_str:
+            try:
+                data_hora_formatada = datetime.fromisoformat(str(data_str))
+            except ValueError:
+                logger.warning(
+                    "Data de tramitação inválida para %s: %s",
+                    id_externo,
+                    data_str,
+                )
 
         nova_tramitacao = Tramitacao(
             id_proposicao_externo=id_externo,
             data_hora=data_hora_formatada,
             orgao=dado.get("siglaOrgao", "Não Identificado"),
-            descricao=dado.get("descricaoTramitacao", "Sem descrição")
+            descricao=dado.get("descricaoTramitacao", "Sem descrição"),
         )
+
         tramitacoes_processadas.append(nova_tramitacao)
-        
+
     return tramitacoes_processadas
 
 def run_pipeline_tramitacoes():

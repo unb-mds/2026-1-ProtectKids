@@ -2,17 +2,22 @@ import os
 from sqlmodel import create_engine, Session
 from dotenv import load_dotenv
 
-# Pega a URL de conexão do ambiente. 
 load_dotenv()
+
 DATABASE_URL = os.getenv(
-    "DATABASE_URL", 
-    "postgresql://usuario:senha@db:5432/legislativo_db" 
+    "DATABASE_URL",
+    "postgresql://protectkids_user:protectkids_password@db:5432/protectkids_db",
 )
 
-# Cria a engine do banco de dados. echo=True faz o SQL aparecer no terminal
-engine = create_engine(DATABASE_URL, echo=True)
+DEBUG_SQL = os.getenv("DEBUG_SQL", "false").strip().lower() == "true"
 
-# Função geradora de sessões para ser injetada nas rotas do FastAPI
+engine = create_engine(
+    DATABASE_URL,
+    echo=DEBUG_SQL,
+    pool_pre_ping=True,
+)
+
+
 def get_session():
     with Session(engine) as session:
         yield session
