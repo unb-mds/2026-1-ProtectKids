@@ -1,6 +1,15 @@
 {
-    "last_updated": "2026-06-30T21:50:38.625505Z",
+    "last_updated": "2026-06-30T21:52:08.616273Z",
     "commits": [
+        {
+            "hash": "9bac810e441493c835150fc8d5e05fb510b248cf",
+            "date": "2026-06-30T18:51:44-03:00",
+            "message": "Merge pull request #173 from unb-mds/feature/testes-issue-5",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
         {
             "hash": "e33d4066c894c699166f6dd78b12fe44590e5441",
             "date": "2026-06-30T18:50:15-03:00",
@@ -9,6 +18,15 @@
             "insertions": 0,
             "deletions": 0,
             "total_diff": 0
+        },
+        {
+            "hash": "6be8180f6c235b45db2d64c19cc2a5acd2310404",
+            "date": "2026-06-30T18:48:26-03:00",
+            "message": "test: adiciona testes da Issue 5 - endpoints de analytics",
+            "is_conventional": true,
+            "insertions": 172,
+            "deletions": 0,
+            "total_diff": 172
         },
         {
             "hash": "09a3af2b283d3a5e57319b4f3064bb2b6643b05a",
@@ -2625,10 +2643,10 @@
         {
             "number": 168,
             "title": "[QA]: Implementar testes para endpoints de Analytics",
-            "state": "open",
+            "state": "closed",
             "created_at": "2026-06-30T20:33:15Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
+            "closed_at": "2026-06-30T21:51:45Z",
+            "resolution_time_hours": 1.31,
             "char_count": 623
         },
         {
@@ -3120,10 +3138,10 @@
     ],
     "autores": {
         "marispmorais": {
-            "commits": 28,
-            "insercoes": 2933206,
+            "commits": 30,
+            "insercoes": 2933378,
             "delecoes": 145,
-            "total_linhas": 2933351
+            "total_linhas": 2933523
         },
         "augustogmedeiros": {
             "commits": 148,
