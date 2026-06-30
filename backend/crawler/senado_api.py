@@ -2,7 +2,10 @@
 crawler/senado_api.py
 
 Pipeline ETL — Senado Federal → PostgreSQL
+Busca matérias legislativas relacionadas à proteção infantil no ambiente digital,
+baixa os PDFs, extrai o texto integral, classifica via NLP e salva no banco.
 """
+
 import sys
 import os
 import logging
@@ -10,46 +13,60 @@ from typing import Optional
 from datetime import datetime
 from sqlmodel import Session, select, SQLModel
 import concurrent.futures
+import hashlib
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from database import engine
 from models import Proposicao, Parlamentar
-import hashlib
 
 from crawler.camara_api import (
     KEYWORDS,
     TEMA_PADRAO,
-    CATEGORIA_PADRAO,
+    esta_no_escopo_protectkids,
     classificar_com_ia,
     save_proposicoes,
     extrair_texto_pdf,
     fazer_requisicao_com_retry,
-    contem_indicador_protecao_infantil,
 )
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+)
+
 logger = logging.getLogger(__name__)
 
 BASE_URL_SENADO = "https://legis.senado.leg.br/dadosabertos/materia/pesquisa/lista"
-SIGLAS_SENADO_COLETA = ["PL", "PLS", "PLC", "PEC"]
-ANO_COLETA_AMPLA_SENADO = int(
-    os.getenv("ANO_COLETA_AMPLA_SENADO", datetime.now().year)
-)
+
+ANO_INICIO_COLETA = int(os.getenv("ANO_INICIO_COLETA", 2015))
+ANO_FIM_COLETA = int(os.getenv("ANO_FIM_COLETA", datetime.now().year))
+
 
 def find_value(obj, target_key: str):
-    """Busca recursivamente por uma chave no JSON, ignorando maiúsculas/minúsculas e aninhamentos."""
+    """
+    Busca recursivamente por uma chave no JSON,
+    ignorando maiúsculas/minúsculas e estruturas aninhadas.
+    """
     if isinstance(obj, dict):
-        for k, v in obj.items():
-            if k.lower() == target_key.lower():
-                return v
-            res = find_value(v, target_key)
-            if res is not None:
-                return res
+        for chave, valor in obj.items():
+            if chave.lower() == target_key.lower():
+                return valor
+
+            resultado = find_value(valor, target_key)
+
+            if resultado is not None:
+                return resultado
+
     elif isinstance(obj, list):
         for item in obj:
-            res = find_value(item, target_key)
-            if res is not None:
-                return res
+            resultado = find_value(item, target_key)
+
+            if resultado is not None:
+                return resultado
+
     return None
+
 
 def extrair_materias_resposta_senado(dados: dict) -> list[dict]:
     """
@@ -73,69 +90,26 @@ def extrair_materias_resposta_senado(dados: dict) -> list[dict]:
 
     return materias
 
+
 def fetch_proposicoes_senado(keyword: str) -> list[dict]:
     """
-    Consulta a API do Senado buscando matérias pela palavra-chave informada.
-    """
-    params = {"palavraChave": keyword}
-    headers = {"Accept": "application/json"}
+    Consulta a API do Senado por palavra-chave, varrendo ano a ano.
 
-    logger.info("Buscando no Senado pela keyword: '%s'", keyword)
-
-    resp = fazer_requisicao_com_retry(
-        BASE_URL_SENADO,
-        params=params,
-        headers=headers,
-        timeout=30,
-    )
-
-    if resp is None:
-        logger.error("Falha ao buscar matérias no Senado para '%s'.", keyword)
-        return []
-
-    try:
-        dados = resp.json()
-    except ValueError:
-        logger.error("Resposta inválida da API do Senado para '%s'.", keyword)
-        return []
-
-    materias = extrair_materias_resposta_senado(dados)
-
-    if not materias:
-        logger.info("Nenhuma matéria encontrada no Senado para '%s'.", keyword)
-        return []
-
-    for materia in materias:
-        materia["_keyword_origem"] = keyword
-
-    logger.info(
-        "Encontradas %s matérias no Senado para '%s'.",
-        len(materias),
-        keyword,
-    )
-
-    return materias
-
-def fetch_proposicoes_senado_por_ano(ano: int) -> list[dict]:
-    """
-    Busca matérias do Senado por ano e sigla, sem depender de palavra-chave.
-
-    Essa coleta ampla atende ao critério de aceitação da ETL:
-    matérias com ementa genérica também devem ser capturadas,
-    ter o texto integral baixado e ser classificadas pelo conteúdo completo.
+    Essa estratégia evita a coleta ampla por ano, que gerava falsos positivos,
+    mas mantém cobertura histórica desde ANO_INICIO_COLETA.
     """
     resultados: list[dict] = []
     headers = {"Accept": "application/json"}
 
-    for sigla in SIGLAS_SENADO_COLETA:
+    for ano in range(ANO_FIM_COLETA, ANO_INICIO_COLETA - 1, -1):
         params = {
-            "sigla": sigla,
+            "palavraChave": keyword,
             "ano": ano,
         }
 
         logger.info(
-            "Buscando matérias amplas no Senado | sigla=%s | ano=%s",
-            sigla,
+            "Buscando Senado | keyword='%s' | ano=%s",
+            keyword,
             ano,
         )
 
@@ -148,8 +122,8 @@ def fetch_proposicoes_senado_por_ano(ano: int) -> list[dict]:
 
         if resp is None:
             logger.warning(
-                "Falha na coleta ampla do Senado para sigla=%s, ano=%s.",
-                sigla,
+                "Falha ao buscar Senado para keyword='%s', ano=%s.",
+                keyword,
                 ano,
             )
             continue
@@ -158,8 +132,8 @@ def fetch_proposicoes_senado_por_ano(ano: int) -> list[dict]:
             dados = resp.json()
         except ValueError:
             logger.warning(
-                "Resposta inválida na coleta ampla do Senado para sigla=%s, ano=%s.",
-                sigla,
+                "Resposta inválida do Senado para keyword='%s', ano=%s.",
+                keyword,
                 ano,
             )
             continue
@@ -167,39 +141,33 @@ def fetch_proposicoes_senado_por_ano(ano: int) -> list[dict]:
         materias = extrair_materias_resposta_senado(dados)
 
         if not materias:
-            logger.info(
-                "Nenhuma matéria ampla encontrada no Senado para sigla=%s, ano=%s.",
-                sigla,
-                ano,
-            )
             continue
 
         for materia in materias:
-            materia["_keyword_origem"] = "Coleta ampla por ano"
+            materia["_keyword_origem"] = keyword
 
         resultados.extend(materias)
 
         logger.info(
-            "%s matérias encontradas na coleta ampla do Senado para sigla=%s, ano=%s.",
+            "%s matérias encontradas no Senado | keyword='%s' | ano=%s.",
             len(materias),
-            sigla,
+            keyword,
             ano,
         )
 
     return resultados
 
+
 def fetch_todas_materias_senado() -> list[dict]:
     """
-    Executa duas estratégias de extração no Senado:
+    Executa a extração principal do Senado usando apenas palavras-chave + ano.
 
-    1. Busca por palavras-chave;
-    2. Busca ampla por ano e sigla.
-
-    Remove duplicatas pelo Código da matéria.
+    A coleta ampla por ano foi removida porque trazia matérias fora do escopo
+    do ProtectKids, como temas digitais genéricos sem relação com crianças
+    ou adolescentes.
     """
     todas: dict[str, dict] = {}
 
-    # Estratégia 1: busca por keywords
     for keyword in KEYWORDS:
         materias = fetch_proposicoes_senado(keyword)
 
@@ -209,21 +177,13 @@ def fetch_todas_materias_senado() -> list[dict]:
             if codigo and str(codigo) not in todas:
                 todas[str(codigo)] = materia
 
-    # Estratégia 2: coleta ampla
-    materias_amplas = fetch_proposicoes_senado_por_ano(ANO_COLETA_AMPLA_SENADO)
-
-    for materia in materias_amplas:
-        codigo = find_value(materia, "Codigo")
-
-        if codigo and str(codigo) not in todas:
-            todas[str(codigo)] = materia
-
     logger.info(
-        "Total de matérias únicas do Senado após keyword + coleta ampla: %s",
+        "Total de matérias únicas do Senado encontradas por palavras-chave: %s",
         len(todas),
     )
 
     return list(todas.values())
+
 
 def gerar_id_autor_senado(nome_autor: str) -> int:
     """
@@ -243,20 +203,31 @@ def gerar_id_autor_senado(nome_autor: str) -> int:
 
     return 1_000_000_000 + (valor_hash % 900_000_000)
 
+
 def transform_materia_senado(materia_bruta: dict) -> Optional[tuple]:
-    """O Adaptador resiliente atualizado com as chaves reais do Senado."""
+    """
+    Transforma uma matéria bruta do Senado em Proposicao + Parlamentar.
+    """
     codigo_materia = find_value(materia_bruta, "Codigo")
+
     if not codigo_materia:
         return None
-        
+
     id_externo_formatado = f"senado-{codigo_materia}"
-    
+
     sigla = find_value(materia_bruta, "Sigla") or "PL"
     numero = find_value(materia_bruta, "Numero") or 0
-    ano = find_value(materia_bruta, "Ano") or 2026
-    
+    ano = find_value(materia_bruta, "Ano") or ANO_FIM_COLETA
+
     ementa = find_value(materia_bruta, "Ementa") or "Sem ementa disponível"
     ementa = str(ementa).strip()
+
+    if not ementa or ementa == "Sem ementa disponível":
+        logger.info(
+            "Matéria Senado %s descartada: sem ementa disponível.",
+            id_externo_formatado,
+        )
+        return None
 
     autor_string = find_value(materia_bruta, "Autor") or "Desconhecido"
     nome_autor = autor_string
@@ -265,54 +236,66 @@ def transform_materia_senado(materia_bruta: dict) -> Optional[tuple]:
 
     if "(" in autor_string and ")" in autor_string:
         partes = autor_string.split("(")
-        nome_autor = partes[0].strip() 
+        nome_autor = partes[0].strip()
 
         partido_uf = partes[1].replace(")", "").split("/")
+
         if len(partido_uf) == 2:
             partido = partido_uf[0].strip()
             uf = partido_uf[1].strip()
 
-    id_autor = gerar_id_autor_senado(nome_autor) 
-    
+    id_autor = gerar_id_autor_senado(nome_autor)
+
     parlamentar = Parlamentar(
         id_parlamentar=id_autor,
         nome=nome_autor,
         partido=partido,
-        uf=uf
+        uf=uf,
     )
-        
+
     data_apres = None
     data_str = find_value(materia_bruta, "Data")
+
     if data_str:
         try:
             data_apres = datetime.fromisoformat(str(data_str)[:10]).date()
         except ValueError:
-            logger.warning("Data de apresentação inválida no Senado: %s", data_str)
-        
+            logger.warning(
+                "Data de apresentação inválida no Senado: %s",
+                data_str,
+            )
+
     subtema_origem = materia_bruta.get("_keyword_origem", "Geral")
-    url_pdf_real = f"https://legis.senado.leg.br/sdleg-getter/documento/download/materia/{codigo_materia}"
-    
-    texto_pdf = extrair_texto_pdf(url_pdf_real)
+
+    url_pdf_real = (
+        "https://legis.senado.leg.br/sdleg-getter/documento/download/materia/"
+        f"{codigo_materia}"
+    )
+
+    texto_pdf = extrair_texto_pdf(url_pdf_real) or ""
 
     if not texto_pdf:
         texto_pdf = (
             "O texto integral desta matéria está indisponível para extração digital.\n\n"
             f"Ementa Original: {ementa}"
         )
-    classificacao_ia = classificar_com_ia(texto=texto_pdf, ementa=ementa)
-    foi_coleta_ampla = subtema_origem == "Coleta ampla por ano"
 
-    if (
-        foi_coleta_ampla
-        and classificacao_ia == CATEGORIA_PADRAO
-        and not contem_indicador_protecao_infantil(texto_pdf, ementa)
+    if not esta_no_escopo_protectkids(
+        texto=texto_pdf,
+        ementa=ementa,
     ):
         logger.info(
-            "Matéria Senado %s descartada: coleta ampla sem indício de proteção infantil.",
+            "Matéria Senado %s descartada: fora do escopo ProtectKids. Ementa: %s",
             id_externo_formatado,
+            ementa[:180],
         )
         return None
-    
+
+    classificacao_ia = classificar_com_ia(
+        texto=texto_pdf,
+        ementa=ementa,
+    )
+
     proposicao = Proposicao(
         id_externo=id_externo_formatado,
         origem="Senado",
@@ -327,21 +310,26 @@ def transform_materia_senado(materia_bruta: dict) -> Optional[tuple]:
         subtema=subtema_origem,
         texto_integral=texto_pdf,
         classificacao_nlp=classificacao_ia,
-)
-    
+    )
+
     return (proposicao, parlamentar)
+
 
 def obter_ids_existentes(origem_alvo: str) -> set:
     """
-    Busca no banco todos os IDs externos já cadastrados para evitar 
-    o reprocessamento de NLP.
+    Busca no banco todos os IDs externos já cadastrados para evitar
+    reprocessamento de NLP.
     """
     with Session(engine) as session:
-        statement = select(Proposicao.id_externo).where(Proposicao.origem == origem_alvo)
+        statement = select(Proposicao.id_externo).where(
+            Proposicao.origem == origem_alvo
+        )
         resultados = session.exec(statement).all()
+
         return set(resultados)
 
-def run_pipeline_senado():
+
+def run_pipeline_senado() -> None:
     logger.info("=== Iniciando pipeline ETL do Senado Inteligente ===")
     SQLModel.metadata.create_all(engine)
 
@@ -351,15 +339,14 @@ def run_pipeline_senado():
         len(ids_existentes),
     )
 
-    tuplas = []
+    tuplas: list[tuple] = []
     ids_processados_nesta_run = set()
     materias_ineditas = []
 
-        # 1. EXTRACT: coleta por keyword + coleta ampla por ano
     materias_brutas = fetch_todas_materias_senado()
 
-    for mat in materias_brutas:
-        codigo = find_value(mat, "Codigo")
+    for materia in materias_brutas:
+        codigo = find_value(materia, "Codigo")
 
         if not codigo:
             continue
@@ -373,7 +360,7 @@ def run_pipeline_senado():
             continue
 
         ids_processados_nesta_run.add(id_externo_formatado)
-        materias_ineditas.append(mat)
+        materias_ineditas.append(materia)
 
     if not materias_ineditas:
         logger.info(
@@ -386,11 +373,10 @@ def run_pipeline_senado():
         len(materias_ineditas),
     )
 
-    # Dispara downloads e processamento em paralelo
     with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
         futuros = {
-            executor.submit(transform_materia_senado, mat): mat
-            for mat in materias_ineditas
+            executor.submit(transform_materia_senado, materia): materia
+            for materia in materias_ineditas
         }
 
         for futuro in concurrent.futures.as_completed(futuros):
@@ -401,7 +387,7 @@ def run_pipeline_senado():
                 resultado = futuro.result()
             except Exception:
                 logger.exception(
-                    "Erro ao processar matéria do Senado %s em paralelo: %s",
+                    "Erro ao processar matéria do Senado %s em paralelo.",
                     codigo,
                 )
                 continue
@@ -411,6 +397,7 @@ def run_pipeline_senado():
 
     if tuplas:
         total_salvo = save_proposicoes(tuplas)
+
         logger.info(
             "=== Pipeline do Senado concluído. %s registros normalizados salvos. ===",
             total_salvo,
@@ -419,6 +406,7 @@ def run_pipeline_senado():
         logger.info(
             "=== Pipeline do Senado concluído. Nenhuma matéria nova processada. ==="
         )
-        
+
+
 if __name__ == "__main__":
     run_pipeline_senado()
