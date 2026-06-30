@@ -1151,12 +1151,13 @@
 <h2 id="temas-principais">Temas Principais<a class="headerlink" href="#temas-principais" title="Permanent link">&para;</a></h2>
 <p>Os temas monitorados pela plataforma compreendem as principais dimensões da proteção de crianças e adolescentes no ambiente digital:</p>
 <ul>
-<li><strong>Cyberbullying:</strong> proposições que tratam de assédio, perseguição ou humilhação de menores em ambientes virtuais.</li>
-<li><strong>Proteção de dados de menores:</strong> regulações sobre coleta, armazenamento e uso de dados pessoais de crianças e adolescentes por plataformas digitais.</li>
-<li><strong>Exploração sexual online:</strong> projetos que buscam combater a distribuição de conteúdo abusivo, aliciamento e outras formas de violência sexual mediadas por tecnologia.</li>
-<li><strong>Controle parental:</strong> mecanismos legais ou técnicos que habilitam pais e responsáveis a monitorar ou restringir o acesso de menores a conteúdos digitais.</li>
-<li><strong>Regulação de plataformas digitais:</strong> obrigações impostas a redes sociais, aplicativos e outros serviços quanto à proteção de usuários menores de idade.</li>
-<li><strong>Exposição a conteúdo nocivo:</strong> iniciativas legislativas que visam limitar ou sinalizar conteúdos violentos, de ódio ou inadequados para o público infanto-juvenil.</li>
+<li><strong>Cyberbullying e Crimes Virtuais:</strong> proposições que tratam de assédio, perseguição ou humilhação de menores em ambientes virtuais.</li>
+<li><strong>Adoção e Orfanatos:</strong> regulações sobre coleta, armazenamento e uso de dados pessoais de crianças e adolescentes por plataformas digitais.</li>
+<li><strong>Violência e Abuso:</strong> projetos que buscam combater a distribuição de conteúdo abusivo, aliciamento e outras formas de violência sexual mediadas por tecnologia.</li>
+<li><strong>Educação e Cultura:</strong> proposições voltadas à promoção da educação digital, da cidadania online e da conscientização de crianças, adolescentes, famílias e educadores sobre o uso seguro, ético e responsável das tecnologias e plataformas digitais.</li>
+<li><strong>Proteção Geral:</strong> projetos que estabelecem diretrizes, responsabilidades e mecanismos de proteção para garantir a segurança, o desenvolvimento saudável e os direitos de crianças e adolescentes no ambiente digital.</li>
+<li><strong>Simbólico/Ruído:</strong> iniciativas legislativas de caráter predominantemente declaratório, comemorativo ou de baixa efetividade prática, bem como propostas que possuem relação indireta ou limitada com a proteção infanto-juvenil no ambiente digital.</li>
+<li><strong>Articulação Estratégica:</strong> proposições que promovem a integração entre órgãos públicos, entidades privadas, organizações da sociedade civil e instituições de ensino para fortalecer ações coordenadas de proteção de crianças e adolescentes no ambiente digital.</li>
 </ul>
 <hr />
 <h1 id="personas">Personas<a class="headerlink" href="#personas" title="Permanent link">&para;</a></h1>
@@ -1218,15 +1219,14 @@
 <h2 id="must-have">Must Have<a class="headerlink" href="#must-have" title="Permanent link">&para;</a></h2>
 <p><strong>RF01 — Extração de metadados via API:</strong> O sistema deve consumir a API de Dados Abertos da Câmara dos Deputados e do Senado Federalpara obter os metadados de cada proposição, incluindo título, ementa, autor, partido, data de apresentação e situação atual.</p>
 <p><strong>RF02 — Obtenção do link do inteiro teor:</strong> Para cada proposição recuperada, o sistema deve identificar e armazenar o link para o documento completo (PDF ou TXT) disponível nos servidores da Câmara ou Senado.</p>
-<p><strong>RF03 — Extração do texto completo:</strong> O sistema deve realizar o download e a extração do conteúdo textual de documentos em formato PDF e TXT, tornando-os disponíveis para processamento.</p>
+<p><strong>RF03 — Extração do texto completo:</strong> O sistema deve realizar o download e a extração do conteúdo textual de documentos em formato PDF, tornando-os disponíveis para processamento.</p>
 <p><strong>RF04 — Classificação por subtema via NLP:</strong> O sistema deve aplicar um modelo de processamento de linguagem natural para classificar cada proposição em um ou mais subtemas predefinidos, com base no conteúdo do texto completo.</p>
 <p><strong>RF05 — Painel com volume por subtema:</strong> O sistema deve exibir um painel interativo que mostre a distribuição de proposições por subtema, com suporte a filtros por período.</p>
 <p><strong>RF06 — Ranking de parlamentares:</strong> O sistema deve exibir um ranking de parlamentares (deputados e senadores) ordenado pelo número de proposições apresentadas, filtrável por subtema.</p>
 <p><strong>RF07 — Ranking de partidos:</strong> O sistema deve exibir um ranking de partidos políticos ordenado pelo volume agregado de proposições relacionadas aos temas monitorados, filtrável por subtema.</p>
-<p><strong>RF07A - Identificação da Casa Legislativa:</strong> O sistema deve registrar a origem de cada proposição (Câmara ou Senado) e permitir filtragem por casa legislativa.</p>
+<p><strong>RF08 - Identificação da Casa Legislativa:</strong> O sistema deve registrar a origem de cada proposição (Câmara ou Senado) e permitir filtragem por casa legislativa.</p>
 <hr />
 <h2 id="should-have">Should Have<a class="headerlink" href="#should-have" title="Permanent link">&para;</a></h2>
-<p><strong>RF08 — Gráfico de evolução temporal:</strong> O sistema deve apresentar uma visualização da evolução do volume de proposições ao longo dos anos, segmentada por subtema e comparável entre subtemas distintos.</p>
 <p><strong>RF09 — Filtro por subtema:</strong> Todos os painéis do painel devem suportar filtragem dinâmica por subtema, refletindo os resultados em tempo real nas visualizações exibidas.</p>
 <hr />
 <h2 id="could-have">Could Have<a class="headerlink" href="#could-have" title="Permanent link">&para;</a></h2>
@@ -1266,15 +1266,11 @@
 <hr />
 <h2 id="cenario-visualizacao-do-ranking-de-parlamentares">Cenário: Visualização do ranking de parlamentares<a class="headerlink" href="#cenario-visualizacao-do-ranking-de-parlamentares" title="Permanent link">&para;</a></h2>
 <p><strong>Dado que</strong> estou visualizando o painel da plataforma<br />
-<strong>Quando</strong> seleciono o subtema "Cyberbullying" no painel de parlamentares<br />
+<strong>Quando</strong> seleciono o subtema "Cyberbullying e Crimes Virtuais" no painel de parlamentares<br />
 <strong>Então</strong> o sistema deve exibir uma lista de deputados ordenada pelo número de proposições apresentadas sobre aquele subtema, com nome, partido e quantidade visíveis</p>
-<h2 id="cenario-analise-temporal-por-subtema">Cenário: Análise temporal por subtema<a class="headerlink" href="#cenario-analise-temporal-por-subtema" title="Permanent link">&para;</a></h2>
-<p><strong>Dado que</strong> estou visualizando o painel da plataforma<br />
-<strong>Quando</strong> seleciono um subtema no painel de evolução temporal<br />
-<strong>Então</strong> devo visualizar um gráfico com a distribuição anual de proposições classificadas naquele subtema, evidenciando tendências de crescimento ou queda ao longo do tempo</p>
 <h2 id="cenario-auditoria-de-proposicoes-antes-de-redigir-projeto">Cenário: Auditoria de proposições antes de redigir projeto<a class="headerlink" href="#cenario-auditoria-de-proposicoes-antes-de-redigir-projeto" title="Permanent link">&para;</a></h2>
 <p><strong>Dado que</strong> sou uma assessora legislativa e preciso verificar o que já foi proposto sobre "controle parental"<br />
-<strong>Quando</strong> aplico o filtro por subtema "Controle Parental" no painel de proposições<br />
+<strong>Quando</strong> aplico o filtro por subtema "Proteção Geral" no painel de proposições<br />
 <strong>Então</strong> o sistema deve exibir uma listagem completa das proposições classificadas naquele subtema, ordenada por data, com título, autor e situação atual de cada uma</p>
 <hr />
 <h1 id="arquitetura">Arquitetura<a class="headerlink" href="#arquitetura" title="Permanent link">&para;</a></h1>
@@ -1293,7 +1289,6 @@
 <ul>
 <li>Gráficos de volume de proposições por subtema</li>
 <li>Rankings de parlamentares e partidos, filtráveis por subtema</li>
-<li>Gráficos de evolução temporal com suporte a comparação entre subtemas</li>
 <li>Filtros combinados por período, tema, deputado e partido</li>
 </ul>
 <hr />
@@ -1308,7 +1303,7 @@
 <p>O painel do MVP apresentará as proposições classificadas por subtema, com visualização do volume por categoria, gráficos básicos de distribuição e o ranking de parlamentares e partidos mais ativos.</p>
 <h2 id="criterio-geral-de-aceitacao-do-mvp">Critério Geral de Aceitação do MVP<a class="headerlink" href="#criterio-geral-de-aceitacao-do-mvp" title="Permanent link">&para;</a></h2>
 <h2 id="o-sistema-deve-permitir-a-analise-basica-de-proposicoes-legislativas-relacionadas-a-protecao-de-criancas-e-adolescentes-no-ambiente-digital-classificando-as-por-tema-e-subtema-com-base-no-inteiro-teor-e-apresentando-os-dados-de-forma-clara-filtravel-e-acessivel-no-painel">O sistema deve permitir a análise básica de proposições legislativas relacionadas à proteção de crianças e adolescentes no ambiente digital, classificando-as por tema e subtema com base no inteiro teor e apresentando os dados de forma clara, filtrável e acessível no painel.<a class="headerlink" href="#o-sistema-deve-permitir-a-analise-basica-de-proposicoes-legislativas-relacionadas-a-protecao-de-criancas-e-adolescentes-no-ambiente-digital-classificando-as-por-tema-e-subtema-com-base-no-inteiro-teor-e-apresentando-os-dados-de-forma-clara-filtravel-e-acessivel-no-painel" title="Permanent link">&para;</a></h2>
-<h1 id="versionamento">📌 Versionamento<a class="headerlink" href="#versionamento" title="Permanent link">&para;</a></h1>
+<h1 id="versionamento">Versionamento<a class="headerlink" href="#versionamento" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -1357,6 +1352,11 @@
 <td>1.5</td>
 <td>16/06/2026</td>
 <td>Inclui explicitamente integração com API do Senado</td>
+</tr>
+<tr>
+<td>1.5.1</td>
+<td>23/06/2026</td>
+<td>Removido Rf08 referido à evolução temporal por não fazer mais parte do escopo do sistema; Títulos dos subtemas adaptados</td>
 </tr>
 </tbody>
 </table>

@@ -1,6 +1,15 @@
 {
-    "last_updated": "2026-06-30T06:32:17.520743Z",
+    "last_updated": "2026-06-30T06:54:42.005782Z",
     "commits": [
+        {
+            "hash": "cf91ddcb18786e4aa683126c32b48c41ee429e8f",
+            "date": "2026-06-30T03:54:20-03:00",
+            "message": "Merge pull request #152 from unb-mds/docs/requisitos",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
         {
             "hash": "7fb8c2dc5021e489af0cd5a0d895963d0520b2d8",
             "date": "2026-06-30T03:31:56-03:00",
@@ -180,6 +189,15 @@
             "insertions": 0,
             "deletions": 30,
             "total_diff": 30
+        },
+        {
+            "hash": "2e479aa577db676106727ca6bc1ff64ce24a582a",
+            "date": "2026-06-29T20:08:31-03:00",
+            "message": "Merge branch 'main' into docs/requisitos",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
         },
         {
             "hash": "8715e063f4e619be0679e7f5870b4ac511573c22",
@@ -713,6 +731,60 @@
             "total_diff": 365
         },
         {
+            "hash": "2d37672b38e9c8a89ce4633eb1b3f9a690cda33c",
+            "date": "2026-06-24T01:25:06-03:00",
+            "message": "Merge branch 'main' of https://github.com/unb-mds/2026-1-ProtectKids into docs/requisitos",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "43864cc8f811baf7802cbe9952f278c73517bd4f",
+            "date": "2026-06-23T22:32:01-03:00",
+            "message": "centralizaçao e aumento da fonte do menu",
+            "is_conventional": false,
+            "insertions": 17,
+            "deletions": 0,
+            "total_diff": 17
+        },
+        {
+            "hash": "dc820e7bb4c7b00b2eb0a5688dcfcea4ecfcfe42",
+            "date": "2026-06-23T22:26:12-03:00",
+            "message": "novas cores e fontes",
+            "is_conventional": false,
+            "insertions": 21,
+            "deletions": 22,
+            "total_diff": 43
+        },
+        {
+            "hash": "6c07eb255d09b57668d71366206de81dc5ba9182",
+            "date": "2026-06-23T22:02:49-03:00",
+            "message": "teste de interface mkdoc",
+            "is_conventional": false,
+            "insertions": 26,
+            "deletions": 18,
+            "total_diff": 44
+        },
+        {
+            "hash": "05a9a28f5d68b25c62ae3fb941f280347edaa2bc",
+            "date": "2026-06-23T19:53:02-03:00",
+            "message": "Fix/backend crwaler (#114)",
+            "is_conventional": false,
+            "insertions": 166,
+            "deletions": 44,
+            "total_diff": 210
+        },
+        {
+            "hash": "c2aaf7fa48f8d626808ba698fe8f5ce1e9428f36",
+            "date": "2026-06-23T19:37:03-03:00",
+            "message": "Feat/fix docker (#113)",
+            "is_conventional": false,
+            "insertions": 26,
+            "deletions": 9,
+            "total_diff": 35
+        },
+        {
             "hash": "2e593f8f92fbe155f2140ff0bb6cd850ac2a4672",
             "date": "2026-06-23T22:32:01-03:00",
             "message": "centralizaçao e aumento da fonte do menu",
@@ -765,6 +837,15 @@
             "insertions": 2,
             "deletions": 2,
             "total_diff": 4
+        },
+        {
+            "hash": "0f7c4a8ff3c79ed4b71fa966cdf8c7cab300e4ed",
+            "date": "2026-06-23T17:33:16-03:00",
+            "message": "Docs: remove antigo RF08 e atualiza subtemas refs #106",
+            "is_conventional": false,
+            "insertions": 13,
+            "deletions": 21,
+            "total_diff": 34
         },
         {
             "hash": "851cc474cdcf6276ad328bb44158bfae26a56c90",
@@ -2425,6 +2506,15 @@
     ],
     "issues": [
         {
+            "number": 159,
+            "title": "[QA]: Implementar testes para rota raiz e listagem geral de proposições",
+            "state": "open",
+            "created_at": "2026-06-30T06:39:27Z",
+            "closed_at": null,
+            "resolution_time_hours": null,
+            "char_count": 738
+        },
+        {
             "number": 157,
             "title": "[Frontend] Integrar análise estática de código com SonarQube",
             "state": "open",
@@ -2643,10 +2733,10 @@
         {
             "number": 117,
             "title": "Configuração do Ambiente de Testes e Relatório de Cobertura com Pytest",
-            "state": "open",
+            "state": "closed",
             "created_at": "2026-06-25T02:44:48Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
+            "closed_at": "2026-06-30T06:33:22Z",
+            "resolution_time_hours": 123.81,
             "char_count": 1734
         },
         {
@@ -2882,29 +2972,20 @@
             "closed_at": "2026-05-21T20:19:34Z",
             "resolution_time_hours": 4.0,
             "char_count": 33
-        },
-        {
-            "number": 59,
-            "title": "fix: adicionar colunas relacionadas a extração de dados para o NLP no banco de dados",
-            "state": "closed",
-            "created_at": "2026-05-21T16:02:16Z",
-            "closed_at": "2026-05-21T20:19:36Z",
-            "resolution_time_hours": 4.29,
-            "char_count": 38
         }
     ],
     "autores": {
+        "augustogmedeiros": {
+            "commits": 144,
+            "insercoes": 9415,
+            "delecoes": 2947407,
+            "total_linhas": 2956822
+        },
         "marispmorais": {
             "commits": 19,
             "insercoes": 2932845,
             "delecoes": 137,
             "total_linhas": 2932982
-        },
-        "augustogmedeiros": {
-            "commits": 141,
-            "insercoes": 9223,
-            "delecoes": 2947354,
-            "total_linhas": 2956577
         },
         "wandinhawright": {
             "commits": 33,
@@ -2912,11 +2993,17 @@
             "delecoes": 684,
             "total_linhas": 5495
         },
+        "Danielly": {
+            "commits": 10,
+            "insercoes": 429,
+            "delecoes": 79,
+            "total_linhas": 508
+        },
         "cgbriel28": {
-            "commits": 20,
-            "insercoes": 14171,
-            "delecoes": 1026,
-            "total_linhas": 15197
+            "commits": 23,
+            "insercoes": 14235,
+            "delecoes": 1066,
+            "total_linhas": 15301
         },
         "VegasVvegas": {
             "commits": 1,
@@ -2935,12 +3022,6 @@
             "insercoes": 398,
             "delecoes": 55,
             "total_linhas": 453
-        },
-        "Danielly": {
-            "commits": 7,
-            "insercoes": 416,
-            "delecoes": 58,
-            "total_linhas": 474
         },
         "Danielly Mendes": {
             "commits": 14,
