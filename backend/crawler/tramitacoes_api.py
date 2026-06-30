@@ -121,7 +121,6 @@ def fetch_tramitacoes_brutas(id_camara_numerico: str) -> Optional[list[dict]]:
             id_camara_numerico,
         )
         return None
-
     try:
         dados = resp.json().get("dados", [])
     except ValueError:
@@ -179,7 +178,6 @@ def processar_tramitacoes_individuais(
         tramitacoes_processadas.append(nova_tramitacao)
 
     return id_externo, tramitacoes_processadas
-
 
 def substituir_tramitacoes_no_banco(
     tramitacoes_por_id: dict[str, list[Tramitacao]],

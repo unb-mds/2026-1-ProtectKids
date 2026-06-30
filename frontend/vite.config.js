@@ -15,5 +15,15 @@ export default defineConfig({
   },
   test: {
     environment: 'jsdom',
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'html'],
+      thresholds: {
+        statements: 70,
+        branches: 70,
+        functions: 50,
+        lines: 70,
+      },
+    },
   },
 });

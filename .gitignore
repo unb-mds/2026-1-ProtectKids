@@ -61,3 +61,7 @@ env/
 # Relatórios de Cobertura de Testes
 htmlcov/
 .coverage
+
+# Cobertura frontend
+coverage/
+frontend/coverage/
