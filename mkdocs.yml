@@ -6,6 +6,7 @@ nav:
   - Visão Geral: visao-geral.md
   - Requisitos: requisitos.md
   - Arquitetura: arquitetura.md
+  - Estratégia de Testes: estudos/estrategia_testes.md
   - Sprints:
       - Histórico de Sprints: sprints/index.md
       - Detalhes das Sprints:
