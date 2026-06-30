@@ -1,6 +1,33 @@
 {
-    "last_updated": "2026-06-30T03:26:30.537297Z",
+    "last_updated": "2026-06-30T03:32:11.808257Z",
     "commits": [
+        {
+            "hash": "3571e093f12c6cdd8f099a62af922df2df08c6df",
+            "date": "2026-06-30T00:31:48-03:00",
+            "message": "Merge pull request #154 from unb-mds/feat/frontend-site",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "b9ee5ec1cd1b17069b7e6e403a2a266e2017388e",
+            "date": "2026-06-30T00:31:39-03:00",
+            "message": "Merge branch 'main' into feat/frontend-site",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "128cf3ce01a501d19f6b0d1f0a9b7cecb1f64760",
+            "date": "2026-06-30T00:30:22-03:00",
+            "message": "fix: estabiliza frontend e corrige build do projeto",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
         {
             "hash": "99b56a2a9a43644645082ba9a4d138ee69d285e8",
             "date": "2026-06-30T00:26:06-03:00",
@@ -54,6 +81,78 @@
             "insertions": 91,
             "deletions": 1,
             "total_diff": 92
+        },
+        {
+            "hash": "1e724b448b67456faf2a49f6549c2a5bc2928fc7",
+            "date": "2026-06-29T21:00:44-03:00",
+            "message": "frontend: correção de paths",
+            "is_conventional": false,
+            "insertions": 7,
+            "deletions": 49,
+            "total_diff": 56
+        },
+        {
+            "hash": "e092d6e43750202105820c5b851ac30ae81bd3d3",
+            "date": "2026-06-29T21:00:28-03:00",
+            "message": "frontend: atualizações no arquivo api.js",
+            "is_conventional": false,
+            "insertions": 34,
+            "deletions": 9,
+            "total_diff": 43
+        },
+        {
+            "hash": "42ddcf6ecad16c15461402c7a74e1b0b9ef03b9b",
+            "date": "2026-06-29T20:59:59-03:00",
+            "message": "frontend:  página de busca atualizada com as configurações corretas de API",
+            "is_conventional": false,
+            "insertions": 159,
+            "deletions": 79,
+            "total_diff": 238
+        },
+        {
+            "hash": "46990578095b901874ab5fbda621efc500dc8cbb",
+            "date": "2026-06-29T20:59:26-03:00",
+            "message": "frontend: header atualizada e separada em um novo arquivo na pasta de componentes",
+            "is_conventional": false,
+            "insertions": 44,
+            "deletions": 0,
+            "total_diff": 44
+        },
+        {
+            "hash": "a8124b059265fff64dac48049ad487d29f1e7722",
+            "date": "2026-06-29T20:58:55-03:00",
+            "message": "frontend: componete criado separado e adicionado na página de início com as configurações corretas de API",
+            "is_conventional": false,
+            "insertions": 48,
+            "deletions": 0,
+            "total_diff": 48
+        },
+        {
+            "hash": "66e0cb4db090da4199fc9718b7162bc9cee23762",
+            "date": "2026-06-29T20:58:44-03:00",
+            "message": "frontend: componete criado separado e adicionado na página de início com as configurações corretas de API",
+            "is_conventional": false,
+            "insertions": 14,
+            "deletions": 0,
+            "total_diff": 14
+        },
+        {
+            "hash": "63f8c1efdeb815bd0a445aa2c5e7cfe8622b2db0",
+            "date": "2026-06-29T20:58:02-03:00",
+            "message": "frontend: página de início atualizada com as configurações corretas de API",
+            "is_conventional": false,
+            "insertions": 291,
+            "deletions": 186,
+            "total_diff": 477
+        },
+        {
+            "hash": "dcbc411ecada1f1fef664772c9299d8efda74891",
+            "date": "2026-06-29T20:57:06-03:00",
+            "message": "frontend: remoção de itens inutilizados no projeto",
+            "is_conventional": false,
+            "insertions": 0,
+            "deletions": 30,
+            "total_diff": 30
         },
         {
             "hash": "8715e063f4e619be0679e7f5870b4ac511573c22",
@@ -2750,6 +2849,12 @@
         }
     ],
     "autores": {
+        "augustogmedeiros": {
+            "commits": 141,
+            "insercoes": 9223,
+            "delecoes": 2947354,
+            "total_linhas": 2956577
+        },
         "marispmorais": {
             "commits": 16,
             "insercoes": 2932772,
@@ -2757,16 +2862,10 @@
             "total_linhas": 2932900
         },
         "wandinhawright": {
-            "commits": 25,
-            "insercoes": 4214,
-            "delecoes": 331,
-            "total_linhas": 4545
-        },
-        "augustogmedeiros": {
-            "commits": 138,
-            "insercoes": 9223,
-            "delecoes": 2947354,
-            "total_linhas": 2956577
+            "commits": 33,
+            "insercoes": 4811,
+            "delecoes": 684,
+            "total_linhas": 5495
         },
         "cgbriel28": {
             "commits": 20,
