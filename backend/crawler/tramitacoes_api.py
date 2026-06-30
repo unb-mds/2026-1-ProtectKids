@@ -157,6 +157,10 @@ def processar_tramitacoes_individuais(
         logger.warning("ID externo inválido para tramitação: %s", id_externo)
         return id_externo, None
 
+def processar_tramitacoes_individuais(
+    id_externo: str,
+) -> tuple[str, list[Tramitacao] | None]:
+    id_numerico = id_externo.split("-")[1]
     dados_brutos = fetch_tramitacoes_brutas(id_numerico)
 
     if dados_brutos is None:
@@ -179,7 +183,6 @@ def processar_tramitacoes_individuais(
         tramitacoes_processadas.append(nova_tramitacao)
 
     return id_externo, tramitacoes_processadas
-
 
 def substituir_tramitacoes_no_banco(
     tramitacoes_por_id: dict[str, list[Tramitacao]],
