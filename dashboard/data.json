@@ -1,6 +1,51 @@
 {
-    "last_updated": "2026-06-30T01:34:33.304165Z",
+    "last_updated": "2026-06-30T03:26:30.537297Z",
     "commits": [
+        {
+            "hash": "99b56a2a9a43644645082ba9a4d138ee69d285e8",
+            "date": "2026-06-30T00:26:06-03:00",
+            "message": "Merge pull request #153 from unb-mds/docs/estrategia-testes",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "56f6e58d329037c573861050bb746c9a5b850b80",
+            "date": "2026-06-30T00:23:29-03:00",
+            "message": "Fix: Remove versão antiga do pytest (8.1.1) vinda da main",
+            "is_conventional": false,
+            "insertions": 0,
+            "deletions": 1,
+            "total_diff": 1
+        },
+        {
+            "hash": "c9f79117f23bb24def413923e19cd0458aa3ad83",
+            "date": "2026-06-30T00:22:02-03:00",
+            "message": "Conclui o merge da main",
+            "is_conventional": false,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "8571e99783ccbf8d6f6e9be637baab304e462973",
+            "date": "2026-06-29T23:11:46-03:00",
+            "message": "CI: remoção da duplicata do pytest",
+            "is_conventional": false,
+            "insertions": 0,
+            "deletions": 1,
+            "total_diff": 1
+        },
+        {
+            "hash": "652a5fc76c4d5ea3e138053f9ffff3b31e971da9",
+            "date": "2026-06-29T22:45:44-03:00",
+            "message": "docs: adiciona estudo e documento de estrategia de testes",
+            "is_conventional": true,
+            "insertions": 78,
+            "deletions": 0,
+            "total_diff": 78
+        },
         {
             "hash": "b14777ba060f93e371255bc1cc372be78b326274",
             "date": "2026-06-29T22:24:40-03:00",
@@ -2706,10 +2751,10 @@
     ],
     "autores": {
         "marispmorais": {
-            "commits": 11,
-            "insercoes": 2932694,
-            "delecoes": 126,
-            "total_linhas": 2932820
+            "commits": 16,
+            "insercoes": 2932772,
+            "delecoes": 128,
+            "total_linhas": 2932900
         },
         "wandinhawright": {
             "commits": 25,
