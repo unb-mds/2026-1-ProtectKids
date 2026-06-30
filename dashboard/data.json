@@ -1,6 +1,15 @@
 {
-    "last_updated": "2026-06-30T22:55:46.641789Z",
+    "last_updated": "2026-06-30T23:01:02.545801Z",
     "commits": [
+        {
+            "hash": "404bb4c4856c3ee0a5f629ab3a655fe3b0b3c1c5",
+            "date": "2026-06-30T20:00:29-03:00",
+            "message": "docs: atualização na sessão de testes na documentação",
+            "is_conventional": true,
+            "insertions": 144,
+            "deletions": 38,
+            "total_diff": 182
+        },
         {
             "hash": "ef817492311e9ee19772fbbd92ed9647b585575a",
             "date": "2026-06-30T19:41:19-03:00",
@@ -3164,17 +3173,17 @@
         }
     ],
     "autores": {
+        "marispmorais": {
+            "commits": 34,
+            "insercoes": 2933646,
+            "delecoes": 262,
+            "total_linhas": 2933908
+        },
         "augustogmedeiros": {
             "commits": 150,
             "insercoes": 13354,
             "delecoes": 2948507,
             "total_linhas": 2961861
-        },
-        "marispmorais": {
-            "commits": 33,
-            "insercoes": 2933502,
-            "delecoes": 224,
-            "total_linhas": 2933726
         },
         "wandinhawright": {
             "commits": 33,

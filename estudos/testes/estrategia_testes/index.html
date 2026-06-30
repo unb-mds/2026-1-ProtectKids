@@ -77,6 +77,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#estrategia-de-testes" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -483,6 +488,26 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estratégia de Testes
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -500,6 +525,164 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-piramide-de-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Pirâmide de Testes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-ecossistema-do-backend-com-pytest-e-sqlmodel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Ecossistema do Backend com pytest e SQLModel
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Ecossistema do Backend com pytest e SQLModel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simulacao-do-banco-de-dados-com-sqlite-em-memoria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simulação do Banco de Dados com SQLite em Memória
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-isolando-o-pipeline-de-etl-com-mocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Isolando o Pipeline de ETL com Mocks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-otimizacao-de-performance-no-motor-de-nlp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Otimização de Performance no Motor de NLP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-ferramentas-de-teste-para-o-frontend-react" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Ferramentas de Teste para o Frontend (React)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Ferramentas de Teste para o Frontend (React)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#casos-de-testes-criticos-no-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Casos de Testes Críticos no Frontend
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-como-rodar-os-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Como Rodar os Testes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Como Rodar os Testes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pre-requisitos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pré-requisitos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comandos-principais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comandos principais
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-cobertura-atual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Cobertura Atual
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1092,73 +1275,172 @@
 
 
 
-  <h1>Estratégia de Testes</h1>
+<h1 id="estrategia-de-testes">Estratégia de Testes<a class="headerlink" href="#estrategia-de-testes" title="Permanent link">&para;</a></h1>
+<p>Para garantir a confiabilidade do <strong>ProtectKids</strong> sem tornar o processo de desenvolvimento lento, adotamos o conceito clássico da <strong>Pirâmide de Testes</strong>. A ideia central é ter uma base massiva de testes rápidos e isolados, e menos testes no topo (que são mais lentos e complexos).</p>
+<hr />
+<h2 id="1-piramide-de-testes">1. Pirâmide de Testes<a class="headerlink" href="#1-piramide-de-testes" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code> Unitários (Base)
 
-<ol>
-<li>Conceitos de Testes Aplicados ao Contexto de MDS
-Para garantir a confiabilidade do ProtectKids sem tornar o processo de desenvolvimento lento, adotamos o conceito clássico da Pirâmide de Testes. A ideia central é ter uma base massiva de testes rápidos e isolados, e menos testes no topo (que são mais lentos e complexos).</li>
-</ol>
-<p>🧪 Testes Unitários (A Base)
-Focam em validar o comportamento da menor unidade de código isolável no sistema (geralmente uma única função pura), sem tocar em componentes externos como bancos de dados ou APIs na internet.</p>
-<p>No contexto do ProtectKids: Validar se uma função utilitária de limpeza remove caracteres especiais de uma ementa, ou se o extrator de texto formata strings corretamente.</p>
-<p>🔗 Testes de Integração (O Meio)
-Validam se dois ou mais componentes internos ou sistemas conversam corretamente entre si, garantindo que a união de partes isoladas funciona como o esperado.</p>
-<p>No contexto do ProtectKids: Verificar se uma rota do FastAPI consegue receber um payload HTTP, processar as validações e persistir o modelo do SQLModel com sucesso dentro de um banco de dados de teste.</p>
-<p>🖥️ Testes de Ponta a Ponta / E2E (O Topo)
-Simulam a jornada completa do usuário final na aplicação, simulando cliques, fluxos de navegação e interações reais da tela até a persistência final de dados.</p>
-<p>No contexto do ProtectKids: Simular um usuário entrando no Dashboard em React, aplicando um filtro por tema legislativo e verificando se os gráficos de barras atualizam dinamicamente com os dados reais vindos do banco de dados através da API.</p>
-<ol>
-<li>Ecossistema do Back-End com pytest e SQLModel
-O pytest é o framework padrão para testes em Python devido à sua simplicidade e suporte robusto a Fixtures. Fixtures são funções que preparam o ambiente para os testes (ligando recursos) e limpam tudo após a execução.</li>
-</ol>
-<p>Simulação do Banco de Dados com SQLite em Memória
-Para testar operações de banco sem sujar ou depender do PostgreSQL local/produção, criamos uma fixture que gera um banco SQLite efêmero em memória RAM a cada ciclo de teste:</p>
-<p>import pytest
-from sqlmodel import SQLModel, Session, create_engine
-from core.database import get_session
-from main import app</p>
-<p>@pytest.fixture(name="session")
-def session_fixture():
-    # Cria uma engine isolada em memória para cada teste
-    engine = create_engine("sqlite:///:memory:", connect_args={"check_same_thread": False})
-    SQLModel.metadata.create_all(engine)
-    with Session(engine) as session:
-        yield session</p>
-<p>@pytest.fixture(name="client")
-def client_fixture(session):
-    # Injeta a sessão de testes nas dependências de rotas do FastAPI
-    def get_session_override():
-        return session
-    app.dependency_overrides[get_session] = get_session_override
-    from fastapi.testclient import TestClient
-    yield TestClient(app)
-    app.dependency_overrides.clear()</p>
-<ol>
-<li>Isolando o Pipeline de ETL com Mocks (unittest.mock)
-O pipeline de ETL não pode depender de conexões externas ativas. Se o portal da Câmara dos Deputados estiver fora do ar ou instável, a nossa esteira de CI/CD quebraria. Usamos objetos Mock para simular o comportamento dessas dependências externas.</li>
-</ol>
-<p>Mockando a API da Câmara (requests.get): Interceptamos a chamada de rede e injetamos uma resposta estática (fictícia) contendo apenas o formato JSON esperado para validar se o nosso parser funciona.</p>
-<p>Mockando o pdfplumber: Em vez de abrir e ler um arquivo binário pesado de um PDF real de proposição legislativa, simulamos o objeto do gerenciador de contexto do pdfplumber retornando um texto plano pré-definido.</p>
-<ol>
-<li>Otimização de Performance no Motor de NLP (spaCy)
-O carregamento do pipeline de linguagem do spaCy (pt_core_news_sm) exige processamento pesado e tempo de CPU significativos. Se instanciarmos o modelo a cada teste unitário executado, a suite de testes demorará minutos para rodar.</li>
-</ol>
-<p>Estratégia de Otimização: Configurar uma fixture com o escopo de sessão (scope="session"). Isso garante que o modelo de IA seja carregado na memória RAM uma única vez no início da execução da suíte inteira de testes, sendo compartilhado entre todas as funções de teste que avaliam o classificador.</p>
-<p>import pytest
-import spacy</p>
-<p>@pytest.fixture(scope="session")
-def nlp_model():
-    # Carregado apenas 1 vez para todos os testes do backend
-    return spacy.load("pt_core_news_sm")</p>
-<ol>
-<li>Ferramentas de Teste para o Frontend (React)
-Para garantir o comportamento do Dashboard e a renderização correta dos gráficos sem quebras visuais, o ecossistema React utiliza duas ferramentas complementares de mercado:</li>
-</ol>
-<p>Jest: Funciona como o executor de testes (test runner). Ele cria o ambiente simulado do navegador (DOM), gerencia as asserções (expect) e calcula a cobertura de código no ambiente JavaScript.</p>
-<p>React Testing Library (RTL): Fornece utilitários focados em testar o comportamento dos componentes sob a perspectiva de uso do usuário real. Em vez de testar estados internos do código (como variáveis ocultas), o RTL busca o que está visível na tela (como buscar botões por textos ou papéis semânticos).</p>
-<p>Casos de Testes Críticos no Frontend:
-Renderização de Elementos-Chave: Validar se os cards de resumo e gráficos carregam com a paleta visual correta do projeto.</p>
-<p>Interações do Painel: Simular o clique em uma tag de tema ou partido e verificar se a função de filtragem dispara a requisição esperada na API.</p>
+Focam em validar o comportamento da menor unidade de código isolável no sistema (geralmente uma única função pura), **sem tocar em componentes externos** como bancos de dados ou APIs.
+
+    example &quot;No contexto do ProtectKids&quot;
+    Validar se uma função utilitária de limpeza remove caracteres especiais de uma ementa, ou se o extrator de texto formata strings corretamente.
+
+Integração (Meio)
+
+Validam se dois ou mais componentes internos ou sistemas conversam corretamente entre si, garantindo que a união de partes isoladas funciona como o esperado.
+
+    example &quot;No contexto do ProtectKids&quot;
+    Verificar se uma rota do FastAPI consegue receber um payload HTTP, processar as validações e persistir o modelo do SQLModel com sucesso dentro de um banco de dados de teste.
+
+E2E (Topo)
+
+Simulam a jornada completa do usuário final na aplicação, simulando cliques, fluxos de navegação e interações reais da tela até a persistência final de dados.
+
+    example &quot;No contexto do ProtectKids&quot;
+    Simular um usuário entrando no Dashboard em React, aplicando um filtro por tema legislativo e verificando se os gráficos de barras atualizam dinamicamente com os dados reais vindos do banco através da API.
+</code></pre></div>
+<hr />
+<h2 id="2-ecossistema-do-backend-com-pytest-e-sqlmodel">2. Ecossistema do Backend com pytest e SQLModel<a class="headerlink" href="#2-ecossistema-do-backend-com-pytest-e-sqlmodel" title="Permanent link">&para;</a></h2>
+<p>O <code>pytest</code> é o framework padrão para testes em Python devido à sua simplicidade e suporte robusto a <strong>Fixtures</strong>. Fixtures são funções que preparam o ambiente para os testes (ligando recursos) e limpam tudo após a execução.</p>
+<h3 id="simulacao-do-banco-de-dados-com-sqlite-em-memoria">Simulação do Banco de Dados com SQLite em Memória<a class="headerlink" href="#simulacao-do-banco-de-dados-com-sqlite-em-memoria" title="Permanent link">&para;</a></h3>
+<p>Para testar operações de banco sem sujar ou depender do PostgreSQL local/produção, criamos uma fixture que gera um banco <strong>SQLite efêmero em memória RAM</strong> a cada ciclo de teste:</p>
+<div class="highlight"><span class="filename">tests/conftest.py</span><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sqlmodel</span><span class="w"> </span><span class="kn">import</span> <span class="n">SQLModel</span><span class="p">,</span> <span class="n">Session</span><span class="p">,</span> <span class="n">create_engine</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sqlmodel.pool</span><span class="w"> </span><span class="kn">import</span> <span class="n">StaticPool</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">database</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_session</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">main</span><span class="w"> </span><span class="kn">import</span> <span class="n">app</span>
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;session&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">session_fixture</span><span class="p">():</span>
+    <span class="n">engine_teste</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span>
+        <span class="s2">&quot;sqlite://&quot;</span><span class="p">,</span>
+        <span class="n">connect_args</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;check_same_thread&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+        <span class="n">poolclass</span><span class="o">=</span><span class="n">StaticPool</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">SQLModel</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">create_all</span><span class="p">(</span><span class="n">engine_teste</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">Session</span><span class="p">(</span><span class="n">engine_teste</span><span class="p">,</span> <span class="n">expire_on_commit</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">session</span>
+    <span class="n">SQLModel</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">drop_all</span><span class="p">(</span><span class="n">engine_teste</span><span class="p">)</span>
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;client&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">client_fixture</span><span class="p">(</span><span class="n">session</span><span class="p">:</span> <span class="n">Session</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_session_override</span><span class="p">():</span>
+        <span class="k">yield</span> <span class="n">session</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">dependency_overrides</span><span class="p">[</span><span class="n">get_session</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_session_override</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">fastapi.testclient</span><span class="w"> </span><span class="kn">import</span> <span class="n">TestClient</span>
+    <span class="k">with</span> <span class="n">TestClient</span><span class="p">(</span><span class="n">app</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">client</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">dependency_overrides</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Por que SQLite em vez de PostgreSQL?</p>
+<p>O SQLite em memória garante que os testes rodem em <strong>qualquer máquina</strong>, sem precisar do Docker ou de um banco instalado. Cada teste começa com um banco limpo e isolado, sem interferência entre execuções.</p>
+</div>
+<hr />
+<h2 id="3-isolando-o-pipeline-de-etl-com-mocks">3. Isolando o Pipeline de ETL com Mocks<a class="headerlink" href="#3-isolando-o-pipeline-de-etl-com-mocks" title="Permanent link">&para;</a></h2>
+<p>O pipeline de ETL <strong>não pode depender de conexões externas ativas</strong>. Se o portal da Câmara dos Deputados estiver fora do ar ou instável, a nossa esteira de CI/CD quebraria. Usamos objetos <code>Mock</code> para simular o comportamento dessas dependências externas.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Estratégias de Mock utilizadas</p>
+<p><strong>Mockando a API da Câmara (<code>requests.get</code>)</strong></p>
+<p>Interceptamos a chamada de rede e injetamos uma resposta estática contendo apenas o formato JSON esperado para validar se o nosso parser funciona.</p>
+<p><strong>Mockando o <code>pdfplumber</code></strong></p>
+<p>Em vez de abrir e ler um arquivo binário pesado de um PDF real, simulamos o objeto do gerenciador de contexto do <code>pdfplumber</code> retornando um texto plano pré-definido.</p>
+</div>
+<hr />
+<h2 id="4-otimizacao-de-performance-no-motor-de-nlp">4. Otimização de Performance no Motor de NLP<a class="headerlink" href="#4-otimizacao-de-performance-no-motor-de-nlp" title="Permanent link">&para;</a></h2>
+<p>O carregamento do pipeline de linguagem do spaCy (<code>pt_core_news_sm</code>) exige processamento pesado e tempo de CPU significativos. Se instanciarmos o modelo a cada teste unitário executado, a suíte de testes demorará minutos para rodar.</p>
+<div class="admonition success">
+<p class="admonition-title">Estratégia de Otimização: Fixture com escopo de sessão</p>
+<p>Configurar uma fixture com <code>scope="session"</code> garante que o modelo de IA seja carregado na memória RAM <strong>uma única vez</strong> no início da execução da suíte inteira, sendo compartilhado entre todos os testes que avaliam o classificador.</p>
+</div>
+<div class="highlight"><span class="filename">tests/conftest.py</span><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">spacy</span>
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&quot;session&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">nlp_model</span><span class="p">():</span>
+    <span class="c1"># Carregado apenas 1 vez para todos os testes do backend</span>
+    <span class="k">return</span> <span class="n">spacy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;pt_core_news_sm&quot;</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="5-ferramentas-de-teste-para-o-frontend-react">5. Ferramentas de Teste para o Frontend (React)<a class="headerlink" href="#5-ferramentas-de-teste-para-o-frontend-react" title="Permanent link">&para;</a></h2>
+<p>Para garantir o comportamento do Dashboard e a renderização correta dos gráficos sem quebras visuais, o ecossistema React utiliza duas ferramentas complementares:</p>
+<table>
+<thead>
+<tr>
+<th>Ferramenta</th>
+<th>Papel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Jest</strong></td>
+<td>Executor de testes (test runner). Cria o ambiente simulado do navegador (DOM), gerencia as asserções (<code>expect</code>) e calcula a cobertura de código no ambiente JavaScript.</td>
+</tr>
+<tr>
+<td><strong>React Testing Library (RTL)</strong></td>
+<td>Fornece utilitários focados em testar o comportamento dos componentes sob a perspectiva do usuário real — busca o que está <strong>visível na tela</strong> (botões por texto, papéis semânticos), não estados internos do código.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="casos-de-testes-criticos-no-frontend">Casos de Testes Críticos no Frontend<a class="headerlink" href="#casos-de-testes-criticos-no-frontend" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Renderização de Elementos-Chave</p>
+<p>Validar se os cards de resumo e gráficos carregam com a <strong>paleta visual correta</strong> do projeto.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Interações do Painel</p>
+<p>Simular o clique em uma tag de tema ou partido e verificar se a função de filtragem dispara a <strong>requisição esperada na API</strong>.</p>
+</div>
+<hr />
+<h2 id="6-como-rodar-os-testes">6. Como Rodar os Testes<a class="headerlink" href="#6-como-rodar-os-testes" title="Permanent link">&para;</a></h2>
+<h3 id="pre-requisitos">Pré-requisitos<a class="headerlink" href="#pre-requisitos" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Windows (PowerShell)</span>
+<span class="nb">cd</span><span class="w"> </span>backend
+.<span class="se">\v</span>env<span class="se">\S</span>cripts<span class="se">\A</span>ctivate.ps1
+
+<span class="c1"># Linux/macOS</span>
+<span class="nb">cd</span><span class="w"> </span>backend
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate
+</code></pre></div>
+<h3 id="comandos-principais">Comandos principais<a class="headerlink" href="#comandos-principais" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Rodar toda a suíte</span>
+pytest<span class="w"> </span>tests/<span class="w"> </span>-v
+
+<span class="c1"># Rodar com relatório de cobertura no terminal</span>
+pytest<span class="w"> </span>tests/<span class="w"> </span>--cov<span class="o">=</span>.<span class="w"> </span>--cov-report<span class="o">=</span>term-missing<span class="w"> </span>-v
+
+<span class="c1"># Gerar relatório visual em HTML</span>
+pytest<span class="w"> </span>tests/<span class="w"> </span>--cov<span class="o">=</span>.<span class="w"> </span>--cov-report<span class="o">=</span>html
+
+<span class="c1"># Rodar testes de um arquivo específico</span>
+pytest<span class="w"> </span>tests/test_analytics.py<span class="w"> </span>-v
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Atenção</p>
+<p>A pasta <code>htmlcov/</code> e o arquivo <code>.coverage</code> são gerados localmente e <strong>não devem ser commitados</strong>. Ambos já estão listados no <code>.gitignore</code> do projeto.</p>
+</div>
+<hr />
+<h2 id="7-cobertura-atual">7. Cobertura Atual<a class="headerlink" href="#7-cobertura-atual" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>Name                            Stmts   Miss  Cover
+----------------------------------------------------
+database.py                        10      2    80%
+main.py                           165     31    81%
+models.py                          38      0   100%
+tests/conftest.py                  42      0   100%
+tests/test_analytics.py            60      0   100%
+tests/test_busca_por_id.py         49      0   100%
+tests/test_filtros_origem.py       17      0   100%
+tests/test_main.py                 49      0   100%
+tests/test_normalizacao.py         17      0   100%
+tests/test_tramitacoes.py          38      0   100%
+----------------------------------------------------
+TOTAL                             381     33    91%
+</code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">Cobertura Total: 91% — 43 testes, 0 falhas</p>
+<p>O projeto supera a marca recomendada de 80% de cobertura, com <code>models.py</code> e todos os arquivos de teste atingindo <strong>100%</strong>.</p>
+</div>
 
 
 
