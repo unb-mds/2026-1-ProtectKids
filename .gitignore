@@ -58,3 +58,6 @@ env/
 # ===== Python =====
 *.pyo
 *.egg-info/
+# Relatórios de Cobertura de Testes
+htmlcov/
+.coverage
