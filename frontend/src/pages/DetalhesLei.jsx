@@ -121,7 +121,7 @@ export default function DetalhesLei() {
 
         <Link
           to="/leis"
-          className="text-pk-red hover:underline inline-flex items-center gap-2 font-semibold"
+          className="text-[var(--color-pk-red)] hover:underline inline-flex items-center gap-2 font-semibold"
         >
           <ArrowLeft size={18} /> Voltar para a listagem
         </Link>
@@ -130,13 +130,14 @@ export default function DetalhesLei() {
   }
 
   const nomeFonte = formatarOrigem(lei.origem);
+  const estadoAtual = tramitacoes[0];
   const textoBotaoFonte = lei.origem === 'Senado' ? 'Ver no Senado' : 'Ver na Câmara';
 
   return (
     <div className="max-w-5xl mx-auto py-10 px-4">
       <Link
         to="/leis"
-        className="text-gray-600 hover:text-pk-red inline-flex items-center gap-2 font-semibold mb-6 transition"
+        className="text-gray-600 hover:text-[var(--color-pk-red)] inline-flex items-center gap-2 font-semibold mb-6 transition"
       >
         <ArrowLeft size={18} /> Voltar para todas as proposições
       </Link>
@@ -159,12 +160,13 @@ export default function DetalhesLei() {
             </h1>
           </div>
 
-          <span className="text-sm font-bold px-3 py-1.5 bg-blue-100 text-blue-800 rounded-full border border-blue-200 uppercase tracking-wider">
-            Monitorada
-          </span>
+            <span className="text-sm font-bold px-3 py-1.5 bg-blue-100 text-blue-800 rounded-full border border-blue-200 uppercase tracking-wider">
+              {estadoAtual ? 'Atualizada' : 'Monitorada'}
+            </span>
         </div>
 
-        <p className="text-gray-700 text-base leading-relaxed border-l-4 border-pk-red pl-4 my-6 font-medium">
+        <p 
+        className="text-gray-700 text-base leading-relaxed border-l-4 border-[var(--color-pk-red)] pl-4 my-6 font-medium">
           {lei.ementa}
         </p>
 
@@ -211,9 +213,34 @@ export default function DetalhesLei() {
 
           <div className="bg-white rounded-2xl shadow-md border border-gray-200 p-8">
             <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2 font-serif border-b pb-2">
-              <FileText size={20} className="text-pk-red" /> Texto da Proposição
+              <FileText size={20} className="text-[var(--color-pk-red)]" /> Texto da Proposição
             </h2>
+                  
+          {estadoAtual && (
+            <div className="bg-white rounded-2xl shadow-md border border-gray-200 p-8 mb-8">
+              <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2 font-serif border-b pb-2">
+                <Milestone size={20} className="text-blue-600" />
+                Estado Atual da Tramitação
+              </h2>
 
+              <div className="space-y-2 text-sm text-gray-700">
+                <p>
+                  <strong>Órgão atual:</strong>{' '}
+                  {estadoAtual.orgao || 'Órgão não informado'}
+                </p>
+
+                <p>
+                  <strong>Última atualização:</strong>{' '}
+                  {formatarDataHora(estadoAtual.data_hora)}
+                </p>
+
+                <p className="leading-relaxed">
+                  <strong>Situação registrada:</strong>{' '}
+                  {estadoAtual.descricao || 'Descrição não informada.'}
+                </p>
+              </div>
+            </div>
+          )}
             <div className="bg-gray-50 rounded-xl p-6 text-sm text-gray-800 font-mono whitespace-pre-line leading-relaxed max-h-[500px] overflow-y-auto border border-gray-200 shadow-inner">
               {lei.texto_integral || 'Texto integral não disponível para esta proposição.'}
             </div>
@@ -228,20 +255,31 @@ export default function DetalhesLei() {
 
             {tramitacoes.length ? (
               <div className="relative pl-6 border-l-2 border-blue-200 space-y-6 ml-2">
-                {tramitacoes.map((tramitacao, index) => (
-                  <div key={`${tramitacao.data_hora}-${index}`} className="relative">
-                    <div className="absolute -left-[31px] top-1 bg-blue-600 w-4 h-4 rounded-full border-4 border-white shadow" />
-                    <h3 className="text-sm font-bold text-gray-900">
-                      {tramitacao.orgao || 'Órgão não informado'}
-                    </h3>
-                    <p className="text-xs text-gray-500 mb-1 flex items-center gap-1">
-                      <Clock size={12} /> {formatarDataHora(tramitacao.data_hora)}
-                    </p>
-                    <p className="text-xs text-gray-600 leading-relaxed">
-                      {tramitacao.descricao || 'Descrição não informada.'}
-                    </p>
-                  </div>
-                ))}
+                {tramitacoes.map((tramitacao) => {
+                  const chaveTramitacao = [
+                    tramitacao.data_hora || 'sem-data',
+                    tramitacao.orgao || 'sem-orgao',
+                    tramitacao.descricao || 'sem-descricao',
+                  ].join('-');
+
+                  return (
+                    <div key={chaveTramitacao} className="relative">
+                      <div className="absolute -left-[31px] top-1 bg-blue-600 w-4 h-4 rounded-full border-4 border-white shadow" />
+
+                      <h3 className="text-sm font-bold text-gray-900">
+                        {tramitacao.orgao || 'Órgão não informado'}
+                      </h3>
+
+                      <p className="text-xs text-gray-500 mb-1 flex items-center gap-1">
+                        <Clock size={12} /> {formatarDataHora(tramitacao.data_hora)}
+                      </p>
+
+                      <p className="text-xs text-gray-600 leading-relaxed">
+                        {tramitacao.descricao || 'Descrição não informada.'}
+                      </p>
+                    </div>
+                  );
+                })}
               </div>
             ) : (
               <p className="text-sm text-gray-500">
@@ -262,7 +300,7 @@ export default function DetalhesLei() {
                 href={lei.url_inteiro_teor}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full bg-pk-dark hover:bg-gray-800 text-white font-bold py-2.5 rounded flex justify-center items-center gap-2 transition text-sm shadow-md"
+                className="w-full bg-[var(--color-pk-dark)] hover:bg-gray-800 text-white font-bold py-2.5 rounded flex justify-center items-center gap-2 transition text-sm shadow-md"
               >
                 {textoBotaoFonte} <ExternalLink size={16} />
               </a>

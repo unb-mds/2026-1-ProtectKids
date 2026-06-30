@@ -1,25 +1,26 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Search, SlidersHorizontal } from 'lucide-react';
+import { Link, useSearchParams } from 'react-router-dom';
+import { ChevronLeft, ChevronRight, Search, SlidersHorizontal } from 'lucide-react';
 import { buscarLeis, extrairMensagemErro } from '../api';
+import { formatarData, formatarOrigemCurta, resumirTexto } from '../utils/formatters';
 
-const formatarData = (data) => {
-  if (!data) return 'Data não informada';
+const ITENS_POR_PAGINA = 24;
 
-  return new Intl.DateTimeFormat('pt-BR').format(new Date(data));
-};
-
-const formatarOrigem = (origem) => {
-  if (origem === 'Camara') return 'Câmara';
-  return origem || 'Fonte não informada';
+const normalizarPagina = (valor) => {
+  const pagina = Number.parseInt(valor || '1', 10);
+  return Number.isNaN(pagina) || pagina < 1 ? 1 : pagina;
 };
 
 export default function TodasAsLeis() {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [leis, setLeis] = useState([]);
-  const [busca, setBusca] = useState('');
-  const [origem, setOrigem] = useState('');
+  const [temProximaPagina, setTemProximaPagina] = useState(false);
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState('');
+
+  const busca = searchParams.get('busca') || '';
+  const origem = searchParams.get('origem') || '';
+  const paginaAtual = normalizarPagina(searchParams.get('pagina'));
 
   useEffect(() => {
     const carregarLeis = async () => {
@@ -28,20 +29,43 @@ export default function TodasAsLeis() {
         setErro('');
 
         const dados = await buscarLeis({
-          limit: 200,
+          limit: ITENS_POR_PAGINA + 1,
+          offset: (paginaAtual - 1) * ITENS_POR_PAGINA,
           origem: origem || undefined,
         });
 
-        setLeis(dados);
+        setTemProximaPagina(dados.length > ITENS_POR_PAGINA);
+        setLeis(dados.slice(0, ITENS_POR_PAGINA));
       } catch (error) {
         setErro(extrairMensagemErro(error));
+        setLeis([]);
+        setTemProximaPagina(false);
       } finally {
         setCarregando(false);
       }
     };
 
     carregarLeis();
-  }, [origem]);
+  }, [origem, paginaAtual]);
+
+  const atualizarFiltros = (novosFiltros) => {
+    const parametros = new URLSearchParams(searchParams);
+
+    Object.entries(novosFiltros).forEach(([chave, valor]) => {
+      if (valor) {
+        parametros.set(chave, valor);
+      } else {
+        parametros.delete(chave);
+      }
+    });
+
+    setSearchParams(parametros);
+  };
+
+  const irParaPagina = (novaPagina) => {
+    atualizarFiltros({ pagina: String(Math.max(1, novaPagina)) });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const leisFiltradas = useMemo(() => {
     const termo = busca.trim().toLowerCase();
@@ -71,21 +95,23 @@ export default function TodasAsLeis() {
           </h1>
 
           <p className="mt-1 text-sm font-bold text-black">
-            Explore o catálogo completo de leis relacionadas à proteção infantil
-            e combate ao cyberbullying.
+            Explore o catálogo de proposições relacionadas à proteção infantil,
+            segurança digital e combate ao cyberbullying.
           </p>
         </div>
       </section>
 
       <section className="max-w-7xl mx-auto px-6 md:px-12 py-5">
-        <div className="bg-white px-5 py-4 shadow-sm">
+        <div className="bg-white px-5 py-4 shadow-sm rounded-xl">
           <div className="flex flex-col md:flex-row gap-4">
             <label className="flex-1 bg-[#EEF2F7] rounded-full px-5 py-3 flex items-center gap-3">
               <Search size={18} className="text-gray-500" />
               <input
                 value={busca}
-                onChange={(event) => setBusca(event.target.value)}
-                placeholder="Buscar por título, ementa ou autor..."
+                onChange={(event) =>
+                  atualizarFiltros({ busca: event.target.value, pagina: '1' })
+                }
+                placeholder="Buscar por título, ementa ou autor na página atual..."
                 className="bg-transparent outline-none w-full text-sm font-bold text-gray-700 placeholder:text-gray-500"
               />
             </label>
@@ -94,7 +120,9 @@ export default function TodasAsLeis() {
               <SlidersHorizontal size={18} />
               <select
                 value={origem}
-                onChange={(event) => setOrigem(event.target.value)}
+                onChange={(event) =>
+                  atualizarFiltros({ origem: event.target.value, pagina: '1' })
+                }
                 className="bg-transparent outline-none text-sm font-bold text-gray-700"
               >
                 <option value="">Todas as Fontes</option>
@@ -104,9 +132,20 @@ export default function TodasAsLeis() {
             </label>
           </div>
 
-          <p className="mt-3 text-sm font-bold text-gray-700">
-            {leisFiltradas.length} proposições encontradas
-          </p>
+          <div className="mt-3 flex flex-col md:flex-row md:items-center md:justify-between gap-2 text-sm font-bold text-gray-700">
+            <p>
+              {leisFiltradas.length} proposições exibidas na página {paginaAtual}
+            </p>
+            {busca && (
+              <button
+                type="button"
+                onClick={() => atualizarFiltros({ busca: '', pagina: '1' })}
+                className="text-left md:text-right text-[#0038A8] hover:underline"
+              >
+                Limpar busca
+              </button>
+            )}
+          </div>
         </div>
       </section>
 
@@ -121,60 +160,93 @@ export default function TodasAsLeis() {
           <div className="bg-white rounded-xl p-10 text-center font-bold text-gray-500">
             Carregando proposições...
           </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
-            {leisFiltradas.map((lei) => (
-              <article
-                key={lei.id_externo}
-                className="bg-white border border-gray-400 rounded-xl p-4 shadow-sm hover:shadow-lg transition"
-              >
-                <div className="flex items-start justify-between gap-3 mb-2">
-                  <h2 className="font-serif font-black text-lg text-black">
-                    {lei.titulo}
-                  </h2>
-
-                  <span className="text-[10px] bg-[#FEF3C7] border border-[#FACC15] text-[#92400E] rounded-full px-2 py-1 font-bold">
-                    Em Tramitação
-                  </span>
-                </div>
-
-                <div className="flex flex-wrap gap-2 mb-3">
-                  <span className="text-[10px] bg-blue-100 text-blue-700 rounded px-2 py-1 font-bold">
-                    {formatarOrigem(lei.origem)}
-                  </span>
-
-                  {lei.classificacao_nlp && (
-                    <span className="text-[10px] bg-[#DBEAFE] text-[#0038A8] rounded px-2 py-1 font-bold">
-                      {lei.classificacao_nlp}
-                    </span>
-                  )}
-                </div>
-
-                <p className="text-xs text-gray-800 leading-relaxed min-h-[72px]">
-                  {lei.ementa?.length > 180
-                    ? `${lei.ementa.slice(0, 180)}...`
-                    : lei.ementa}
-                </p>
-
-                <div className="mt-4 text-xs text-gray-700 leading-relaxed">
-                  <p>
-                    Apresentada em{' '}
-                    <strong>{formatarData(lei.data_apresentacao)}</strong>
-                  </p>
-                  <p>
-                    {lei.nome_autor || 'Autor desconhecido'} -{' '}
-                    {lei.partido_autor || 'ND'}/{lei.uf_autor || 'ND'}
-                  </p>
-                </div>
-
-                <Link
-                  to={`/leis/${lei.id_proposicao}`}
-                  className="mt-4 block w-full text-center bg-[#FF7A1A] hover:bg-[#EA580C] text-white rounded-md py-2 text-xs font-black transition"
+        ) : leisFiltradas.length ? (
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
+              {leisFiltradas.map((lei) => (
+                <article
+                  key={lei.id_externo}
+                  className="bg-white border border-gray-400 rounded-xl p-4 shadow-sm hover:shadow-lg transition"
                 >
-                  Ver Detalhes Completos →
-                </Link>
-              </article>
-            ))}
+                  <div className="flex items-start justify-between gap-3 mb-2">
+                    <h2 className="font-serif font-black text-lg text-black">
+                      {lei.titulo}
+                    </h2>
+
+                    <span className="text-[10px] bg-blue-100 border border-blue-200 text-blue-800 rounded-full px-2 py-1 font-bold uppercase">
+                      Monitorada
+                    </span>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    <span className="text-[10px] bg-blue-100 text-blue-700 rounded px-2 py-1 font-bold">
+                      {formatarOrigemCurta(lei.origem)}
+                    </span>
+
+                    {lei.classificacao_nlp && (
+                      <span className="text-[10px] bg-[#DBEAFE] text-[#0038A8] rounded px-2 py-1 font-bold">
+                        {lei.classificacao_nlp}
+                      </span>
+                    )}
+                  </div>
+
+                  <p className="text-xs text-gray-800 leading-relaxed min-h-[72px]">
+                    {resumirTexto(lei.ementa, 180)}
+                  </p>
+
+                  <div className="mt-4 text-xs text-gray-700 leading-relaxed">
+                    <p>
+                      Apresentada em{' '}
+                      <strong>{formatarData(lei.data_apresentacao)}</strong>
+                    </p>
+                    <p>
+                      {lei.nome_autor || 'Autor desconhecido'} -{' '}
+                      {lei.partido_autor || 'ND'}/{lei.uf_autor || 'ND'}
+                    </p>
+                  </div>
+
+                  <Link
+                    to={`/leis/${lei.id_proposicao}`}
+                    className="mt-4 block w-full text-center bg-[#FF7A1A] hover:bg-[#EA580C] text-white rounded-md py-2 text-xs font-black transition"
+                  >
+                    Ver Detalhes Completos →
+                  </Link>
+                </article>
+              ))}
+            </div>
+
+            <div className="mt-10 flex items-center justify-center gap-4">
+              <button
+                type="button"
+                onClick={() => irParaPagina(paginaAtual - 1)}
+                disabled={paginaAtual === 1}
+                className="inline-flex items-center gap-2 rounded-lg bg-white px-4 py-2 text-sm font-black text-[#0038A8] border border-gray-300 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-gray-50"
+              >
+                <ChevronLeft size={16} /> Anterior
+              </button>
+
+              <span className="font-black text-[#001B5E]">
+                Página {paginaAtual}
+              </span>
+
+              <button
+                type="button"
+                onClick={() => irParaPagina(paginaAtual + 1)}
+                disabled={!temProximaPagina}
+                className="inline-flex items-center gap-2 rounded-lg bg-white px-4 py-2 text-sm font-black text-[#0038A8] border border-gray-300 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-gray-50"
+              >
+                Próxima <ChevronRight size={16} />
+              </button>
+            </div>
+          </>
+        ) : (
+          <div className="bg-white rounded-xl p-10 text-center border border-gray-200 shadow-sm">
+            <h2 className="font-serif text-2xl font-black text-[#001B5E]">
+              Nenhuma proposição encontrada
+            </h2>
+            <p className="mt-2 text-sm text-gray-600 font-medium">
+              Ajuste a busca ou altere o filtro de origem para consultar outros registros.
+            </p>
           </div>
         )}
       </section>

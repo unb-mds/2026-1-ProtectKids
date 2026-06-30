@@ -352,9 +352,7 @@ def get_ranking_parlamentares(
         for row in resultados
     ]
 
-# ==========================================
-# 3. ROTA DE RANKING DE PARTIDOS (COM FILTROS)
-# ==========================================
+
 @app.get(
     "/analytics/partidos/ranking",
     responses=RESPOSTA_ORIGEM_INVALIDA,
@@ -413,6 +411,104 @@ def get_ranking_partidos(
         for row in resultados
     ]
 
+SUBTEMAS_ANALYTICS_IGNORADOS = {
+    "Simbólico/Ruído",
+    "Simbólico",
+    "Ruído",
+    "Nao classificado",
+    "Não classificado",
+
+    "Adoção e Orfanatos",
+    "Adoção e Orfandade",
+    "Educação e Cultura",
+    "Violência e Abuso",
+    "Proteção Geral",
+    "Fora do escopo digital",
+}
+
+
+@app.get("/analytics/subtemas", responses=RESPOSTA_ORIGEM_INVALIDA)
+def get_analytics_subtemas(
+    ano: Optional[int] = None,
+    tema_nlp: Optional[str] = None,
+    origem: Optional[str] = None,
+    uf: Optional[str] = None,
+    partido: Optional[str] = None,
+    incluir_ruido: bool = Query(default=False),
+    limit: int = Query(default=10, ge=1, le=100),
+    session: Session = Depends(get_session),
+):
+    """
+    Retorna a quantidade de proposições agrupadas por classificação NLP/subtema.
+
+    Esta rota alimenta os gráficos de volume por subtema no frontend.
+
+    Filtros disponíveis:
+    - ano
+    - tema_nlp
+    - origem: Camara ou Senado
+    - uf
+    - partido
+    - incluir_ruido
+    - limit
+    """
+    query = select(
+        Proposicao.classificacao_nlp,
+        Proposicao.subtema,
+        func.count(Proposicao.id_proposicao).label("total_proposicoes"),
+    )
+
+    if uf or partido:
+        query = query.join(
+            Parlamentar,
+            Proposicao.id_autor == Parlamentar.id_parlamentar,
+        )
+
+    query = aplicar_filtros_analytics(
+        query=query,
+        ano=ano,
+        tema_nlp=tema_nlp,
+        origem=origem,
+        uf=uf,
+        partido=partido,
+    )
+
+    query = query.group_by(
+        Proposicao.classificacao_nlp,
+        Proposicao.subtema,
+    )
+
+    resultados = session.exec(query).all()
+
+    contagem_por_subtema = {}
+
+    for classificacao_nlp, subtema, total in resultados:
+        nome = classificacao_nlp or subtema or "Não classificado"
+        nome = str(nome).strip()
+
+        if not incluir_ruido and nome in SUBTEMAS_ANALYTICS_IGNORADOS:
+            continue
+
+        contagem_por_subtema[nome] = contagem_por_subtema.get(nome, 0) + total
+
+    itens_ordenados = sorted(
+        contagem_por_subtema.items(),
+        key=lambda item: item[1],
+        reverse=True,
+    )[:limit]
+
+    total_geral = sum(total for _, total in itens_ordenados)
+
+    return [
+        {
+            "nome": nome,
+            "total_proposicoes": total,
+            "percentual": round((total / total_geral) * 100, 2)
+            if total_geral
+            else 0,
+        }
+        for nome, total in itens_ordenados
+    ]
 
 class TramitacaoResponse(BaseModel):
     data_hora: datetime
