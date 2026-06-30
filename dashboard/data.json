@@ -1,6 +1,33 @@
 {
-    "last_updated": "2026-06-30T20:07:50.022780Z",
+    "last_updated": "2026-06-30T21:18:15.434572Z",
     "commits": [
+        {
+            "hash": "ec50e0ee73892308ffb5d1b141481b7d55e5802a",
+            "date": "2026-06-30T18:17:55-03:00",
+            "message": "Merge pull request #169 from unb-mds/feature/testes-issue-1",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "be06eda4f587c541de62e084f5acbb593cd39d1c",
+            "date": "2026-06-30T17:56:57-03:00",
+            "message": "test: adiciona testes da Issue 1 - rota raiz e listagem de proposicoes",
+            "is_conventional": true,
+            "insertions": 132,
+            "deletions": 4,
+            "total_diff": 136
+        },
+        {
+            "hash": "1a7a3e3fbb92bfea85dd39b381affcc9150738e7",
+            "date": "2026-06-30T17:53:07-03:00",
+            "message": "chore: resolve conflito de merge no test_main.py",
+            "is_conventional": true,
+            "insertions": 7,
+            "deletions": 4,
+            "total_diff": 11
+        },
         {
             "hash": "f51b794a6ca374a03219c8ec046d64b8dbb53ff0",
             "date": "2026-06-30T17:07:23-03:00",
@@ -2542,6 +2569,24 @@
     ],
     "issues": [
         {
+            "number": 168,
+            "title": "[QA]: Implementar testes para endpoints de Analytics",
+            "state": "open",
+            "created_at": "2026-06-30T20:33:15Z",
+            "closed_at": null,
+            "resolution_time_hours": null,
+            "char_count": 623
+        },
+        {
+            "number": 167,
+            "title": "[QA]: Implementar testes de tramitações de proposições",
+            "state": "open",
+            "created_at": "2026-06-30T20:30:33Z",
+            "closed_at": null,
+            "resolution_time_hours": null,
+            "char_count": 543
+        },
+        {
             "number": 165,
             "title": "[Backend] Implementar crawler de tramitações das matérias do Senado",
             "state": "closed",
@@ -2589,10 +2634,10 @@
         {
             "number": 159,
             "title": "[QA]: Implementar testes para rota raiz e listagem geral de proposições",
-            "state": "open",
+            "state": "closed",
             "created_at": "2026-06-30T06:39:27Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
+            "closed_at": "2026-06-30T21:15:38Z",
+            "resolution_time_hours": 14.6,
             "char_count": 738
         },
         {
@@ -3020,17 +3065,17 @@
         }
     ],
     "autores": {
+        "marispmorais": {
+            "commits": 22,
+            "insercoes": 2932984,
+            "delecoes": 145,
+            "total_linhas": 2933129
+        },
         "augustogmedeiros": {
             "commits": 148,
             "insercoes": 12958,
             "delecoes": 2948419,
             "total_linhas": 2961377
-        },
-        "marispmorais": {
-            "commits": 19,
-            "insercoes": 2932845,
-            "delecoes": 137,
-            "total_linhas": 2932982
         },
         "wandinhawright": {
             "commits": 33,
