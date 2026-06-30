@@ -8,13 +8,11 @@
       
       
       
-        <link rel="canonical" href="https://unb-mds.github.io/2026-1-ProtectKids/estudos/estrategia_testes/">
+        <link rel="canonical" href="https://unb-mds.github.io/2026-1-ProtectKids/infra/ci-cd/">
       
       
-        <link rel="prev" href="../../arquitetura/">
+        <link rel="prev" href="../docker-compose/">
       
-      
-        <link rel="next" href="../../sprints/">
       
       
         
@@ -25,7 +23,7 @@
     
     
       
-        <title>Estratégia de Testes - ProtectKids</title>
+        <title>CI/CD (GitHub Actions) - ProtectKids</title>
       
     
     
@@ -77,6 +75,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#integracao-continua-cicd" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -109,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Estratégia de Testes
+              CI/CD (GitHub Actions)
             
           </span>
         </div>
@@ -264,11 +267,9 @@
   
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="./" class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../../estudos/testes/estrategia_testes/" class="md-tabs__link">
         
   
   
@@ -305,11 +306,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../infra/docker-compose/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../docker-compose/" class="md-tabs__link">
           
   
   
@@ -474,17 +477,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../estudos/testes/estrategia_testes/" class="md-nav__link">
         
   
   
@@ -500,7 +496,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -964,26 +959,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
             
   
   
@@ -1001,7 +1001,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1019,7 +1019,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../infra/docker-compose/" class="md-nav__link">
+      <a href="../docker-compose/" class="md-nav__link">
         
   
   
@@ -1035,6 +1035,147 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CI/CD (GitHub Actions)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CI/CD (GitHub Actions)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pipeline-atual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pipeline Atual
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quando-o-ci-e-acionado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quando o CI é Acionado
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o-que-o-ci-valida" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que o CI Valida
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#isolamento-do-banco-de-dados-no-ci" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Isolamento do Banco de Dados no CI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-acompanhar-o-ci-no-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como Acompanhar o CI no GitHub
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependencias-de-testes-requirementstxt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependências de Testes (requirements.txt)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1064,73 +1205,121 @@
 
 
 
-  <h1>Estratégia de Testes</h1>
+<h1 id="integracao-continua-cicd">⚙️ Integração Contínua (CI/CD)<a class="headerlink" href="#integracao-continua-cicd" title="Permanent link">&para;</a></h1>
+<p>O <strong>ProtectKids</strong> utiliza <strong>GitHub Actions</strong> para automatizar a execução dos testes a cada Pull Request direcionado à branch <code>main</code>, garantindo que nenhuma alteração quebre o comportamento esperado da API antes do merge.</p>
+<hr />
+<h2 id="pipeline-atual">Pipeline Atual<a class="headerlink" href="#pipeline-atual" title="Permanent link">&para;</a></h2>
+<p><strong>Arquivo:</strong> <code>.github/workflows/ci.yml</code></p>
+<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ProtectKids CI</span>
 
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&quot;main&quot;</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&quot;main&quot;</span><span class="w"> </span><span class="p p-Indicator">]</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">test</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Checkout do código</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Configurar Python 3.11</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v5</span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3.11&quot;</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Instalar dependências</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">python -m pip install --upgrade pip</span>
+<span class="w">        </span><span class="no">pip install -r backend/requirements.txt</span>
+<span class="w">        </span><span class="no">pip install pytest pytest-cov httpx</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Rodar Pytest com cobertura</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">cd backend</span>
+<span class="w">        </span><span class="no">pytest tests/ --cov=. --cov-report=term-missing</span>
+</code></pre></div>
+<hr />
+<h2 id="quando-o-ci-e-acionado">Quando o CI é Acionado<a class="headerlink" href="#quando-o-ci-e-acionado" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Evento</th>
+<th>Comportamento</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>push</code> na <code>main</code></td>
+<td>Roda a suíte completa de testes</td>
+</tr>
+<tr>
+<td><code>pull_request</code> para <code>main</code></td>
+<td>Roda a suíte e bloqueia merge se houver falha</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="o-que-o-ci-valida">O que o CI Valida<a class="headerlink" href="#o-que-o-ci-valida" title="Permanent link">&para;</a></h2>
+<p>A cada execução, o pipeline garante que:</p>
+<ul>
+<li>Todas as dependências do <code>requirements.txt</code> são instaláveis no ambiente Linux</li>
+<li>Os <strong>43 testes</strong> da suíte passam sem falhas</li>
+<li>O relatório de cobertura (<code>--cov-report=term-missing</code>) é exibido no log da Action, mostrando quais linhas ainda não estão cobertas</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Por que <code>term-missing</code> e não <code>html</code>?</p>
+<p>No CI não faz sentido gerar um relatório HTML — ninguém vai abrir um arquivo dentro do runner do GitHub Actions. O <code>term-missing</code> exibe a cobertura diretamente no log da Action, que é acessível por qualquer membro do squad na aba <strong>Checks</strong> do PR.</p>
+</div>
+<hr />
+<h2 id="isolamento-do-banco-de-dados-no-ci">Isolamento do Banco de Dados no CI<a class="headerlink" href="#isolamento-do-banco-de-dados-no-ci" title="Permanent link">&para;</a></h2>
+<p>Os testes <strong>não dependem do PostgreSQL</strong> para rodar. O pipeline não precisa subir nenhum serviço de banco de dados porque a suíte utiliza <strong>SQLite em memória</strong>, substituindo a dependência <code>get_session</code> via <code>dependency_overrides</code> do FastAPI.</p>
+<p>Isso significa que o CI é:</p>
+<ul>
+<li>✅ <strong>Rápido</strong> — sem tempo de espera para subir containers</li>
+<li>✅ <strong>Simples</strong> — sem configuração de serviços externos no workflow</li>
+<li>✅ <strong>Portável</strong> — roda igual no Windows (local) e no Ubuntu (CI)</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Atenção para testes futuros</p>
+<p>Se futuramente forem criados testes que dependam de conexão real com o PostgreSQL (por exemplo, testes de migrations ou procedures), será necessário adicionar um serviço de banco ao workflow:
+<div class="highlight"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">postgres</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres:15</span>
+<span class="w">    </span><span class="nt">env</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">POSTGRES_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">senha</span>
+<span class="w">      </span><span class="nt">POSTGRES_DB</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">legislativo_db</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5432:5432</span>
+</code></pre></div></p>
+</div>
+<hr />
+<h2 id="como-acompanhar-o-ci-no-github">Como Acompanhar o CI no GitHub<a class="headerlink" href="#como-acompanhar-o-ci-no-github" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Conceitos de Testes Aplicados ao Contexto de MDS
-Para garantir a confiabilidade do ProtectKids sem tornar o processo de desenvolvimento lento, adotamos o conceito clássico da Pirâmide de Testes. A ideia central é ter uma base massiva de testes rápidos e isolados, e menos testes no topo (que são mais lentos e complexos).</li>
+<li>Abra o Pull Request no GitHub</li>
+<li>Role até a seção <strong>"Checks"</strong> na parte inferior da página</li>
+<li>Clique em <strong>"Details"</strong> ao lado do workflow <code>ProtectKids CI</code></li>
+<li>Acompanhe os steps em tempo real — o log do step <strong>"Rodar Pytest com cobertura"</strong> mostra o resultado de cada teste e a tabela de cobertura</li>
 </ol>
-<p>🧪 Testes Unitários (A Base)
-Focam em validar o comportamento da menor unidade de código isolável no sistema (geralmente uma única função pura), sem tocar em componentes externos como bancos de dados ou APIs na internet.</p>
-<p>No contexto do ProtectKids: Validar se uma função utilitária de limpeza remove caracteres especiais de uma ementa, ou se o extrator de texto formata strings corretamente.</p>
-<p>🔗 Testes de Integração (O Meio)
-Validam se dois ou mais componentes internos ou sistemas conversam corretamente entre si, garantindo que a união de partes isoladas funciona como o esperado.</p>
-<p>No contexto do ProtectKids: Verificar se uma rota do FastAPI consegue receber um payload HTTP, processar as validações e persistir o modelo do SQLModel com sucesso dentro de um banco de dados de teste.</p>
-<p>🖥️ Testes de Ponta a Ponta / E2E (O Topo)
-Simulam a jornada completa do usuário final na aplicação, simulando cliques, fluxos de navegação e interações reais da tela até a persistência final de dados.</p>
-<p>No contexto do ProtectKids: Simular um usuário entrando no Dashboard em React, aplicando um filtro por tema legislativo e verificando se os gráficos de barras atualizam dinamicamente com os dados reais vindos do banco de dados através da API.</p>
-<ol>
-<li>Ecossistema do Back-End com pytest e SQLModel
-O pytest é o framework padrão para testes em Python devido à sua simplicidade e suporte robusto a Fixtures. Fixtures são funções que preparam o ambiente para os testes (ligando recursos) e limpam tudo após a execução.</li>
-</ol>
-<p>Simulação do Banco de Dados com SQLite em Memória
-Para testar operações de banco sem sujar ou depender do PostgreSQL local/produção, criamos uma fixture que gera um banco SQLite efêmero em memória RAM a cada ciclo de teste:</p>
-<p>import pytest
-from sqlmodel import SQLModel, Session, create_engine
-from core.database import get_session
-from main import app</p>
-<p>@pytest.fixture(name="session")
-def session_fixture():
-    # Cria uma engine isolada em memória para cada teste
-    engine = create_engine("sqlite:///:memory:", connect_args={"check_same_thread": False})
-    SQLModel.metadata.create_all(engine)
-    with Session(engine) as session:
-        yield session</p>
-<p>@pytest.fixture(name="client")
-def client_fixture(session):
-    # Injeta a sessão de testes nas dependências de rotas do FastAPI
-    def get_session_override():
-        return session
-    app.dependency_overrides[get_session] = get_session_override
-    from fastapi.testclient import TestClient
-    yield TestClient(app)
-    app.dependency_overrides.clear()</p>
-<ol>
-<li>Isolando o Pipeline de ETL com Mocks (unittest.mock)
-O pipeline de ETL não pode depender de conexões externas ativas. Se o portal da Câmara dos Deputados estiver fora do ar ou instável, a nossa esteira de CI/CD quebraria. Usamos objetos Mock para simular o comportamento dessas dependências externas.</li>
-</ol>
-<p>Mockando a API da Câmara (requests.get): Interceptamos a chamada de rede e injetamos uma resposta estática (fictícia) contendo apenas o formato JSON esperado para validar se o nosso parser funciona.</p>
-<p>Mockando o pdfplumber: Em vez de abrir e ler um arquivo binário pesado de um PDF real de proposição legislativa, simulamos o objeto do gerenciador de contexto do pdfplumber retornando um texto plano pré-definido.</p>
-<ol>
-<li>Otimização de Performance no Motor de NLP (spaCy)
-O carregamento do pipeline de linguagem do spaCy (pt_core_news_sm) exige processamento pesado e tempo de CPU significativos. Se instanciarmos o modelo a cada teste unitário executado, a suite de testes demorará minutos para rodar.</li>
-</ol>
-<p>Estratégia de Otimização: Configurar uma fixture com o escopo de sessão (scope="session"). Isso garante que o modelo de IA seja carregado na memória RAM uma única vez no início da execução da suíte inteira de testes, sendo compartilhado entre todas as funções de teste que avaliam o classificador.</p>
-<p>import pytest
-import spacy</p>
-<p>@pytest.fixture(scope="session")
-def nlp_model():
-    # Carregado apenas 1 vez para todos os testes do backend
-    return spacy.load("pt_core_news_sm")</p>
-<ol>
-<li>Ferramentas de Teste para o Frontend (React)
-Para garantir o comportamento do Dashboard e a renderização correta dos gráficos sem quebras visuais, o ecossistema React utiliza duas ferramentas complementares de mercado:</li>
-</ol>
-<p>Jest: Funciona como o executor de testes (test runner). Ele cria o ambiente simulado do navegador (DOM), gerencia as asserções (expect) e calcula a cobertura de código no ambiente JavaScript.</p>
-<p>React Testing Library (RTL): Fornece utilitários focados em testar o comportamento dos componentes sob a perspectiva de uso do usuário real. Em vez de testar estados internos do código (como variáveis ocultas), o RTL busca o que está visível na tela (como buscar botões por textos ou papéis semânticos).</p>
-<p>Casos de Testes Críticos no Frontend:
-Renderização de Elementos-Chave: Validar se os cards de resumo e gráficos carregam com a paleta visual correta do projeto.</p>
-<p>Interações do Painel: Simular o clique em uma tag de tema ou partido e verificar se a função de filtragem dispara a requisição esperada na API.</p>
+<div class="admonition success">
+<p class="admonition-title">CI verde = PR pronto para review</p>
+<p>Um ✅ verde no CI indica que todos os testes passaram e o código está seguro para ser revisado e mergeado.</p>
+</div>
+<hr />
+<h2 id="dependencias-de-testes-requirementstxt">Dependências de Testes (<code>requirements.txt</code>)<a class="headerlink" href="#dependencias-de-testes-requirementstxt" title="Permanent link">&para;</a></h2>
+<p>As seguintes bibliotecas são necessárias para rodar a suíte localmente e no CI:</p>
+<div class="highlight"><pre><span></span><code>pytest==8.3.4
+pytest-cov==7.1.0
+httpx==0.27.0
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Instalação local</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>backend/requirements.txt
+</code></pre></div>
+</div>
 
 
 
