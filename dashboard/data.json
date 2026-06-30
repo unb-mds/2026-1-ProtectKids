@@ -1,6 +1,24 @@
 {
-    "last_updated": "2026-06-30T06:54:42.005782Z",
+    "last_updated": "2026-06-30T16:08:38.554316Z",
     "commits": [
+        {
+            "hash": "e66c17a574a70c2c8bf9c92bca146573dca136c3",
+            "date": "2026-06-30T13:08:11-03:00",
+            "message": "Merge pull request #162 from unb-mds/feat/frontend-site",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "618a97bdaed630933510b262060edf1326b9b140",
+            "date": "2026-06-30T04:19:35-03:00",
+            "message": "feat: integraçoes finais do frontend",
+            "is_conventional": true,
+            "insertions": 1827,
+            "deletions": 472,
+            "total_diff": 2299
+        },
         {
             "hash": "cf91ddcb18786e4aa683126c32b48c41ee429e8f",
             "date": "2026-06-30T03:54:20-03:00",
@@ -2506,6 +2524,24 @@
     ],
     "issues": [
         {
+            "number": 161,
+            "title": "[QA]: Implementar testes de busca por ID e validação de existência",
+            "state": "open",
+            "created_at": "2026-06-30T06:58:05Z",
+            "closed_at": null,
+            "resolution_time_hours": null,
+            "char_count": 661
+        },
+        {
+            "number": 160,
+            "title": "[QA]: Implementar testes de filtros de origem (Câmara/Senado)",
+            "state": "open",
+            "created_at": "2026-06-30T06:54:39Z",
+            "closed_at": null,
+            "resolution_time_hours": null,
+            "char_count": 669
+        },
+        {
             "number": 159,
             "title": "[QA]: Implementar testes para rota raiz e listagem geral de proposições",
             "state": "open",
@@ -2954,32 +2990,14 @@
             "closed_at": "2026-05-21T20:19:39Z",
             "resolution_time_hours": 1.85,
             "char_count": 0
-        },
-        {
-            "number": 62,
-            "title": "feat: adicionar a NLP no crawler",
-            "state": "closed",
-            "created_at": "2026-05-21T16:26:55Z",
-            "closed_at": "2026-05-21T20:19:37Z",
-            "resolution_time_hours": 3.88,
-            "char_count": 0
-        },
-        {
-            "number": 61,
-            "title": "feat: adicionar frameworks no requirements.txt",
-            "state": "closed",
-            "created_at": "2026-05-21T16:19:26Z",
-            "closed_at": "2026-05-21T20:19:34Z",
-            "resolution_time_hours": 4.0,
-            "char_count": 33
         }
     ],
     "autores": {
         "augustogmedeiros": {
-            "commits": 144,
-            "insercoes": 9415,
-            "delecoes": 2947407,
-            "total_linhas": 2956822
+            "commits": 146,
+            "insercoes": 11242,
+            "delecoes": 2947879,
+            "total_linhas": 2959121
         },
         "marispmorais": {
             "commits": 19,
