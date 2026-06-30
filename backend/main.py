@@ -14,7 +14,7 @@ from contextlib import asynccontextmanager
 nlp = spacy.load("pt_core_news_sm")
 
 @asynccontextmanager
-async def lifespan(app: FastAPI):
+async def lifespan(_app: FastAPI):
     SQLModel.metadata.create_all(engine)
     yield
 

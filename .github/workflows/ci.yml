@@ -28,4 +28,4 @@ jobs:
     - name: Rodar Pytest com cobertura
       run: |
         cd backend
-        pytest tests/ --cov=. --cov-report=term-missing
+        pytest tests/ --cov=. --cov-report=term-missing --cov-report=xml:coverage.xml
