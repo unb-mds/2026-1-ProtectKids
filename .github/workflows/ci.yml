@@ -32,10 +32,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Rodar testes do backend
+      - name: Rodar testes do backend com cobertura mínima
         working-directory: backend
         run: |
-          pytest tests/ --cov=. --cov-report=term-missing --cov-report=xml:coverage.xml
+          pytest tests/ --cov=main --cov=models --cov=database --cov-report=term-missing --cov-report=xml:coverage.xml --cov-fail-under=70
 
   frontend:
     name: Frontend - Lint, Test e Build
@@ -66,6 +66,10 @@ jobs:
       - name: Rodar testes
         working-directory: frontend
         run: npm test -- --run
+
+      - name: Rodar cobertura do frontend
+        working-directory: frontend
+        run: npm run test:coverage
 
       - name: Rodar build
         working-directory: frontend
