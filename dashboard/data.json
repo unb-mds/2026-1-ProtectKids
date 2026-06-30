@@ -1,6 +1,33 @@
 {
-    "last_updated": "2026-06-30T03:32:11.808257Z",
+    "last_updated": "2026-06-30T06:32:17.520743Z",
     "commits": [
+        {
+            "hash": "7fb8c2dc5021e489af0cd5a0d895963d0520b2d8",
+            "date": "2026-06-30T03:31:56-03:00",
+            "message": "Merge pull request #158 from unb-mds/infra/config-testes",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "019040a61b1bd8b17dbdb5d81c76d0d05669fb8d",
+            "date": "2026-06-30T03:30:16-03:00",
+            "message": "merge: resolve conflitos com main",
+            "is_conventional": false,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "45302d03fe12a0559bf23d4dce8ce073737c3e6e",
+            "date": "2026-06-30T03:19:44-03:00",
+            "message": "test: configura pytest-cov, ajusta gitignore, README e CI",
+            "is_conventional": true,
+            "insertions": 73,
+            "deletions": 9,
+            "total_diff": 82
+        },
         {
             "hash": "3571e093f12c6cdd8f099a62af922df2df08c6df",
             "date": "2026-06-30T00:31:48-03:00",
@@ -2398,6 +2425,33 @@
     ],
     "issues": [
         {
+            "number": 157,
+            "title": "[Frontend] Integrar análise estática de código com SonarQube",
+            "state": "open",
+            "created_at": "2026-06-30T06:19:13Z",
+            "closed_at": null,
+            "resolution_time_hours": null,
+            "char_count": 1177
+        },
+        {
+            "number": 156,
+            "title": "[Frontend] Aperfeiçoar UI/UX e responsividade do painel principal",
+            "state": "open",
+            "created_at": "2026-06-30T05:02:28Z",
+            "closed_at": null,
+            "resolution_time_hours": null,
+            "char_count": 1395
+        },
+        {
+            "number": 155,
+            "title": "[Backend] Implementar extração de redes sociais no crawler de parlamentares",
+            "state": "open",
+            "created_at": "2026-06-30T05:01:45Z",
+            "closed_at": null,
+            "resolution_time_hours": null,
+            "char_count": 1580
+        },
+        {
             "number": 147,
             "title": "[Backend] Ajustes de qualidade identificados pelo SonarQube",
             "state": "closed",
@@ -2517,10 +2571,10 @@
         {
             "number": 128,
             "title": "Integração de Sistemas: Realizar a integração completa dos endpoints do Backend com os componentes do Frontend da nova página.",
-            "state": "open",
+            "state": "closed",
             "created_at": "2026-06-25T21:02:48Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
+            "closed_at": "2026-06-30T03:35:33Z",
+            "resolution_time_hours": 102.55,
             "char_count": 0
         },
         {
@@ -2837,29 +2891,20 @@
             "closed_at": "2026-05-21T20:19:36Z",
             "resolution_time_hours": 4.29,
             "char_count": 38
-        },
-        {
-            "number": 56,
-            "title": "fix: corrigir banco de dados",
-            "state": "closed",
-            "created_at": "2026-05-21T00:29:51Z",
-            "closed_at": "2026-05-21T20:19:32Z",
-            "resolution_time_hours": 19.83,
-            "char_count": 66
         }
     ],
     "autores": {
+        "marispmorais": {
+            "commits": 19,
+            "insercoes": 2932845,
+            "delecoes": 137,
+            "total_linhas": 2932982
+        },
         "augustogmedeiros": {
             "commits": 141,
             "insercoes": 9223,
             "delecoes": 2947354,
             "total_linhas": 2956577
-        },
-        "marispmorais": {
-            "commits": 16,
-            "insercoes": 2932772,
-            "delecoes": 128,
-            "total_linhas": 2932900
         },
         "wandinhawright": {
             "commits": 33,
