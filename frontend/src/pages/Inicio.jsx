@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   Bar,
   BarChart,
@@ -12,88 +12,44 @@ import {
   YAxis,
 } from 'recharts';
 import {
-  buscarLeis,
   buscarNuvemPalavras,
   buscarRankingParlamentares,
   buscarRankingPartidos,
+  buscarSubtemas,
   extrairMensagemErro,
 } from '../api';
 import NuvemPalavras from '../components/NuvemPalavras';
 import DashboardBox from '../components/DashboardBox';
+import {
+  CORES_GRAFICO,
+  prepararPalavrasNuvem,
+} from '../constants/analytics';
+import { criarSlugCategoria } from '../constants/categoriasNlp';
 
-const cores = ['#2563EB', '#FACC15', '#0038A8', '#60A5FA', '#FF7A1A', '#16A34A'];
-const SUBTEMAS_IGNORADOS = [
-  'Simbólico/Ruído',
-  'Simbólico',
-  'Ruído',
-  'Nao classificado',
-  'Não classificado',
-];
-const PALAVRAS_IGNORADAS = [
-  'criança',
-  'crianca',
-  'adolescente',
-  'adolescente',
-  'infantil',
-  'proteção',
-  'protecao',
-];
-function formatarNomeSubtema(nome) {
+const formatarNomeSubtema = (nome) => {
   const mapa = {
     'Cyberbullying e Crimes Virtuais': 'Cyberbullying',
-    'Violência e Abuso': 'Violência e Abuso',
-    'Adoção e Orfandade': 'Adoção e Orfandade',
-    'Educação e Cultura': 'Educação e Cultura',
+    'Exploração Sexual Online e Aliciamento Digital': 'Exploração Online',
+    'Proteção de Dados e Privacidade Infantil': 'Dados e Privacidade',
+    'Redes Sociais e Plataformas Digitais': 'Redes e Plataformas',
+    'Educação Digital e Cidadania Online': 'Educação Digital',
+    'Atuação Legislativa e Fiscalização': 'Atuação Legislativa',
+    'Proteção Geral no Ambiente Digital': 'Proteção Geral Digital',
+    'Conteúdo Nocivo e Segurança Online': 'Conteúdo Nocivo',
   };
 
-  return mapa[nome] || nome;
-}
-function calcularVolumePorSubtema(proposicoes) {
-  const contagem = {};
+  return mapa[nome] || nome || 'Não classificado';
+};
 
-  proposicoes.forEach((item) => {
-    const chaveBruta =
-      item.classificacao_nlp || item.subtema || 'Não classificado';
-
-    const chave = String(chaveBruta).trim();
-
-    if (SUBTEMAS_IGNORADOS.includes(chave)) {
-      return;
-    }
-
-    contagem[chave] = (contagem[chave] || 0) + 1;
-  });
-
-  return Object.entries(contagem)
-    .map(([nome, total]) => ({
-      nome: formatarNomeSubtema(nome),
-      total,
-    }))
-    .sort((a, b) => b.total - a.total)
-    .slice(0, 8);
-}
-function prepararPalavrasNuvem(palavras) {
-  return palavras
-    .filter((item) => {
-      const texto = String(item.text || '')
-        .trim()
-        .toLowerCase();
-
-      return texto && !PALAVRAS_IGNORADAS.includes(texto);
-    })
-    .sort((a, b) => b.value - a.value)
-    .slice(0, 24);
-}
 export default function Inicio() {
-  const [proposicoes, setProposicoes] = useState([]);
+  const navigate = useNavigate();
+
+  const [subtemas, setSubtemas] = useState([]);
   const [palavras, setPalavras] = useState([]);
   const [parlamentares, setParlamentares] = useState([]);
   const [partidos, setPartidos] = useState([]);
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState('');
-  const palavrasNuvem = useMemo(() => {
-  return prepararPalavrasNuvem(palavras);
-}, [palavras]);
 
   useEffect(() => {
     const carregarDados = async () => {
@@ -101,18 +57,20 @@ export default function Inicio() {
         setCarregando(true);
         setErro('');
 
-        const [leis, nuvem, rankingParlamentares, rankingPartidos] =
+        const [dadosSubtemas, nuvem, rankingParlamentares, rankingPartidos] =
           await Promise.all([
-            buscarLeis({ limit: 200 }),
+            buscarSubtemas({ limit: 8 }),
             buscarNuvemPalavras({ limit: 30 }),
             buscarRankingParlamentares({ limit: 5 }),
             buscarRankingPartidos({ limit: 6 }),
           ]);
 
-        setProposicoes(leis);
-        setPalavras(nuvem);
-        setParlamentares(rankingParlamentares);
-        setPartidos(rankingPartidos);
+        setSubtemas(Array.isArray(dadosSubtemas) ? dadosSubtemas : []);
+        setPalavras(Array.isArray(nuvem) ? nuvem : []);
+        setParlamentares(
+          Array.isArray(rankingParlamentares) ? rankingParlamentares : []
+        );
+        setPartidos(Array.isArray(rankingPartidos) ? rankingPartidos : []);
       } catch (error) {
         setErro(extrairMensagemErro(error));
       } finally {
@@ -123,14 +81,34 @@ export default function Inicio() {
     carregarDados();
   }, []);
 
-  const volumePorSubtema = useMemo(
-    () => calcularVolumePorSubtema(proposicoes),
-    [proposicoes]
-  );
+  const palavrasNuvem = useMemo(() => {
+    return prepararPalavrasNuvem(palavras);
+  }, [palavras]);
+
+  const volumePorSubtema = useMemo(() => {
+    return subtemas.map((item) => ({
+      nome: formatarNomeSubtema(item.nome),
+      nomeOriginal: item.nome,
+      total: item.total_proposicoes || 0,
+      percentual: item.percentual || 0,
+    }));
+  }, [subtemas]);
 
   const totalProposicoes = useMemo(() => {
-  return volumePorSubtema.reduce((acc, item) => acc + item.total, 0);
-}, [volumePorSubtema]);
+    return volumePorSubtema.reduce((acc, item) => acc + item.total, 0);
+  }, [volumePorSubtema]);
+
+  const abrirDetalheSubtema = useCallback(
+    (nomeCategoria) => {
+      if (!nomeCategoria) {
+        return;
+      }
+
+      const slug = criarSlugCategoria(nomeCategoria);
+      navigate(`/estatisticas/subtema/${slug}`);
+    },
+    [navigate]
+  );
 
   return (
     <div className="bg-[#E5E5E5]">
@@ -138,15 +116,17 @@ export default function Inicio() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-7">
             <h1 className="font-serif text-3xl md:text-5xl font-black uppercase leading-tight text-black">
-              Monitorando Leis de{' '}
-              <span className="text-[#0038A8]">Proteção Infantil</span> e
-              Combate ao Cyberbullying
+              Monitoramento legislativo sobre{' '}
+              <span className="text-[#0038A8]">
+                proteção de crianças e adolescentes no ambiente digital
+              </span>
             </h1>
 
-            <p className="mt-5 text-lg md:text-xl font-bold text-black max-w-3xl">
-              Acompanhe em tempo real as proposições legislativas da Câmara dos
-              Deputados e do Senado Federal voltadas para a segurança digital e
-              proteção de crianças e adolescentes.
+            <p className="mt-5 text-base md:text-lg font-bold text-black max-w-3xl">
+              Plataforma para monitorar, classificar e analisar proposições
+              legislativas sobre cyberbullying, exploração sexual online,
+              proteção de dados de menores, regulação de plataformas digitais e
+              exposição a conteúdo nocivo.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-6 justify-center lg:justify-start">
@@ -170,7 +150,7 @@ export default function Inicio() {
             <div className="h-[260px] md:h-[330px] rounded-sm overflow-hidden bg-orange-300 border-4 border-orange-400 shadow-lg">
               <img
                 src="/images/hero-protectkids.png"
-                alt="Criança brincando em ambiente seguro"
+                alt="Criança em ambiente seguro"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -184,10 +164,12 @@ export default function Inicio() {
             <h3 className="font-serif text-xl font-black text-white uppercase">
               Transparência Total
             </h3>
+
             <p className="mt-3 text-xs font-bold uppercase leading-relaxed text-white">
               Todos os dados são obtidos diretamente de APIs oficiais,
               garantindo informações atualizadas e confiáveis.
             </p>
+
             <div className="mt-4 text-3xl">🛡️</div>
           </div>
 
@@ -195,10 +177,12 @@ export default function Inicio() {
             <h3 className="font-serif text-xl font-black text-white uppercase">
               Foco Especializado
             </h3>
+
             <p className="mt-3 text-xs font-bold uppercase leading-relaxed text-white">
-              Filtramos apenas proposições relacionadas à proteção infantil,
-              cyberbullying e segurança digital.
+              Filtramos proposições relacionadas à proteção de crianças e
+              adolescentes no ambiente digital.
             </p>
+
             <div className="mt-4 text-3xl">ⓘ</div>
           </div>
 
@@ -206,10 +190,12 @@ export default function Inicio() {
             <h3 className="font-serif text-xl font-black text-white uppercase">
               Acompanhamento em Tempo Real
             </h3>
+
             <p className="mt-3 text-xs font-bold uppercase leading-relaxed text-white">
-              Monitore o status de cada proposição desde a apresentação até a
-              aprovação ou arquivamento.
+              Monitore proposições legislativas sobre segurança digital,
+              plataformas, dados e riscos online.
             </p>
+
             <div className="mt-4 text-3xl">↗</div>
           </div>
         </div>
@@ -239,7 +225,15 @@ export default function Inicio() {
                 <NuvemPalavras palavras={palavrasNuvem} />
               </DashboardBox>
 
-              <DashboardBox titulo="Volume de Proposições por Subtema (NLP)" icone="◷">
+              <DashboardBox
+                titulo="Volume de Proposições por Subtema (NLP)"
+                icone="◷"
+              >
+                <p className="mb-4 text-xs font-bold uppercase text-gray-400">
+                  Clique em uma barra ou fatia do gráfico para entender quais
+                  temas entram em cada categoria.
+                </p>
+
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                   <div>
                     <h3 className="font-bold text-sm mb-4">
@@ -259,9 +253,28 @@ export default function Inicio() {
                           />
                           <YAxis allowDecimals={false} />
                           <Tooltip />
-                          <Bar dataKey="total">
-                            {volumePorSubtema.map((_, index) => (
-                              <Cell key={index} fill={cores[index % cores.length]} />
+                          <Bar
+                            dataKey="total"
+                            cursor="pointer"
+                            onClick={(data) => {
+                              const nomeCategoria =
+                                data?.payload?.nomeOriginal ||
+                                data?.nomeOriginal ||
+                                data?.nome;
+
+                              abrirDetalheSubtema(nomeCategoria);
+                            }}
+                          >
+                            {volumePorSubtema.map((item, index) => (
+                              <Cell
+                                key={`${item.nome}-${index}`}
+                                fill={
+                                  CORES_GRAFICO[
+                                    index % CORES_GRAFICO.length
+                                  ]
+                                }
+                                className="cursor-pointer"
+                              />
                             ))}
                           </Bar>
                         </BarChart>
@@ -284,9 +297,24 @@ export default function Inicio() {
                             innerRadius={55}
                             outerRadius={95}
                             label
+                            cursor="pointer"
+                            onClick={(data) => {
+                              const nomeCategoria =
+                                data?.nomeOriginal || data?.nome;
+
+                              abrirDetalheSubtema(nomeCategoria);
+                            }}
                           >
-                            {volumePorSubtema.map((_, index) => (
-                              <Cell key={index} fill={cores[index % cores.length]} />
+                            {volumePorSubtema.map((item, index) => (
+                              <Cell
+                                key={`${item.nome}-${index}`}
+                                fill={
+                                  CORES_GRAFICO[
+                                    index % CORES_GRAFICO.length
+                                  ]
+                                }
+                                className="cursor-pointer"
+                              />
                             ))}
                           </Pie>
                           <Tooltip />
@@ -305,16 +333,20 @@ export default function Inicio() {
                 <DashboardBox titulo="Top Parlamentares" icone="🏅">
                   <div className="space-y-3">
                     {parlamentares.map((item) => {
-                      const maior = parlamentares[0]?.total_proposicoes || 1;
-                      const largura = (item.total_proposicoes / maior) * 100;
+                      const maior =
+                        parlamentares[0]?.total_proposicoes || 1;
+                      const largura =
+                        ((item.total_proposicoes || 0) / maior) * 100;
 
                       return (
-                        <div key={`${item.nome}-${item.partido}`}>
+                        <div key={`${item.nome}-${item.partido}-${item.uf}`}>
                           <div className="flex justify-between text-xs font-bold mb-1">
                             <span>
-                              {item.nome} ({item.partido}/{item.uf})
+                              {item.nome || 'Nome não informado'} (
+                              {item.partido || 'ND'}/{item.uf || 'ND'})
                             </span>
-                            <span>{item.total_proposicoes}</span>
+
+                            <span>{item.total_proposicoes || 0}</span>
                           </div>
 
                           <div className="h-3 bg-gray-200 rounded-full overflow-hidden">
@@ -345,9 +377,16 @@ export default function Inicio() {
                             innerRadius={45}
                             outerRadius={85}
                           >
-                            {partidos.map((_, index) => (
-                              <Cell key={index} fill={cores[index % cores.length]} />
-                            ))}
+                            {partidos.map((item, index) => {
+                              const partido = item.partido || 'ND';
+
+                              return (
+                                <Cell
+                                  key={`grafico-partido-${partido}`}
+                                  fill={CORES_GRAFICO[index % CORES_GRAFICO.length]}
+                                />
+                              );
+                            })}
                           </Pie>
                           <Tooltip />
                         </PieChart>
@@ -360,17 +399,21 @@ export default function Inicio() {
                         <span className="text-right">Proposições</span>
                       </div>
 
-                      {partidos.map((item) => (
-                        <div
-                          key={item.partido}
-                          className="grid grid-cols-2 py-1 border-b border-gray-100"
-                        >
-                          <span>{item.partido || 'ND'}</span>
-                          <span className="text-right font-bold">
-                            {item.total_proposicoes}
-                          </span>
-                        </div>
-                      ))}
+                      {partidos.map((item) => {
+                        const partido = item.partido || 'ND';
+                        return (
+                          <div
+                            key={partido}
+                            className="grid grid-cols-2 py-1 border-b border-gray-100"
+                          >
+                            <span>{partido}</span>
+
+                            <span className="text-right font-bold">
+                              {item.total_proposicoes || 0}
+                            </span>
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                 </DashboardBox>

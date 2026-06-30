@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@theme {
+:root {
   --color-pk-red: #8B0000;
   --color-pk-dark: #1F2937;
 }

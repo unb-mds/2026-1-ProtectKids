@@ -1,4 +1,10 @@
 node_modules
 build
 dist
+coverage
 .env
+.env.local
+figma
+assets
+README.md
+Base.md

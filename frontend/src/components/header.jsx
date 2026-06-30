@@ -19,18 +19,26 @@ export default function Header() {
           </p>
         </Link>
 
-        <nav>
+        <nav aria-label="Navegação principal">
           <ul className="flex flex-wrap items-center gap-6 md:gap-10 font-serif text-sm md:text-base font-bold uppercase tracking-wide">
             <li>
               <Link to="/" className="hover:text-[#FACC15] transition">
                 Início
               </Link>
             </li>
+
             <li>
               <Link to="/leis" className="hover:text-[#FACC15] transition">
                 Todas as Leis
               </Link>
             </li>
+
+            <li>
+              <Link to="/estatisticas" className="hover:text-[#FACC15] transition">
+                Estatísticas
+              </Link>
+            </li>
+
             <li>
               <Link to="/sobre" className="hover:text-[#FACC15] transition">
                 Sobre o Projeto

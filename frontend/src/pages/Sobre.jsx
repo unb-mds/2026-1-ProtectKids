@@ -26,18 +26,18 @@ export default function Sobre() {
       <section className="py-16 px-4 max-w-4xl mx-auto w-full flex flex-col gap-12">
         <div className="bg-white rounded-2xl shadow-md border border-gray-200 p-8 flex flex-col md:flex-row gap-6 items-start">
           <div className="bg-red-50 p-4 rounded-full">
-            <Target size={32} className="text-pk-red" />
+            <Target size={32} className="text-[var(--color-pk-red)]" />
           </div>
           <div>
             <h2 className="text-2xl font-bold text-gray-900 mb-3 font-serif">
               Nossa Missão
             </h2>
             <p className="text-gray-600 leading-relaxed">
-              O ProtectKids nasceu com o objetivo de democratizar o acesso à
-              informação legislativa. Monitoramos e centralizamos proposições da
-              Câmara dos Deputados e do Senado Federal que impactam diretamente
-              a segurança digital, combatem o cyberbullying e garantem a
-              proteção de crianças e adolescentes.
+              O ProtectKids é uma plataforma para monitorar, classificar e analisar
+              proposições legislativas relacionadas à proteção de crianças e adolescentes
+              no ambiente digital. O projeto acompanha temas como cyberbullying, exploração
+              sexual online, proteção de dados de menores, regulação de plataformas digitais,
+              redes sociais, controle parental e exposição a conteúdo nocivo.
             </p>
           </div>
         </div>

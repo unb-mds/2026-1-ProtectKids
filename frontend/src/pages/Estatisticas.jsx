@@ -1,5 +1,12 @@
+import { criarSlugCategoria } from '../constants/categoriasNlp';
+import { useNavigate } from 'react-router-dom';
 import { useEffect, useMemo, useState } from 'react';
-import { BarChart3, Award, Users, PieChart as PieChartIcon } from 'lucide-react';
+import {
+  Award,
+  BarChart3,
+  PieChart as PieChartIcon,
+  Users,
+} from 'lucide-react';
 import {
   Bar,
   BarChart,
@@ -11,79 +18,59 @@ import {
   YAxis,
 } from 'recharts';
 import {
-  buscarLeis,
   buscarRankingParlamentares,
   buscarRankingPartidos,
+  buscarSubtemas,
   extrairMensagemErro,
 } from '../api';
 
-const CORES_GRAFICO = ['#2563EB', '#FACC15', '#0038A8', '#60A5FA', '#FF7A1A', '#16A34A'];
-
-const SUBTEMAS_IGNORADOS = [
-  'Simbólico/Ruído',
-  'Simbólico',
-  'Ruído',
-  'Nao classificado',
-  'Não classificado',
+const CORES_GRAFICO = [
+  '#2563EB',
+  '#FACC15',
+  '#0038A8',
+  '#60A5FA',
+  '#FF7A1A',
+  '#16A34A',
 ];
 
 const formatarNomeSubtema = (nome) => {
   const mapa = {
     'Cyberbullying e Crimes Virtuais': 'Cyberbullying',
-    'Violência e Abuso': 'Violência e Abuso',
-    'Adoção e Orfanatos': 'Adoção e Orfanatos',
-    'Educação e Cultura': 'Educação e Cultura',
+    'Exploração Sexual Online e Aliciamento Digital': 'Exploração Online',
+    'Proteção de Dados e Privacidade Infantil': 'Dados e Privacidade',
+    'Redes Sociais e Plataformas Digitais': 'Redes e Plataformas',
+    'Conteúdo Nocivo e Segurança Online': 'Conteúdo Nocivo',
+    'Educação Digital e Cidadania Online': 'Educação Digital',
+    'Atuação Legislativa e Fiscalização': 'Atuação Legislativa',
+    'Proteção Geral no Ambiente Digital': 'Proteção Geral Digital',
   };
 
-  return mapa[nome] || nome;
-};
-
-const gerarDadosSubtemas = (proposicoes) => {
-  const contagem = {};
-
-  proposicoes.forEach((proposicao) => {
-    const chave = String(
-      proposicao.classificacao_nlp || proposicao.subtema || 'Não classificado'
-    ).trim();
-
-    if (SUBTEMAS_IGNORADOS.includes(chave)) {
-      return;
-    }
-
-    contagem[chave] = (contagem[chave] || 0) + 1;
-  });
-
-  return Object.entries(contagem)
-    .map(([nome, quantidade]) => ({
-      nome: formatarNomeSubtema(nome),
-      quantidade,
-    }))
-    .sort((a, b) => b.quantidade - a.quantidade);
+  return mapa[nome] || nome || 'Não classificado';
 };
 
 export default function Estatisticas() {
   const [parlamentares, setParlamentares] = useState([]);
   const [partidos, setPartidos] = useState([]);
-  const [proposicoes, setProposicoes] = useState([]);
+  const [subtemas, setSubtemas] = useState([]);
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState('');
-
+  const navigate = useNavigate();
   useEffect(() => {
     const carregarDados = async () => {
       try {
         setCarregando(true);
         setErro('');
 
-        const [dadosParlamentares, dadosPartidos, todasAsProposicoes] =
+        const [dadosParlamentares, dadosPartidos, dadosSubtemas] =
           await Promise.all([
             buscarRankingParlamentares({ limit: 10 }),
             buscarRankingPartidos({ limit: 10 }),
-            buscarLeis({ limit: 200 }),
+            buscarSubtemas({ limit: 10 }),
           ]);
 
-        setParlamentares(dadosParlamentares);
-        setPartidos(dadosPartidos);
-        setProposicoes(todasAsProposicoes);
+        setParlamentares(Array.isArray(dadosParlamentares) ? dadosParlamentares : []);
+        setPartidos(Array.isArray(dadosPartidos) ? dadosPartidos : []);
+        setSubtemas(Array.isArray(dadosSubtemas) ? dadosSubtemas : []);
       } catch (error) {
         setErro(extrairMensagemErro(error));
       } finally {
@@ -94,15 +81,19 @@ export default function Estatisticas() {
     carregarDados();
   }, []);
 
-  const dadosSubtemas = useMemo(
-    () => gerarDadosSubtemas(proposicoes),
-    [proposicoes]
-  );
+    const dadosSubtemas = useMemo(() => {
+      return subtemas.map((item) => ({
+        nome: formatarNomeSubtema(item.nome),
+        nomeOriginal: item.nome,
+        quantidade: item.total_proposicoes || 0,
+        percentual: item.percentual || 0,
+      }));
+    }, [subtemas]);
 
   if (carregando) {
     return (
-      <div className="text-center py-20 text-gray-500 font-medium">
-        Carregando painel de inteligência de dados...
+      <div className="min-h-[60vh] flex items-center justify-center bg-[#E5E5E5] text-[#001B5E] font-bold">
+        Carregando painel de estatísticas...
       </div>
     );
   }
@@ -112,8 +103,10 @@ export default function Estatisticas() {
       <section className="bg-[#FACC15] text-[#001B5E] py-10 px-8 flex justify-center shadow-inner mb-8">
         <div className="max-w-6xl w-full text-center">
           <h1 className="text-3xl md:text-4xl font-black tracking-wide leading-tight mb-2 uppercase font-serif flex items-center justify-center gap-3">
-            <BarChart3 className="text-[#0038A8]" size={36} /> Dashboard Analítico
+            <BarChart3 className="text-[#0038A8]" size={36} />
+            Dashboard Analítico
           </h1>
+
           <p className="text-black font-bold text-sm md:text-base max-w-2xl mx-auto uppercase tracking-wider">
             Monitoramento de volume de proposições e engajamento legislativo.
           </p>
@@ -128,11 +121,18 @@ export default function Estatisticas() {
         )}
 
         <div className="bg-white rounded-2xl shadow-md border border-gray-200 overflow-hidden w-full">
-          <div className="bg-gray-100 p-6 border-b border-gray-200 flex items-center gap-3">
-            <PieChartIcon className="text-[#0038A8]" size={28} />
-            <h2 className="text-xl font-bold text-gray-900 font-serif uppercase tracking-wide">
-              Volume de Proposições por Subtema (NLP)
-            </h2>
+          <div className="bg-gray-100 p-6 border-b border-gray-200 flex items-start gap-3">
+            <PieChartIcon className="text-[#0038A8] mt-1" size={28} />
+
+            <div>
+              <h2 className="text-xl font-bold text-gray-900 font-serif uppercase tracking-wide">
+                Volume de Proposições por Subtema
+              </h2>
+
+              <p className="text-xs text-gray-500 font-bold uppercase mt-1">
+                Clique em uma barra para entender quais temas entram em cada categoria.
+              </p>
+            </div>
           </div>
 
           <div className="p-6 h-[430px] w-full">
@@ -142,7 +142,12 @@ export default function Estatisticas() {
                   data={dadosSubtemas}
                   margin={{ top: 20, right: 30, left: 0, bottom: 80 }}
                 >
-                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E5E7EB" />
+                  <CartesianGrid
+                    strokeDasharray="3 3"
+                    vertical={false}
+                    stroke="#E5E7EB"
+                  />
+
                   <XAxis
                     dataKey="nome"
                     interval={0}
@@ -153,24 +158,51 @@ export default function Estatisticas() {
                     axisLine={false}
                     tickLine={false}
                   />
+
                   <YAxis
                     allowDecimals={false}
                     tick={{ fill: '#4B5563' }}
                     axisLine={false}
                     tickLine={false}
                   />
+
                   <Tooltip
                     cursor={{ fill: '#F3F4F6' }}
+                    formatter={(value, name, props) => {
+                      const percentual = props.payload?.percentual || 0;
+                      return [`${value} proposições (${percentual}%)`, 'Total'];
+                    }}
                     contentStyle={{
                       borderRadius: '8px',
                       border: 'none',
                       boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
                     }}
                   />
-                  <Bar dataKey="quantidade" name="Proposições" radius={[4, 4, 0, 0]}>
-                    {dadosSubtemas.map((item, index) => (
-                      <Cell key={`${item.nome}-${index}`} fill={CORES_GRAFICO[index % CORES_GRAFICO.length]} />
-                    ))}
+
+                  <Bar
+                    dataKey="quantidade"
+                    name="Proposições"
+                    radius={[4, 4, 0, 0]}
+                    cursor="pointer"
+                    onClick={(data) => {
+                      const nomeCategoria =
+                        data?.payload?.nomeOriginal || data?.nomeOriginal || data?.nome;
+
+                      if (nomeCategoria) {
+                        navigate(`/estatisticas/subtema/${criarSlugCategoria(nomeCategoria)}`);
+                      }
+                    }}
+                  >
+                    {dadosSubtemas.map((item, index) => {
+                      const chaveSubtema = item.nomeOriginal || item.nome;
+
+                      return (
+                        <Cell
+                          key={`grafico-subtema-${chaveSubtema}`}
+                          fill={CORES_GRAFICO[index % CORES_GRAFICO.length]}
+                        />
+                      );
+                    })}
                   </Bar>
                 </BarChart>
               </ResponsiveContainer>
@@ -186,6 +218,7 @@ export default function Estatisticas() {
           <div className="bg-white rounded-2xl shadow-md border border-gray-200 overflow-hidden flex flex-col">
             <div className="bg-gray-100 p-6 border-b border-gray-200 flex items-center gap-3">
               <Award className="text-yellow-600" size={28} />
+
               <h2 className="text-xl font-bold text-gray-900 font-serif uppercase tracking-wide">
                 Top Parlamentares
               </h2>
@@ -203,19 +236,24 @@ export default function Estatisticas() {
                         <span className="text-lg font-bold text-gray-400 w-6 text-center">
                           {index + 1}º
                         </span>
+
                         <div>
                           <p className="font-bold text-gray-900 text-lg">
-                            {parlamentar.nome}
+                            {parlamentar.nome || 'Nome não informado'}
                           </p>
+
                           <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                            {parlamentar.partido || 'ND'} - {parlamentar.uf || 'ND'}
+                            {parlamentar.partido || 'ND'} -{' '}
+                            {parlamentar.uf || 'ND'}
                           </p>
                         </div>
                       </div>
+
                       <div className="flex flex-col items-end">
-                        <span className="text-2xl font-black text-pk-red">
-                          {parlamentar.total_proposicoes}
+                        <span className="text-2xl font-black text-[#D61F26]">
+                          {parlamentar.total_proposicoes || 0}
                         </span>
+
                         <span className="text-[10px] uppercase font-bold text-gray-400">
                           Proposições
                         </span>
@@ -224,7 +262,9 @@ export default function Estatisticas() {
                   ))}
                 </ul>
               ) : (
-                <p className="text-gray-500 font-medium">Nenhum parlamentar encontrado.</p>
+                <p className="text-gray-500 font-medium">
+                  Nenhum parlamentar encontrado.
+                </p>
               )}
             </div>
           </div>
@@ -232,6 +272,7 @@ export default function Estatisticas() {
           <div className="bg-white rounded-2xl shadow-md border border-gray-200 overflow-hidden flex flex-col">
             <div className="bg-gray-100 p-6 border-b border-gray-200 flex items-center gap-3">
               <Users className="text-blue-600" size={28} />
+
               <h2 className="text-xl font-bold text-gray-900 font-serif uppercase tracking-wide">
                 Engajamento por Partido
               </h2>
@@ -240,32 +281,41 @@ export default function Estatisticas() {
             <div className="p-6 flex-grow">
               {partidos.length ? (
                 <ul className="space-y-4">
-                  {partidos.map((partido, index) => (
-                    <li
-                      key={`${partido.partido}-${index}`}
-                      className="flex items-center justify-between p-4 bg-gray-50 rounded-xl border border-gray-100 hover:border-gray-300 transition shadow-sm"
-                    >
-                      <div className="flex items-center gap-4">
-                        <span className="text-lg font-bold text-gray-400 w-6 text-center">
-                          {index + 1}º
-                        </span>
-                        <p className="font-bold text-gray-900 text-xl">
-                          {partido.partido || 'ND'}
-                        </p>
-                      </div>
-                      <div className="flex flex-col items-end">
-                        <span className="text-2xl font-black text-blue-600">
-                          {partido.total_proposicoes}
-                        </span>
-                        <span className="text-[10px] uppercase font-bold text-gray-400">
-                          Proposições
-                        </span>
-                      </div>
-                    </li>
-                  ))}
+                  {partidos.map((partido, index) => {
+                    const siglaPartido = partido.partido || 'ND';
+
+                    return (
+                      <li
+                        key={`ranking-partido-${siglaPartido}`}
+                        className="flex items-center justify-between p-4 bg-gray-50 rounded-xl border border-gray-100 hover:border-gray-300 transition shadow-sm"
+                      >
+                        <div className="flex items-center gap-4">
+                          <span className="text-lg font-bold text-gray-400 w-6 text-center">
+                            {index + 1}º
+                          </span>
+
+                          <p className="font-bold text-gray-900 text-xl">
+                            {siglaPartido}
+                          </p>
+                        </div>
+
+                        <div className="flex flex-col items-end">
+                          <span className="text-2xl font-black text-blue-600">
+                            {partido.total_proposicoes || 0}
+                          </span>
+
+                          <span className="text-[10px] uppercase font-bold text-gray-400">
+                            Proposições
+                          </span>
+                        </div>
+                      </li>
+                    );
+                  })}
                 </ul>
               ) : (
-                <p className="text-gray-500 font-medium">Nenhum partido encontrado.</p>
+                <p className="text-gray-500 font-medium">
+                  Nenhum partido encontrado.
+                </p>
               )}
             </div>
           </div>
