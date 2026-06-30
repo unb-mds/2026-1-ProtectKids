@@ -84,6 +84,8 @@ docker-compose exec backend python -m crawler.tramitacoes_api
 - **API Rest (Backend):** http://localhost:8000
 - **Documentação Swagger:** http://localhost:8000/docs
 
+---
+
 ## 🧪 Testes e Cobertura de Código
 
 O backend utiliza [`pytest`](https://docs.pytest.org/) para testes automatizados e [`pytest-cov`](https://pytest-cov.readthedocs.io/) para medir a cobertura de código.
@@ -133,6 +135,7 @@ A flag `term-missing` mostra no terminal exatamente quais linhas do código aind
 
 **💡 Dica de Desenvolvimento:** Caso o banco precise ser totalmente resetado ou suas variáveis do `.env` alteradas, utilize o comando `docker-compose down -v` para destruir os volumes internos e limpe o ambiente antes de subir a infraestrutura novamente.
 
+---
 
 ## 📖 Documentação Completa (MkDocs)
 
