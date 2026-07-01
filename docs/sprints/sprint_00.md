@@ -14,7 +14,7 @@ Antes do início do desenvolvimento das funcionalidades do ProtectKids, a equipe
 * Augusto puxou a organização geral e orientou a necessidade de separar as áreas técnicas.
 * Carlos levantou a necessidade de acompanhar as tarefas em formato Scrum.
 * Ryan e Wanda falaram sobre a futura interface e a necessidade de pensar o Figma desde o início.
-* Yara observou que seria necessário preparar ambiente, Docker e integração entre serviços.
+* Yara observou que seria necessário preparar ambiente para infraestrutura e o Docker de inicio parece a melhor opção.
 * Mariana trouxe a preocupação com backend, dados e testes.
 * Danielly ficou como apoio para documentação, requisitos e registros.
 
@@ -27,3 +27,4 @@ Antes do início do desenvolvimento das funcionalidades do ProtectKids, a equipe
 * Cada membro deveria estudar sua frente principal.
 * Carlos acompanharia as tarefas.
 * Augusto ficaria como referência técnica para correções e decisões gerais.
+* Ficou decidido que o grupo tentara usar o telegram para comunicação principal.
