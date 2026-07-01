@@ -69,6 +69,11 @@ A Sprint 03 consolidou os primeiros componentes concretos do ProtectKids. Com a 
 * Definir a arquitetura inicial.
 * Separar responsabilidades entre frontend, backend, banco e ETL.
 * Organizar como a documentação apresentaria o sistema.
+- Discussão sobre o uso do Docker como ferramenta de padronização do ambiente.
+- Análise da necessidade de todos os membros executarem o projeto em um ambiente semelhante.
+- Definição do Docker Compose como apoio para subir os serviços do projeto de forma integrada.
+- Redução de problemas causados por diferenças de versões, dependências e configurações locais.
+- Organização da forma como a arquitetura e a infraestrutura seriam apresentadas na documentação.
 
 ## O que foi conversado
 * Foi conversado que a arquitetura precisava deixar claro o papel de cada parte do sistema.
