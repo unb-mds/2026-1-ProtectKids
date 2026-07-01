@@ -81,9 +81,9 @@ A Sprint 05 representou um importante avanço na maturidade do ProtectKids ao in
 * Foi conversado que os dados precisavam ser confiáveis, sem duplicidade e com identificadores consistentes.
 * Augusto corrigiu pontos do backend e ajudou a integrar as partes.
 * Mariana trabalhou a visão de dados, testes e validação.
-* Ryan e Wanda alinharam quais informações seriam usadas nas telas.
+* Ryan e Wanda alinharam quais informações seriam usadas nas telas, assim como as cores.
 * Yara acompanhou ambiente, banco e execução dos serviços.
-* Carlos organizou as pendências de cada frente.
+* Carlos organizou as pendências de cada frente e ajudara o carlos nas conversas mais individuais da equipe.
 * Danielly registrou o que precisava entrar na documentação.
 
 ## Deliberações
@@ -94,5 +94,5 @@ A Sprint 05 representou um importante avanço na maturidade do ProtectKids ao in
 ## Encaminhamentos
 * Mariana e Augusto seguiriam em backend, dados e testes.
 * Ryan e Wanda continuariam refinando a visão de telas.
-* Yara verificaria possíveis gargalos de infraestrutura.
+* Yara verificaria possíveis gargalos de infraestrutura, assim como estudar sobre segurança.
 * Carlos acompanharia o andamento e cobranças da sprint.
