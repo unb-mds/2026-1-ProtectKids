@@ -1,6 +1,24 @@
 {
-    "last_updated": "2026-07-01T14:59:40.396801Z",
+    "last_updated": "2026-07-01T15:07:01.007874Z",
     "commits": [
+        {
+            "hash": "a09e0a3897e505d385f67e19ba8981f527e0a2e5",
+            "date": "2026-07-01T12:06:35-03:00",
+            "message": "Merge pull request #198 from unb-mds/revisao-sprint10",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "c3d3d8542074109adf87e3e313e83d9b4e6b8b90",
+            "date": "2026-07-01T12:05:28-03:00",
+            "message": "Finalize Release 2 with Sprint 10",
+            "is_conventional": false,
+            "insertions": 16,
+            "deletions": 3,
+            "total_diff": 19
+        },
         {
             "hash": "97b5df37acce5ff2e97bfd1fd292f74ac72695e6",
             "date": "2026-07-01T11:59:07-03:00",
@@ -3399,10 +3417,10 @@
     ],
     "autores": {
         "yaxavier": {
-            "commits": 43,
-            "insercoes": 1510,
-            "delecoes": 102,
-            "total_linhas": 1612
+            "commits": 45,
+            "insercoes": 1526,
+            "delecoes": 105,
+            "total_linhas": 1631
         },
         "augustogmedeiros": {
             "commits": 151,
