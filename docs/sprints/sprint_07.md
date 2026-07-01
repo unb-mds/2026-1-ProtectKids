@@ -41,3 +41,32 @@ Ao final da Sprint 07, foram alcançados os seguintes resultados:
 ## Conclusão
 
 A Sprint 07 desempenhou um papel importante na consolidação da documentação do ProtectKids após a conclusão da Release 1. Embora tenha sido uma sprint de menor escopo técnico, suas atividades garantiram que os artefatos de requisitos permanecessem sincronizados com a implementação do sistema, proporcionando maior rastreabilidade, organização e segurança para o planejamento da **Release 2**. Essa etapa reforçou a importância da documentação como elemento fundamental para a manutenção e evolução contínua do projeto.
+
+# Ata da Sprint 7 - Modificações sobre a R1
+
+## Pauta
+* Começar a modificar e melhorar o que foi evoluído na R1.
+* Revisar endpoints, dados e integração.
+* Ajustar documentação conforme o novo estado do projeto.
+
+## O que foi conversado
+* Foi conversado que a sprint não começaria do zero; o objetivo era mexer no que já tinha sido construído na R1.
+* Augusto apontou correções necessárias no backend e na integração.
+* Mariana discutiu validação dos dados, testes e ajustes nos retornos da API.
+* Wanda revisou como as mudanças impactariam Figma e interface.
+* Yara analisou impactos na infraestrutura e no ambiente local.
+* Carlos reorganizou as tarefas sem a participação do Ryan.
+* Danielly atualizou registros e documentação das mudanças.
+
+## Deliberações
+* Foi decidido priorizar correções e melhorias sobre a base da R1.
+* O grupo deliberou ajustar endpoints para facilitar o consumo pelo frontend.
+* Foi decidido revisar documentação para refletir o que realmente estava funcionando.
+* As tarefas de frontend passaram a ser concentradas principalmente com Wanda, com apoio dos demais quando necessário.
+
+## Encaminhamentos
+* Augusto revisaria backend e integração.
+* Mariana validaria dados e testes.
+* Wanda ajustaria Figma/interface conforme mudanças.
+* Yara verificaria ambiente e infraestrutura.
+* Carlos manteria o Scrum atualizado sem Ryan.

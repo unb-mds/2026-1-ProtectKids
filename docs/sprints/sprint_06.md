@@ -100,3 +100,33 @@ Além da consolidação das funcionalidades essenciais da plataforma, a equipe f
 ---
 ## Adendo
 Durante a Sprint 06, um dos integrantes da equipe precisou se desligar da disciplina, o que reduziu a capacidade de desenvolvimento disponível para as atividades de frontend. Como consequência, houve uma redistribuição das responsabilidades entre os demais membros, que assumiram as tarefas pendentes para assegurar a entrega da Release 1. Apesar da sobrecarga ocasionada, os objetivos planejados para a sprint foram concluídos com sucesso.
+
+# Ata da Sprint 6 - Fechamento da R1 e saída do Ryan
+
+## Pauta
+* Consolidar o que estava evoluído na R1.
+* Revisar backend, dados, frontend e documentação.
+* Registrar a mudança de participação do Ryan.
+
+## O que foi conversado
+* Foi conversado que a R1 já tinha uma base funcional, mas ainda precisava de ajustes para avançar com segurança.
+* Augusto revisou pontos do backend, fez correções e orientou prioridades técnicas.
+* Mariana discutiu testes, dados e validação do que já estava implementado.
+* Ryan participou até esta etapa nas discussões de frontend.
+* Wanda permaneceu na frente de Figma e interface.
+* Yara acompanhou infraestrutura, Docker e execução local.
+* Carlos organizou as pendências e registrou o andamento da sprint.
+* Danielly apoiou documentação e revisão dos registros.
+
+## Deliberações
+* Foi decidido fechar a R1 com foco no que já estava funcional.
+* O grupo deliberou que, a partir da próxima sprint, seriam feitas modificações sobre o que já havia evoluído na R1.
+* Foi registrado que Ryan deixaria de participar a partir da Sprint 7.
+* Foi decidido manter Wanda como referência de Figma e interface junto aos ajustes do frontend.
+
+## Encaminhamentos
+* Augusto e Mariana revisariam backend, dados e testes.
+* Yara verificaria infraestrutura para continuidade após a R1.
+* Wanda continuaria com interface e Figma.
+* Carlos atualizaria o acompanhamento das tarefas considerando a saída do Ryan.
+* Danielly ajustaria documentação da evolução da R1.
