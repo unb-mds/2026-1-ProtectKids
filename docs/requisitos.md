@@ -17,12 +17,11 @@ O sistema coletará dados da API de Dados Abertos da Câmara dos Deputados e do 
 Os temas monitorados pela plataforma compreendem as principais dimensões da proteção de crianças e adolescentes no ambiente digital:
 
 - **Cyberbullying e Crimes Virtuais:** proposições que tratam de assédio, perseguição ou humilhação de menores em ambientes virtuais.
-- **Adoção e Orfanatos:** regulações sobre coleta, armazenamento e uso de dados pessoais de crianças e adolescentes por plataformas digitais.
-- **Violência e Abuso:** projetos que buscam combater a distribuição de conteúdo abusivo, aliciamento e outras formas de violência sexual mediadas por tecnologia.
+- **Proteção de Dados e Privacidade Infantil:** regulações sobre a coleta, o armazenamento, o tratamento e o compartilhamento de dados pessoais de crianças e adolescentes, bem como medidas para garantir sua privacidade e segurança no ambiente digital.
+- **Redes Sociais e Plataformas Digitais:** projetos que estabelecem deveres, responsabilidades e mecanismos de governança para redes sociais, aplicativos e plataformas digitais, com foco na proteção de crianças e adolescentes durante o uso desses serviços.
 - **Educação e Cultura:** proposições voltadas à promoção da educação digital, da cidadania online e da conscientização de crianças, adolescentes, famílias e educadores sobre o uso seguro, ético e responsável das tecnologias e plataformas digitais.
-- **Proteção Geral:** projetos que estabelecem diretrizes, responsabilidades e mecanismos de proteção para garantir a segurança, o desenvolvimento saudável e os direitos de crianças e adolescentes no ambiente digital.
-- **Simbólico/Ruído:** iniciativas legislativas de caráter predominantemente declaratório, comemorativo ou de baixa efetividade prática, bem como propostas que possuem relação indireta ou limitada com a proteção infanto-juvenil no ambiente digital.
-- **Articulação Estratégica:** proposições que promovem a integração entre órgãos públicos, entidades privadas, organizações da sociedade civil e instituições de ensino para fortalecer ações coordenadas de proteção de crianças e adolescentes no ambiente digital.
+- **Educação Digital e Cidadania Online:** iniciativas que promovem a educação para o uso seguro, ético, crítico e responsável das tecnologias digitais, fortalecendo a cidadania digital de crianças, adolescentes, famílias e educadores.
+- **Exploração Sexual Online e Aliciamento Digital:** projetos que buscam prevenir, combater e punir a exploração sexual, o aliciamento, o compartilhamento de material de abuso sexual infantil e outras formas de violência sexual praticadas por meio de tecnologias digitais.
 
 ---
 
@@ -44,11 +43,11 @@ Os temas monitorados pela plataforma compreendem as principais dimensões da pro
 
 **Perfil:** Roberto tem 28 anos e trabalha como repórter de tecnologia e sociedade em um grande portal de notícias. Sua especialidade são reportagens investigativas baseadas em dados, e ele está sempre em busca de histórias que revelem padrões invisíveis ao olhar cotidiano. Ele tem familiaridade com ferramentas de análise de dados, mas não é programador — prefere interfaces que traduzam dados complexos em visualizações acessíveis.
 
-**Objetivos:** Roberto quer escrever reportagens que mostrem, com evidências concretas, como o Brasil está — ou não está — acompanhando os novos riscos digitais para crianças. Ele precisa identificar tendências emergentes, como o surgimento repentino de projetos sobre inteligência artificial e menores, e construir narrativas com profundidade histórica e comparativa.
+**Objetivos:** Roberto quer escrever reportagens que mostrem, com evidências concretas, como o Brasil está — ou não está — acompanhando os novos riscos digitais para crianças. Ele precisa identificar quais subtemas recebem maior atenção no Congresso, localizar rapidamente projetos relevantes e compreender como diferentes assuntos estão distribuídos dentro do debate legislativo.
 
-**Dores atuais:** É muito difícil enxergar a "figura maior" ou a linha do tempo do debate legislativo a partir das ferramentas oficiais do Congresso. Quando um tema explode nas notícias, Roberto não consegue saber rapidamente se os parlamentares já estavam discutindo o assunto ou se estão completamente atrasados. A ausência de séries temporais dificulta a construção de narrativas baseadas em evidências.
+**Dores atuais:** As ferramentas oficiais do Congresso dificultam a obtenção de uma visão consolidada do cenário legislativo. Encontrar projetos relacionados a um tema específico exige consultas demoradas, e comparar a relevância de diferentes subtemas ou identificar áreas pouco discutidas demanda muito trabalho manual.
 
-**Como a plataforma o ajuda:** O indicador de evolução temporal por subtema dá a Roberto a manchete pronta: *"Projetos de lei sobre IA e menores crescem 300% em um ano"*. O recurso de identificação de novos temas emergentes complementa essa capacidade analítica, permitindo que ele detecte movimentos legislativos incipientes antes de virarem pauta dominante.
+**Como a plataforma o ajuda:** A classificação automática dos projetos por subtema e as visualizações da distribuição das proposições permitem que Roberto compreenda rapidamente o panorama legislativo. Com filtros e gráficos intuitivos, ele identifica os assuntos mais recorrentes, encontra projetos relacionados ao tema de sua reportagem e obtém evidências para embasar análises e contextualizar suas matérias de forma mais ágil.
 
 ---
 
@@ -60,7 +59,7 @@ Os temas monitorados pela plataforma compreendem as principais dimensões da pro
 
 **Dores atuais:** O excesso de informação desorganizada é seu principal inimigo. Quando o deputado pede que ela redija um projeto sobre cyberbullying, ela teme escrever algo que já foi proposto e rejeitado anos atrás — o que expõe o mandato a críticas e retrabalho. A ausência de um repositório estruturado e pesquisável sobre proposições por subtema torna esse risco constante.
 
-**Como a plataforma a ajuda:** O filtro ágil por subtema permite que Camila faça uma auditoria rápida de tudo que já foi apresentado no Congresso sobre controle parental, segurança digital ou proteção de dados de menores. Com isso, ela identifica lacunas legislativas reais e apresenta ao seu parlamentar uma proposta verdadeiramente original e bem fundamentada.
+**Como a plataforma a ajuda:** O filtro ágil por subtema permite que Camila faça uma auditoria rápida de tudo que já foi apresentado no Congresso sobre Proteção de Dados e Privacidade Infantil, segurança digital ou Exploração Sexual Online e Aliciamento Digital. Com isso, ela identifica lacunas legislativas reais e apresenta ao seu parlamentar uma proposta verdadeiramente original e bem fundamentada.
 
 ---
 
@@ -90,18 +89,6 @@ O painel deve permitir a seleção de um subtema específico para filtrar o rank
 
 ---
 
-## US03 – Análise Temporal de Proposições
-
-**Como** repórter de tecnologia e sociedade,  
-**Quero** visualizar a evolução temporal do volume de proposições por subtema ao longo dos anos,  
-**Para** identificar tendências legislativas emergentes e construir narrativas jornalísticas baseadas em dados.
-
-### Critérios de Aceitação
-
-O painel deve apresentar um gráfico de linha ou barras com o volume de proposições por ano, filtrável por subtema. O gráfico deve deixar visível o crescimento ou a queda na atividade legislativa sobre cada tema ao longo do tempo. Deve ser possível comparar a evolução de dois ou mais subtemas simultaneamente.
-
----
-
 ## US04 – Auditoria de Proposições por Subtema
 
 **Como** assessora legislativa,  
@@ -110,19 +97,7 @@ O painel deve apresentar um gráfico de linha ou barras com o volume de proposi�
 
 ### Critérios de Aceitação
 
-O sistema deve permitir a busca e filtragem de proposições por subtema, com exibição de título, ementa, autor, data de apresentação e situação atual de cada proposição. O resultado deve ser exportável em formato estruturado (CSV ou similar) para uso em análises externas. A listagem deve ordenar as proposições por data, permitindo também ordenação por parlamentar ou partido.
-
----
-
-## US05 – Identificação de Novos Temas Emergentes
-
-**Como** repórter de tecnologia e sociedade,  
-**Quero** ser notificado ou visualizar no painel quando novos temas relacionados à proteção de menores começam a ganhar volume legislativo,  
-**Para** detectar tendências antes que elas se tornem pauta dominante e produzir reportagens investigativas com antecedência.
-
-### Critérios de Aceitação
-
-O sistema deve identificar automaticamente padrões de linguagem recorrentes em proposições que não se encaixam nos subtemas já cadastrados. Os novos clusters temáticos emergentes devem ser sinalizados no painel com indicação do volume de proposições e do período em que surgiram. O usuário deve poder revisar e confirmar ou rejeitar a sugestão de novo subtema.
+O sistema deve permitir a busca e filtragem de proposições por subtema, com exibição de título, ementa, autor, data de apresentação e situação atual de cada proposição. A listagem deve ordenar as proposições por data, permitindo também ordenação por parlamentar ou partido.
 
 ---
 
@@ -130,7 +105,7 @@ O sistema deve identificar automaticamente padrões de linguagem recorrentes em 
 
 ## Must Have
 
-**RF01 — Extração de metadados via API:** O sistema deve consumir a API de Dados Abertos da Câmara dos Deputados e do Senado Federalpara obter os metadados de cada proposição, incluindo título, ementa, autor, partido, data de apresentação e situação atual.
+**RF01 — Extração de metadados via API:** O sistema deve consumir a API de Dados Abertos da Câmara dos Deputados e do Senado Federal para obter os metadados de cada proposição, incluindo título, ementa, autor, partido, data de apresentação e situação atual.
 
 **RF02 — Obtenção do link do inteiro teor:** Para cada proposição recuperada, o sistema deve identificar e armazenar o link para o documento completo (PDF ou TXT) disponível nos servidores da Câmara ou Senado.
 
@@ -150,7 +125,7 @@ O sistema deve identificar automaticamente padrões de linguagem recorrentes em 
 
 ## Should Have
 
-**RF09 — Filtro por subtema:** Todos os painéis do painel devem suportar filtragem dinâmica por subtema, refletindo os resultados em tempo real nas visualizações exibidas.
+**RF09 — Filtro por subtema:** Todos os painéis do sistema devem suportar filtragem dinâmica por subtema, refletindo os resultados em tempo real nas visualizações exibidas.
 
 ---
 
@@ -161,6 +136,10 @@ O sistema deve identificar automaticamente padrões de linguagem recorrentes em 
 ---
 
 ## Won't Have (MVP)
+
+**RF11 – Evolução Temporal das Proposições:** Disponibilizar visualizações e indicadores que apresentem a evolução temporal das proposições legislativas ao longo dos anos.
+
+**RF12 – Identificação de Temas Emergentes:** Identificar automaticamente novos temas por meio de técnicas de agrupamento ou classificação, sugerindo categorias emergentes para análise.
 
 ---
 
@@ -207,8 +186,8 @@ O sistema deve identificar automaticamente padrões de linguagem recorrentes em 
 
 ## Cenário: Auditoria de proposições antes de redigir projeto
 
-**Dado que** sou uma assessora legislativa e preciso verificar o que já foi proposto sobre "controle parental"  
-**Quando** aplico o filtro por subtema "Proteção Geral" no painel de proposições  
+**Dado que** sou uma assessora legislativa e preciso verificar o que já foi proposto sobre "Proteção de Dados e Privacidade Infantil"  
+**Quando** aplico o filtro por subtema "Proteção de Dados e Privacidade Infantil" no painel de proposições  
 **Então** o sistema deve exibir uma listagem completa das proposições classificadas naquele subtema, ordenada por data, com título, autor e situação atual de cada uma
 
 ---
@@ -272,4 +251,5 @@ O sistema deve permitir a análise básica de proposições legislativas relacio
 |    1.3.2    |   08/06/2026   |     Complementa descrição de RFs e complmenta critérios de aceite |
 |    1.4    |   15/06/2026      |    Ajusta descrição do MVP e arquitetura                          |
 |    1.5    |   16/06/2026      |    Inclui explicitamente integração com API do Senado             |
-|    1.5.1  |   23/06/2026      |    Removido Rf08 referido à evolução temporal por não fazer mais parte do escopo do sistema; Títulos dos subtemas adaptados |
+|    1.5.1  |   23/06/2026      |    Reorganização dos requisitos funcionais, remoção da funcionalidade de evolução temporal do escopo do MVP e atualização dos subtemas monitorados.|
+|   1.5.2   |   30/06/2026      | Revisão e alinhamento da especificação de requisitos, com atualização dos subtemas, reorganização dos requisitos funcionais e correção de inconsistências.|
