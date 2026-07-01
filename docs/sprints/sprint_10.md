@@ -1,8 +1,14 @@
 #  Sprint Review -- Sprint 10
 
 ##  Objetivo da Sprint
-A **Sprint 10** marcou a fase final de estabilização da **Release 2** do **ProtectKids**, com foco absoluto na consolidação da arquitetura do sistema. Esta iteração não introduziu novas funcionalidades, mas sim garantiu a robustez, consistência, resiliência do pipeline de dados e a padronização de componentes críticos em produção.
 
+A **Sprint 10** marcou a fase final de estabilização da **Release 2 (R2)** do **ProtectKids**, com foco na consolidação da arquitetura, validação das entregas realizadas e preparação do projeto para seu fechamento técnico. Diferentemente das sprints anteriores, esta iteração não teve como prioridade a introdução de novas funcionalidades, mas sim a revisão, padronização e fortalecimento dos componentes já implementados.
+
+Nesta etapa, a equipe concentrou seus esforços em garantir que o sistema estivesse mais consistente, robusto e alinhado aos objetivos definidos para a R2. Foram priorizados ajustes na arquitetura, validação do pipeline de dados, revisão da integração entre backend, banco de dados e frontend, conferência dos testes, organização da documentação e preparação dos encaminhamentos finais relacionados ao deploy.
+
+A sprint também teve como objetivo encerrar pendências abertas, revisar pontos críticos identificados nas etapas anteriores e garantir que a aplicação pudesse ser apresentada de forma mais estável e coerente. A equipe buscou assegurar que as funcionalidades implementadas ao longo da Release 2 estivessem documentadas, testadas e minimamente integradas, evitando que a entrega final apresentasse inconsistências entre código, documentação, interface e infraestrutura.
+
+Ao final da Sprint 10, espera-se que o **ProtectKids** esteja com sua base técnica consolidada, com os principais fluxos validados, documentação revisada, responsabilidades finais organizadas e ambiente preparado para apresentação e avaliação. Essa sprint representa, portanto, o encerramento do ciclo de desenvolvimento da R2, funcionando como uma etapa de conferência, correção e consolidação do projeto.
 ---
 
 ##  Entregas Realizadas
@@ -89,7 +95,14 @@ A **Sprint 10** marcou a fase final de estabilização da **Release 2** do **Pro
 ---
 
 ##  Conclusão
-A Sprint 10 consolidou com sucesso o ciclo de desenvolvimento da **Release 2**. Mitigamos riscos técnicos, unificamos os contratos de comunicação entre as frentes e blindamos a infraestrutura. O ProtectKids agora possui uma base sólida, estável e madura para as futuras expansões e evoluções do ecossistema.
+
+A Sprint 10 marcou o encerramento da **Release 2** do **ProtectKids** e consolidou o ciclo de desenvolvimento iniciado nas sprints anteriores. Nesta etapa, as principais pendências foram finalizadas, os contratos de comunicação entre as frentes foram alinhados e a infraestrutura do projeto foi revisada para garantir maior estabilidade, organização e segurança na entrega.
+
+Com a finalização dessa sprint, o ProtectKids passou a contar com uma base mais sólida e madura, reunindo backend, frontend, banco de dados, pipeline de dados, testes, documentação e infraestrutura de forma mais integrada. A equipe conseguiu reduzir riscos técnicos, corrigir inconsistências e fortalecer a estrutura necessária para futuras expansões do sistema.
+
+Além dos avanços técnicos, a Sprint 10 também evidenciou o crescimento da equipe ao longo do projeto. O grupo amadureceu na forma de se comunicar, dividir responsabilidades, revisar entregas e lidar com problemas reais de desenvolvimento. O trabalho em equipe, os estudos, as correções e os alinhamentos constantes foram fundamentais para transformar dificuldades em aprendizado e para melhorar a qualidade final do projeto.
+
+Dessa forma, a Sprint 10 encerra a Release 2 como uma etapa de conclusão, aprendizado e consolidação. O ProtectKids finaliza esse ciclo com uma estrutura mais estável e preparada para evoluções futuras, enquanto a equipe encerra o processo com maior maturidade técnica, colaborativa e organizacional.
 
 # Ata da Sprint 10 - Deploy e consolidação final
 
