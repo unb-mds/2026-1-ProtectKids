@@ -2,9 +2,17 @@
 
 ## Objetivo
 
-A Sprint 06 marcou o encerramento do ciclo de desenvolvimento da **Release 1 (R1)** do **ProtectKids**. O principal objetivo desta iteração foi consolidar as funcionalidades essenciais do sistema, integrando o pipeline de Processamento de Linguagem Natural (NLP) ao processo de extração de dados, estruturando os recursos analíticos do backend e finalizando as principais interfaces do frontend.
+A Sprint 06 marcou o encerramento do ciclo de desenvolvimento da **Release 1 (R1)** do ProtectKids e teve como principal objetivo consolidar a primeira entrega oficial do projeto.
 
-Além da implementação das funcionalidades previstas, esta sprint concentrou esforços na estabilização da aplicação, realização de ajustes na arquitetura, fortalecimento dos processos de integração contínua e refinamento da documentação técnica, preparando o projeto para sua primeira entrega oficial.
+Nesta iteração, a equipe concentrou esforços na finalização das funcionalidades essenciais previstas para a R1, garantindo que os principais componentes do sistema estivessem integrados e funcionais. O trabalho envolveu a conexão entre o processo de extração de dados legislativos, o pipeline de **Processamento de Linguagem Natural (NLP)**, os recursos analíticos do backend e as interfaces principais do frontend.
+
+Além da implementação das funcionalidades planejadas, a sprint também foi dedicada à estabilização da aplicação, correção de inconsistências, revisão da arquitetura, validação dos fluxos principais e fortalecimento da documentação técnica. O objetivo foi garantir que o projeto chegasse à sua primeira entrega com uma base funcional, organizada e compreensível para avaliação.
+
+Outro ponto importante consolidado nesta sprint foi a definição do nome **ProtectKids**. O nome não foi escolhido de forma imediata; ele surgiu após diversas reuniões, discussões e análises sobre a identidade do projeto. A equipe buscou uma denominação que representasse com responsabilidade e sensibilidade o propósito da plataforma, considerando que o tema envolve crianças, adolescentes, proteção, segurança digital e acompanhamento de pautas legislativas sensíveis.
+
+Ao final desse processo, o grupo definiu o nome **ProtectKids** por entender que ele comunica de forma direta a proposta central do sistema: apoiar o monitoramento de informações legislativas relacionadas à proteção de crianças e adolescentes, mantendo uma abordagem cuidadosa, respeitosa e adequada à delicadeza do tema.
+
+Dessa forma, a Sprint 06 representou uma etapa de fechamento e consolidação da R1, reunindo os avanços realizados nas sprints anteriores e preparando o projeto para sua apresentação como uma versão inicial utilizável da plataforma.
 
 ---
 
