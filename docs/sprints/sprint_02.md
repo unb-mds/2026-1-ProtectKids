@@ -32,7 +32,11 @@ Durante esta sprint foram alcançados os seguintes resultados:
 
 ## Conclusão
 
-A Sprint 02 representou um importante marco para o projeto, estabelecendo os fundamentos arquiteturais e de infraestrutura que sustentariam o desenvolvimento do ProtectKids nas próximas iterações. Com a arquitetura documentada e o ambiente conteinerizado, a equipe reduziu problemas de configuração, facilitou a colaboração entre os membros e criou uma base consistente para a evolução do sistema.
+A Sprint 02 representou um marco importante para o projeto, pois consolidou os fundamentos arquiteturais e de infraestrutura que serviriam como base para o desenvolvimento do ProtectKids nas próximas iterações. Com a arquitetura documentada e o ambiente conteinerizado, a equipe conseguiu reduzir problemas de configuração, facilitar a colaboração entre os integrantes e estabelecer uma estrutura mais consistente para a evolução do sistema.
+
+Durante essa sprint, também foram definidos ajustes na organização interna do grupo. Ficou acordado que Yara auxiliaria Carlos nas anotações das reuniões, contribuindo para que os registros e relatórios pós-reunião fossem revisados com mais atenção e mantidos atualizados. Além disso, Augusto assumiu responsabilidades de liderança técnica e organizacional, ficando responsável por revisar e autorizar os principais passos do projeto antes de sua execução ou finalização.
+
+Também foi definido que Augusto manteria um acompanhamento mais próximo com os membros do grupo, realizando alinhamentos individuais sempre que necessário. Essa organização teve como objetivo melhorar a comunicação interna, evitar retrabalho e garantir que as decisões tomadas nas reuniões fossem acompanhadas de forma mais clara ao longo da sprint.
 
 # Ata da Sprint 2 - Requisitos e problema do sistema
 
