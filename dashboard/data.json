@@ -1,6 +1,24 @@
 {
-    "last_updated": "2026-07-01T04:38:24.512295Z",
+    "last_updated": "2026-07-01T05:14:19.819619Z",
     "commits": [
+        {
+            "hash": "dc7b454a6c2f4ac47d909b749ceac85f06e71a1b",
+            "date": "2026-07-01T02:13:50-03:00",
+            "message": "Merge pull request #179 from unb-mds/revisao-sprint",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "70b01acb9acdb86595008448d996ceb4398833d8",
+            "date": "2026-07-01T02:11:52-03:00",
+            "message": "Revise sprint 00  correção de informação",
+            "is_conventional": false,
+            "insertions": 3,
+            "deletions": 2,
+            "total_diff": 5
+        },
         {
             "hash": "c388d1625cdb837a77d5e5bb748dbd6a5fa86496",
             "date": "2026-07-01T01:38:01-03:00",
@@ -3170,32 +3188,14 @@
             "closed_at": "2026-06-15T15:26:48Z",
             "resolution_time_hours": 165.76,
             "char_count": 2271
-        },
-        {
-            "number": 79,
-            "title": "Integração de Dados do Senado Federal (Pipeline e Normalização)",
-            "state": "closed",
-            "created_at": "2026-06-08T15:52:42Z",
-            "closed_at": "2026-06-16T05:48:10Z",
-            "resolution_time_hours": 181.92,
-            "char_count": 1993
-        },
-        {
-            "number": 78,
-            "title": "Estudar testes de software",
-            "state": "closed",
-            "created_at": "2026-06-08T01:38:00Z",
-            "closed_at": "2026-06-29T04:56:15Z",
-            "resolution_time_hours": 507.3,
-            "char_count": 1672
         }
     ],
     "autores": {
         "yaxavier": {
-            "commits": 24,
-            "insercoes": 1434,
-            "delecoes": 74,
-            "total_linhas": 1508
+            "commits": 26,
+            "insercoes": 1437,
+            "delecoes": 76,
+            "total_linhas": 1513
         },
         "cgbriel28": {
             "commits": 25,
