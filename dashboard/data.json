@@ -1,6 +1,15 @@
 {
-    "last_updated": "2026-07-01T04:08:53.659817Z",
+    "last_updated": "2026-07-01T04:37:26.993608Z",
     "commits": [
+        {
+            "hash": "84c68246c90e4520a2e8be8b27f65715dc14c6e9",
+            "date": "2026-07-01T01:36:42-03:00",
+            "message": "documentaçao da sprint 10 e ata de reuniao da 06 ate 10",
+            "is_conventional": false,
+            "insertions": 316,
+            "deletions": 0,
+            "total_diff": 316
+        },
         {
             "hash": "00b60276701dc2e8472be41b33b6a4d0b4a40795",
             "date": "2026-07-01T01:08:18-03:00",
@@ -3174,10 +3183,10 @@
     ],
     "autores": {
         "cgbriel28": {
-            "commits": 24,
-            "insercoes": 14369,
+            "commits": 25,
+            "insercoes": 14685,
             "delecoes": 1068,
-            "total_linhas": 15437
+            "total_linhas": 15753
         },
         "marispmorais": {
             "commits": 34,

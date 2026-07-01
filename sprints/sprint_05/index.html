@@ -77,6 +77,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#sprint-05-metricas-automacao-e-consolidacao-do-design" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -792,6 +797,26 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sprint 5
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -809,6 +834,130 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objetivo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entregas-realizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entregas Realizadas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Entregas Realizadas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metricas-e-metodologia-agil" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Métricas e Metodologia Ágil
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backend-e-extracao-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend e Extração de Dados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend-e-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend e Design
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arquitetura-e-organizacao-do-repositorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arquitetura e Organização do Repositório
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#issues-da-sprint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issues da Sprint
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resultados-obtidos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resultados Obtidos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusão
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -934,7 +1083,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sprint_10.md" class="md-nav__link">
+      <a href="../sprint_10/" class="md-nav__link">
         
   
   
@@ -1102,9 +1251,138 @@
 
 
 
-  <h1>Sprint 5</h1>
-
-
+<h1 id="sprint-05-metricas-automacao-e-consolidacao-do-design">Sprint 05 - Métricas, Automação e Consolidação do Design<a class="headerlink" href="#sprint-05-metricas-automacao-e-consolidacao-do-design" title="Permanent link">&para;</a></h1>
+<h2 id="objetivo">Objetivo<a class="headerlink" href="#objetivo" title="Permanent link">&para;</a></h2>
+<p>A Sprint 05 foi dedicada à implementação de mecanismos de monitoramento da produtividade da equipe, ao aprimoramento do pipeline de extração de dados legislativos e à consolidação da identidade visual do <strong>ProtectKids</strong>. O foco principal desta iteração foi automatizar a coleta de métricas do repositório, evoluir o processo de integração contínua, estabilizar o crawler responsável pela obtenção dos dados da Câmara dos Deputados e concluir o protótipo de alta fidelidade da interface da aplicação.</p>
+<p>Ao término da sprint, o projeto passou a contar com indicadores automatizados de desenvolvimento, uma estratégia de monitoramento contínuo da equipe e um protótipo visual consolidado para orientar a implementação do frontend.</p>
+<hr />
+<h2 id="entregas-realizadas">Entregas Realizadas<a class="headerlink" href="#entregas-realizadas" title="Permanent link">&para;</a></h2>
+<h3 id="metricas-e-metodologia-agil">Métricas e Metodologia Ágil<a class="headerlink" href="#metricas-e-metodologia-agil" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Desenvolvimento do coletor de métricas do repositório;</li>
+<li>Implementação do dashboard de métricas utilizando <strong>D3.js</strong>;</li>
+<li>
+<p>Inclusão de indicadores de qualidade, como:</p>
+</li>
+<li>
+<p>Gráfico de distribuição de commits por horário;</p>
+</li>
+<li>Métrica de contribuição por autor;</li>
+<li>Padronização dos usernames da equipe para garantir consistência nas análises;</li>
+<li>Configuração da automação da coleta de métricas utilizando <strong>GitHub Actions</strong>, com atualização contínua do dashboard publicado no <strong>GitHub Pages</strong>.</li>
+</ul>
+<h3 id="backend-e-extracao-de-dados">Backend e Extração de Dados<a class="headerlink" href="#backend-e-extracao-de-dados" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Revisão e correção estrutural do crawler responsável pela extração de proposições legislativas;</li>
+<li>Integração das melhorias relacionadas ao consumo da API da Câmara dos Deputados, proporcionando maior estabilidade ao processo de coleta.</li>
+</ul>
+<h3 id="frontend-e-design">Frontend e Design<a class="headerlink" href="#frontend-e-design" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Conclusão do protótipo de alta fidelidade da aplicação no <strong>Figma</strong>;</li>
+<li>Definição da identidade visual e das diretrizes de usabilidade que servirão como base para o desenvolvimento das interfaces.</li>
+</ul>
+<h3 id="arquitetura-e-organizacao-do-repositorio">Arquitetura e Organização do Repositório<a class="headerlink" href="#arquitetura-e-organizacao-do-repositorio" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Correção do mapeamento dos diretórios de documentação;</li>
+<li>Atualização do arquivo <strong>.gitignore</strong>, adicionando a pasta <code>site</code> para evitar o versionamento de arquivos gerados durante o build da documentação.</li>
+</ul>
+<hr />
+<h2 id="issues-da-sprint">Issues da Sprint<a class="headerlink" href="#issues-da-sprint" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Issue</th>
+<th>Descrição</th>
+<th>Responsável</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>#38</td>
+<td>Desenvolvimento do Coletor de Métricas e Dashboard (D3.js)</td>
+<td>@augustogmedeiros</td>
+<td>✅ Concluído</td>
+</tr>
+<tr>
+<td>#40</td>
+<td>Automação do Coletor de Métricas com GitHub Actions</td>
+<td>@VegasVvegas</td>
+<td>✅ Concluído</td>
+</tr>
+<tr>
+<td>#41</td>
+<td>Correção do <code>.gitignore</code> e organização dos diretórios da documentação</td>
+<td>@cgbriel28</td>
+<td>✅ Concluído</td>
+</tr>
+<tr>
+<td>#45</td>
+<td>Implementação de gráfico de commits por horário e métricas de qualidade</td>
+<td>@augustogmedeiros</td>
+<td>✅ Concluído</td>
+</tr>
+<tr>
+<td>#48</td>
+<td>Revisão e Correção do Crawler</td>
+<td>@augustogmedeiros e @Danielly-Mendes</td>
+<td>✅ Concluído</td>
+</tr>
+<tr>
+<td>#49</td>
+<td>Protótipo de Alta Fidelidade no Figma</td>
+<td>Equipe Frontend</td>
+<td>✅ Concluído</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Observação:</strong> Durante esta sprint também foram integradas melhorias ao dashboard de métricas e ao crawler por meio das Pull Requests <strong>#39</strong>, <strong>#44</strong>, <strong>#46</strong> e <strong>#47</strong>, consolidando a evolução do painel analítico e da extração de dados legislativos.</p>
+</blockquote>
+<hr />
+<h2 id="resultados-obtidos">Resultados Obtidos<a class="headerlink" href="#resultados-obtidos" title="Permanent link">&para;</a></h2>
+<p>Ao final da Sprint 05, foram alcançados os seguintes resultados:</p>
+<ul>
+<li>Dashboard de métricas da equipe implementado e automatizado;</li>
+<li>Pipeline de atualização contínua das métricas configurado com GitHub Actions;</li>
+<li>Indicadores de produtividade e qualidade disponíveis para acompanhamento do projeto;</li>
+<li>Processo de extração de dados legislativos revisado e estabilizado;</li>
+<li>Protótipo de alta fidelidade finalizado, servindo como referência para o desenvolvimento da interface;</li>
+<li>Organização do repositório aprimorada, facilitando a manutenção e evolução da documentação.</li>
+</ul>
+<hr />
+<h2 id="conclusao">Conclusão<a class="headerlink" href="#conclusao" title="Permanent link">&para;</a></h2>
+<p>A Sprint 05 representou um importante avanço na maturidade do ProtectKids ao incorporar mecanismos de monitoramento da produtividade da equipe e automação dos processos de desenvolvimento. Paralelamente, o refinamento do crawler e a conclusão do protótipo de alta fidelidade estabeleceram uma base sólida tanto para a evolução da coleta de dados legislativos quanto para a implementação das interfaces da aplicação. Dessa forma, o projeto passou a contar com ferramentas que fortalecem o acompanhamento do desenvolvimento, aumentam a qualidade do código e direcionam a construção das próximas funcionalidades.</p>
+<h1 id="ata-da-sprint-5-dados-etl-e-ajustes-de-api">Ata da Sprint 5 - Dados, ETL e ajustes de API<a class="headerlink" href="#ata-da-sprint-5-dados-etl-e-ajustes-de-api" title="Permanent link">&para;</a></h1>
+<h2 id="pauta">Pauta<a class="headerlink" href="#pauta" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Discutir coleta e tratamento dos dados legislativos.</li>
+<li>Melhorar organização dos dados salvos.</li>
+<li>Ajustar API para ficar mais útil ao frontend.</li>
+</ul>
+<h2 id="o-que-foi-conversado">O que foi conversado<a class="headerlink" href="#o-que-foi-conversado" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Foi conversado que os dados precisavam ser confiáveis, sem duplicidade e com identificadores consistentes.</li>
+<li>Augusto corrigiu pontos do backend e ajudou a integrar as partes.</li>
+<li>Mariana trabalhou a visão de dados, testes e validação.</li>
+<li>Ryan e Wanda alinharam quais informações seriam usadas nas telas.</li>
+<li>Yara acompanhou ambiente, banco e execução dos serviços.</li>
+<li>Carlos organizou as pendências de cada frente.</li>
+<li>Danielly registrou o que precisava entrar na documentação.</li>
+</ul>
+<h2 id="deliberacoes">Deliberações<a class="headerlink" href="#deliberacoes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>O grupo deliberou que os dados coletados deveriam passar por tratamento antes de serem usados.</li>
+<li>Foi decidido manter identificadores internos e externos para facilitar busca e rastreabilidade.</li>
+<li>Foi decidido continuar ajustando os endpoints conforme as necessidades do frontend.</li>
+</ul>
+<h2 id="encaminhamentos">Encaminhamentos<a class="headerlink" href="#encaminhamentos" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Mariana e Augusto seguiriam em backend, dados e testes.</li>
+<li>Ryan e Wanda continuariam refinando a visão de telas.</li>
+<li>Yara verificaria possíveis gargalos de infraestrutura.</li>
+<li>Carlos acompanharia o andamento e cobranças da sprint.</li>
+</ul>
 
 
 
