@@ -8,8 +8,12 @@ Reestruturação e reorganização dos Épicos 1 e 2, funcionalidades e User Sto
 
 ### 21 de junho de 2026
 Adiciona Épicos 3 e 4,  funcionalidades e User Stories relacionadas.
-![Reestruturação e reorganização dos Épicos 1 e 2]{./storyMap-2.png}
+![Reestruturação e reorganização dos Épicos 3 e 4]{./storyMap-2.png}
 
 ### 22 de junho de 2026
 Adiciona critérios de aceitação.
-![Reestruturação e reorganização dos Épicos 1 e 2]{./storyMap-3.png}
+![Adiciona critérios de aceitação]{./storyMap-3.png}
+
+### 30 de junho de 2026
+Reorganização e revisão final do Story Map para entrar em conformidade com o documento de requisitos e mvp.
+![Revisão final do Story Map.]{./storyMap-4.png}
