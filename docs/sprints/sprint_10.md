@@ -34,24 +34,40 @@ A **Sprint 10** marcou a fase final de estabilização da **Release 2** do **Pro
 ##  Quadro de Issues da Sprint
 
 | ID | Descrição da Issue | Responsável | Status |
-| :--- | :--- | :--- | :---: |
-| `#106` | Implementar retry nas requisições HTTP do crawler | @Danielly-Mendes | ✅ Concluído |
-| `#107` | Otimização de payload e novos filtros na listagem geral | @augustogmedeiros | ✅ Concluído |
-| `#108` | Flexibilização da busca por ID e tratamento de erro 404 | @augustogmedeiros | ✅ Concluído |
-| `#109` | Adição do campo dinâmico "Título" nas proposições | @augustogmedeiros | ✅ Concluído |
-| `#110` | Correção e otimização do modelo NLP (spaCy) | @augustogmedeiros | ✅ Concluído |
-| `#111` | Estabilização do ambiente local (Docker + healthcheck DB) | @VegasVvegas | ✅ Concluído |
-| `#112` | Padronização de variáveis de ambiente do ETL | @VegasVvegas | ✅ Concluído |
-| `#118` | Correção de ID instável no crawler do Senado | @Danielly-Mendes | ✅ Concluído |
-| `#119` | Melhorias na extração de PDF e limpeza de arquivos temporários | @augustogmedeiros | ✅ Concluído |
-| `#120` | Atualização da documentação de requisitos e Story Map | @augustogmedeiros | ✅ Concluído |
-| `#123` | Revisão e padronização do docker-compose.yml | @augustogmedeiros | ✅ Concluído |
-| `#128` | Configuração de testes com Pytest e relatório de cobertura | @equipe | ✅ Concluído |
-| `#133` | Atualização da página inicial (Figma + layout) | @wandinhawright | ✅ Concluído |
-| `#134` | Refatoração de variáveis e sistema de cores | @wandinhawright | ✅ Concluído |
-| `#135` | Estabilização e correções gerais do backend crawler | @augustogmedeiros | ✅ Concluído |
-| `#136` | Aplicação de novo sistema de cores no frontend | @wandinhawright | ✅ Concluído |
-| `#137` | Correções finais no backend crawler | @augustogmedeiros | ✅ Concluído |
+## Issues da Sprint
+
+| Issue | Descrição | Responsável | Status |
+|------|-----------|-------------|--------|
+| #106 | Implementação de mecanismo de retry nas requisições HTTP do crawler | @Danielly-Mendes | ✅ Concluído |
+| #107 | Otimização de payload e novos filtros na listagem geral | @augustogmedeiros | ✅ Concluído |
+| #108 | Flexibilização da busca por ID e tratamento de erro 404 | @augustogmedeiros | ✅ Concluído |
+| #109 | Adição do campo dinâmico "Título" nas proposições | @augustogmedeiros | ✅ Concluído |
+| #110 | Otimização do modelo de Inteligência Artificial (spaCy) | @augustogmedeiros | ✅ Concluído |
+| #111 | Estabilização do ambiente local e healthcheck do banco | @VegasVvegas | ✅ Concluído |
+| #117 | Configuração do ambiente de testes com Pytest e cobertura | @marispmorais | ✅ Concluído |
+| #120 | Atualização da documentação de requisitos e Story Map | @augustogmedeiros | ✅ Concluído |
+| #123 | Revisão e padronização do docker-compose.yml | @augustogmedeiros | ✅ Concluído |
+| #127 | Atualização da página inicial conforme novo layout | @wandinhawright | ✅ Concluído |
+| #128 | Integração completa entre Backend e Frontend | @wandinhawright | ✅ Concluído |
+| #133 | Refatoração do sistema global de cores | @wandinhawright | ✅ Concluído |
+| #143 | Ajustes da ETL para coleta ampliada e classificação textual | @augustogmedeiros | ✅ Concluído |
+| #146 | Correções de qualidade identificadas pelo SonarQube | @cgbriel28 | ✅ Concluído |
+| #155 | Implementação da extração de redes sociais de parlamentares | @augustogmedeiros | ✅ Concluído |
+| #156 | Aperfeiçoamento da UI/UX e responsividade do painel principal | @augustogmedeiros | ✅ Concluído |
+| #157 | Integração do SonarQube ao Frontend | @augustogmedeiros | ✅ Concluído |
+| #159 | Testes da rota raiz e listagem geral de proposições | @marispmorais | ✅ Concluído |
+| #160 | Testes dos filtros de origem Câmara/Senado | @marispmorais | ✅ Concluído |
+| #161 | Testes da busca por ID e validação de existência | @marispmorais | ✅ Concluído |
+| #163 | Build de produção do Frontend com Docker e Nginx | @augustogmedeiros | ✅ Concluído |
+| #164 | Refinamento de filtros analíticos e rankings do Backend | @augustogmedeiros | ✅ Concluído |
+| #165 | Implementação do crawler de tramitações do Senado | @augustogmedeiros | ✅ Concluído |
+| #167 | Testes das tramitações de proposições | @marispmorais | ✅ Concluído |
+| #168 | Testes dos endpoints de Analytics | @marispmorais | ✅ Concluído |
+| #180 | Documentação das atas de reunião das Sprints 04–07 | @cgbriel28 | ✅ Concluído |
+| #181 | Documentação das atas de reunião das Sprints 08–10 | @cgbriel28 | ✅ Concluído |
+| #182 | Documentação da Sprint 10 | @cgbriel28 | ✅ Concluído |
+| #185 | Revisão final do índice da documentação | @cgbriel28 | ✅ Concluído |
+
 
 ### 🔗 Pull Requests Relacionadas
 * **PR #113 & #114** — Correção e refatoração do backend crawler.

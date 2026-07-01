@@ -45,15 +45,16 @@ Além da implementação das funcionalidades previstas, esta sprint concentrou e
 
 ## Issues da Sprint
 
-| Issue | Descrição                                         | Status      |
-| ----- | ------------------------------------------------- | ----------- |
-| #51   | Adicionar `/venv` ao `.gitignore`                 | ✅ Concluído |
-| #56   | Correções no banco de dados                       | ✅ Concluído |
-| #59   | Inclusão das colunas utilizadas pelo NLP          | ✅ Concluído |
-| #61   | Atualização do `requirements.txt`                 | ✅ Concluído |
-| #62   | Implementação do NLP no crawler                   | ✅ Concluído |
-| #64   | Implementação dos filtros do dashboard no backend | ✅ Concluído |
-| #66   | Implementação das interfaces do frontend          | ✅ Concluído |
+| Issue | Descrição | Responsável | Status |
+|------|-----------|-------------|--------|
+| #51 | Configuração do `.gitignore` e organização do ambiente de desenvolvimento | @augustogmedeiros | ✅ Concluído |
+| #56 | Correção da estrutura e consistência do banco de dados | @augustogmedeiros | ✅ Concluído |
+| #59 | Adequação do banco de dados para suporte ao processamento NLP | @augustogmedeiros | ✅ Concluído |
+| #61 | Atualização das dependências do projeto (`requirements.txt`) | @augustogmedeiros | ✅ Concluído |
+| #62 | Integração do processamento de Linguagem Natural (NLP) ao crawler | @augustogmedeiros | ✅ Concluído |
+| #64 | Implementação de filtros analíticos para o dashboard | @augustogmedeiros | ✅ Concluído |
+| #66 | Implementação da interface do Frontend | @Golira12 / @wandinhawright | ✅ Concluído |
+| #188 | Atualização da documentação de arquitetura e visão geral do projeto | @cgbriel28 | ✅ Concluído |
 
 ### Pull Requests Relacionadas
 
