@@ -59,3 +59,30 @@ Ao término da Sprint 03, foram alcançados os seguintes resultados:
 ## Conclusão
 
 A Sprint 03 consolidou os primeiros componentes concretos do ProtectKids. Com a infraestrutura básica do sistema implementada, a documentação oficial publicada e os requisitos refinados, a equipe estabeleceu uma base sólida para o desenvolvimento das funcionalidades de negócio nas próximas iterações, reduzindo riscos de integração e promovendo maior organização do projeto.
+
+# Ata da Sprint 3 - Arquitetura e organização técnica
+
+## Pauta
+* Definir a arquitetura inicial.
+* Separar responsabilidades entre frontend, backend, banco e ETL.
+* Organizar como a documentação apresentaria o sistema.
+
+## O que foi conversado
+* Foi conversado que a arquitetura precisava deixar claro o papel de cada parte do sistema.
+* Augusto explicou e corrigiu pontos de backend e integração.
+* Mariana contribuiu com a visão de dados, banco e testes.
+* Ryan e Wanda avaliaram o impacto da arquitetura nas telas e no Figma.
+* Yara discutiu Docker, ambiente local e comunicação entre serviços.
+* Carlos registrou pendências da sprint e organizou o fluxo de acompanhamento.
+* Danielly apoiou a documentação da arquitetura.
+
+## Deliberações
+* O grupo deliberou a separação entre API, banco de dados, frontend e processo de coleta/tratamento de dados.
+* Foi decidido documentar a arquitetura em camadas, explicando o papel de cada componente.
+* A equipe decidiu manter o Docker como referência para padronizar o ambiente.
+
+## Encaminhamentos
+* Augusto e Mariana seguiriam com backend, modelos e dados.
+* Ryan e Wanda seguiriam com telas e protótipo.
+* Yara cuidaria da estrutura de ambiente e Docker.
+* Danielly ajustaria a documentação arquitetural.

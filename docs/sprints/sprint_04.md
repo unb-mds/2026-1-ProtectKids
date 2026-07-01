@@ -69,3 +69,30 @@ Ao final da Sprint 04, foram alcançados os seguintes resultados:
 ## Conclusão
 
 A Sprint 04 representou um avanço significativo na maturidade técnica do ProtectKids. Com a integração entre os principais componentes da aplicação, a automação dos processos de integração e o início da coleta de dados legislativos reais, o projeto passou a contar com uma infraestrutura sólida e preparada para a implementação das funcionalidades de negócio nas próximas sprints. Essa etapa reduziu riscos relacionados à integração, aumentou a confiabilidade do desenvolvimento e estabeleceu práticas importantes de qualidade de software.
+
+# Ata da Sprint 4 - Backend, banco e primeiras rotas
+
+## Pauta
+* Avançar no backend.
+* Estruturar banco de dados.
+* Criar primeiras rotas úteis para consulta.
+
+## O que foi conversado
+* Foi conversado que o backend precisava sair da fase de estrutura e começar a entregar rotas consultáveis.
+* Augusto atuou nas correções e na liderança técnica da implementação.
+* Mariana discutiu dados, testes e validação das respostas.
+* Ryan e Wanda apontaram quais campos seriam necessários para as telas.
+* Yara acompanhou problemas de execução local, banco e Docker.
+* Carlos verificou andamento das tarefas e pendências.
+* Danielly registrou decisões para documentação.
+
+## Deliberações
+* Foi decidido priorizar rotas de proposições e estrutura de banco.
+* O grupo deliberou que a listagem deveria evitar dados pesados quando possível.
+* Foi decidido validar as rotas pelo Swagger antes de passar para o frontend.
+
+## Encaminhamentos
+* Backend continuaria evoluindo listagem e detalhes.
+* Dados e testes validariam retorno e consistência.
+* Frontend aguardaria contrato mais estável da API.
+* Infraestrutura manteria ambiente funcional para testes locais.

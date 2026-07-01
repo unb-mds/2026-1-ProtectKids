@@ -56,3 +56,30 @@ Ao final da sprint, a equipe alcançou os seguintes resultados:
 # Conclusão
 
 A Sprint 1 teve como foco principal o aprendizado e a preparação técnica da equipe. O conhecimento adquirido sobre as tecnologias selecionadas forneceu a base necessária para o desenvolvimento das próximas etapas do projeto, reduzindo riscos técnicos e facilitando a implementação da arquitetura definida para o ProtectKids.
+
+# Ata da Sprint 1 - Estudo e divisão prática das tarefas
+
+## Pauta
+* Definir melhor as responsabilidades.
+* Estudar as tecnologias principais.
+* Organizar o repositório e os primeiros registros.
+
+## O que foi conversado
+* Foi conversado que o projeto precisaria de API, banco, frontend e documentação mínima para evoluir.
+* Augusto reforçou a necessidade de manter o backend organizado e corrigível.
+* Carlos organizou as tarefas em andamento e cobrou clareza sobre o que cada pessoa faria.
+* Mariana ficou voltada para backend, dados e testes iniciais.
+* Ryan e Wanda começaram a alinhar ideias de tela e protótipo.
+* Yara iniciou estudos sobre infraestrutura, Docker e execução local.
+* Danielly apoiou a estruturação dos registros e requisitos.
+
+## Deliberações
+* Foi decidido usar uma stack com backend em FastAPI, banco PostgreSQL, frontend em React/Vite e apoio de Docker.
+* O grupo deliberou que a documentação deveria acompanhar o desenvolvimento, mesmo que de forma simples no começo.
+* As tarefas foram distribuídas conforme as frentes principais.
+
+## Encaminhamentos
+* Backend e dados seguiriam em estudo com Augusto e Mariana.
+* Ryan e Wanda continuariam no Figma e frontend.
+* Yara verificaria ambiente e infraestrutura.
+* Carlos manteria o acompanhamento Scrum.

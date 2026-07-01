@@ -33,3 +33,28 @@ Durante esta sprint foram alcançados os seguintes resultados:
 ## Conclusão
 
 A Sprint 02 representou um importante marco para o projeto, estabelecendo os fundamentos arquiteturais e de infraestrutura que sustentariam o desenvolvimento do ProtectKids nas próximas iterações. Com a arquitetura documentada e o ambiente conteinerizado, a equipe reduziu problemas de configuração, facilitou a colaboração entre os membros e criou uma base consistente para a evolução do sistema.
+
+# Ata da Sprint 2 - Requisitos e problema do sistema
+
+## Pauta
+* Entender quais dados o sistema deveria apresentar.
+* Levantar requisitos básicos.
+* Discutir como o usuário consultaria as proposições.
+
+## O que foi conversado
+* Foi conversado que o ProtectKids não deveria ser apenas uma listagem de dados, mas uma ferramenta de acompanhamento legislativo.
+* Mariana e Augusto discutiram quais dados seriam necessários no backend: proposição, origem, autor, partido, tema, data e tramitações.
+* Ryan e Wanda trouxeram a visão de como esses dados poderiam aparecer na interface.
+* Yara apontou que a estrutura teria que rodar de forma previsível para todos os membros.
+* Carlos acompanhou as tarefas e organizou as pendências.
+* Danielly registrou requisitos e decisões discutidas.
+
+## Deliberações
+* Ficou decidido que as proposições seriam o eixo principal do sistema.
+* O grupo decidiu prever filtros e consulta por detalhes.
+* Foi deliberado que a documentação de requisitos deveria registrar o objetivo, usuários e dados principais.
+
+## Encaminhamentos
+* Backend começaria a pensar modelos e endpoints.
+* Frontend seguiria estudando telas para exibir lista e detalhes.
+* Infraestrutura verificaria como manter banco e serviços integrados.
