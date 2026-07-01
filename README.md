@@ -139,7 +139,9 @@ A flag `term-missing` mostra no terminal exatamente quais linhas do código aind
 
 ## 📖 Documentação Completa (MkDocs)
 
-Para detalhes profundos sobre a arquitetura da aplicação, documentação técnica, modelagem do banco de dados PostgreSQL e guias de contribuição, consulte a nossa documentação oficial integrada:
+A documentação completa do **ProtectKids** reúne os principais detalhes técnicos e organizacionais do projeto, incluindo arquitetura da aplicação, modelagem do banco de dados PostgreSQL, infraestrutura, endpoints da API, melhorias implementadas, registros das sprints e orientações para contribuição.
+
+Acesse para saber mais:
 
 [Documentação ProtectKids](https://unb-mds.github.io/2026-1-ProtectKids/)
 
