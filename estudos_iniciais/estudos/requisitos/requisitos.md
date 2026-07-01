@@ -1,17 +1,18 @@
-#### Requisitos Funcionais (RF)
+## Requisitos Funcionais (RF)
 
-### O que são?
+Os **Requisitos Funcionais** descrevem as funcionalidades que devem ser implementadas no sistema. Eles indicam as ações que a aplicação precisa executar para atender às necessidades dos usuários e aos objetivos definidos para o projeto.
 
-Os **Requisitos Funcionais** descrevem **o que o sistema deve fazer**, ou seja, as funcionalidades e comportamentos esperados.
+Esses requisitos orientam diretamente o desenvolvimento do produto, pois definem os principais comportamentos esperados da plataforma, como consultas, filtros, visualizações, cadastros, integrações e processamento de informações.
 
-Eles representam as ações, serviços e operações que o sistema deve executar para atender às necessidades do usuário.
+No **ProtectKids**, os requisitos funcionais estão relacionados principalmente ao monitoramento de proposições legislativas, à organização dos dados coletados e à apresentação de informações analíticas sobre pautas ligadas à proteção de crianças e adolescentes.
 
 ### Exemplos
 
-* O sistema deve permitir login com e-mail e senha
-* O usuário pode cadastrar um novo cliente
-* O sistema deve gerar relatórios de vendas
-* O sistema deve permitir envio de mensagens no chat
+- Consultar proposições legislativas armazenadas na plataforma.
+- Visualizar detalhes de uma proposição específica.
+- Acompanhar tramitações legislativas.
+- Filtrar informações por tema, ano, origem, partido ou UF.
+- Gerar indicadores, rankings e nuvem de palavras.
 
 ---
 
