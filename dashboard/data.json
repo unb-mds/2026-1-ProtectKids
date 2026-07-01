@@ -1,6 +1,15 @@
 {
-    "last_updated": "2026-07-01T05:14:19.819619Z",
+    "last_updated": "2026-07-01T05:55:32.221492Z",
     "commits": [
+        {
+            "hash": "1ae13d6b25b3e8c3358297d59abe38da163bb93e",
+            "date": "2026-07-01T02:52:41-03:00",
+            "message": "revisao e correçao de sprint 06 e 10",
+            "is_conventional": false,
+            "insertions": 44,
+            "deletions": 27,
+            "total_diff": 71
+        },
         {
             "hash": "dc7b454a6c2f4ac47d909b749ceac85f06e71a1b",
             "date": "2026-07-01T02:13:50-03:00",
@@ -2740,6 +2749,87 @@
     ],
     "issues": [
         {
+            "number": 188,
+            "title": "adiciona documentação da arquitetura e visão geral",
+            "state": "closed",
+            "created_at": "2026-07-01T05:40:59Z",
+            "closed_at": "2026-07-01T05:41:45Z",
+            "resolution_time_hours": 0.01,
+            "char_count": 0
+        },
+        {
+            "number": 187,
+            "title": "revisao e correçao do index",
+            "state": "closed",
+            "created_at": "2026-07-01T05:35:11Z",
+            "closed_at": "2026-07-01T05:35:16Z",
+            "resolution_time_hours": 0.0,
+            "char_count": 0
+        },
+        {
+            "number": 186,
+            "title": "adiciona css layout",
+            "state": "closed",
+            "created_at": "2026-07-01T05:33:29Z",
+            "closed_at": "2026-07-01T05:33:34Z",
+            "resolution_time_hours": 0.0,
+            "char_count": 0
+        },
+        {
+            "number": 185,
+            "title": "corrigir datas das sprint no mkdocs",
+            "state": "closed",
+            "created_at": "2026-07-01T05:27:47Z",
+            "closed_at": "2026-07-01T05:27:52Z",
+            "resolution_time_hours": 0.0,
+            "char_count": 0
+        },
+        {
+            "number": 184,
+            "title": "Estudos iniciais de qual infraestrutura usar",
+            "state": "closed",
+            "created_at": "2026-07-01T05:26:48Z",
+            "closed_at": "2026-07-01T05:28:08Z",
+            "resolution_time_hours": 0.02,
+            "char_count": 3892
+        },
+        {
+            "number": 183,
+            "title": "implementaçao da sprint 10",
+            "state": "closed",
+            "created_at": "2026-07-01T05:22:26Z",
+            "closed_at": "2026-07-01T05:23:33Z",
+            "resolution_time_hours": 0.02,
+            "char_count": 0
+        },
+        {
+            "number": 182,
+            "title": "implementaçao da documentaçao de ata de reuniao das sprint 08-10",
+            "state": "closed",
+            "created_at": "2026-07-01T05:21:45Z",
+            "closed_at": "2026-07-01T05:23:38Z",
+            "resolution_time_hours": 0.03,
+            "char_count": 0
+        },
+        {
+            "number": 181,
+            "title": "implementaçao da documentaçao de ata de reuniao das sprint 04-07",
+            "state": "closed",
+            "created_at": "2026-07-01T05:20:55Z",
+            "closed_at": "2026-07-01T05:23:43Z",
+            "resolution_time_hours": 0.05,
+            "char_count": 0
+        },
+        {
+            "number": 180,
+            "title": "implementaçao da documentaçao de ata de reuniao das sprint 00-03",
+            "state": "closed",
+            "created_at": "2026-07-01T05:19:05Z",
+            "closed_at": "2026-07-01T05:19:40Z",
+            "resolution_time_hours": 0.01,
+            "char_count": 0
+        },
+        {
             "number": 168,
             "title": "[QA]: Implementar testes para endpoints de Analytics",
             "state": "closed",
@@ -3170,38 +3260,20 @@
             "closed_at": "2026-06-16T05:48:10Z",
             "resolution_time_hours": 1.03,
             "char_count": 1772
-        },
-        {
-            "number": 88,
-            "title": "Refatorar e complementar Story Map",
-            "state": "closed",
-            "created_at": "2026-06-16T00:24:01Z",
-            "closed_at": "2026-06-22T13:39:40Z",
-            "resolution_time_hours": 157.26,
-            "char_count": 1843
-        },
-        {
-            "number": 80,
-            "title": "Otimização do Dockerfile e Implementação da Esteira de CI/CD (GHCR)",
-            "state": "closed",
-            "created_at": "2026-06-08T17:41:26Z",
-            "closed_at": "2026-06-15T15:26:48Z",
-            "resolution_time_hours": 165.76,
-            "char_count": 2271
         }
     ],
     "autores": {
+        "cgbriel28": {
+            "commits": 26,
+            "insercoes": 14729,
+            "delecoes": 1095,
+            "total_linhas": 15824
+        },
         "yaxavier": {
             "commits": 26,
             "insercoes": 1437,
             "delecoes": 76,
             "total_linhas": 1513
-        },
-        "cgbriel28": {
-            "commits": 25,
-            "insercoes": 14685,
-            "delecoes": 1068,
-            "total_linhas": 15753
         },
         "marispmorais": {
             "commits": 34,
