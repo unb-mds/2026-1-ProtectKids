@@ -235,11 +235,18 @@ A documentação técnica do projeto está disponível via GitHub Pages:
 
 A documentação inclui informações sobre:
 
+
+A documentação completa do **ProtectKids** reúne os principais detalhes técnicos e organizacionais do projeto, incluindo arquitetura da aplicação, modelagem do banco de dados PostgreSQL, infraestrutura, endpoints da API, melhorias implementadas, registros das sprints e orientações para contribuição.
+
+Acesse para saber mais:
+
+
 - Visão geral do projeto
 - Requisitos
 - Arquitetura
 - Infraestrutura
 - Testes
+
 
 ---
 
@@ -253,6 +260,9 @@ A documentação inclui informações sobre:
 | Mariana Soares | [@marispmorais](https://github.com/marispmorais) |
 | Wanda Maria | [@Wandinhawright](https://github.com/Wandinhawright) |
 | Yara Xavier | [@VegasVegas](https://github.com/VegasVegas) |
+
+ correçoes-readme
+> **Observação:** Ryan Lira participou das etapas iniciais do projeto, contribuindo até aproximadamente a Sprint 6. A partir da Sprint 7, ele deixou de participar das atividades registradas, não integrando a equipe ativa nas etapas finais de desenvolvimento, revisão e entrega.
 
 ---
 
