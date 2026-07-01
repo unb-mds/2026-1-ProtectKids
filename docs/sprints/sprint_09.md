@@ -76,3 +76,30 @@ Ao final da Sprint 09, foram alcançados os seguintes resultados:
 A Sprint 09 representou uma evolução importante na capacidade analítica do ProtectKids. Com a implementação do histórico de tramitações, a plataforma deixou de apresentar apenas informações estáticas das proposições e passou a acompanhar sua evolução ao longo do processo legislativo, permitindo análises mais completas sobre o comportamento das matérias no Congresso Nacional.
 
 Além disso, as melhorias na infraestrutura de extração de dados, a criação de novos endpoints analíticos e a formalização do contrato da API fortaleceram a integração entre os componentes do sistema e prepararam a plataforma para novas funcionalidades de visualização e análise previstas para as próximas etapas do projeto.
+
+# Ata da Sprint 9 - Documentação, testes e revisão
+
+## Pauta
+* Revisar documentação técnica.
+* Validar o que estava funcionando.
+* Organizar pendências para entrega final.
+
+## O que foi conversado
+* Foi conversado que a documentação precisava explicar o projeto de forma objetiva e compatível com o que estava implementado.
+* Augusto revisou correções técnicas e backend.
+* Mariana contribuiu com testes, dados e validação das funcionalidades.
+* Wanda revisou interface e coerência visual.
+* Yara documentou pontos de infraestrutura, Docker e variáveis de ambiente.
+* Carlos organizou pendências e acompanhamento Scrum.
+* Danielly apoiou revisão de requisitos, arquitetura e registros.
+
+## Deliberações
+* Foi decidido revisar páginas de requisitos, arquitetura, endpoints, infraestrutura e execução local.
+* O grupo deliberou que a documentação deveria evitar prometer funcionalidades não concluídas.
+* Foi decidido validar endpoints e telas antes de fechar a entrega.
+
+## Encaminhamentos
+* Danielly e Yara ajustariam documentação conforme suas frentes.
+* Augusto e Mariana revisariam backend, dados e testes.
+* Wanda verificaria interface.
+* Carlos consolidaria pendências finais.

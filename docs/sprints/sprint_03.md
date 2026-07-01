@@ -32,14 +32,17 @@ Além da implementação da base técnica do frontend e do backend, foram realiz
 
 ## Issues da Sprint
 
-| Issue | Descrição                                             | Responsável                 | Status      |
-| ----- | ----------------------------------------------------- | --------------------------- | ----------- |
-| #22   | Revisão de User Stories                               | @Danielly-Mendes            | ✅ Concluído |
-| #23   | Configuração do MkDocs e Deploy via GitHub Pages      | @cgbriel28                  | ✅ Concluído |
-| #24   | Inicialização do Projeto Frontend (React/Vite)        | @Golira12 e @wandinhawright | ✅ Concluído |
-| #25   | Modelagem e Implementação do Schema de Banco de Dados | @augustogmedeiros           | ✅ Concluído |
-| #26   | Criação do README Oficial do Repositório              | @VegasVvegas                | ✅ Concluído |
-| #27   | Setup do FastAPI e Criação da Rota Mockada            | @augustogmedeiros           | ✅ Concluído |
+## Issues da Sprint
+
+| Issue | Descrição | Responsável | Status |
+|------|-----------|-------------|--------|
+| #22 | Revisão e refinamento das User Stories | @Danielly-Mendes | ✅ Concluído |
+| #23 | Configuração do MkDocs e publicação da documentação via GitHub Pages | @cgbriel28 | ✅ Concluído |
+| #24 | Inicialização do projeto e configuração da estrutura base | @Golira12 / @wandinhawright | ✅ Concluído |
+| #25 | Modelagem e implementação do schema inicial do banco de dados | @augustogmedeiros | ✅ Concluído |
+| #26 | Criação do README oficial do repositório | @VegasVvegas | ✅ Concluído |
+| #27 | Configuração do FastAPI e implementação da rota mockada inicial | @marispmorais | ✅ Concluído |
+| #186 | Ajustes no layout CSS da documentação | @cgbriel28 | ✅ Concluído |
 
 ---
 
@@ -59,3 +62,30 @@ Ao término da Sprint 03, foram alcançados os seguintes resultados:
 ## Conclusão
 
 A Sprint 03 consolidou os primeiros componentes concretos do ProtectKids. Com a infraestrutura básica do sistema implementada, a documentação oficial publicada e os requisitos refinados, a equipe estabeleceu uma base sólida para o desenvolvimento das funcionalidades de negócio nas próximas iterações, reduzindo riscos de integração e promovendo maior organização do projeto.
+
+# Ata da Sprint 3 - Arquitetura e organização técnica
+
+## Pauta
+* Definir a arquitetura inicial.
+* Separar responsabilidades entre frontend, backend, banco e ETL.
+* Organizar como a documentação apresentaria o sistema.
+
+## O que foi conversado
+* Foi conversado que a arquitetura precisava deixar claro o papel de cada parte do sistema.
+* Augusto explicou e corrigiu pontos de backend e integração.
+* Mariana contribuiu com a visão de dados, banco e testes.
+* Ryan e Wanda avaliaram o impacto da arquitetura nas telas e no Figma.
+* Yara discutiu Docker, ambiente local e comunicação entre serviços.
+* Carlos registrou pendências da sprint e organizou o fluxo de acompanhamento.
+* Danielly apoiou a documentação da arquitetura.
+
+## Deliberações
+* O grupo deliberou a separação entre API, banco de dados, frontend e processo de coleta/tratamento de dados.
+* Foi decidido documentar a arquitetura em camadas, explicando o papel de cada componente.
+* A equipe decidiu manter o Docker como referência para padronizar o ambiente.
+
+## Encaminhamentos
+* Augusto e Mariana seguiriam com backend, modelos e dados.
+* Ryan e Wanda seguiriam com telas e protótipo.
+* Yara cuidaria da estrutura de ambiente e Docker.
+* Danielly ajustaria a documentação arquitetural.
