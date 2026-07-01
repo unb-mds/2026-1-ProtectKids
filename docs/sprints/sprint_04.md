@@ -68,7 +68,11 @@ Ao final da Sprint 04, foram alcançados os seguintes resultados:
 
 ## Conclusão
 
-A Sprint 04 representou um avanço significativo na maturidade técnica do ProtectKids. Com a integração entre os principais componentes da aplicação, a automação dos processos de integração e o início da coleta de dados legislativos reais, o projeto passou a contar com uma infraestrutura sólida e preparada para a implementação das funcionalidades de negócio nas próximas sprints. Essa etapa reduziu riscos relacionados à integração, aumentou a confiabilidade do desenvolvimento e estabeleceu práticas importantes de qualidade de software.
+A Sprint 04 representou um avanço significativo na maturidade técnica do ProtectKids. Com a integração entre os principais componentes da aplicação, a configuração da Integração Contínua (CI) e o início da coleta de dados legislativos reais, o projeto passou a contar com uma base técnica mais sólida para a implementação das funcionalidades de negócio nas próximas sprints.
+
+A adoção da CI permitiu iniciar um fluxo mais confiável de validação do projeto, apoiando a execução de testes e a identificação de falhas durante o desenvolvimento. Já a Entrega Contínua/Deploy Contínuo (CD) não foi implementada nesta sprint, mas foi reconhecida pela equipe como uma prática importante para etapas futuras. Por isso, ficou definido que o grupo irá pesquisar e avaliar sua aplicação mais à frente, especialmente quando o projeto estiver mais estável e preparado para processos automatizados de publicação e entrega.
+
+Essa etapa reduziu riscos relacionados à integração, aumentou a confiabilidade do desenvolvimento e estabeleceu práticas importantes de qualidade de software, preparando o ProtectKids para evoluir de forma mais organizada nas próximas iterações.
 
 # Ata da Sprint 4 - Backend, banco e primeiras rotas
 
