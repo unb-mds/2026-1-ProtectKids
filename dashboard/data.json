@@ -1,6 +1,24 @@
 {
-    "last_updated": "2026-07-01T13:46:08.021029Z",
+    "last_updated": "2026-07-01T13:52:03.621987Z",
     "commits": [
+        {
+            "hash": "49dab6ed45089a01e0842804757336c7ae7c4f7b",
+            "date": "2026-07-01T10:51:35-03:00",
+            "message": "Merge pull request #193 from unb-mds/revisao-sprint05",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "47ce1ae737b60a209ea3127b9cb4905c0b753ab9",
+            "date": "2026-07-01T10:50:52-03:00",
+            "message": "Update sprint_05.md  adicionando os detalhes",
+            "is_conventional": false,
+            "insertions": 4,
+            "deletions": 4,
+            "total_diff": 8
+        },
         {
             "hash": "725f7f967c7190b6808b1b4ea429ecf39b9c8d16",
             "date": "2026-07-01T10:45:42-03:00",
@@ -3314,23 +3332,14 @@
             "closed_at": "2026-06-18T15:14:45Z",
             "resolution_time_hours": 34.16,
             "char_count": 1292
-        },
-        {
-            "number": 93,
-            "title": "ETL e Modelagem do Histórico de Tramitações",
-            "state": "closed",
-            "created_at": "2026-06-16T14:28:46Z",
-            "closed_at": "2026-06-16T14:40:55Z",
-            "resolution_time_hours": 0.2,
-            "char_count": 1651
         }
     ],
     "autores": {
         "yaxavier": {
-            "commits": 33,
-            "insercoes": 1450,
-            "delecoes": 82,
-            "total_linhas": 1532
+            "commits": 35,
+            "insercoes": 1454,
+            "delecoes": 86,
+            "total_linhas": 1540
         },
         "augustogmedeiros": {
             "commits": 151,
