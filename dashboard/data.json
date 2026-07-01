@@ -1,6 +1,15 @@
 {
-    "last_updated": "2026-07-01T05:55:32.221492Z",
+    "last_updated": "2026-07-01T05:57:55.216498Z",
     "commits": [
+        {
+            "hash": "948341fa57296eeaff497eec385ddaca798416c9",
+            "date": "2026-07-01T02:57:26-03:00",
+            "message": "revisao e adesao na sprint 3",
+            "is_conventional": false,
+            "insertions": 11,
+            "deletions": 8,
+            "total_diff": 19
+        },
         {
             "hash": "1ae13d6b25b3e8c3358297d59abe38da163bb93e",
             "date": "2026-07-01T02:52:41-03:00",
@@ -3264,10 +3273,10 @@
     ],
     "autores": {
         "cgbriel28": {
-            "commits": 26,
-            "insercoes": 14729,
-            "delecoes": 1095,
-            "total_linhas": 15824
+            "commits": 27,
+            "insercoes": 14740,
+            "delecoes": 1103,
+            "total_linhas": 15843
         },
         "yaxavier": {
             "commits": 26,
