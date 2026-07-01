@@ -1,11 +1,21 @@
 # Sprint 07 - Revisão e Consolidação dos Requisitos
 
 ## Objetivo
+A Sprint 07 foi uma das etapas mais importantes após a entrega da **Release 1 (R1)** do ProtectKids, pois marcou o início de um processo de revisão crítica do projeto. Após a primeira entrega oficial, a equipe percebeu que era necessário analisar com mais cuidado o que havia sido construído, identificar pontos que precisavam ser corrigidos ou remodelados e organizar os próximos encaminhamentos para a continuidade do desenvolvimento.
 
-A Sprint 07 foi dedicada ao período de estabilização do projeto após a entrega da **Release 1 (R1)**. Diferentemente das sprints anteriores, esta iteração teve um escopo reduzido e concentrou seus esforços exclusivamente na revisão da documentação de requisitos, buscando alinhar os artefatos do projeto ao estado atual da aplicação.
+Diferentemente das sprints anteriores, que estavam mais concentradas na implementação das funcionalidades da R1, esta sprint teve como foco principal a avaliação do estado atual do projeto. A equipe passou a revisar a documentação, os requisitos, a arquitetura, a interface, o protótipo no Figma e a coerência geral entre o que havia sido planejado, implementado e apresentado.
 
-O principal objetivo desta sprint foi garantir que a documentação refletisse fielmente as funcionalidades implementadas durante a Release 1, promovendo maior consistência entre os requisitos definidos, a arquitetura desenvolvida e o software entregue.
+Durante essa sprint, foi discutido que o projeto não deveria apenas avançar com novas funcionalidades sem antes corrigir inconsistências identificadas na primeira entrega. Por isso, a equipe decidiu usar essa etapa para levantar problemas, revisar decisões anteriores e definir prioridades de melhoria para as próximas sprints.
 
+Um dos pontos centrais da Sprint 07 foi a necessidade de revisar o **Figma** e a identidade visual do ProtectKids. Até aquele momento, ainda não havia sido feito um estudo mais detalhado sobre as cores, a organização visual da interface e a forma como o sistema deveria comunicar sua proposta. Como o tema do projeto envolve proteção infantil, segurança digital, transparência legislativa e pautas sensíveis, a equipe entendeu que a identidade visual precisava ser tratada com mais responsabilidade e cuidado.
+
+Foi debatido que as cores, componentes e organização das telas deveriam transmitir seriedade, confiança e acessibilidade, evitando uma aparência genérica ou pouco alinhada ao propósito da plataforma. Assim, a sprint abriu espaço para discutir a remodelagem visual do projeto, considerando ajustes no protótipo, revisão da paleta de cores e melhoria da experiência do usuário.
+
+Além da parte visual, a equipe também analisou a documentação de requisitos. O objetivo foi verificar se os requisitos registrados ainda representavam corretamente o estado da aplicação após a R1. Também foi discutida a necessidade de ajustar descrições, melhorar a clareza dos artefatos e alinhar a documentação com as funcionalidades realmente implementadas.
+
+Outro ponto importante foi a análise dos encaminhamentos recebidos após a entrega. A equipe discutiu quais pontos apresentados precisariam ser corrigidos, quais melhorias deveriam ser priorizadas e quais decisões precisariam ser revistas antes de avançar para novas entregas. Essa revisão ajudou o grupo a organizar melhor o trabalho e a evitar retrabalho nas etapas seguintes.
+
+Dessa forma, a Sprint 07 representou uma etapa de reorganização, amadurecimento e planejamento. O grupo passou a olhar para o ProtectKids de forma mais crítica, buscando alinhar documentação, requisitos, interface, identidade visual e implementação. Essa sprint foi essencial para preparar o projeto para uma evolução mais consistente após a R1.
 ---
 
 ## Entregas Realizadas
@@ -69,4 +79,4 @@ A Sprint 07 desempenhou um papel importante na consolidação da documentação 
 * Mariana validaria dados e testes.
 * Wanda ajustaria Figma/interface conforme mudanças.
 * Yara verificaria ambiente e infraestrutura.
-* Carlos manteria o Scrum atualizado sem Ryan.
+* Carlos assumiu o Scrum.
