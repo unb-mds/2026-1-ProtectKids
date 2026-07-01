@@ -1,6 +1,15 @@
 {
-    "last_updated": "2026-06-30T23:04:38.411171Z",
+    "last_updated": "2026-07-01T04:08:53.659817Z",
     "commits": [
+        {
+            "hash": "00b60276701dc2e8472be41b33b6a4d0b4a40795",
+            "date": "2026-07-01T01:08:18-03:00",
+            "message": "atas de reuniao 00 ate 05",
+            "is_conventional": false,
+            "insertions": 134,
+            "deletions": 2,
+            "total_diff": 136
+        },
         {
             "hash": "404bb4c4856c3ee0a5f629ab3a655fe3b0b3c1c5",
             "date": "2026-06-30T20:00:29-03:00",
@@ -2769,28 +2778,28 @@
         {
             "number": 157,
             "title": "[Frontend] Integrar análise estática de código com SonarQube",
-            "state": "open",
+            "state": "closed",
             "created_at": "2026-06-30T06:19:13Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
+            "closed_at": "2026-07-01T00:36:27Z",
+            "resolution_time_hours": 18.29,
             "char_count": 1177
         },
         {
             "number": 156,
             "title": "[Frontend] Aperfeiçoar UI/UX e responsividade do painel principal",
-            "state": "open",
+            "state": "closed",
             "created_at": "2026-06-30T05:02:28Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
+            "closed_at": "2026-07-01T00:36:18Z",
+            "resolution_time_hours": 19.56,
             "char_count": 1395
         },
         {
             "number": 155,
             "title": "[Backend] Implementar extração de redes sociais no crawler de parlamentares",
-            "state": "open",
+            "state": "closed",
             "created_at": "2026-06-30T05:01:45Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
+            "closed_at": "2026-07-01T00:37:01Z",
+            "resolution_time_hours": 19.59,
             "char_count": 1580
         },
         {
@@ -2859,10 +2868,10 @@
         {
             "number": 135,
             "title": "Revisar e padronizar o docker-compose.yml",
-            "state": "open",
+            "state": "closed",
             "created_at": "2026-06-25T21:25:43Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
+            "closed_at": "2026-07-01T02:59:29Z",
+            "resolution_time_hours": 125.56,
             "char_count": 1927
         },
         {
@@ -3066,10 +3075,10 @@
         {
             "number": 106,
             "title": "Atualizar documentação de requisitos e Story Map para refletir a implementação atual",
-            "state": "open",
+            "state": "closed",
             "created_at": "2026-06-23T20:22:45Z",
-            "closed_at": null,
-            "resolution_time_hours": null,
+            "closed_at": "2026-07-01T02:58:22Z",
+            "resolution_time_hours": 174.59,
             "char_count": 2153
         },
         {
@@ -3161,18 +3170,15 @@
             "closed_at": "2026-06-29T04:56:15Z",
             "resolution_time_hours": 507.3,
             "char_count": 1672
-        },
-        {
-            "number": 77,
-            "title": "Novo Index",
-            "state": "closed",
-            "created_at": "2026-06-07T23:46:07Z",
-            "closed_at": "2026-06-29T04:56:15Z",
-            "resolution_time_hours": 509.17,
-            "char_count": 383
         }
     ],
     "autores": {
+        "cgbriel28": {
+            "commits": 24,
+            "insercoes": 14369,
+            "delecoes": 1068,
+            "total_linhas": 15437
+        },
         "marispmorais": {
             "commits": 34,
             "insercoes": 2933646,
@@ -3196,12 +3202,6 @@
             "insercoes": 429,
             "delecoes": 79,
             "total_linhas": 508
-        },
-        "cgbriel28": {
-            "commits": 23,
-            "insercoes": 14235,
-            "delecoes": 1066,
-            "total_linhas": 15301
         },
         "VegasVvegas": {
             "commits": 1,
