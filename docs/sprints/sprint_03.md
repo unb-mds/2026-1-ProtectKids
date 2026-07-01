@@ -32,14 +32,17 @@ Além da implementação da base técnica do frontend e do backend, foram realiz
 
 ## Issues da Sprint
 
-| Issue | Descrição                                             | Responsável                 | Status      |
-| ----- | ----------------------------------------------------- | --------------------------- | ----------- |
-| #22   | Revisão de User Stories                               | @Danielly-Mendes            | ✅ Concluído |
-| #23   | Configuração do MkDocs e Deploy via GitHub Pages      | @cgbriel28                  | ✅ Concluído |
-| #24   | Inicialização do Projeto Frontend (React/Vite)        | @Golira12 e @wandinhawright | ✅ Concluído |
-| #25   | Modelagem e Implementação do Schema de Banco de Dados | @augustogmedeiros           | ✅ Concluído |
-| #26   | Criação do README Oficial do Repositório              | @VegasVvegas                | ✅ Concluído |
-| #27   | Setup do FastAPI e Criação da Rota Mockada            | @augustogmedeiros           | ✅ Concluído |
+## Issues da Sprint
+
+| Issue | Descrição | Responsável | Status |
+|------|-----------|-------------|--------|
+| #22 | Revisão e refinamento das User Stories | @Danielly-Mendes | ✅ Concluído |
+| #23 | Configuração do MkDocs e publicação da documentação via GitHub Pages | @cgbriel28 | ✅ Concluído |
+| #24 | Inicialização do projeto e configuração da estrutura base | @Golira12 / @wandinhawright | ✅ Concluído |
+| #25 | Modelagem e implementação do schema inicial do banco de dados | @augustogmedeiros | ✅ Concluído |
+| #26 | Criação do README oficial do repositório | @VegasVvegas | ✅ Concluído |
+| #27 | Configuração do FastAPI e implementação da rota mockada inicial | @marispmorais | ✅ Concluído |
+| #186 | Ajustes no layout CSS da documentação | @cgbriel28 | ✅ Concluído |
 
 ---
 
