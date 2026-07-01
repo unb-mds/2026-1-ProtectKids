@@ -1,6 +1,24 @@
 {
-    "last_updated": "2026-07-01T14:02:06.099226Z",
+    "last_updated": "2026-07-01T14:28:38.098273Z",
     "commits": [
+        {
+            "hash": "a6f11bfb49a5f2927ff34438793854c18f8d99cd",
+            "date": "2026-07-01T11:28:11-03:00",
+            "message": "Merge pull request #195 from unb-mds/Revisão-dasprint07",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "11b6ac4ed098c89664fb4a2aa1dd11ea7fad1316",
+            "date": "2026-07-01T11:27:00-03:00",
+            "message": "Sptrint07-pós entrega R1",
+            "is_conventional": false,
+            "insertions": 13,
+            "deletions": 3,
+            "total_diff": 16
+        },
         {
             "hash": "4b2476afd541b9f7792ea2f13dff4ac04aa1e088",
             "date": "2026-07-01T11:01:41-03:00",
@@ -3354,10 +3372,10 @@
     ],
     "autores": {
         "yaxavier": {
-            "commits": 37,
-            "insercoes": 1464,
-            "delecoes": 88,
-            "total_linhas": 1552
+            "commits": 39,
+            "insercoes": 1477,
+            "delecoes": 91,
+            "total_linhas": 1568
         },
         "augustogmedeiros": {
             "commits": 151,
