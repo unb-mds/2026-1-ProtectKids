@@ -1,6 +1,15 @@
 {
-    "last_updated": "2026-07-01T04:37:26.993608Z",
+    "last_updated": "2026-07-01T04:38:24.512295Z",
     "commits": [
+        {
+            "hash": "c388d1625cdb837a77d5e5bb748dbd6a5fa86496",
+            "date": "2026-07-01T01:38:01-03:00",
+            "message": "Revise Functional Requirements section in requisitos.md",
+            "is_conventional": false,
+            "insertions": 10,
+            "deletions": 9,
+            "total_diff": 19
+        },
         {
             "hash": "84c68246c90e4520a2e8be8b27f65715dc14c6e9",
             "date": "2026-07-01T01:36:42-03:00",
@@ -3182,6 +3191,12 @@
         }
     ],
     "autores": {
+        "yaxavier": {
+            "commits": 24,
+            "insercoes": 1434,
+            "delecoes": 74,
+            "total_linhas": 1508
+        },
         "cgbriel28": {
             "commits": 25,
             "insercoes": 14685,
@@ -3217,12 +3232,6 @@
             "insercoes": 0,
             "delecoes": 0,
             "total_linhas": 0
-        },
-        "yaxavier": {
-            "commits": 23,
-            "insercoes": 1424,
-            "delecoes": 65,
-            "total_linhas": 1489
         },
         "DaniellyMendes": {
             "commits": 2,
