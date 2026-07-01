@@ -151,9 +151,10 @@ Para detalhes profundos sobre a arquitetura da aplicação, documentação técn
 | Carlos Gabriel | [@cgbriel28](https://github.com/cgbriel28) |
 | Danielly Mendes | [@DaniellyMendes](https://github.com/DaniellyMendes) |
 | Mariana Soares | [@marispmorais](https://github.com/marispmorais) |
-| Ryan Lira | [@Golira12](https://github.com/Golira12) |
 | Wanda Maria | [@Wandinhawright](https://github.com/Wandinhawright) |
 | Yara Xavier | [@VegasVegas](https://github.com/VegasVegas) |
+
+> **Observação:** Ryan Lira participou das etapas iniciais do projeto, contribuindo até aproximadamente a Sprint 6. A partir da Sprint 7, ele deixou de participar das atividades registradas, não integrando a equipe ativa nas etapas finais de desenvolvimento, revisão e entrega.
 
 ## 📄 Licença
 
