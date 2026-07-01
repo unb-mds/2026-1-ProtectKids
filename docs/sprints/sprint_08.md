@@ -94,10 +94,13 @@ Ao final da Sprint 08, foram alcançados os seguintes resultados:
 
 ## Conclusão
 
-A Sprint 08 representou um importante avanço na escalabilidade e maturidade do ProtectKids. A integração do Senado Federal ampliou significativamente o alcance da plataforma, permitindo o monitoramento de proposições provenientes das duas principais casas legislativas do Congresso Nacional.
+A Sprint 08 representou um avanço importante na escalabilidade e na maturidade técnica do **ProtectKids**. A integração dos dados do **Senado Federal** ampliou o alcance da plataforma, permitindo que o sistema passasse a considerar proposições provenientes das duas principais casas legislativas do Congresso Nacional: a **Câmara dos Deputados** e o **Senado Federal**.
 
-Além da expansão funcional, a equipe fortaleceu sua infraestrutura de desenvolvimento por meio da adoção de Pull Requests, melhorias no pipeline de CI/CD, otimizações de desempenho e refinamentos na documentação. Essas evoluções aumentam a confiabilidade do sistema e estabelecem uma base sólida para a continuidade da **Release 2** e das próximas etapas do projeto.
+Além da expansão funcional, a equipe também avançou na organização do fluxo de desenvolvimento. Foram discutidas melhorias no uso de **Pull Requests**, revisão de alterações antes da integração à branch principal e maior cuidado com a rastreabilidade das entregas. Essas práticas contribuíram para tornar o processo de colaboração mais controlado e reduzir riscos de sobrescrita ou conflitos no repositório.
 
+Outro ponto relevante da sprint foi o início de um estudo mais direcionado sobre **CI/CD**. Ficou definido que **Yara** e **Augusto** ficariam responsáveis por estudar, avaliar e testar possibilidades de melhoria no pipeline do projeto, considerando a importância da automação para validação, integração e futuras entregas. Embora a aplicação completa de CD ainda dependa de maior estabilidade do sistema e das decisões de deploy, a equipe reconheceu a relevância dessa prática para as próximas etapas.
+
+Também foram discutidas otimizações de desempenho, ajustes na infraestrutura de desenvolvimento e refinamentos na documentação técnica. Essas evoluções fortaleceram a confiabilidade do sistema e estabeleceram uma base mais sólida para a continuidade da **Release 2**, permitindo que o ProtectKids avançasse de forma mais organizada, escalável e alinhada às necessidades do projeto.
 # Ata da Sprint 8 - Analytics e visualização de dados
 
 ## Pauta
@@ -108,11 +111,11 @@ Além da expansão funcional, a equipe fortaleceu sua infraestrutura de desenvol
 ## O que foi conversado
 * Foi conversado que o sistema precisava apresentar dados de forma mais analítica, não apenas em listagens.
 * Augusto atuou em correções técnicas e apoio no backend.
-* Mariana discutiu dados, testes e validação dos resultados analíticos.
+* Mariana discutiu dados, testes e validação dos resultados analíticos e ficara responsavél por ajudar nos testes finais.
 * Wanda avaliou como rankings e nuvem de palavras poderiam aparecer na interface.
-* Yara acompanhou execução dos endpoints e integração no ambiente.
-* Carlos organizou pendências e prioridades da sprint.
-* Danielly registrou as funcionalidades e decisões para a documentação.
+* Yara acompanhou execução dos endpoints e integração no ambiente.Além de avaliar o motivo de está pesado a aplicação.
+* Carlos organizou pendências e prioridades da sprint e deu um suporte a wanda no figma.
+* Danielly registrou as funcionalidades e decisões para a documentação e começou a trabalhar em requisitos.
 
 ## Deliberações
 * Foi decidido avançar com rankings de parlamentares e partidos.
@@ -123,4 +126,4 @@ Além da expansão funcional, a equipe fortaleceu sua infraestrutura de desenvol
 * Backend implementaria e ajustaria analytics.
 * Dados e testes validariam os resultados.
 * Interface avaliaria como exibir rankings e nuvem.
-* Infraestrutura garantiria execução do ambiente para testes.
+* Infraestrutura garantiria execução do ambiente para testes e mais leve.
