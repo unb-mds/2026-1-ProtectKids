@@ -1,147 +1,247 @@
 # 🛡️ ProtectKids
 
-Plataforma de transparência e monitoramento legislativo baseada em Inteligência Artificial.
+Plataforma de transparência e monitoramento legislativo voltada à análise de proposições relacionadas à proteção de crianças e adolescentes no ambiente digital.
+
 ## 🔎 Visão Geral
 
-O *ProtectKids* é uma plataforma desenvolvida para centralizar, monitorar e analisar proposições legislativas (Projetos de Lei) em tramitação na Câmara dos Deputados. O foco do sistema está em monitorar pautas voltadas para a proteção infantil, segurança digital de menores e o combate ao cyberbullying.
+O **ProtectKids** é uma plataforma desenvolvida com o objetivo de centralizar, monitorar e analisar proposições legislativas em tramitação na **Câmara dos Deputados** e no **Senado Federal**.
 
-Utilizando técnicas de Processamento de Linguagem Natural (NLP), o sistema classifica automaticamente os temas das ementas extraídas, gerando indicadores inteligentes em um painel analítico para facilitar o acompanhamento dessas legislações.
+O sistema tem foco em pautas relacionadas à proteção infantil, segurança digital de menores, privacidade, combate ao cyberbullying, exploração online e demais temas associados à proteção de crianças e adolescentes no ambiente digital.
 
----
-
-# 🎨 Protótipo no Figma
-
-Acesse o design e a prototipação da interface do projeto:
-
-[Link do Projeto no Figma](https://www.figma.com/board/KBZc1R8RPPHBiZ1eoiRzFM/ProtectKids-mds?node-id=0-1&t=rHYhSFDUosKKo5mr-0)
-
-[Link do protótipo do frontend](https://www.figma.com/design/OYd8YVckfiX0JiuJWmijDg/Prototipo-Site-MDS-squad-10?node-id=0-1&p=f&t=uiEuDatc96qDLOEM-0)
+A aplicação utiliza técnicas de **Processamento de Linguagem Natural (NLP)** para classificar automaticamente proposições legislativas e gerar indicadores analíticos, como rankings, filtros temáticos e nuvem de palavras.
 
 ---
 
-# 🛠️ Tecnologias Utilizadas
+## 🎨 Protótipos no Figma
+
+Acesse os protótipos e materiais visuais do projeto:
+
+- [Board do Projeto no Figma](https://www.figma.com/board/KBZc1R8RPPHBiZ1eoiRzFM/ProtectKids-mds?node-id=0-1&t=rHYhSFDUosKKo5mr-0)
+- [Protótipo do Frontend](https://www.figma.com/design/OYd8YVckfiX0JiuJWmijDg/Prototipo-Site-MDS-squad-10?node-id=0-1&p=f&t=uiEuDatc96qDLOEM-0)
+
+---
+
+## 🛠️ Tecnologias Utilizadas
 
 ### Backend
-- *Python* (FastAPI)
-- *SQLModel* / *SQLAlchemy*
-- *PostgreSQL*
-- *spaCy* (NLP)
+
+- **Python 3.11**
+- **FastAPI**
+- **SQLModel**
+- **SQLAlchemy**
+- **PostgreSQL**
+- **spaCy** para NLP
 
 ### Frontend
-- *React* (Vite + JavaScript)
-- *Tailwind CSS*
 
-### Infraestrutura & DevOps
-- *Docker* & *Docker Compose*
-- *GitHub Actions* (CI/CD)
+- **React**
+- **Vite**
+- **JavaScript**
+- **Tailwind CSS**
+- **Axios**
+
+### Infraestrutura e DevOps
+
+- **Docker**
+- **Docker Compose**
+- **GitHub Actions**
+- **MkDocs**
+- **GitHub Pages**
 
 ---
-### 🚀 Como Rodar o Projeto (Quickstart)
 
-Certifique-se de ter o **Git**, o **Docker** e o **Docker Compose** instalados e ativos em sua máquina antes de prosseguir.
+## 🚀 Como Rodar o Projeto Localmente
 
-**1. Clonar o repositório**
+A execução local é feita com **Docker Compose**, subindo automaticamente os serviços de banco de dados, backend e frontend.
+
+### Pré-requisitos
+
+Antes de iniciar, verifique se você possui instalado:
+
+- Git
+- Docker
+- Docker Compose
+
+---
+
+## 1. Clonar o repositório
 
 ```bash
 git clone https://github.com/unb-mds/2026-1-ProtectKids.git
 cd 2026-1-ProtectKids
 ```
 
-**2. Configurar Variáveis de Ambiente**
-Antes de iniciar o Docker, é necessário definir as credenciais do banco de dados local.
-- Na raiz do projeto, faça uma cópia do arquivo `.env.example` e renomeie-a para `.env`.
-- Preencha o arquivo com os seguintes dados padrão de desenvolvimento:
+---
+
+## 2. Configurar variáveis de ambiente
+
+Na raiz do projeto, crie uma cópia do arquivo `.env.example` com o nome `.env`.
+
+No Windows PowerShell:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+Para execução local com Docker Compose, o arquivo `.env` deve conter valores semelhantes aos abaixo:
+
 ```env
-POSTGRES_USER=augusto
-POSTGRES_PASSWORD=squad10
-POSTGRES_DB=legislativo_db
-DATABASE_URL=postgresql://augusto:squad10@db:5432/legislativo_db
-MAX_PAGES=3
+POSTGRES_USER=protectkids_user
+POSTGRES_PASSWORD=protectkids_password
+POSTGRES_DB=protectkids_db
+
+DATABASE_URL=postgresql://protectkids_user:protectkids_password@db:5432/protectkids_db
+
+DEBUG_SQL=false
+MAX_PAGES=2
+ANO_INICIO_COLETA=2015
+ANO_FIM_COLETA=2026
+SPACY_MODEL=pt_core_news_sm
+
+CORS_ORIGINS=http://localhost,http://localhost:80,http://localhost:5173,http://localhost:3000
+
+VITE_API_URL=http://localhost:8000
 ```
 
-**3. Subir a Infraestrutura**
-Baixe as imagens oficiais mais recentes da nuvem (GHCR) e inicie os serviços do banco, backend e frontend.
-```bash
-docker compose up --build -d
-```
-*(Aguarde alguns instantes até os contêineres inicializarem)*
-
-**4. Popular o Banco de Dados (ETL)**
-Para utilizar o sistema, é necessário baixar os dados oficiais da internet. Execute os scripts abaixo na ordem:
-
-Primeiro, baixe as proposições de lei base da Câmara e do Senado:
-```bash
-docker-compose exec backend python -m crawler.camara_api
-docker-compose exec backend python -m crawler.senado_api
-```
-Em seguida, baixe o histórico de tramitações das leis recém-salvas:
-```bash
-docker-compose exec backend python -m crawler.tramitacoes_api
-```
-
-**5. Acessar a aplicação**
-- **Interface Web (Frontend):** http://localhost:5173
-- **API Rest (Backend):** http://localhost:8000
-- **Documentação Swagger:** http://localhost:8000/docs
+> ⚠️ O arquivo `.env` contém configurações locais e não deve ser enviado para o GitHub.
 
 ---
+
+## 3. Subir os serviços com Docker Compose
+
+Na raiz do projeto, execute:
+
+```bash
+docker compose up -d --build
+```
+O esperado é que os serviços de banco, backend e frontend estejam em execução.
+
+---
+
+## 4. Popular o banco de dados
+
+Após subir os containers, é necessário executar os crawlers para coletar e salvar os dados legislativos.
+
+Execute os comandos abaixo na raiz do projeto:
+
+```bash
+docker compose exec backend python -m crawler.camara_api
+docker compose exec backend python -m crawler.senado_api
+docker compose exec backend python -m crawler.tramitacoes_api
+docker compose exec backend python -m crawler.tramitacoes_senado_api
+```
+
+Esses comandos coletam proposições e tramitações da Câmara dos Deputados e do Senado Federal.
+
+---
+
+## 5. Acessar a aplicação
+
+Após subir os serviços e popular o banco, acesse:
+
+| Serviço | URL |
+|---|---|
+| Frontend | http://localhost:5173 |
+| Backend | http://localhost:8000 |
+| Swagger da API | http://localhost:8000/docs |
+
+---
+
 
 ## 🧪 Testes e Cobertura de Código
 
-O backend utiliza [`pytest`](https://docs.pytest.org/) para testes automatizados e [`pytest-cov`](https://pytest-cov.readthedocs.io/) para medir a cobertura de código.
+O projeto possui testes automatizados para backend e frontend.
 
-### Pré-requisitos
+### Backend
 
-Certifique-se de que o ambiente virtual está ativado e as dependências instaladas:
+O backend utiliza:
 
-```bash
-# Windows (PowerShell)
-.\venv\Scripts\Activate.ps1
+- `pytest`
+- `pytest-cov`
+- `TestClient` do FastAPI
 
-# Linux/macOS
-source venv/bin/activate
+Os testes estão localizados em:
 
-pip install -r requirements.txt
+```text
+backend/tests/
 ```
 
-### Rodando os testes
-
-Para rodar toda a suíte de testes:
+Para executar os testes do backend, entre na pasta `backend`:
 
 ```bash
-pytest tests/
+cd backend
 ```
 
-### Gerando relatório de cobertura
+No Windows PowerShell, ative o ambiente virtual:
 
-Para rodar os testes e gerar um relatório visual em HTML:
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+Execute os testes com cobertura:
+
+```powershell
+$env:PYTHONPATH="."
+python -m pytest tests/ -q --cov=main --cov=models --cov=database --cov-report=term-missing --cov-fail-under=70
+```
+
+Resultado obtido na validação final:
+
+```text
+66 testes passando
+Cobertura total: 92.02%
+Cobertura mínima exigida: 70%
+```
+
+### Frontend
+
+O frontend utiliza:
+
+- `Vitest`
+- `Testing Library`
+- `@vitest/coverage-v8`
+
+Para executar os testes do frontend via Docker, rode na raiz do projeto:
 
 ```bash
-pytest tests/ --cov=. --cov-report=html
+docker compose run --rm frontend npm test -- --run
 ```
 
-Esse comando cria a pasta `htmlcov/` na raiz do backend. Para visualizar o relatório, abra o arquivo `htmlcov/index.html` no navegador.
-
-Se preferir ver a cobertura direto no terminal, sem abrir o navegador:
+Para executar os testes com cobertura:
 
 ```bash
-pytest tests/ --cov=. --cov-report=term-missing
+docker compose run --rm frontend npm run test:coverage
 ```
 
-A flag `term-missing` mostra no terminal exatamente quais linhas do código ainda não estão cobertas por testes.
+Para validar o build de produção:
 
-> ⚠️ **Atenção:** a pasta `htmlcov/` e o arquivo `.coverage` são gerados localmente por cada desenvolvedor e **não devem ser commitados**. Eles já estão listados no `.gitignore` do projeto.
+```bash
+docker compose run --rm frontend npm run build
+```
 
+Resultado obtido na validação final:
 
-**💡 Dica de Desenvolvimento:** Caso o banco precise ser totalmente resetado ou suas variáveis do `.env` alteradas, utilize o comando `docker-compose down -v` para destruir os volumes internos e limpe o ambiente antes de subir a infraestrutura novamente.
+```text
+7 testes passando
+Cobertura total: 80.31%
+Build de produção executado com sucesso
+```
 
----
+## 📖 Documentação Completa
 
-## 📖 Documentação Completa (MkDocs)
-
-Para detalhes profundos sobre a arquitetura da aplicação, documentação técnica, modelagem do banco de dados PostgreSQL e guias de contribuição, consulte a nossa documentação oficial integrada:
+A documentação técnica do projeto está disponível via GitHub Pages:
 
 [Documentação ProtectKids](https://unb-mds.github.io/2026-1-ProtectKids/)
+
+A documentação inclui informações sobre:
+
+- Visão geral do projeto
+- Requisitos
+- Arquitetura
+- Infraestrutura
+- Testes
+
+---
 
 ## 👥 Equipe
 
@@ -151,10 +251,11 @@ Para detalhes profundos sobre a arquitetura da aplicação, documentação técn
 | Carlos Gabriel | [@cgbriel28](https://github.com/cgbriel28) |
 | Danielly Mendes | [@DaniellyMendes](https://github.com/DaniellyMendes) |
 | Mariana Soares | [@marispmorais](https://github.com/marispmorais) |
-| Ryan Lira | [@Golira12](https://github.com/Golira12) |
 | Wanda Maria | [@Wandinhawright](https://github.com/Wandinhawright) |
 | Yara Xavier | [@VegasVegas](https://github.com/VegasVegas) |
 
+---
+
 ## 📄 Licença
 
-Este projeto é destinado estritamente para fins acadêmicos e de pesquisa.
+Este projeto é destinado estritamente para fins acadêmicos e de pesquisa no contexto da disciplina Métodos de Desenvolvimento de Software da Universidade de Brasília.
