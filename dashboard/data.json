@@ -1,6 +1,15 @@
 {
-    "last_updated": "2026-07-01T05:57:55.216498Z",
+    "last_updated": "2026-07-01T12:32:37.901071Z",
     "commits": [
+        {
+            "hash": "3e7b3359ca21c70b9ce34eef3cc8f292a97a17cc",
+            "date": "2026-07-01T09:32:15-03:00",
+            "message": "docs: revisa README para entrega final",
+            "is_conventional": true,
+            "insertions": 175,
+            "deletions": 74,
+            "total_diff": 249
+        },
         {
             "hash": "948341fa57296eeaff497eec385ddaca798416c9",
             "date": "2026-07-01T02:57:26-03:00",
@@ -3272,6 +3281,12 @@
         }
     ],
     "autores": {
+        "augustogmedeiros": {
+            "commits": 151,
+            "insercoes": 13529,
+            "delecoes": 2948581,
+            "total_linhas": 2962110
+        },
         "cgbriel28": {
             "commits": 27,
             "insercoes": 14740,
@@ -3289,12 +3304,6 @@
             "insercoes": 2933646,
             "delecoes": 262,
             "total_linhas": 2933908
-        },
-        "augustogmedeiros": {
-            "commits": 150,
-            "insercoes": 13354,
-            "delecoes": 2948507,
-            "total_linhas": 2961861
         },
         "wandinhawright": {
             "commits": 33,
