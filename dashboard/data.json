@@ -1,6 +1,24 @@
 {
-    "last_updated": "2026-07-01T13:35:34.118581Z",
+    "last_updated": "2026-07-01T13:41:46.954450Z",
     "commits": [
+        {
+            "hash": "da8b63911a2e48092afaa5d629d8cddcabf1efb3",
+            "date": "2026-07-01T10:41:21-03:00",
+            "message": "Merge pull request #178 from unb-mds/correçoes-readme",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
+        {
+            "hash": "849abee10fbe51d6258efe4660f8807b7c484fc3",
+            "date": "2026-07-01T10:41:08-03:00",
+            "message": "Merge branch 'main' into correçoes-readme",
+            "is_conventional": true,
+            "insertions": 0,
+            "deletions": 0,
+            "total_diff": 0
+        },
         {
             "hash": "ce3e8563f1abb4014157b5388f83368018efe856",
             "date": "2026-07-01T10:35:10-03:00",
@@ -81,6 +99,24 @@
             "insertions": 316,
             "deletions": 0,
             "total_diff": 316
+        },
+        {
+            "hash": "4e0cca81555ea81ec048601939d75958c710f093",
+            "date": "2026-07-01T01:31:59-03:00",
+            "message": "Enhance README with detailed project documentation",
+            "is_conventional": false,
+            "insertions": 3,
+            "deletions": 1,
+            "total_diff": 4
+        },
+        {
+            "hash": "379d008499bb3f8c1e4605aa36928ca56cb53d08",
+            "date": "2026-07-01T01:11:50-03:00",
+            "message": "Update contributors list and participation note",
+            "is_conventional": false,
+            "insertions": 2,
+            "deletions": 1,
+            "total_diff": 3
         },
         {
             "hash": "00b60276701dc2e8472be41b33b6a4d0b4a40795",
@@ -3282,10 +3318,10 @@
     ],
     "autores": {
         "yaxavier": {
-            "commits": 28,
-            "insercoes": 1443,
-            "delecoes": 78,
-            "total_linhas": 1521
+            "commits": 32,
+            "insercoes": 1448,
+            "delecoes": 80,
+            "total_linhas": 1528
         },
         "augustogmedeiros": {
             "commits": 151,
